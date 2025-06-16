@@ -558,9 +558,24 @@ body.no-scroll.menu-open::after {
     width: 92%;
     margin: 60px auto;
     padding: 60px 4%;
-    background: #111;
     border-radius: 12px;
     overflow: hidden; /* Important for animation */
+    position: relative;
+}
+
+.why-choose-us-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/images/why-choose-us-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.4);
+    z-index: 1;
 }
 
 .why-choose-us-content {
@@ -570,6 +585,8 @@ body.no-scroll.menu-open::after {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .why-choose-us-text .section-header {
