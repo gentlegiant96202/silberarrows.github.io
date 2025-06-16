@@ -570,12 +570,13 @@ body.no-scroll.menu-open::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../assets/images/why-choose-us-bg.jpg');
+    background-image: url('../assets/images/why-choose-us-bg-optimized.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    filter: brightness(0.4);
+    background-attachment: scroll;
+    filter: brightness(0.2);
     z-index: 1;
+    background-repeat: no-repeat;
 }
 
 .why-choose-us-content {
@@ -595,6 +596,7 @@ body.no-scroll.menu-open::after {
     opacity: 0;
     transform: translateX(-30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    max-width: 450px;
 }
 
 .why-choose-us-section.is-visible .why-choose-us-text .section-header {
@@ -617,7 +619,6 @@ body.no-scroll.menu-open::after {
     font-size: 16px;
     color: var(--silver);
     line-height: 1.7;
-    max-width: 450px;
 }
 
 .features-container {
@@ -701,21 +702,21 @@ body.no-scroll.menu-open::after {
     }
 
     .why-choose-us-text .section-header {
-        text-align: center;
+        text-align: left;
     }
 
     .why-choose-us-text .section-header h2 {
-        text-align: center;
+        text-align: left;
     }
 
     .why-choose-us-text .section-header h2::after {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: translateX(0);
     }
 
     .why-choose-us-text .section-header p {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .features-container .feature-card {
