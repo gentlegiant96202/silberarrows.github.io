@@ -777,7 +777,10 @@ body.no-scroll.menu-open::after {
     gap: 15px;
     margin-bottom: 40px;
     flex-wrap: wrap;
-    background: rgba(0,0,0,0.2);
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
     padding: 20px;
     border-radius: 12px;
 }
