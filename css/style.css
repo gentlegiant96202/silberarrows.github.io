@@ -775,6 +775,12 @@ body.no-scroll.menu-open::after {
     gap: 15px;
     margin-bottom: 40px;
     flex-wrap: wrap;
+    background: rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 12px;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tab-btn {
@@ -782,8 +788,8 @@ body.no-scroll.menu-open::after {
     padding: 12px 25px;
     font-size: 16px;
     font-weight: 400;
-    color: var(--silver);
-    background: transparent;
+    color: var(--light-gray);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
     cursor: pointer;
@@ -794,7 +800,7 @@ body.no-scroll.menu-open::after {
 }
 
 .tab-btn:hover {
-    background: var(--glass-bg);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--light);
 }
 
@@ -802,6 +808,7 @@ body.no-scroll.menu-open::after {
     background: var(--gold-gradient);
     color: var(--dark);
     border-color: var(--gold);
+    font-weight: 600;
 }
 
 .tab-content .tab-pane {
@@ -949,7 +956,11 @@ body.no-scroll.menu-open::after {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none; 
-        scrollbar-width: none; 
+        scrollbar-width: none;
+        justify-content: flex-start;
+        padding: 20px;
+        border-radius: 0;
+        width: 100%;
     }
 
     .service-tabs::-webkit-scrollbar {
