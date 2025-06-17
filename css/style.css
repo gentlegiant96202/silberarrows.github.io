@@ -730,7 +730,9 @@ body.no-scroll.menu-open::after {
 .services-section {
     width: 92%;
     margin: 60px auto;
-    padding: 0 4%;
+    padding: 60px 4%;
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    border-radius: 12px;
 }
 
 .section-header {
@@ -778,9 +780,6 @@ body.no-scroll.menu-open::after {
     background: rgba(0,0,0,0.2);
     padding: 20px;
     border-radius: 12px;
-    width: 92%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .tab-btn {
@@ -808,7 +807,7 @@ body.no-scroll.menu-open::after {
     background: var(--gold-gradient);
     color: var(--dark);
     border-color: var(--gold);
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .tab-content .tab-pane {
