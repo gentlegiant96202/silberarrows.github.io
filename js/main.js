@@ -108,9 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Animated Reveal on Scroll
-  const animatedSection = document.querySelector('.why-choose-us-section');
+  const animatedSections = document.querySelectorAll('.why-choose-us-section, .warranty-section, .service-detail');
 
-  if (animatedSection) {
+  if (animatedSections.length > 0) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
       threshold: 0.1 // Trigger when 10% of the element is visible
     });
 
-    observer.observe(animatedSection);
+    animatedSections.forEach(section => {
+      observer.observe(section);
+    });
   }
 }); 
