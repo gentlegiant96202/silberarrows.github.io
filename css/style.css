@@ -83,7 +83,7 @@ header {
     font-family: var(--impact-font);
     color: var(--silver);
     text-decoration: none;
-    font-weight: 900;
+    font-weight: 400;
     font-size: 15px;
     transition: color 0.3s ease;
     text-transform: uppercase;
@@ -123,7 +123,7 @@ header {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .contact-btn.phone-btn {
@@ -409,7 +409,7 @@ body.no-scroll.menu-open::after {
 .hero-title {
     font-family: var(--impact-font);
     font-size: 72px;
-    font-weight: 900;
+    font-weight: 400;
     line-height: 0.9;
     margin-bottom: 15px;
     color: var(--light);
@@ -447,7 +447,7 @@ body.no-scroll.menu-open::after {
     color: #121212;
     padding: 15px 40px;
     font-size: 16px;
-    font-weight: 900;
+    font-weight: 400;
     text-decoration: none;
     border-radius: 4px;
     text-transform: uppercase;
@@ -505,12 +505,12 @@ body.no-scroll.menu-open::after {
     border-radius: 4px;
     color: var(--light);
     text-decoration: none;
-    font-weight: 900;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    min-width: 200px;
-    justify-content: center;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s ease;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -656,6 +656,18 @@ body.no-scroll.menu-open::after {
     transition-delay: 0.4s;
 }
 
+.why-choose-us-section.is-visible .features-container .feature-card:nth-child(3) {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.6s;
+}
+
+.why-choose-us-section.is-visible .features-container .feature-card:nth-child(4) {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.8s;
+}
+
 .features-container .feature-card:hover {
     transform: translateY(-5px);
     background: rgba(191, 149, 63, 0.08);
@@ -683,7 +695,7 @@ body.no-scroll.menu-open::after {
     font-family: var(--impact-font);
     color: var(--gold);
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 400;
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -719,6 +731,12 @@ body.no-scroll.menu-open::after {
         margin-right: 0;
     }
 
+    .features-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
     .features-container .feature-card {
         text-align: center;
         flex-direction: column;
@@ -741,7 +759,7 @@ body.no-scroll.menu-open::after {
 .section-header h2 {
     font-family: var(--impact-font);
     font-size: 42px;
-    font-weight: 900;
+    font-weight: 400;
     color: var(--light);
     margin-bottom: 15px;
     position: relative;
@@ -781,7 +799,7 @@ body.no-scroll.menu-open::after {
     font-family: var(--impact-font);
     padding: 12px 25px;
     font-size: 16px;
-    font-weight: 900;
+    font-weight: 400;
     color: var(--silver);
     background: transparent;
     border: 1px solid var(--glass-border);
@@ -854,7 +872,7 @@ body.no-scroll.menu-open::after {
 .service-card h3 {
     font-family: var(--impact-font);
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 400;
     color: var(--light);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -880,9 +898,9 @@ body.no-scroll.menu-open::after {
     margin-top: 15px;
     text-decoration: none;
     display: inline-block;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-weight: 900;
 }
 
 .read-more-btn:hover {
@@ -1222,7 +1240,7 @@ body.no-scroll.menu-open::after {
     align-items: center;
     gap: 10px;
     font-size: 16px;
-    font-weight: 900;
+    font-weight: 400;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1289,12 +1307,11 @@ body.no-scroll.menu-open::after {
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
-    position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .footer-action i {
@@ -1309,7 +1326,7 @@ body.no-scroll.menu-open::after {
 .footer-action span {
     font-family: var(--impact-font);
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 400;
     white-space: nowrap;
 }
 
@@ -1454,7 +1471,7 @@ body.no-scroll.menu-open::after {
 .warranty-card-simple h3 {
     font-family: var(--impact-font);
     font-size: 28px;
-    font-weight: 900;
+    font-weight: 400;
     color: var(--light);
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -1552,7 +1569,7 @@ body.no-scroll.menu-open::after {
 .benefit-item h4 {
     font-family: var(--impact-font);
     font-size: 18px;
-    font-weight: 900;
+    font-weight: 400;
     color: var(--light);
     margin-bottom: 10px;
     text-transform: uppercase;
