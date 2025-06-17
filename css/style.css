@@ -777,12 +777,6 @@ body.no-scroll.menu-open::after {
     gap: 15px;
     margin-bottom: 40px;
     flex-wrap: wrap;
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    padding: 20px;
-    border-radius: 12px;
 }
 
 .tab-btn {
@@ -793,7 +787,7 @@ body.no-scroll.menu-open::after {
     color: var(--light-gray);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
-    border-radius: 30px;
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -960,7 +954,7 @@ body.no-scroll.menu-open::after {
         -ms-overflow-style: none; 
         scrollbar-width: none;
         justify-content: flex-start;
-        padding: 20px;
+        padding: 20px 0;
         border-radius: 0;
         width: 100%;
     }
