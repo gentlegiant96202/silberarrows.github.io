@@ -151,117 +151,136 @@
                 <p>Specialized Mercedes-Benz solutions delivered with precision and expertise</p>
             </div>
 
-            <div class="service-tabs">
-                <button class="tab-btn active" data-tab="mechanical">Core Mechanical</button>
-                <button class="tab-btn" data-tab="electrical">Electrical & Diagnostics</button>
-                <button class="tab-btn" data-tab="chassis">Chassis & Brakes</button>
-                <button class="tab-btn" data-tab="general">General Maintenance</button>
-            </div>
-
-            <div class="tab-content">
-                <div id="mechanical" class="tab-pane active">
-                    <div class="service-card">
-                        <i class="fas fa-engine"></i>
-                        <h3>Engine Repair</h3>
-                        <p>Comprehensive engine diagnostics and precision repairs</p>
-                        <a href="services/engine-repair.html" class="read-more-btn">Learn More</a>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-cogs"></i>
-                        <h3>Transmission Service</h3>
-                        <p>Automatic transmission repair and maintenance</p>
-                        <a href="services/transmission-service.html" class="read-more-btn">Learn More</a>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-oil-can"></i>
-                        <h3>Oil Leak Repair</h3>
-                        <p>Comprehensive diagnosis and repair of oil leaks</p>
-                        <a href="services/oil-leak-repair.html" class="read-more-btn">Learn More</a>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-fan"></i>
-                        <h3>Cooling System Service</h3>
-                        <p>Radiator repair and coolant system maintenance</p>
-                        <a href="services/cooling-system-service.html" class="read-more-btn">Learn More</a>
-                    </div>
-                     <div class="service-card">
-                        <i class="fas fa-gas-pump"></i>
-                        <h3>Fuel System Service</h3>
-                        <p>Fuel system cleaning and component repair</p>
-                        <a href="services/fuel-system-service.html" class="read-more-btn">Learn More</a>
-                    </div>
-                </div>
-
-                <div id="electrical" class="tab-pane">
-                    <div class="service-card">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Electrical System Repair</h3>
-                        <p>Expert diagnostics and repair for complex Mercedes electrical systems</p>
-                        <a href="services/electrical-system-repair.html" class="read-more-btn">Learn More</a>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-diagnostic"></i>
-                        <h3>Computer Diagnostics</h3>
-                        <p>Advanced electronic system diagnostics and coding</p>
-                        <a href="services/computer-diagnostics.html" class="read-more-btn">Learn More</a>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-car-battery"></i>
-                        <h3>Battery Service</h3>
-                        <p>Battery testing, replacement and charging system repair</p>
-                        <a href="services/battery-service.html" class="read-more-btn">Learn More</a>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <h3>Fuel Injector Service</h3>
-                        <p>Professional cleaning and calibration of fuel injection systems</p>
-                        <a href="services/fuel-injector-service.html" class="read-more-btn">Learn More</a>
-                    </div>
-                </div>
-
-                <div id="chassis" class="tab-pane">
-                    <div class="service-card service-card--has-image">
-                        <div class="service-card-image">
-                            <img src="assets/images/brake-service.jpg" alt="Brake System Service">
-                        </div>
-                        <div class="service-card-content">
-                            <h3>Brake System Service</h3>
-                            <p>Complete brake system inspection and repair</p>
-                            <a href="services/brake-system-service.html" class="read-more-btn">Learn More</a>
+            <div class="services-layout">
+                <nav class="services-nav">
+                    <ul>
+                        <!-- Service links will be dynamically injected here by JS -->
+                    </ul>
+                </nav>
+                <div class="service-card-display">
+                    <div class="service-pane" data-service="engine-repair" id="engine-repair">
+                        <div class="service-card">
+                            <i class="fas fa-engine"></i>
+                            <h3>Engine Repair</h3>
+                            <p>Comprehensive engine diagnostics and precision repairs</p>
+                            <a href="services/engine-repair.html" class="read-more-btn">Learn More</a>
                         </div>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-tools"></i>
-                        <h3>Suspension Repair</h3>
-                        <p>Complete suspension system diagnostics and repair</p>
-                        <a href="services/suspension-repair.html" class="read-more-btn">Learn More</a>
+                    <div class="service-pane" data-service="transmission-service" id="transmission-service">
+                        <div class="service-card">
+                            <i class="fas fa-cogs"></i>
+                            <h3>Transmission Service</h3>
+                            <p>Automatic transmission repair and maintenance</p>
+                            <a href="services/transmission-service.html" class="read-more-btn">Learn More</a>
+                        </div>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-tire"></i>
-                        <h3>Wheel Alignment</h3>
-                        <p>Precision wheel alignment and balancing services</p>
-                        <a href="services/wheel-alignment.html" class="read-more-btn">Learn More</a>
+                    <div class="service-pane" data-service="oil-leak-repair" id="oil-leak-repair">
+                        <div class="service-card">
+                            <i class="fas fa-oil-can"></i>
+                            <h3>Oil Leak Repair</h3>
+                            <p>Comprehensive diagnosis and repair of oil leaks</p>
+                            <a href="services/oil-leak-repair.html" class="read-more-btn">Learn More</a>
+                        </div>
                     </div>
-                </div>
-
-                <div id="general" class="tab-pane">
-                     <div class="service-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Preventive Maintenance</h3>
-                        <p>Scheduled maintenance and inspection services</p>
-                        <a href="services/preventive-maintenance.html" class="read-more-btn">Learn More</a>
+                    <div class="service-pane" data-service="cooling-system-service" id="cooling-system-service">
+                        <div class="service-card">
+                            <i class="fas fa-fan"></i>
+                            <h3>Cooling System Service</h3>
+                            <p>Radiator repair and coolant system maintenance</p>
+                            <a href="services/cooling-system-service.html" class="read-more-btn">Learn More</a>
+                        </div>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-temperature-high"></i>
-                        <h3>AC System Service</h3>
-                        <p>Climate control diagnostics and optimization</p>
-                        <a href="services/ac-system-service.html" class="read-more-btn">Learn More</a>
+                    <div class="service-pane" data-service="fuel-system-service" id="fuel-system-service">
+                        <div class="service-card">
+                            <i class="fas fa-gas-pump"></i>
+                            <h3>Fuel System Service</h3>
+                            <p>Fuel system cleaning and component repair</p>
+                            <a href="services/fuel-system-service.html" class="read-more-btn">Learn More</a>
+                        </div>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-car-crash"></i>
-                        <h3>Body Repair</h3>
-                        <p>Expert collision repair and paint matching services</p>
-                        <a href="services/body-repair.html" class="read-more-btn">Learn More</a>
+                    <div class="service-pane" data-service="electrical-system-repair" id="electrical-system-repair">
+                        <div class="service-card">
+                            <i class="fas fa-bolt"></i>
+                            <h3>Electrical System Repair</h3>
+                            <p>Expert diagnostics and repair for complex Mercedes electrical systems</p>
+                            <a href="services/electrical-system-repair.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="computer-diagnostics" id="computer-diagnostics">
+                        <div class="service-card">
+                            <i class="fas fa-diagnostic"></i>
+                            <h3>Computer Diagnostics</h3>
+                            <p>Advanced electronic system diagnostics and coding</p>
+                            <a href="services/computer-diagnostics.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="battery-service" id="battery-service">
+                        <div class="service-card">
+                            <i class="fas fa-car-battery"></i>
+                            <h3>Battery Service</h3>
+                            <p>Battery testing, replacement and charging system repair</p>
+                            <a href="services/battery-service.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="fuel-injector-service" id="fuel-injector-service">
+                        <div class="service-card">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h3>Fuel Injector Service</h3>
+                            <p>Professional cleaning and calibration of fuel injection systems</p>
+                            <a href="services/fuel-injector-service.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="brake-system-service" id="brake-system-service">
+                        <div class="service-card service-card--has-image">
+                            <div class="service-card-image">
+                                <img src="assets/images/brake-service.jpg" alt="Brake System Service">
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Brake System Service</h3>
+                                <p>Complete brake system inspection and repair</p>
+                                <a href="services/brake-system-service.html" class="read-more-btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="suspension-repair" id="suspension-repair">
+                        <div class="service-card">
+                            <i class="fas fa-tools"></i>
+                            <h3>Suspension Repair</h3>
+                            <p>Complete suspension system diagnostics and repair</p>
+                            <a href="services/suspension-repair.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="wheel-alignment" id="wheel-alignment">
+                        <div class="service-card">
+                            <i class="fas fa-tire"></i>
+                            <h3>Wheel Alignment</h3>
+                            <p>Precision wheel alignment and balancing services</p>
+                            <a href="services/wheel-alignment.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="preventive-maintenance" id="preventive-maintenance">
+                        <div class="service-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Preventive Maintenance</h3>
+                            <p>Scheduled maintenance and inspection services</p>
+                            <a href="services/preventive-maintenance.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="ac-system-service" id="ac-system-service">
+                        <div class="service-card">
+                            <i class="fas fa-temperature-high"></i>
+                            <h3>AC System Service</h3>
+                            <p>Climate control diagnostics and optimization</p>
+                            <a href="services/ac-system-service.html" class="read-more-btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-pane" data-service="body-repair" id="body-repair">
+                        <div class="service-card">
+                            <i class="fas fa-car-crash"></i>
+                            <h3>Body Repair</h3>
+                            <p>Expert collision repair and paint matching services</p>
+                            <a href="services/body-repair.html" class="read-more-btn">Learn More</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,5 +342,53 @@
     </div>
 
     <script src="dist/js/main.min.js?v=3.0"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const servicesNavList = document.querySelector('.services-nav ul');
+        const servicePanes = document.querySelectorAll('.service-pane');
+
+        if (!servicesNavList || servicePanes.length === 0) {
+            return;
+        }
+
+        // 1. Generate Navigation
+        servicePanes.forEach(pane => {
+            const serviceId = pane.dataset.service;
+            const serviceTitle = pane.querySelector('h3').textContent;
+            
+            const li = document.createElement('li');
+            const button = document.createElement('button');
+            button.className = 'services-nav-item';
+            button.dataset.target = serviceId;
+            button.textContent = serviceTitle;
+            
+            li.appendChild(button);
+            servicesNavList.appendChild(li);
+        });
+
+        const navItems = document.querySelectorAll('.services-nav-item');
+
+        // 2. Set Initial State
+        if (navItems.length > 0 && servicePanes.length > 0) {
+            navItems[0].classList.add('active');
+            servicePanes[0].classList.add('active');
+        }
+
+        // 3. Add Click Handler
+        servicesNavList.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('services-nav-item')) {
+                const targetId = e.target.dataset.target;
+                
+                // Deactivate all
+                navItems.forEach(item => item.classList.remove('active'));
+                servicePanes.forEach(pane => pane.classList.remove('active'));
+
+                // Activate clicked
+                e.target.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+            }
+        });
+    });
+    </script>
 </body>
 </html> 
