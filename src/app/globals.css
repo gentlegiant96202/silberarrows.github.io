@@ -487,9 +487,10 @@ body.no-scroll.menu-open::after {
 .hero-subtitle {
     font-size: 13px;
     max-width: 600px;
-    margin-bottom: 22px;
+    margin-bottom: 25px;
     color: var(--light-gray);
-    line-height: 1.7;
+    line-height: 1.2;
+    text-align: left;
 }
 
 .hero-cta-container {
@@ -666,7 +667,7 @@ body.no-scroll.menu-open::after {
     font-size: 42px;
     font-weight: 400;
     color: var(--light);
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     position: relative;
     display: block;
     text-transform: uppercase;
@@ -677,7 +678,7 @@ body.no-scroll.menu-open::after {
 .why-choose-us-text .section-header h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 0;
     transform: translateX(0);
     width: 80px;
@@ -688,7 +689,9 @@ body.no-scroll.menu-open::after {
 .why-choose-us-text .section-header p {
     font-size: 13px;
     color: var(--silver);
-    line-height: 1.7;
+    line-height: 1.2;
+    text-align: left;
+    margin: 25px 0 25px 0;
 }
 
 .features-container {
@@ -747,7 +750,8 @@ body.no-scroll.menu-open::after {
 .features-container .feature-content p {
     color: var(--light-gray);
     font-size: 13px;
-    line-height: 1.6;
+    line-height: 1.2;
+    text-align: left;
 }
 
 /* --- Services Section --- */
@@ -759,9 +763,33 @@ body.no-scroll.menu-open::after {
     border-radius: 12px;
 }
 
-.section-header {
+.services-section .section-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin: 0 auto 25px;
+    max-width: 600px;
+}
+
+.services-section .section-header h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.services-section .section-header h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+}
+
+.services-section .section-header p {
+    text-align: center;
+    margin: 25px auto 25px;
+}
+
+/* --- General Section Headers --- */
+.section-header {
+    text-align: left;
+    margin-bottom: 0;
+    max-width: 450px;
 }
 
 .section-header h2 {
@@ -769,20 +797,21 @@ body.no-scroll.menu-open::after {
     font-size: 42px;
     font-weight: 400;
     color: var(--light);
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     position: relative;
-    display: inline-block;
+    display: block;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: left;
 }
 
 .section-header h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: -8px;
+    left: 0;
+    transform: translateX(0);
     width: 80px;
     height: 2px;
     background: var(--gold-gradient);
@@ -791,17 +820,22 @@ body.no-scroll.menu-open::after {
 .section-header p {
     color: var(--silver);
     font-size: 13px;
-    max-width: 600px;
-    margin: 0 auto;
+    line-height: 1.2;
+    text-align: left;
+    margin: 25px 0 25px 0;
 }
 
 .services-layout {
     display: flex;
     gap: 30px;
+    align-items: stretch;
+    min-height: 420px;
 }
 
 .services-nav {
     min-width: 250px;
+    display: flex;
+    flex-direction: column;
 }
 
 .services-nav ul {
@@ -809,13 +843,14 @@ body.no-scroll.menu-open::after {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
 }
 
 .services-nav-item {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--impact-font);
     padding: 10px 20px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 400;
     color: var(--light-gray);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
@@ -843,6 +878,9 @@ body.no-scroll.menu-open::after {
 
 .service-card-display {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
 }
 
 .service-pane {
@@ -850,20 +888,25 @@ body.no-scroll.menu-open::after {
 }
 
 .service-pane.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .service-card {
     background: rgba(35, 35, 35, 0.75);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
     transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
+    justify-content: flex-end;
+    gap: 10px;
+    flex: 1;
+    min-height: 420px;
 }
 
 .service-card:hover {
@@ -872,13 +915,12 @@ body.no-scroll.menu-open::after {
 }
 
 .service-card i {
-    font-size: 40px;
-    color: var(--gold);
+    display: none;
 }
 
 .service-card h3 {
     font-family: var(--impact-font);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     color: var(--light);
     text-transform: uppercase;
@@ -886,10 +928,11 @@ body.no-scroll.menu-open::after {
 }
 
 .service-card p {
-    font-size: 13px;
+    font-size: 11px;
     color: var(--light-gray);
-    line-height: 1.6;
-    margin-bottom: auto;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-align: justify;
 }
 
 .read-more-btn {
@@ -897,12 +940,12 @@ body.no-scroll.menu-open::after {
     background: none;
     border: 1px solid var(--gold);
     color: var(--gold);
-    padding: 6px 16px;
+    padding: 5px 14px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 15px;
+    margin-top: 0;
     text-decoration: none;
     display: inline-block;
     font-weight: 600;
@@ -940,6 +983,28 @@ body.no-scroll.menu-open::after {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+}
+
+.warranty-section .section-header {
+    text-align: center;
+    margin: 0 auto 25px;
+    max-width: 600px;
+}
+
+.warranty-section .section-header h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.warranty-section .section-header h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+}
+
+.warranty-section .section-header p {
+    text-align: center;
+    margin: 25px auto 25px;
 }
 
 .warranty-cards-simple {
@@ -1170,22 +1235,59 @@ body.no-scroll.menu-open::after {
     }
 
     .services-layout {
-        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+        min-height: 340px;
+        overflow-x: hidden;
+    }
+
+    .services-section {
+        width: 95%;
+        padding: 40px 3%;
     }
 
     .services-nav {
-        min-width: auto;
+        min-width: 110px;
+        flex: 0 0 110px;
+        display: flex;
+        flex-direction: column;
     }
 
     .services-nav ul {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
     }
 
     .services-nav-item {
+        padding: 8px 10px;
+        font-size: 11px;
+        white-space: normal;
+        line-height: 1.2;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    .service-card-display {
+        display: flex;
+        flex-direction: column;
+        min-height: 340px;
+    }
+
+    .service-pane.active {
         flex: 1;
-        min-width: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 340px;
+        padding: 15px;
+        gap: 8px;
     }
 }
 
@@ -1230,6 +1332,7 @@ body.no-scroll.menu-open::after {
     .hero-subtitle {
         font-size: 13px;
         margin-bottom: 18px;
+        text-align: center;
     }
 
     .hero-cta {
@@ -1267,23 +1370,38 @@ body.no-scroll.menu-open::after {
         margin-top: 15px;
     }
 
+    .section-header {
+        text-align: center !important;
+        margin-bottom: 30px !important;
+        max-width: none !important;
+    }
+
     .section-header h2 {
         font-family: var(--impact-font) !important;
         font-size: 38px !important;
         font-weight: 400 !important;
-        line-height: 0.95 !important;
+        line-height: 1.1 !important;
         letter-spacing: 2px !important;
+        text-align: center !important;
         color: var(--light) !important;
         text-transform: uppercase !important;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
-        margin-bottom: 12px;
+        margin-bottom: 8px !important;
+        padding: 0 !important;
         display: block !important;
+    }
+
+    .section-header h2::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        bottom: -8px !important;
     }
 
     .section-header p {
         font-size: 14px;
-        margin-bottom: 25px;
-        line-height: 1.6;
+        margin: 25px auto 25px;
+        line-height: 1.2;
+        text-align: center !important;
     }
 
     .why-choose-us-text .section-header h2 {
@@ -1296,7 +1414,7 @@ body.no-scroll.menu-open::after {
         color: var(--light) !important;
         text-transform: uppercase !important;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 8px !important;
         padding: 0 !important;
         display: block !important;
     }
@@ -1304,7 +1422,7 @@ body.no-scroll.menu-open::after {
     .why-choose-us-text .section-header h2::after {
         left: 50% !important;
         transform: translateX(-50%) !important;
-        bottom: -15px !important;
+        bottom: -8px !important;
     }
 
     .why-choose-us-content {
@@ -1318,6 +1436,8 @@ body.no-scroll.menu-open::after {
 
     .why-choose-us-text .section-header p {
         text-align: center !important;
+        line-height: 1.2 !important;
+        margin: 25px auto 25px !important;
     }
 
     .features-container .feature-content h3 {
@@ -1326,6 +1446,8 @@ body.no-scroll.menu-open::after {
 
     .features-container .feature-content p {
         font-size: 13px;
+        line-height: 1.2;
+        text-align: center;
     }
 
     .services-nav-item {
@@ -1334,16 +1456,18 @@ body.no-scroll.menu-open::after {
     }
 
     .service-card h3 {
-        font-size: 22px;
+        font-size: 14px;
     }
 
     .service-card p {
-        font-size: 13px;
+        font-size: 10px;
+        line-height: 1.2;
+        text-align: justify;
     }
 
     .read-more-btn {
-        padding: 6px 16px;
-        font-size: 12px;
+        padding: 4px 12px;
+        font-size: 9px;
     }
 
     .warranty-card-simple h3 {
@@ -1417,6 +1541,7 @@ body.no-scroll.menu-open::after {
     .hero-subtitle {
         font-size: 12px;
         line-height: 1.5;
+        text-align: center;
     }
 
     .hero-cta {
@@ -1448,16 +1573,31 @@ body.no-scroll.menu-open::after {
         font-size: 12px;
     }
 
+    .section-header {
+        text-align: center !important;
+        margin-bottom: 25px !important;
+        max-width: none !important;
+    }
+
     .section-header h2 {
         font-family: var(--impact-font) !important;
         font-size: 32px !important;
         font-weight: 400 !important;
-        line-height: 0.9 !important;
+        line-height: 1.05 !important;
         letter-spacing: 2px !important;
+        text-align: center !important;
         color: var(--light) !important;
         text-transform: uppercase !important;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+        margin-bottom: 8px !important;
+        padding: 0 !important;
         display: block !important;
+    }
+
+    .section-header h2::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        bottom: -8px !important;
     }
 
     .why-choose-us-text .section-header h2 {
@@ -1470,7 +1610,7 @@ body.no-scroll.menu-open::after {
         color: var(--light) !important;
         text-transform: uppercase !important;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
-        margin-bottom: 18px !important;
+        margin-bottom: 8px !important;
         padding: 0 !important;
         display: block !important;
     }
@@ -1478,7 +1618,7 @@ body.no-scroll.menu-open::after {
     .why-choose-us-text .section-header h2::after {
         left: 50% !important;
         transform: translateX(-50%) !important;
-        bottom: -12px !important;
+        bottom: -8px !important;
     }
 
     .why-choose-us-content {
@@ -1492,12 +1632,15 @@ body.no-scroll.menu-open::after {
 
     .why-choose-us-text .section-header p {
         text-align: center !important;
+        line-height: 1.2 !important;
+        margin: 25px auto 25px !important;
     }
 
     .section-header p {
         font-size: 13px;
-        margin-bottom: 20px;
-        line-height: 1.6;
+        margin: 25px auto 25px;
+        line-height: 1.2;
+        text-align: center;
     }
 
     .nav-link {
@@ -1508,9 +1651,25 @@ body.no-scroll.menu-open::after {
         font-size: 20px;
     }
 
+    .services-section {
+        width: 98%;
+        padding: 30px 2%;
+    }
+
+    .services-layout {
+        overflow-x: hidden;
+    }
+
+    .services-nav {
+        min-width: 90px;
+        flex: 0 0 90px;
+    }
+
     .services-nav-item {
-        padding: 8px 14px;
-        font-size: 11px;
+        padding: 6px 8px;
+        font-size: 10px;
+        font-weight: 300;
+        letter-spacing: 0.2px;
     }
 
     .warranty-card-simple {
