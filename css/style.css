@@ -2797,8 +2797,9 @@ p,
 .footer-action:first-child:hover i,
 .hero-action:first-child i,
 .hero-action:first-child:hover i,
-.info-header .fa-phone-alt {
-    transform: none !important;
+.info-header .fa-phone-alt,
+.contact-info .fa-phone-alt {
+    transform: scaleX(-1) !important;
 }
 
 /* === Contact Section === */
@@ -2974,7 +2975,7 @@ p,
     width: 100%;
     height: 100%;
     border: none;
-    filter: grayscale(20%) contrast(1.1);
+    filter: grayscale(100%) contrast(1.1);
 }
 
 .map-overlay {
