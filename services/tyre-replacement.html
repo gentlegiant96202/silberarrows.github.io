@@ -3,39 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tyre Replacement - Silver Arrows Mercedes-Benz Service</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Tyre Replacement & Balancing - Silver Arrows Mercedes-Benz Service</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css?v=5.13">
+    <link rel="stylesheet" href="../css/service-page.css">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-gold: #BF953F;
+            --gold-gradient: linear-gradient(145deg, #FCF6BA, #BF953F);
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-light: #f8f9fa;
+            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: #000000;
+        }
+
+        .compact-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../assets/images/services/tyre-balancing.jpg') center/cover no-repeat fixed;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-family: var(--impact-font);
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+            background: #000000;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            height: fit-content;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: var(--impact-font);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .service-plans {
+            margin-bottom: 2.5rem;
+        }
+
+        .plan-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .plan-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .plan-title {
+            font-family: var(--impact-font);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .plan-features li i {
+            color: var(--primary-gold);
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .process-section .section-title {
+            margin-bottom: 2rem;
+        }
+
+        .process-steps {
+            position: relative;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 45px;
+            bottom: -25px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-gold), rgba(192, 167, 92, 0.3));
+        }
+
+        .process-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-content h4 {
+            font-family: var(--impact-font);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .step-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-title {
+            font-family: var(--impact-font);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 40px 1rem;
+            }
+            .content-section {
+                padding: 2rem;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .compact-hero {
+                padding: 100px 0 60px;
+            }
+            .hero-content {
+                padding: 0 1rem;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .content-section {
+                padding: 1.5rem;
+            }
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="../index.html">Silver Arrows</a>
+        <div class="logo-container">
+            <a href="/">
+                <img src="https://res.cloudinary.com/dw0ciqgwd/image/upload/v1748497977/qgdbuhm5lpnxuggmltts.png" alt="Silber Arrows Logo" class="logo">
+            </a>
+        </div>
+        <div class="header-right">
+            <nav class="desktop-nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#services" class="nav-link">Services</a>
+            </nav>
+            <div class="header-contact">
+                <div class="address-container">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Al Manara St, Al Quoz, Dubai</span>
                 </div>
-                <div class="nav-links">
-                    <a href="../index.html">Home</a>
-                    <a href="../index.html#services">Services</a>
-                    <a href="../index.html#team">Team</a>
-                    <a href="../index.html#contact">Contact</a>
+                <div class="contact-buttons">
+                    <a href="tel:+97143805515" class="contact-btn phone-btn">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+971 4 380 5515</span>
+                    </a>
+                    <a href="https://wa.me/+97143805515" class="contact-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle mobile menu">
+                <span></span><span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav-container">
+        <div class="mobile-nav-header">
+            <div class="logo-container">
+                <a href="/">
+                    <img src="https://res.cloudinary.com/dw0ciqgwd/image/upload/v1748497977/qgdbuhm5lpnxuggmltts.png" alt="Silber Arrows Logo" class="logo">
+                </a>
+            </div>
+            <button class="mobile-nav-close" aria-label="Close mobile menu">
+                <span></span><span></span>
+            </button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../index.html#services" class="nav-link">Services</a>
+            <div class="mobile-contact-info">
+                <a href="tel:+97143805515" class="contact-btn phone-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+971 4 380 5515</span>
+                </a>
+                <div class="address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Al Manara St, Al Quoz, Dubai</span>
                 </div>
             </div>
         </nav>
-    </header>
+    </div>
 
-    <main class="service-page">
-        <section class="service-hero">
-            <h1>Tyre Replacement</h1>
-            <p>Premium tyres and expert installation for optimal performance</p>
+    <main>
+        <section class="compact-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Tyre Replacement & Balancing</h1>
+                <p class="hero-subtitle">Optimise performance, handling, and safety with Mercedes-Benz approved tyres</p>
+            </div>
         </section>
 
-        <section class="service-content">
-            <!-- Service content will be added here -->
-        </section>
+        <div class="main-content">
+            <div class="content-grid">
+                <div class="content-section">
+                    <h2 class="section-title">Overview</h2>
+                    <p class="section-description">Optimise performance, handling, and safety with Mercedes-Benz approved tyres. Our team handles the complete tyre replacement process, from proper disposal of old tyres to precision mounting and balancing, ensuring your vehicle delivers the ride comfort and road grip that Mercedes-Benz engineers intended.</p>
+                    
+                    <div class="service-plans">
+                        <div class="plan-item">
+                            <h3 class="plan-title">What's Included</h3>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Expert tyre removal and fitting</li>
+                                <li><i class="fas fa-check"></i> Precise wheel balancing with computer-controlled equipment</li>
+                                <li><i class="fas fa-check"></i> TPMS sensor installation and programming</li>
+                                <li><i class="fas fa-check"></i> Environmentally responsible disposal of old tyres</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section process-section">
+                    <h2 class="section-title">Our Process</h2>
+                    
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Tyre Inspection</h4>
+                                <p>Inspection of current tyres and measurement of tread depth</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Professional Fitting</h4>
+                                <p>Professional removal and fitting with Mercedes-Benz approved tyres</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Precision Balancing</h4>
+                                <p>Precision wheel balancing using computer-controlled equipment</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>TPMS Programming</h4>
+                                <p>TPMS sensor programming and pressure calibration</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Final Road Test</h4>
+                                <p>Final check for smooth operation and vibration-free driving</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3 class="cta-title">Book Your Tyre Service Today</h3>
+                <p class="cta-description">Get the best performance and safety from your Mercedes-Benz with professional tyre services. Our expert fitting and balancing ensure optimal handling and comfort. Contact us using the buttons below to schedule your service.</p>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -43,6 +444,21 @@
             <p>&copy; 2024 Silver Arrows Mercedes-Benz Service. All rights reserved.</p>
         </div>
     </footer>
+
+    <div class="mobile-footer">
+        <div class="footer-content">
+            <div class="footer-actions">
+                <a href="tel:+97143805515" class="footer-action">
+                    <i class="fas fa-phone"></i>
+                    <span>Call Us</span>
+                </a>
+                <a href="https://wa.me/+97143805515" class="footer-action">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script src="../js/main.js"></script>
 </body>
