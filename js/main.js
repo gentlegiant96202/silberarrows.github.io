@@ -106,4 +106,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Services tab functionality is handled by inline script in HTML
+
+  // Contract quote button functionality
+  const contractQuoteButtons = document.querySelectorAll('.contract-btn.quote-trigger');
+  const contractActions = document.querySelectorAll('.contract-contact-actions');
+
+  contractQuoteButtons.forEach((button, index) => {
+    const actions = contractActions[index];
+    if (button && actions) {
+      button.addEventListener('click', () => {
+        button.classList.add('hide');
+        actions.classList.add('active');
+      });
+    }
+  });
+
+  // Close contract actions when clicking outside
+  document.addEventListener('click', (event) => {
+    const isContractClick = event.target.closest('.contract-cta');
+    if (!isContractClick) {
+      contractQuoteButtons.forEach(button => button.classList.remove('hide'));
+      contractActions.forEach(actions => actions.classList.remove('active'));
+    }
+  });
 }); 
