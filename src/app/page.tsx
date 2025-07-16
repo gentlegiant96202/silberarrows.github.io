@@ -17,7 +17,7 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-tagline">Exclusive Automotive Excellence</div>
           <h1 className="hero-title">
-            Independent <span>Mercedes-Benz</span> Service Centre in Dubai
+            Independent <span>Mercedes-Benz</span><br />Service Centre<br />in Dubai
           </h1>
           <p className="hero-subtitle">
             Exclusively Servicing Mercedes-Benz Only.<br />
