@@ -2796,7 +2796,11 @@ p,
 .footer-action:first-child i,
 .footer-action:first-child:hover i,
 .hero-action:first-child i,
-.hero-action:first-child:hover i,
+.hero-action:first-child:hover i {
+    transform: none !important;
+}
+
+/* Fix contact section phone icon orientation */
 .info-header .fa-phone-alt,
 .contact-info .fa-phone-alt {
     transform: scaleX(-1) !important;
