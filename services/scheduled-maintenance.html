@@ -3,26 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Official Mercedes-Benz Service A and Service B maintenance schedules at Silber Arrows, Dubai's leading independent specialist.">
-    <title>Scheduled Maintenance – Service A & B | Silber Arrows</title>
+    <title>Scheduled Maintenance - Silver Arrows Mercedes-Benz Service</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/service-page.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Impact&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css?v=5.10">
-    <link rel="stylesheet" href="../css/service-page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-gold: #c0a75c;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-light: #f8f9fa;
+            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: #000000;
+        }
+
+        /* Compact Hero Section */
+        .compact-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../assets/images/hero-bg-optimized.jpg') center/cover no-repeat fixed;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-family: var(--impact-font);
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+            background: #000000;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Section Styling */
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            height: fit-content;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: var(--impact-font);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Service Plans */
+        .service-plans {
+            margin-bottom: 2.5rem;
+        }
+
+        .plan-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .plan-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .plan-title {
+            font-family: var(--impact-font);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .plan-features li i {
+            color: var(--primary-gold);
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Process Timeline */
+        .process-section .section-title {
+            margin-bottom: 2rem;
+        }
+
+        .process-steps {
+            position: relative;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 45px;
+            bottom: -25px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-gold), rgba(192, 167, 92, 0.3));
+        }
+
+        .process-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-content h4 {
+            font-family: var(--impact-font);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .step-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-title {
+            font-family: var(--impact-font);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-family: var(--impact-font);
+            font-weight: 400;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 20px rgba(192, 167, 92, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 40px 1rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .compact-hero {
+                padding: 100px 0 60px;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="logo-container">
             <a href="/">
                 <img src="https://res.cloudinary.com/dw0ciqgwd/image/upload/v1748497977/qgdbuhm5lpnxuggmltts.png" alt="Silber Arrows Logo" class="logo">
             </a>
         </div>
+        
         <div class="header-right">
             <nav class="desktop-nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#services" class="nav-link">Services</a>
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#services" class="nav-link">Services</a>
             </nav>
             <div class="header-contact">
                 <div class="address-container">
@@ -43,65 +418,159 @@
                 <span></span>
                 <span></span>
                 <span></span>
+                <span></span>
             </button>
         </div>
     </header>
 
+    <!-- Mobile Nav -->
+    <div class="mobile-nav-container">
+        <div class="mobile-nav-header">
+            <div class="logo-container">
+                <a href="/">
+                    <img src="https://res.cloudinary.com/dw0ciqgwd/image/upload/v1748497977/qgdbuhm5lpnxuggmltts.png" alt="Silber Arrows Logo" class="logo">
+                </a>
+            </div>
+            <button class="mobile-nav-close" aria-label="Close mobile menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../index.html#services" class="nav-link">Services</a>
+            <a href="../index.html#contact" class="nav-link">Contact</a>
+            <div class="mobile-contact-info">
+                <a href="tel:+97143805515" class="contact-btn phone-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+971 4 380 5515</span>
+                </a>
+                <div class="address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Al Manara St, Al Quoz, Dubai</span>
+                </div>
+            </div>
+        </nav>
+    </div>
+
     <main>
-        <section class="service-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/images/services/scheduled-maintenance.jpg');">
+        <!-- Compact Hero Section -->
+        <section class="compact-hero">
             <div class="hero-content">
-                <h1 class="service-title">Scheduled Maintenance – Service A & B</h1>
-                <p class="service-subtitle">Official Mercedes-Benz service schedules to maintain optimal performance.</p>
+                <h1 class="hero-title">Scheduled Maintenance – Service A & B</h1>
+                <p class="hero-subtitle">Keep your Mercedes-Benz performing at its peak with our factory-scheduled maintenance services</p>
             </div>
         </section>
 
-        <section class="service-detail-content">
-            <div class="service-description">
-                <h2>Overview</h2>
-                <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value. We follow official Mercedes-Benz service schedules using XENTRY Diagnosis and genuine parts to maintain optimal performance and full-service history integrity.</p>
-                
-                <h3>Service A (Minor Service)</h3>
-                <ul>
-                    <li>Engine oil, oil filter, and air filter replacement</li>
-                    <li>Check and top-up of all fluids</li>
-                    <li>Visual inspection of underbody, engine bay, brakes, and tyres</li>
-                    <li>Diagnostics check using XENTRY Diagnosis</li>
-                    <li>Maintenance counter reset and full valet</li>
-                </ul>
+        <!-- Main Content - Two Column Layout -->
+        <div class="main-content">
+            <div class="content-grid">
+                <!-- Left Column - Service Details -->
+                <div class="content-section">
+                    <h2 class="section-title">What's Included</h2>
+                    <p class="section-description">Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value. We follow official Mercedes-Benz service schedules using XENTRY Diagnosis and genuine parts to maintain optimal performance and full-service history integrity.</p>
+                    
+                    <div class="service-plans">
+                        <div class="plan-item">
+                            <h3 class="plan-title">Service A</h3>
+                            <p class="plan-subtitle">Minor Service - Essential Maintenance</p>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Engine oil, oil filter, and air filter replacement</li>
+                                <li><i class="fas fa-check"></i> Check and top-up of all fluids</li>
+                                <li><i class="fas fa-check"></i> Visual inspection of underbody, engine bay, brakes, and tyres</li>
+                                <li><i class="fas fa-check"></i> Diagnostics check using XENTRY Diagnosis</li>
+                                <li><i class="fas fa-check"></i> Maintenance counter reset and full valet</li>
+                        </ul>
+                    </div>
 
-                <h3>Service B (Major Service)</h3>
-                <p>Includes all Service A items, plus:</p>
-                <ul>
-                    <li>Dust or combination filter replacement</li>
-                    <li>A/C system treatment</li>
-                    <li>Wheel rotation and spare wheel or TIREFIT sealant check</li>
-                    <li>Additional safety checks and updates</li>
-                </ul>
+                        <div class="plan-item">
+                            <h3 class="plan-title">Service B</h3>
+                            <p class="plan-subtitle">Major Service - Comprehensive Care</p>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Includes all Service A items, plus:</li>
+                                <li><i class="fas fa-check"></i> Dust or combination filter replacement</li>
+                                <li><i class="fas fa-check"></i> A/C system treatment</li>
+                                <li><i class="fas fa-check"></i> Wheel rotation and spare wheel or TIREFIT sealant check</li>
+                                <li><i class="fas fa-check"></i> Additional safety checks and updates</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Process -->
+                <div class="content-section process-section">
+                    <h2 class="section-title">Our Process</h2>
+                    
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Service History Review</h4>
+                                <p>Review of service history and factory schedule</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Factory Specification</h4>
+                                <p>All maintenance tasks performed to factory specification</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Genuine Parts & Oil</h4>
+                                <p>Use of Mercedes-Benz genuine oil and parts</p>
+                            </div>
+                    </div>
+
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Records Update</h4>
+                                <p>Update of your vehicle's service records and indicator reset</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Technician Report</h4>
+                                <p>Technician report with maintenance recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="service-process">
-                <h2>Our Process</h2>
-                <ol>
-                    <li>
-                        <strong>Review of Service History:</strong> We review your vehicle's history and the factory-recommended schedule.
-                    </li>
-                    <li>
-                        <strong>Factory Specification Tasks:</strong> All maintenance tasks are performed to precise factory specifications.
-                    </li>
-                    <li>
-                        <strong>Genuine Parts:</strong> We use only Mercedes-Benz genuine oil and parts for all services.
-                    </li>
-                    <li>
-                        <strong>Record Updates:</strong> We update your vehicle's digital service records and reset the maintenance indicator.
-                    </li>
-                    <li>
-                        <strong>Technician Report:</strong> You receive a detailed report with our findings and any maintenance recommendations.
-                    </li>
-                </ol>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h3 class="cta-title">Ready to Schedule Your Service?</h3>
+                <p class="cta-description">Don't wait until something breaks. Regular maintenance keeps your Mercedes-Benz reliable and protects your investment.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Book Service
+                    </a>
+                    <a href="tel:+97143805515" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        Call Us
+                    </a>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Silver Arrows Mercedes-Benz Service. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Footer -->
     <div class="mobile-footer">
         <div class="footer-content">
             <div class="footer-actions">
@@ -117,6 +586,6 @@
         </div>
     </div>
 
-    <script src="../js/main.js?v=3.0"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html> 
