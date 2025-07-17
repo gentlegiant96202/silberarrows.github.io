@@ -7,23 +7,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileNavContainer = document.querySelector('.mobile-nav-container');
   const body = document.body;
 
-  if (!header || !hero) {
-    return;
+  // Hero-specific functionality (only run if hero exists)
+  if (header && hero) {
+    const setHeroPadding = () => {
+      const headerHeight = header.offsetHeight;
+      // Small gap between header and hero content
+      hero.style.paddingTop = `${headerHeight - 10}px`;
+    };
+
+    // Set padding on initial load
+    setHeroPadding();
+
+    // Adjust padding on window resize
+    window.addEventListener('resize', setHeroPadding);
   }
 
-  const setHeroPadding = () => {
-    const headerHeight = header.offsetHeight;
-    // Small gap between header and hero content
-    hero.style.paddingTop = `${headerHeight - 10}px`;
-  };
-
-  // Set padding on initial load
-  setHeroPadding();
-
-  // Adjust padding on window resize
-  window.addEventListener('resize', setHeroPadding);
-
-  // Handle hero quote button
+  // Handle hero quote button (only if hero elements exist)
   const heroQuoteButton = document.querySelector('.hero-cta.quote-trigger');
   const heroContactActions = document.querySelector('.hero-contact-actions');
   
@@ -43,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Mobile navigation functionality (always run if elements exist)
   if (mobileNavToggle && mobileNavContainer) {
     const closeMenu = () => {
       mobileNavToggle.classList.remove('active');

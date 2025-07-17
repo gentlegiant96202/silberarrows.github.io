@@ -307,8 +307,9 @@ header {
 }
 
 .mobile-nav-links .nav-link {
+    font-family: 'Montserrat', sans-serif;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--light);
     text-decoration: none;
     opacity: 0;
@@ -396,6 +397,17 @@ body.no-scroll.menu-open::after {
                 no-repeat center 30%/cover;
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
     opacity: 0.8;
+}
+
+/* Hero Logo */
+.hero-logo {
+    margin-bottom: 20px;
+}
+
+.hero-logo-img {
+    height: 90px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .hero-content {
@@ -1683,6 +1695,15 @@ body.no-scroll.menu-open::after {
         margin-top: -15px;
     }
 
+    /* Mobile Hero Logo */
+    .hero-logo {
+        margin-bottom: 15px;
+    }
+
+    .hero-logo-img {
+        height: 75px;
+    }
+
     .hero-title {
         font-size: 56px;
         letter-spacing: 1.5px;
@@ -1749,6 +1770,15 @@ body.no-scroll.menu-open::after {
         align-items: center;
     }
 
+    /* Extra Small Mobile Hero Logo */
+    .hero-logo {
+        margin-bottom: 12px;
+    }
+
+    .hero-logo-img {
+        height: 65px;
+    }
+
     .hero-tagline {
         white-space: normal;             /* wrap text */
         font-size: 13px;
@@ -1756,7 +1786,7 @@ body.no-scroll.menu-open::after {
 
     .hero-title {
         font-size: 34px;                 /* smaller */
-        line-height: 1.1;
+        line-height: 0.95;
     }
 
     .hero-subtitle {
