@@ -1,5 +1,24 @@
 // Smoothly adjust hero content padding to account for fixed header height
 document.addEventListener('DOMContentLoaded', () => {
+  
+  // Debug contact card buttons
+  const debugContactButtons = () => {
+    const actionLinks = document.querySelectorAll('.contact-card .action-link');
+    actionLinks.forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        console.log(`Contact button ${index} clicked:`, link.href);
+        // Force navigation for debugging
+        if (link.href.startsWith('tel:')) {
+          window.location.href = link.href;
+        } else if (link.href.includes('wa.me')) {
+          window.open(link.href, '_blank');
+        }
+      });
+    });
+  };
+  
+  // Initialize contact button debugging
+  debugContactButtons();
   const header = document.querySelector('header');
   const hero = document.querySelector('.hero');
   const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
@@ -101,6 +120,29 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedSections.forEach(section => {
       observer.observe(section);
     });
+  }
+
+  // Services Tab Animation on Scroll
+  const servicesNav = document.querySelector('.services-nav');
+  
+  if (servicesNav) {
+    const servicesObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add animation class to trigger the tab bounce-in effect
+          servicesNav.classList.add('animate-in');
+          servicesObserver.unobserve(entry.target); // Stop observing once animated
+        }
+      });
+    }, {
+      threshold: 0.2 // Trigger when 20% of the services section is visible
+    });
+
+    // Observe the services section container
+    const servicesSection = document.querySelector('.services-section');
+    if (servicesSection) {
+      servicesObserver.observe(servicesSection);
+    }
   }
 
   // Contract quote button functionality
@@ -1132,4 +1174,34 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize wheel
   initializeSpinWheel();
+
+  // Live Status for Working Hours
+  function updateWorkingHoursStatus() {
+    const now = new Date();
+    const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    
+    const hoursItems = document.querySelectorAll('.hours-item');
+    
+    hoursItems.forEach((item, index) => {
+      // Remove existing status classes
+      item.classList.remove('current-day');
+      
+      // Determine which day this item represents
+      // Index 0 = Monday-Saturday, Index 1 = Sunday
+      const isWeekday = index === 0;
+      const isSunday = index === 1;
+      
+      // Check if it's the current day period
+      const isCurrentDayPeriod = (isWeekday && currentDay >= 1 && currentDay <= 6) || 
+                                 (isSunday && currentDay === 0);
+      
+      if (isCurrentDayPeriod) {
+        item.classList.add('current-day');
+      }
+    });
+  }
+  
+  // Initialize working hours status
+  updateWorkingHoursStatus();
+  setInterval(updateWorkingHoursStatus, 60000); // Update every minute
 }); 
