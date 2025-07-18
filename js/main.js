@@ -586,6 +586,13 @@ document.addEventListener('DOMContentLoaded', () => {
             line-height: 1.3;
           }
           .spin-wheel { width: 240px; height: 240px; }
+          .spin-wheel {
+            overflow: hidden; /* prevent square artifacts behind circular wheel */
+            border-radius: 50%;
+            clip-path: circle(50% at 50% 50%);
+            border: 4px solid rgba(191,149,63,0.7); /* visible gold border */
+            box-shadow: 0 0 20px rgba(191,149,63,0.6);
+          }
           .wheel-center { width: 80px; height: 80px; font-size: 12px; }
           .wheel-title { font-size: 22px; }
           .wheel-label span { font-size: 11px; }
