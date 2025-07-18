@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
          }
          
          .wheel-segments.spinning {
-           transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+           transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
          }
         
         .wheel-pointer {
@@ -303,7 +303,17 @@ document.addEventListener('DOMContentLoaded', () => {
           cursor: pointer;
           transition: all 0.3s ease;
           box-shadow: 0 6px 20px rgba(191, 149, 63, 0.4);
+          margin-top: 25px; /* added spacing above spin button */
           margin-bottom: 20px;
+          white-space: nowrap;
+        }
+        
+        @media (max-width: 480px) {
+          .spin-button {
+            font-size: 14px;
+            padding: 12px 18px;
+            letter-spacing: 0.8px;
+          }
         }
         
         .spin-button:hover:not(:disabled) {
@@ -445,6 +455,94 @@ document.addEventListener('DOMContentLoaded', () => {
         .result-btn:hover {
           transform: translateY(-2px);
         }
+
+        /* Control Panel (dropdown under wheel) */
+        .wheel-control-panel {
+          max-height: 0;
+          opacity: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease, opacity 0.4s ease;
+          width: 320px;
+          max-width: 90%;
+          margin: 10px auto 0; /* center under wheel */
+          background: linear-gradient(145deg, #1a1a1a, #222);
+          border: 1px solid rgba(191, 149, 63, 0.4);
+          border-radius: 12px;
+          padding: 15px 20px;
+        }
+
+        .wheel-control-panel.open {
+          max-height: 340px; /* big enough for inputs */
+          opacity: 1;
+        }
+
+        .wheel-control-panel .input-group {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 12px;
+        }
+
+        /* Phone row layout */
+        .wheel-control-panel .phone-row {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 12px; /* increased spacing */
+        }
+
+        .wheel-control-panel .phone-row input:first-child {
+          max-width: 80px; /* slightly wider for readability */
+          text-align: center;
+          cursor: not-allowed;
+        }
+
+        .wheel-control-panel .phone-row input:last-child {
+          flex: 1;
+        }
+
+        /* Ensure all input boxes take full width inside their container and keep consistent styling */
+        .wheel-control-panel input {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 10px 12px;
+          border-radius: 6px;
+          border: 1px solid #666;
+          background: #222;
+          color: #fff;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+        }
+
+        .wheel-control-panel label {
+          color: #FCF6BA;
+          font-size: 14px;
+          margin-bottom: 4px;
+          font-family: 'Montserrat', sans-serif;
+          text-align: center;
+        }
+
+        .wheel-control-panel .panel-message {
+          color: #BF953F;
+          font-size: 14px;
+          min-height: 18px;
+          font-family: 'Montserrat', sans-serif;
+          text-align: center;
+          white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+          .wheel-control-panel .panel-message {
+            font-size: 12px;
+          }
+        }
+
+        /* Action buttons inside control panel after prize */
+        .wheel-control-panel .panel-actions {
+          display: flex;
+          justify-content: center;
+          margin-top: 15px;
+          margin-bottom: 10px; /* extra space below claim button */
+        }
         
         @keyframes wheelGlow {
           0% { box-shadow: 0 0 0 4px rgba(191, 149, 63, 0.4), 0 0 40px rgba(191, 149, 63, 0.6), 0 15px 50px rgba(0, 0, 0, 0.5); }
@@ -452,11 +550,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         @media (max-width: 480px) {
+          .wheel-control-panel input {
+            font-size: 16px; /* Prevent iOS Safari zoom */
+          }
           .spin-wheel { width: 280px; height: 280px; }
           .wheel-center { width: 80px; height: 80px; font-size: 12px; }
           .wheel-title { font-size: 22px; }
           .wheel-label span { font-size: 11px; }
+          .wheel-title { margin-top: 50px; }
+
+          /* Ensure entire modal fits and is scrollable if needed */
+          .wheel-modal {
+            justify-content: flex-start;
+            padding-top: 20px;
+            overflow-y: auto;
+          }
+
+          /* Slightly smaller wheel to free up space */
+          .spin-wheel { width: 240px; height: 240px; }
+          .wheel-control-panel { margin-top: 8px; }
+          .spin-button { margin-top: 18px; margin-bottom: 15px; }
+          .close-wheel { margin-top: 10px; }
            }
+        
+        @media (min-width: 768px) {
+          .wheel-control-panel .panel-message {
+            font-size: 16px;
+          }
+        }
         `;
         document.head.appendChild(style);
       }
@@ -474,6 +595,22 @@ document.addEventListener('DOMContentLoaded', () => {
            <div class="wheel-pointer"></div>
            <div class="wheel-center">Spin<br>to<br>Win</div>
          </div>
+
+         <!-- Control panel dropdown -->
+         <div class="wheel-control-panel">
+           <div class="input-group">
+             <label for="wheelUserName">Name</label>
+             <input type="text" id="wheelUserName" placeholder="Your Name" />
+           </div>
+           <div class="input-group">
+             <label>Phone Number</label>
+             <div class="phone-row">
+               <input type="text" id="wheelUserCountryCode" value="+971" readonly />
+               <input type="tel" id="wheelUserPhone" placeholder="5xxxxxxx" />
+             </div>
+           </div>
+           <div class="panel-message" id="panelMessage"></div>
+         </div>
          <button class="spin-button">${currentSpin === maxSpins ? 'FINAL SPIN' : 'Spin the Wheel'}</button>
          <button class="close-wheel">Close</button>
        `;
@@ -482,7 +619,9 @@ document.addEventListener('DOMContentLoaded', () => {
        const wheel = modal.querySelector('.spin-wheel');
        const segments = modal.querySelector('.wheel-segments');
        const prizes = [1000, 50, 900, 100, 800, 200, 700, 250, 600, 300, 500, 400];
-       const textRadius = 120; // Distance from center to place text
+       const isMobile = window.innerWidth <= 480;
+       const textRadius = isMobile ? 80 : 120; // Slightly closer to edge on mobile
+       const prizeFontSize = isMobile ? 10 : 13;
        
        prizes.forEach((amount, index) => {
          const segmentAngle = 30; // Each segment is 30 degrees
@@ -504,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
          span.style.left = '50%';
          span.style.top = '50%';
          span.style.transform = `translate(-50%, -50%) translateY(-${textRadius}px) rotate(90deg)`;
-         span.style.font = 'bold 13px "Montserrat", sans-serif';
+         span.style.font = `bold ${prizeFontSize}px \"Montserrat\", sans-serif`;
          span.style.textAlign = 'center';
          span.style.whiteSpace = 'nowrap';
          span.style.userSelect = 'none';
@@ -532,6 +671,15 @@ document.addEventListener('DOMContentLoaded', () => {
              // Reset wheel position and activate modal
        const segments = modal.querySelector('.wheel-segments');
        segments.style.transform = 'rotate(0deg)';
+      // Begin a slow, continuous idle spin so the wheel is always moving until the user initiates a real spin
+      let idleRotation = 0;
+      const idleSpeed = 0.2; // degrees per tick (adjust for slower/faster idle spin)
+      modal.idleRotation = idleRotation;
+      modal.idleInterval = setInterval(() => {
+        idleRotation = (idleRotation + idleSpeed) % 360;
+        segments.style.transform = `rotate(${idleRotation}deg)`;
+        modal.idleRotation = idleRotation;
+      }, 50);
        setTimeout(() => modal.classList.add('active'), 50);
       
              // Add event listeners
@@ -545,13 +693,13 @@ document.addEventListener('DOMContentLoaded', () => {
        closeButton.addEventListener('click', () => closeWheel(modal));
        closeXButton.addEventListener('click', () => closeWheel(modal));
       
-             // Close on overlay click (clicking outside the wheel)
-       modal.addEventListener('click', (e) => {
-         if (e.target === modal) {
-           closeWheel(modal);
-         }
-       });
-       
+             // Disabled background click-to-close to avoid accidental modal dismissal
+       // modal.addEventListener('click', (e) => {
+       //   if (e.target === modal) {
+       //     closeWheel(modal);
+       //   }
+       // });
+      
        // Prevent wheel area clicks from closing modal
        const wheelElement = modal.querySelector('.spin-wheel');
        wheelElement.addEventListener('click', (e) => {
@@ -578,20 +726,22 @@ document.addEventListener('DOMContentLoaded', () => {
        }
        
        if (spinButton && !allSpinsComplete) {
-         spinButton.textContent = currentSpin === maxSpins ? 'FINAL SPIN' : 'Spin the Wheel';
-         spinButton.disabled = false;
-       } else if (spinButton && allSpinsComplete) {
-         spinButton.textContent = 'All Spins Complete';
-         spinButton.disabled = true;
-         spinButton.style.opacity = '0.5';
-         spinButton.style.cursor = 'not-allowed';
-       }
+           spinButton.textContent = currentSpin === maxSpins ? 'FINAL SPIN' : 'Spin the Wheel';
+           spinButton.disabled = false;
+         } else if (spinButton && allSpinsComplete) {
+           spinButton.disabled = true;
+           spinButton.style.opacity = '0.5';
+           spinButton.style.cursor = 'not-allowed';
+         }
      }
      
      // Close wheel modal
      function closeWheel(modal) {
        if (!isWheelOpen) return;
-       
+       if (modal.idleInterval) {
+        clearInterval(modal.idleInterval);
+        modal.idleInterval = null;
+      }
        isWheelOpen = false;
        currentSpin = 1; // Reset spin counter for next time
        allSpinsComplete = false; // Reset completion flag for next time
@@ -607,11 +757,65 @@ document.addEventListener('DOMContentLoaded', () => {
     
          // Spin the wheel
      function spinWheel(modal) {
+       // Block further spins if already claimed
+       if (modal.claimed) return;
+
+       // If there is an unclaimed pending prize, spinning again forfeits it
+       if (modal.pendingPrize) {
+         const actionContainer = modal.querySelector('.panel-actions');
+         if (actionContainer) actionContainer.remove();
+         modal.pendingPrize = null;
+         const panelMessageEl = modal.querySelector('#panelMessage');
+         if (panelMessageEl) panelMessageEl.textContent = 'Previous prize forfeited. Spinning again...';
+       }
+
+       // ------------------ VALIDATE DETAILS FIRST ------------------
+       const controlPanel = modal.querySelector('.wheel-control-panel');
+       const nameInput = modal.querySelector('#wheelUserName');
+       const phoneInput = modal.querySelector('#wheelUserPhone');
+       const countryCodeInput = modal.querySelector('#wheelUserCountryCode');
+       const panelMsg = modal.querySelector('#panelMessage');
+
+       if (!modal.detailsCollected) {
+         // Ensure panel is visible
+         if (controlPanel && !controlPanel.classList.contains('open')) {
+           controlPanel.classList.add('open');
+         }
+
+         if (!nameInput.value.trim() || !phoneInput.value.trim()) {
+           if (panelMsg) panelMsg.textContent = 'Please enter your name and phone number to spin!';
+           return; // Do not spin until details are provided
+         }
+
+         // Basic phone validation (country code is fixed +971; ensure digits only for number)
+         if (!/^\d{7,15}$/.test(phoneInput.value.trim())) {
+           if (panelMsg) panelMsg.textContent = 'Enter a valid UAE phone number (digits only).';
+           return;
+         }
+         // Combine for later use
+         modal.userPhoneFull = `${countryCodeInput.value}${phoneInput.value.trim()}`;
+
+         modal.detailsCollected = true;
+         if (panelMsg) panelMsg.textContent = '';
+       }
+
        if (isSpinning || currentSpin > maxSpins || allSpinsComplete) return;
        
+       // Increment spin counter at the moment a new spin actually begins
+       currentSpin++;
+       updateSpinDisplay(modal);
+
        isSpinning = true;
        const spinButton = modal.querySelector('.spin-button');
        const segments = modal.querySelector('.wheel-segments');
+
+      // Stop idle spin and capture current rotation if it is running
+      if (modal.idleInterval) {
+        clearInterval(modal.idleInterval);
+        modal.idleInterval = null;
+      }
+      // Use cumulative rotation to ensure noticeable movement each spin
+      const cumulativeRotation = modal.cumulativeRotation || 0;
        
        spinButton.disabled = true;
        segments.classList.add('spinning');
@@ -645,16 +849,22 @@ document.addEventListener('DOMContentLoaded', () => {
        // Calculate rotation to bring target segment to pointer (top = 0°)
        const segmentAngle = 30;
        const targetSegmentCenter = targetPrizeIndex * segmentAngle + (segmentAngle / 2);
+       const targetFinalPosition = 360 - targetSegmentCenter; // For debug/logging purposes
        
        // PRECISE FIX: Calculate exact rotation for target segment
-       const baseRotations = Math.floor(5 + Math.random() * 3); // Full rotations only
-       const targetFinalPosition = 360 - targetSegmentCenter; // Precise positioning
-       const totalRotation = (baseRotations * 360) + targetFinalPosition;
-       
+       const baseRotations = Math.floor(3 + Math.random() * 2); // 3-4 full rotations
+       const currentRotationMod = cumulativeRotation % 360;
+       const clockwiseToTarget = (360 - targetSegmentCenter - currentRotationMod + 360) % 360;
+       const spinDegrees = (baseRotations * 360) + clockwiseToTarget;
+       const totalRotation = cumulativeRotation + spinDegrees;
+
+       // Store for next spin
+       modal.cumulativeRotation = totalRotation;
+
        // Apply the rotation with proper easing
        segments.style.transform = `rotate(${totalRotation}deg)`;
        
-              // Debug verification - 5-spin system
+                // Debug verification - 5-spin system
        console.log(`🎯 5-SPIN SYSTEM DEBUG:`);
        console.log(`🎯 Current spin: ${currentSpin} of ${maxSpins}`);
        console.log(`🎯 Targeting: ${targetPrize} AED at index ${targetPrizeIndex}`);
@@ -669,9 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
            segments.classList.remove('spinning');
            isSpinning = false;
            
-           // INCREMENT SPIN COUNT IMMEDIATELY after each spin
-           currentSpin++;
-           
+           // Spin completed; nothing to do here regarding spin count (already incremented at spin start)
            // Disable wheel completely after 5th spin
            if (currentSpin > maxSpins) {
              allSpinsComplete = true;
@@ -717,95 +925,72 @@ document.addEventListener('DOMContentLoaded', () => {
            // Bigger pause to let wheel settle and build anticipation
            setTimeout(() => {
              showResult(selectedPrize, modal);
-           }, 2000);
-         }, 4000);
-     }
+           }, 1700);
+         }, 1700);
+
+        // Update control panel with immediate status (optimistic)
+        if (panelMsg) {
+          panelMsg.textContent = 'Spinning... good luck!';
+        }
+    }
     
          // Show result popup with claim/continue options
      function showResult(prize, wheelModal) {
        const isLastSpin = currentSpin >= maxSpins;
-       const resultPopup = document.createElement('div');
-       resultPopup.className = 'result-popup';
-       
-       resultPopup.innerHTML = `
-         <div class="result-content">
-           <h3 class="result-title">Congratulations!</h3>
-           <div class="result-prize">You Won AED ${prize}!</div>
-           <p style="color: #fff; margin: 20px 0; font-size: 16px;">
-             ${isLastSpin ? 'This is your final prize!' : `Spin ${currentSpin} of ${maxSpins} complete!`}
-           </p>
-           <p style="color: #BF953F; font-size: 14px; margin: 15px 0;">
-             ${isLastSpin ? 'Contact us to claim your prize!' : 'Claim this prize now or continue spinning for bigger rewards!'}
-           </p>
-           
-           <div class="result-actions">
-             <a href="tel:+97143805515" class="result-btn primary">Call to Claim</a>
-             <a href="https://wa.me/+97143805515" class="result-btn secondary">WhatsApp</a>
-          </div>
-           
-            ${!isLastSpin ? `
-             <button class="result-btn continue-spinning" style="background: linear-gradient(145deg, #BF953F, #FCF6BA); color: #1a1a1a; margin-top: 15px; width: 100%;">
-               Continue Spinning (${maxSpins - currentSpin} spins left)
-              </button>
-            ` : ''}
-           
-           <button class="result-btn close-popup" style="background: transparent; color: #FCF6BA; border: 2px solid #BF953F; margin-top: 10px; width: 100%;">
-             ${isLastSpin ? 'Close' : 'Continue Later'}
-           </button>
-        </div>
-      `;
-      
-             document.body.appendChild(resultPopup);
-       setTimeout(() => resultPopup.classList.add('active'), 50);
-       
-       // Prevent result popup from closing when clicking outside
-       resultPopup.addEventListener('click', (e) => {
-         e.stopPropagation();
-       });
-       
-       // Prevent clicks on result content from bubbling
-       const resultContent = resultPopup.querySelector('.result-content');
-       resultContent.addEventListener('click', (e) => {
-         e.stopPropagation();
-       });
-      
-             // Handle Continue Spinning button
-       const continueBtn = resultPopup.querySelector('.continue-spinning');
-       if (continueBtn) {
-         continueBtn.addEventListener('click', () => {
-           currentSpin++;
-           resultPopup.classList.remove('active');
-           setTimeout(() => {
-             if (resultPopup.parentNode) {
-               resultPopup.parentNode.removeChild(resultPopup);
-             }
-             // Reset wheel and update UI for next spin
-             const modalSegments = wheelModal.querySelector('.wheel-segments');
-             if (modalSegments) {
-               modalSegments.style.transform = 'rotate(0deg)';
-             }
-             // Update spin counter and button text
-             updateSpinDisplay(wheelModal);
-           }, 300);
-         });
+
+       // Hide the input fields after prize is won
+       const inputGroups = wheelModal.querySelectorAll('.wheel-control-panel .input-group');
+       inputGroups.forEach(el => el.style.display = 'none');
+
+       // Update panel message
+       const panelMessageEl = wheelModal.querySelector('#panelMessage');
+       if (panelMessageEl) {
+         panelMessageEl.innerHTML = `<strong>Congratulations!</strong> You won AED ${prize}! ${isLastSpin ? 'All spins complete.' : `${maxSpins - currentSpin} spins left.`}`;
+         panelMessageEl.style.color = '#FCF6BA';
        }
-       
-       // Handle Close/Continue Later button
-       const closeBtn = resultPopup.querySelector('.close-popup');
-       closeBtn.addEventListener('click', () => {
-         resultPopup.classList.remove('active');
-         setTimeout(() => {
-           if (resultPopup.parentNode) {
-             resultPopup.parentNode.removeChild(resultPopup);
-           }
-           // Reset wheel to starting position
-           const modalSegments = wheelModal.querySelector('.wheel-segments');
-           if (modalSegments) {
-             modalSegments.style.transform = 'rotate(0deg)';
-           }
-         }, 300);
-       });
-    }
+
+       // Add claim buttons once
+       let actions = wheelModal.querySelector('.wheel-control-panel .panel-actions');
+       if (!actions) {
+         actions = document.createElement('div');
+         actions.className = 'panel-actions';
+         actions.innerHTML = `
+           <a href="#" id="claimPrizeBtn" class="result-btn primary" style="text-align:center; min-width:120px; font-size:13px; padding:10px 18px;">Claim Prize</a>
+         `;
+         panelMessageEl.parentNode.appendChild(actions);
+
+         // Placeholder click handler (to be replaced by webhook later)
+         const spinButtonGlobal = wheelModal.querySelector('.spin-button');
+         const claimBtn = actions.querySelector('#claimPrizeBtn');
+         if (claimBtn) {
+           claimBtn.addEventListener('click', (e) => {
+             e.preventDefault();
+             claimBtn.textContent = 'Claimed';
+             claimBtn.disabled = true;
+             panelMessageEl.textContent = 'Please check your WhatsApp for confirmation.';
+             if (spinButtonGlobal) {
+               spinButtonGlobal.disabled = true;
+               spinButtonGlobal.textContent = 'Spins Disabled';
+             }
+             // Mark modal as claimed to prevent future spins
+             wheelModal.claimed = true;
+             wheelModal.pendingPrize = null;
+           });
+         }
+       }
+
+       // Update spin button text/state
+       const spinButton = wheelModal.querySelector('.spin-button');
+       if (spinButton) {
+         if (isLastSpin) {
+           spinButton.textContent = 'Claim Prize';
+           spinButton.disabled = true; // final spin complete
+         } else {
+           spinButton.textContent = `Forfeit Prize & Try Again (${maxSpins - currentSpin} left)`;
+           spinButton.disabled = false;
+         }
+       }
+     }
     
     // Attach to spin button
     spinBtn.addEventListener('click', (e) => {
