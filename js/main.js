@@ -130,6 +130,33 @@ document.addEventListener('DOMContentLoaded', () => {
   function initializeSpinWheel() {
     const spinBtn = document.getElementById('spinToWinBtn');
     
+    /* ---------------------------------------------
+       Supabase configuration & lazy loader
+    ---------------------------------------------*/
+    const SUPABASE_URL = 'https://rplhksxrekbcbhgzcjir.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJwbGhrc3hyZWtiY2JoZ3pjamlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNTI2ODUsImV4cCI6MjA2NzcyODY4NX0.Rd_12MZmCPKFeA_WePWA57m0MED6gMRjJhkxauH41D4';
+
+    let supabase;            // Supabase client instance
+    let supabaseReady = null; // Promise guard
+
+    function loadSupabase() {
+      if (supabaseReady) return supabaseReady;
+      supabaseReady = new Promise((resolve) => {
+        if (window.supabase) {
+          supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+          return resolve();
+        }
+        const scr = document.createElement('script');
+        scr.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        scr.onload = () => {
+          supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+          resolve();
+        };
+        document.head.appendChild(scr);
+      });
+      return supabaseReady;
+    }
+    
     if (!spinBtn) {
       setTimeout(initializeSpinWheel, 500);
       return;
@@ -137,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
          let isWheelOpen = false;
      let isSpinning = false;
-     let currentSpin = 1;
+     let currentSpin = 0; // start before any spins
      let maxSpins = 5;
      let allSpinsComplete = false;
     
@@ -229,8 +256,9 @@ document.addEventListener('DOMContentLoaded', () => {
            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
          }
          
+         /* Faster initial speed then smooth deceleration */
          .wheel-segments.spinning {
-           transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+           transition: transform 3.8s cubic-bezier(0.12, 0.85, 0.33, 1);
          }
         
         .wheel-pointer {
@@ -518,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
           font-size: 14px;
           margin-bottom: 4px;
           font-family: 'Montserrat', sans-serif;
-          text-align: center;
+          text-align: left;
         }
 
         .wheel-control-panel .panel-message {
@@ -553,7 +581,11 @@ document.addEventListener('DOMContentLoaded', () => {
           .wheel-control-panel input {
             font-size: 16px; /* Prevent iOS Safari zoom */
           }
-          .spin-wheel { width: 280px; height: 280px; }
+          .wheel-control-panel .panel-message {
+            white-space: normal; /* allow wrapping on small screens */
+            line-height: 1.3;
+          }
+          .spin-wheel { width: 240px; height: 240px; }
           .wheel-center { width: 80px; height: 80px; font-size: 12px; }
           .wheel-title { font-size: 22px; }
           .wheel-label span { font-size: 11px; }
@@ -576,6 +608,11 @@ document.addEventListener('DOMContentLoaded', () => {
         @media (min-width: 768px) {
           .wheel-control-panel .panel-message {
             font-size: 16px;
+            white-space: normal; /* allow wrapping on larger screens */
+          }
+
+          .wheel-control-panel {
+            width: 420px;
           }
         }
         `;
@@ -588,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.className = 'wheel-modal';
              modal.innerHTML = `
          <button class="wheel-close-x">×</button>
-         <h2 class="wheel-title">Spin to Win Amazing Prizes!</h2>
+         <h2 class="wheel-title">Spin to Win a Gift Card Towards<br>Your Next Mercedes-Benz Service!</h2>
          <div class="spin-counter">Spin ${currentSpin} of ${maxSpins}${currentSpin === maxSpins ? ' - FINAL SPIN!' : ''}</div>
          <div class="spin-wheel">
            <div class="wheel-segments"></div>
@@ -603,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
              <input type="text" id="wheelUserName" placeholder="Your Name" />
            </div>
            <div class="input-group">
-             <label>Phone Number</label>
+             <label>WhatsApp Number</label>
              <div class="phone-row">
                <input type="text" id="wheelUserCountryCode" value="+971" readonly />
                <input type="tel" id="wheelUserPhone" placeholder="5xxxxxxx" />
@@ -743,7 +780,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.idleInterval = null;
       }
        isWheelOpen = false;
-       currentSpin = 1; // Reset spin counter for next time
+       currentSpin = 0; // Reset spin counter for next time
        allSpinsComplete = false; // Reset completion flag for next time
        modal.classList.remove('active');
        document.body.style.overflow = '';
@@ -756,7 +793,7 @@ document.addEventListener('DOMContentLoaded', () => {
      }
     
          // Spin the wheel
-     function spinWheel(modal) {
+     async function spinWheel(modal) {
        // Block further spins if already claimed
        if (modal.claimed) return;
 
@@ -783,28 +820,41 @@ document.addEventListener('DOMContentLoaded', () => {
          }
 
          if (!nameInput.value.trim() || !phoneInput.value.trim()) {
-           if (panelMsg) panelMsg.textContent = 'Please enter your name and phone number to spin!';
+           if (panelMsg) panelMsg.textContent = 'Please enter your name and WhatsApp number to spin!';
            return; // Do not spin until details are provided
          }
 
          // Basic phone validation (country code is fixed +971; ensure digits only for number)
          if (!/^\d{7,15}$/.test(phoneInput.value.trim())) {
-           if (panelMsg) panelMsg.textContent = 'Enter a valid UAE phone number (digits only).';
+           if (panelMsg) panelMsg.textContent = 'Enter a valid UAE WhatsApp number (digits only).';
            return;
          }
-         // Combine for later use
          modal.userPhoneFull = `${countryCodeInput.value}${phoneInput.value.trim()}`;
+         modal.userName      = nameInput.value.trim();
+
+         /* ---------------- Duplicate check via Supabase ---------------- */
+         await loadSupabase();
+         const { data: existing } = await supabase
+           .from('wheel_entries')
+           .select('id')
+           .eq('mobile', modal.userPhoneFull)
+           .maybeSingle();
+
+         if (existing) {
+           if (panelMsg) panelMsg.textContent = 'Thank you for playing, you have already won!';
+           return; // Block spin
+         }
 
          modal.detailsCollected = true;
          if (panelMsg) panelMsg.textContent = '';
        }
 
-       if (isSpinning || currentSpin > maxSpins || allSpinsComplete) return;
-       
-       // Increment spin counter at the moment a new spin actually begins
+       if (isSpinning || currentSpin >= maxSpins || allSpinsComplete) return;
+
+       // Increment spin counter as spin begins
        currentSpin++;
        updateSpinDisplay(modal);
-
+       
        isSpinning = true;
        const spinButton = modal.querySelector('.spin-button');
        const segments = modal.querySelector('.wheel-segments');
@@ -849,12 +899,16 @@ document.addEventListener('DOMContentLoaded', () => {
        // Calculate rotation to bring target segment to pointer (top = 0°)
        const segmentAngle = 30;
        const targetSegmentCenter = targetPrizeIndex * segmentAngle + (segmentAngle / 2);
+       // Add slight random offset (±10°) to avoid stopping exactly at center
+       const randomOffset = (Math.random() * 20) - 10; // -10 to +10
+       const offsetClamped = Math.max(Math.min(randomOffset, (segmentAngle/2 - 2)), (-segmentAngle/2 + 2));
+       const targetSegmentPoint = targetSegmentCenter + offsetClamped;
        const targetFinalPosition = 360 - targetSegmentCenter; // For debug/logging purposes
        
        // PRECISE FIX: Calculate exact rotation for target segment
-       const baseRotations = Math.floor(3 + Math.random() * 2); // 3-4 full rotations
+       const baseRotations = Math.floor(6 + Math.random() * 3); // 6-8 full rotations for realism
        const currentRotationMod = cumulativeRotation % 360;
-       const clockwiseToTarget = (360 - targetSegmentCenter - currentRotationMod + 360) % 360;
+       const clockwiseToTarget = (360 - targetSegmentPoint - currentRotationMod + 360) % 360;
        const spinDegrees = (baseRotations * 360) + clockwiseToTarget;
        const totalRotation = cumulativeRotation + spinDegrees;
 
@@ -869,7 +923,7 @@ document.addEventListener('DOMContentLoaded', () => {
        console.log(`🎯 Current spin: ${currentSpin} of ${maxSpins}`);
        console.log(`🎯 Targeting: ${targetPrize} AED at index ${targetPrizeIndex}`);
        console.log(`🎯 Target segment: ${targetPrizeIndex * 30}° to ${(targetPrizeIndex + 1) * 30}°`);
-       console.log(`🎯 Target center: ${targetSegmentCenter}°`);
+       console.log(`🎯 Target point (with offset): ${targetSegmentPoint}°`);
        console.log(`🎯 Target final position: ${targetFinalPosition}°`);
        console.log(`🎯 Total rotation: ${totalRotation}°`);
        console.log(`🎯 Final position: ${totalRotation % 360}°`);
@@ -878,10 +932,10 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
            segments.classList.remove('spinning');
            isSpinning = false;
-           
-           // Spin completed; nothing to do here regarding spin count (already incremented at spin start)
+
+           // No increment here; already done at spin start
            // Disable wheel completely after 5th spin
-           if (currentSpin > maxSpins) {
+           if (currentSpin >= maxSpins) {
              allSpinsComplete = true;
              console.log('🔒 WHEEL DISABLED: All 5 spins completed!');
              spinButton.disabled = true;
@@ -924,9 +978,9 @@ document.addEventListener('DOMContentLoaded', () => {
            
            // Bigger pause to let wheel settle and build anticipation
            setTimeout(() => {
-             showResult(selectedPrize, modal);
-           }, 1700);
-         }, 1700);
+             showResult(selectedPrize, modal, targetPrizeIndex);
+           }, 1000);
+         }, 4000);
 
         // Update control panel with immediate status (optimistic)
         if (panelMsg) {
@@ -935,17 +989,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
          // Show result popup with claim/continue options
-     function showResult(prize, wheelModal) {
+     async function showResult(prize, wheelModal, prizeId) {
        const isLastSpin = currentSpin >= maxSpins;
 
        // Hide the input fields after prize is won
        const inputGroups = wheelModal.querySelectorAll('.wheel-control-panel .input-group');
        inputGroups.forEach(el => el.style.display = 'none');
 
+       // Save current prize on modal for later use
+       wheelModal.currentPrize = prize;
+
        // Update panel message
        const panelMessageEl = wheelModal.querySelector('#panelMessage');
        if (panelMessageEl) {
-         panelMessageEl.innerHTML = `<strong>Congratulations!</strong> You won AED ${prize}! ${isLastSpin ? 'All spins complete.' : `${maxSpins - currentSpin} spins left.`}`;
+         panelMessageEl.innerHTML = `<strong>Congratulations!</strong> You won an AED ${prize} Gift Card! ${isLastSpin ? '' : `${maxSpins - currentSpin} spins left.`}`;
          panelMessageEl.style.color = '#FCF6BA';
        }
 
@@ -963,7 +1020,7 @@ document.addEventListener('DOMContentLoaded', () => {
          const spinButtonGlobal = wheelModal.querySelector('.spin-button');
          const claimBtn = actions.querySelector('#claimPrizeBtn');
          if (claimBtn) {
-           claimBtn.addEventListener('click', (e) => {
+           claimBtn.addEventListener('click', async (e) => {
              e.preventDefault();
              claimBtn.textContent = 'Claimed';
              claimBtn.disabled = true;
@@ -975,6 +1032,36 @@ document.addEventListener('DOMContentLoaded', () => {
              // Mark modal as claimed to prevent future spins
              wheelModal.claimed = true;
              wheelModal.pendingPrize = null;
+
+             /* ---------------- Webhook conversion ping ---------------- */
+             try {
+               const payload = {
+                 data: {
+                   name: wheelModal.userName || '',
+                   mobile: wheelModal.userPhoneFull || '',
+                   prize: `${wheelModal.currentPrize} AED GIFT CARD`
+                 }
+               };
+               await fetch('https://bothook.io/v1/public/triggers/webhooks/ad29e7ad-96a8-4710-83cc-6c2a3ec49564', {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify(payload)
+               });
+             } catch (err) {
+               console.error('Webhook failed', err);
+             }
+
+             // Record entry only once (ensure supabase is loaded)
+             if (!wheelModal.entryRecorded) {
+               await loadSupabase();
+               await supabase.from('wheel_entries').insert({
+                 name:          wheelModal.userName,
+                 mobile:        wheelModal.userPhoneFull,
+                 selected_prize: String(prize),
+                 prize_id:       prizeId
+               });
+               wheelModal.entryRecorded = true;
+             }
            });
          }
        }
