@@ -136,6 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const SUPABASE_URL = 'https://rplhksxrekbcbhgzcjir.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJwbGhrc3hyZWtiY2JoZ3pjamlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNTI2ODUsImV4cCI6MjA2NzcyODY4NX0.Rd_12MZmCPKFeA_WePWA57m0MED6gMRjJhkxauH41D4';
 
+    /* --------------- Confetti loader --------------- */
+    let confettiReady = null;
+    function loadConfetti() {
+      if (confettiReady) return confettiReady;
+      confettiReady = new Promise((resolve) => {
+        if (window.confetti) return resolve();
+        const scr = document.createElement('script');
+        scr.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
+        scr.onload = () => resolve();
+        document.head.appendChild(scr);
+      });
+      return confettiReady;
+    }
+
     let supabase;            // Supabase client instance
     let supabaseReady = null; // Promise guard
 
@@ -608,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
           /* Slightly smaller wheel to free up space */
           .spin-wheel { width: 240px; height: 240px; }
           .wheel-control-panel { margin-top: 8px; }
-          .spin-button { margin-top: 18px; margin-bottom: 15px; }
+          .spin-button { margin-top: 8px; margin-bottom: 15px; }
           .close-wheel { margin-top: 10px; }
            }
         
@@ -1012,6 +1026,28 @@ document.addEventListener('DOMContentLoaded', () => {
          panelMessageEl.innerHTML = `<strong>Congratulations!</strong> You won an AED ${prize} Gift Card! ${isLastSpin ? '' : `${maxSpins - currentSpin} spins left.`}`;
          panelMessageEl.style.color = '#FCF6BA';
        }
+
+       // Launch confetti on every prize reveal
+       console.log('🎉 Attempting confetti');
+       loadConfetti().then(() => {
+         console.log('🎉 Confetti library ready:', typeof window.confetti);
+         window.confetti({
+           particleCount: 180,
+           spread: 80,
+           startVelocity: 45,
+           origin: { y: 0.6 }
+         });
+
+         // Ensure confetti canvas sits above modal
+         setTimeout(() => {
+           document.querySelectorAll('canvas').forEach((cv) => {
+             if (!cv.dataset.confettiAdjusted) {
+               cv.style.zIndex = '10050';
+               cv.dataset.confettiAdjusted = '1';
+             }
+           });
+         }, 50);
+       });
 
        // Add claim buttons once
        let actions = wheelModal.querySelector('.wheel-control-panel .panel-actions');
