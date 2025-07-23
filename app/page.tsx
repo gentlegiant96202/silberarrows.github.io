@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,6 +9,17 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export default function HomePage() {
+  const [heroLoaded, setHeroLoaded] = useState(false);
+
+  useEffect(() => {
+    // Preload the hero image
+    const img = new Image();
+    img.onload = () => {
+      setHeroLoaded(true);
+    };
+    img.src = '/assets/images/hero-bg-silver-optimized.avif';
+  }, []);
+
   useEffect(() => {
     function initServicesPageNavigation() {
       const servicesNav = document.querySelector('.services-nav ul');
@@ -63,7 +74,7 @@ export default function HomePage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="hero">
+        <section className={`hero${heroLoaded ? ' hero-loaded' : ''}`}>
           <div className="hero-content">
             <div className="hero-logo">
               <img src="/assets/icons/silberarrows-logo.png" alt="Silver Arrows Logo" className="hero-logo-img" />
