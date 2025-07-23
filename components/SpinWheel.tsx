@@ -705,15 +705,15 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         .game-display {
           background: rgba(156, 163, 175, 0.1);
           border: 2px solid rgba(156, 163, 175, 0.3);
-          border-radius: 12px;
-          padding: 15px 20px;
-          margin-bottom: 15px;
+          border-radius: 10px;
+          padding: 12px 16px;
+          margin-bottom: 12px;
           text-align: center;
-          min-height: 120px;
+          min-height: 100px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          width: 320px;
+          width: 280px;
           max-width: 90%;
           transition: all 0.3s ease;
         }
@@ -760,17 +760,17 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           background: linear-gradient(145deg, #10B981, #059669);
           color: white;
           border: 3px solid #059669;
-          padding: ${isMobile ? '12px 20px' : '15px 28px'};
-          font-size: ${isMobile ? '13px' : '16px'};
+          padding: ${isMobile ? '10px 16px' : '12px 22px'};
+          font-size: ${isMobile ? '12px' : '14px'};
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
           text-transform: uppercase;
-          letter-spacing: 1.2px;
-          border-radius: 40px;
+          letter-spacing: 1px;
+          border-radius: 30px;
           cursor: pointer;
           transition: all 0.4s ease;
           box-shadow: 
-            0 6px 20px rgba(16, 185, 129, 0.4),
+            0 5px 15px rgba(16, 185, 129, 0.4),
             inset 0 2px 4px rgba(255, 255, 255, 0.2);
           white-space: nowrap;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -791,18 +791,18 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         
         .spin-wheel {
           position: relative;
-          width: ${isMobile ? '220px' : '320px'};
-          height: ${isMobile ? '220px' : '320px'};
+          width: ${isMobile ? '180px' : '260px'};
+          height: ${isMobile ? '180px' : '260px'};
           border-radius: 50%;
-          margin-bottom: 25px;
+          margin-bottom: 20px;
           margin-top: 5px;
           box-shadow: 
-            0 0 0 6px rgba(156, 163, 175, 0.4),
-            0 0 0 12px rgba(26, 26, 26, 0.8),
-            0 0 60px rgba(156, 163, 175, 0.6),
-            0 20px 60px rgba(0, 0, 0, 0.8);
+            0 0 0 4px rgba(156, 163, 175, 0.4),
+            0 0 0 8px rgba(26, 26, 26, 0.8),
+            0 0 40px rgba(156, 163, 175, 0.6),
+            0 15px 40px rgba(0, 0, 0, 0.8);
           animation: ${wheelState.allSpinsComplete ? 'none' : 'wheelGlow 2s ease-in-out infinite alternate'};
-          transition: all 0.5s ease;
+          transition: filter 0.5s ease, opacity 0.5s ease;
           ${wheelState.allSpinsComplete ? 'filter: grayscale(30%); opacity: 0.8;' : ''}
         }
         
@@ -848,8 +848,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: ${isMobile ? '80px' : '100px'};
-          height: ${isMobile ? '80px' : '100px'};
+          width: ${isMobile ? '60px' : '80px'};
+          height: ${isMobile ? '60px' : '80px'};
           background: 
             radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF),
             linear-gradient(145deg, #E5E7EB, #9CA3AF);
@@ -857,15 +857,15 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 6px solid #1a1a1a;
+          border: 4px solid #1a1a1a;
           z-index: 10;
           box-shadow: 
-            0 0 30px rgba(0, 0, 0, 0.8),
-            inset 0 4px 8px rgba(243, 244, 246, 0.3),
-            0 0 20px rgba(156, 163, 175, 0.6);
+            0 0 20px rgba(0, 0, 0, 0.8),
+            inset 0 3px 6px rgba(243, 244, 246, 0.3),
+            0 0 15px rgba(156, 163, 175, 0.6);
           font-family: 'Impact', 'Arial Black', sans-serif;
           font-weight: normal;
-          font-size: ${isMobile ? '11px' : '14px'};
+          font-size: ${isMobile ? '9px' : '12px'};
           color: #1a1a1a;
           text-align: center;
           line-height: 1.1;
@@ -896,25 +896,25 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%, -50%) translateY(-${isMobile ? '65px' : '95px'}) rotate(90deg);
-          font: normal ${isMobile ? '11px' : '13px'} "Montserrat", sans-serif;
+          transform: translate(-50%, -50%) translateY(-${isMobile ? '55px' : '75px'}) rotate(90deg);
+          font: normal ${isMobile ? '10px' : '12px'} "Montserrat", sans-serif;
           font-weight: 600;
           text-align: center;
           white-space: nowrap;
           user-select: none;
           pointer-events: none;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.3px;
         }
 
         .action-buttons {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 16px;
           align-items: center;
-          margin-bottom: 25px;
+          margin-bottom: 20px;
           justify-content: center;
           max-width: 100%;
-          min-height: 120px;
+          min-height: 100px;
           transition: all 0.3s ease;
         }
 
@@ -976,17 +976,17 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
             radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF);
           color: #1a1a1a;
           border: 3px solid #1a1a1a;
-          padding: ${isMobile ? '12px 20px' : '15px 30px'};
-          font-size: ${isMobile ? '13px' : '16px'};
+          padding: ${isMobile ? '10px 16px' : '12px 24px'};
+          font-size: ${isMobile ? '12px' : '14px'};
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
           text-transform: uppercase;
-          letter-spacing: 1.5px;
-          border-radius: 40px;
+          letter-spacing: 1.2px;
+          border-radius: 30px;
           cursor: pointer;
           transition: all 0.4s ease;
           box-shadow: 
-            0 6px 20px rgba(156, 163, 175, 0.5),
+            0 5px 15px rgba(156, 163, 175, 0.5),
             inset 0 2px 4px rgba(243, 244, 246, 0.3);
           white-space: nowrap;
           text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
@@ -1095,22 +1095,22 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         }
         
         .wheel-control-panel {
-          max-height: ${showControlPanel ? '300px' : '0'};
+          max-height: ${showControlPanel ? '260px' : '0'};
           opacity: ${showControlPanel ? '1' : '0'};
           overflow: hidden;
           transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin-bottom 0.3s ease;
-          width: 320px;
+          width: 280px;
           max-width: 90%;
-          margin: 15px auto ${showControlPanel ? '25px' : '0'};
+          margin: 12px auto ${showControlPanel ? '20px' : '0'};
           background: 
             linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.9)),
             radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.1), rgba(0, 0, 0, 0.8));
           border: 3px solid rgba(156, 163, 175, 0.4);
-          border-radius: 15px;
-          padding: ${showControlPanel ? '20px' : '0 20px'};
+          border-radius: 12px;
+          padding: ${showControlPanel ? '16px' : '0 16px'};
           box-shadow: 
-            0 0 30px rgba(156, 163, 175, 0.3),
-            inset 0 2px 8px rgba(156, 163, 175, 0.1);
+            0 0 25px rgba(156, 163, 175, 0.3),
+            inset 0 2px 6px rgba(156, 163, 175, 0.1);
         }
 
         .wheel-control-panel .input-group {
