@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faPhone, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +7,17 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const Header: React.FC = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // lock scroll when menu open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.classList.add('nav-open');
+    } else {
+      document.body.classList.remove('nav-open');
+    }
+  }, [mobileOpen]);
+
   return (
     <div id="header-placeholder" style={{
       position: 'sticky',
@@ -44,20 +56,20 @@ const Header: React.FC = () => {
               </a>
             </div>
           </div>
-          <button className="mobile-nav-toggle" aria-label="Toggle mobile menu">
+          <button className="mobile-nav-toggle" aria-label="Toggle mobile menu" onClick={() => setMobileOpen(true)}>
             <FontAwesomeIcon icon={faBars as IconProp} style={{ fontSize: '28px', color: '#fff', transform: 'scaleY(0.85)' }} />
           </button>
         </div>
       </header>
 
-      <div className="mobile-nav-container" style={{ backdropFilter: 'blur(40px)', background: 'rgba(18,18,18,0.9)' }}>
+      <div className={`mobile-nav-container${mobileOpen ? ' active' : ''}`} style={{ backdropFilter: 'blur(40px)', background: 'rgba(18,18,18,0.9)' }} onClick={(e) => { if (e.target === e.currentTarget) setMobileOpen(false); }}>
         <div className="mobile-nav-header">
           <div className="logo-container">
             <Link href="/">
               <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" />
             </Link>
           </div>
-          <button className="mobile-nav-close" aria-label="Close mobile menu">
+          <button className="mobile-nav-close" aria-label="Close mobile menu" onClick={() => setMobileOpen(false)}>
             <FontAwesomeIcon icon={faTimes as IconProp} style={{ fontSize: '28px', color: '#fff', transform: 'scaleY(0.85)' }} />
           </button>
         </div>
