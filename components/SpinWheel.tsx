@@ -500,8 +500,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         console.log('🎉 Triggering confetti for prize:', verifiedPrize);
         
         // Create high z-index confetti that appears in front of wheel
-        const createConfetti = (options: any) => {
-          (window.confetti as any)({
+        const createConfetti = (options: object) => {
+          (window as Window & { confetti: (options: object) => void }).confetti({
             ...options,
             zIndex: 999999, // Ensure confetti appears above everything
             disableForReducedMotion: false
