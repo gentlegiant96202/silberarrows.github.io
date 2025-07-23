@@ -2,6 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
+import Icon from '../../../components/Icon';
 
 // Simple data map (can be expanded later or fetched from CMS)
 const services: Record<string, {
@@ -236,11 +237,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                       <div className="plan-item">
                         <h3 className="plan-title">Service A (Minor Service)</h3>
                         <ul className="plan-features">
-                          <li><i className="fas fa-check"></i> Engine oil, oil filter, and air filter replacement</li>
-                          <li><i className="fas fa-check"></i> Check and top-up of all fluids</li>
-                          <li><i className="fas fa-check"></i> Visual inspection of underbody, engine bay, brakes, and tyres</li>
-                          <li><i className="fas fa-check"></i> Diagnostics check using XENTRY Diagnosis</li>
-                          <li><i className="fas fa-check"></i> Maintenance counter reset and full valet</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Engine oil, oil filter, and air filter replacement</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Check and top-up of all fluids</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Visual inspection of underbody, engine bay, brakes, and tyres</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Diagnostics check using XENTRY Diagnosis</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Maintenance counter reset and full valet</li>
                         </ul>
                       </div>
 
@@ -248,10 +249,10 @@ export default async function ServiceDetailPage({ params }: Props) {
                         <h3 className="plan-title">Service B (Major Service)</h3>
                         <p className="plan-subtitle">Includes all Service A items, plus:</p>
                         <ul className="plan-features">
-                          <li><i className="fas fa-check"></i> Dust or combination filter replacement</li>
-                          <li><i className="fas fa-check"></i> A/C system treatment</li>
-                          <li><i className="fas fa-check"></i> Wheel rotation and spare wheel or TIREFIT sealant check</li>
-                          <li><i className="fas fa-check"></i> Additional safety checks and updates</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Dust or combination filter replacement</li>
+                          <li><Icon name="check" size={16} variant="gold" /> A/C system treatment</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Wheel rotation and spare wheel or TIREFIT sealant check</li>
+                          <li><Icon name="check" size={16} variant="gold" /> Additional safety checks and updates</li>
                         </ul>
                       </div>
                     </div>
@@ -262,7 +263,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                       <ul className="plan-features">
                         {service.features.map((feature, index) => (
                           <li key={index}>
-                            <i className="fas fa-check"></i> {feature}
+                            <Icon name="check" size={16} variant="gold" /> {feature}
                           </li>
                         ))}
                       </ul>

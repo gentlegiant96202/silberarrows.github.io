@@ -1,10 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import Icon from './Icon';
 
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -45,12 +42,12 @@ const Header: React.FC = () => {
           </nav>
           <div className="header-contact">
             <div className="address-container">
-              <FontAwesomeIcon icon={faMapMarkerAlt as IconProp} />
+              <Icon name="location-dot" size={16} />
               <span>Al Manara St, Al Quoz, Dubai</span>
             </div>
             <div className="contact-buttons">
               <a href="tel:+97143805515" className="contact-btn phone-btn">
-                <FontAwesomeIcon icon={faPhone as IconProp} />
+                <Icon name="phone" size={16} />
                 <span>+971 4 380 5515</span>
               </a>
               {/* Hamburger replaces WhatsApp icon on mobile */}
@@ -91,11 +88,11 @@ const Header: React.FC = () => {
           <Link href="/contact/" className="nav-link" onClick={() => setMobileOpen(false)}>Contact</Link>
           <div className="mobile-contact-info">
             <a href="tel:+97143805515" className="contact-btn phone-btn">
-              <FontAwesomeIcon icon={faPhone as IconProp} />
+              <Icon name="phone" size={16} />
               <span>+971 4 380 5515</span>
             </a>
             <div className="address">
-              <FontAwesomeIcon icon={faMapMarkerAlt as IconProp} />
+              <Icon name="location-dot" size={16} />
               <span>Al Manara St, Al Quoz, Dubai</span>
             </div>
           </div>

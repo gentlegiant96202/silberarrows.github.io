@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faMedal } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import Icon from '../components/Icon';
 
 export default function HomePage() {
   const [heroLoaded, setHeroLoaded] = useState(false);
@@ -85,11 +82,11 @@ export default function HomePage() {
             <div className="hero-cta-container">
               <button className="hero-cta quote-trigger"><span>GET A FREE QUOTE</span></button>
               <div className="hero-contact-actions">
-                <a href="tel:+97143805515" className="hero-action"><FontAwesomeIcon icon={faPhone as IconProp} /><span>+971 4 380 5515</span></a>
-                <a href="https://wa.me/97143805515" className="hero-action"><FontAwesomeIcon icon={faWhatsapp as IconProp} /><span>WhatsApp Us</span></a>
+                <a href="tel:+97143805515" className="hero-action"><Icon name="phone" size={18} /><span>+971 4 380 5515</span></a>
+                <a href="https://wa.me/97143805515" className="hero-action"><Icon name="whatsapp" size={18} /><span>WhatsApp Us</span></a>
               </div>
             </div>
-            <div className="year-badge"><FontAwesomeIcon icon={faMedal as IconProp} />Setting the Standard since 2011</div>
+            <div className="year-badge"><Icon name="medal" size={20} />Setting the Standard since 2011</div>
           </div>
         </section>
 
@@ -103,14 +100,14 @@ export default function HomePage() {
             <div className="features-columns">
               <div className="feature-column">
                 <div className="feature-card">
-                  <div className="feature-icon"><i className="fas fa-cogs"></i></div>
+                  <div className="feature-icon"><Icon name="cogs" size={32} variant="dark" /></div>
                   <div className="feature-content">
                     <h3>GENUINE PARTS<span className="mobile-hide"> & FACTORY STANDARDS</span></h3>
                     <p>Only genuine Mercedes-Benz parts, fitted using manufacturer-approved tools and procedures.</p>
                   </div>
                 </div>
                 <div className="feature-card">
-                  <div className="feature-icon"><i className="fas fa-star"></i></div>
+                  <div className="feature-icon"><Icon name="star" size={32} variant="dark" /></div>
                   <div className="feature-content">
                     <h3>EXCLUSIVE TO MERCEDES-BENZ</h3>
                     <p>We work on one marque only, Mercedes-Benz. That&apos;s where our expertise lies.</p>
@@ -119,14 +116,14 @@ export default function HomePage() {
               </div>
               <div className="feature-column">
                 <div className="feature-card">
-                  <div className="feature-icon"><i className="fas fa-user-shield"></i></div>
+                  <div className="feature-icon"><Icon name="user-shield" size={32} variant="dark" /></div>
                   <div className="feature-content">
                     <h3>FACTORY-TRAINED TECHNICIANS</h3>
                     <p>Certified technicians trained to Mercedes-Benz standards with over seven decades of combined hands-on experience.</p>
                   </div>
                 </div>
                 <div className="feature-card">
-                  <div className="feature-icon"><i className="fas fa-file-contract"></i></div>
+                  <div className="feature-icon"><Icon name="file-contract" size={32} variant="dark" /></div>
                   <div className="feature-content">
                     <h3>SERVICE CONTRACTS</h3>
                     <p>Comprehensive maintenance packages designed to keep your Mercedes-Benz in peak condition with premium care.</p>
@@ -135,14 +132,14 @@ export default function HomePage() {
               </div>
               <div className="feature-column">
                 <div className="feature-card">
-                  <div className="feature-icon"><i className="fas fa-shield-alt"></i></div>
+                  <div className="feature-icon"><Icon name="shield-alt" size={32} variant="dark" /></div>
                   <div className="feature-content">
                     <h3>12-MONTH WARRANTY</h3>
                     <p>All work is backed by a full 12-month warranty for your peace of mind.</p>
                   </div>
                 </div>
                 <div className="feature-card">
-                  <div className="feature-icon"><i className="fas fa-truck"></i></div>
+                  <div className="feature-icon"><Icon name="truck" size={32} variant="dark" /></div>
                   <div className="feature-content">
                     <h3>FREE COLLECTION & DELIVERY</h3>
                     <p>Complimentary vehicle collection and delivery across Dubai.</p>
@@ -465,13 +462,13 @@ export default function HomePage() {
                 <div className="contact-cards-grid">
                   <div className="contact-card phone-card">
                     <div className="card-icon">
-                      <i className="fas fa-phone-alt"></i>
+                      <Icon name="phone-alt" size={24} variant="gold" flip />
                     </div>
                     <h3>Call Us Today</h3>
                     <p>For immediate assistance</p>
                     <div className="card-action">
                       <a href="tel:+97143805515" className="action-link">
-                        <i className="fas fa-phone-alt fa-flip-horizontal"></i>
+                        <Icon name="phone-alt" size={16} variant="gold" flip />
                         +971 4 380 5515
                       </a>
                     </div>
@@ -479,22 +476,22 @@ export default function HomePage() {
                   
                   <div className="contact-card whatsapp-card">
                     <div className="card-icon">
-                      <i className="fab fa-whatsapp"></i>
+                      <Icon name="whatsapp" size={24} variant="gold" />
                     </div>
                     <h3>WhatsApp</h3>
                     <p>Quick service enquiries</p>
-                    <div className="card-action">
-                      <a href="https://wa.me/97143805515" target="_blank" className="action-link">
-                        <i className="fab fa-whatsapp"></i>
-                        Start Chat
-                      </a>
+                                          <div className="card-action">
+                        <a href="https://wa.me/97143805515" target="_blank" className="action-link">
+                          <Icon name="whatsapp" size={16} variant="gold" />
+                          Start Chat
+                        </a>
                     </div>
                   </div>
                 </div>
                 
                 <div className="hours-card">
                   <div className="hours-header">
-                    <i className="fas fa-clock"></i>
+                    <Icon name="clock" size={20} variant="gold" />
                     <h3>Working Hours</h3>
                   </div>
                   <div className="hours-grid">
@@ -525,21 +522,21 @@ export default function HomePage() {
                   <div className="map-info-overlay">
                     <div className="overlay-content">
                       <div className="location-icon">
-                        <i className="fas fa-map-marker-alt"></i>
+                        <Icon name="location-dot" size={24} variant="gold" />
                       </div>
                       <h4>Visit Our Workshop</h4>
                       <p>Al Manara Street, Al Quoz<br />Dubai, United Arab Emirates</p>
                       <div className="overlay-actions">
                         <a href="https://maps.app.goo.gl/wWEGEukBTrD6WC3KA?g_st=ipc" target="_blank" className="map-action primary">
-                          <i className="fas fa-directions"></i>
+                          <Icon name="directions" size={16} variant="dark" />
                           Get Directions
                         </a>
                         <a href="tel:+97143805515" className="map-action">
-                          <i className="fas fa-phone"></i>
+                          <Icon name="phone" size={16} variant="gold" />
                           Call
                         </a>
                         <a href="https://wa.me/97143805515" target="_blank" className="map-action">
-                          <i className="fab fa-whatsapp"></i>
+                          <Icon name="whatsapp" size={16} variant="gold" />
                           WhatsApp
                         </a>
                       </div>
