@@ -2531,15 +2531,15 @@ body.no-scroll.menu-open::after {
 
 @media (max-width: 480px) {
     main {
-        padding-bottom: 110px;
+        padding-bottom: 130px;
     }
 
     .mobile-footer {
-        padding: 15px;
-        /* Larger height for Android compatibility */
-        height: 90px;
-        min-height: 90px;
-        max-height: 90px;
+        padding: 20px 15px;
+        /* Much larger height for Android compatibility */
+        height: 110px;
+        min-height: 110px;
+        max-height: 110px;
         overflow: hidden;
         left: 0;
         right: 0;
