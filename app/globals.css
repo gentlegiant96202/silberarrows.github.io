@@ -2227,15 +2227,15 @@ body.no-scroll.menu-open::after {
     border-top: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     z-index: 1000;
-    padding: 15px 20px;
+    padding: 20px;
     /* Android viewport constraints */
     box-sizing: border-box;
     overflow: hidden;
     contain: layout style paint;
-    /* Height constraints */
-    height: 80px;
-    min-height: 80px;
-    max-height: 80px;
+    /* Larger height for better Android compatibility */
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
     /* Touch optimizations */
     touch-action: manipulation;
     -webkit-touch-callout: none;
@@ -2261,7 +2261,8 @@ body.no-scroll.menu-open::after {
     overflow: hidden;
     flex-wrap: nowrap;
     align-items: center;
-    height: 50px;
+    justify-content: center;
+    height: 60px;
 }
 
 .footer-action {
@@ -2269,18 +2270,18 @@ body.no-scroll.menu-open::after {
     flex: 1;
     color: var(--light);
     text-decoration: none;
-    height: 50px;
-    min-height: 50px;
-    max-height: 50px;
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    border-radius: 25px;
+    gap: 8px;
+    border-radius: 20px;
     background: rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0 20px;
+    padding: 0 16px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 400;
@@ -2294,7 +2295,7 @@ body.no-scroll.menu-open::after {
 }
 
 .footer-action i {
-    font-size: 18px;
+    font-size: 16px;
     transition: transform 0.3s ease;
 }
 
@@ -2304,7 +2305,7 @@ body.no-scroll.menu-open::after {
 
 .footer-action span {
     font-family: var(--impact-font);
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
     white-space: nowrap;
 }
@@ -2330,8 +2331,15 @@ body.no-scroll.menu-open::after {
     }
 
     main {
-        padding-bottom: 115px;
+        padding-bottom: 120px;
     }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-bottom: 110px;
+    }
+}
 
     /* Services Layout Mobile - Keep tabs and cards side by side */
     .services-layout {
@@ -2530,11 +2538,11 @@ body.no-scroll.menu-open::after {
 
 @media (max-width: 480px) {
     .mobile-footer {
-        padding: 10px 15px;
-        /* Strict Android constraints */
-        height: 70px;
-        min-height: 70px;
-        max-height: 70px;
+        padding: 15px;
+        /* Larger height for Android compatibility */
+        height: 90px;
+        min-height: 90px;
+        max-height: 90px;
         overflow: hidden;
         left: 0;
         right: 0;
@@ -2551,9 +2559,10 @@ body.no-scroll.menu-open::after {
     }
 
     .footer-actions {
-        gap: 10px;
-        height: 50px;
+        gap: 12px;
+        height: 60px;
         align-items: center;
+        justify-content: center;
         width: 100%;
         max-width: 100%;
         padding: 0;
@@ -2563,10 +2572,12 @@ body.no-scroll.menu-open::after {
     .footer-action {
         min-width: 0;
         flex: 1;
-        padding: 0 15px;
-        height: 50px;
-        min-height: 50px;
-        max-height: 50px;
+        padding: 0 12px;
+        height: 35px;
+        min-height: 35px;
+        max-height: 35px;
+        border-radius: 18px;
+        gap: 6px;
         /* Strict Android constraints */
         flex-shrink: 1;
         flex-grow: 1;
@@ -2576,7 +2587,7 @@ body.no-scroll.menu-open::after {
     }
 
     .footer-action span {
-        font-size: 11px;
+        font-size: 10px;
         line-height: 1;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -2585,10 +2596,10 @@ body.no-scroll.menu-open::after {
     }
 
     .footer-action i {
-        font-size: 14px;
+        font-size: 12px;
         flex-shrink: 0;
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
     }
 }
 
