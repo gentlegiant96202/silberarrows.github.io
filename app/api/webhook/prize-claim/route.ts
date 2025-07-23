@@ -93,13 +93,14 @@ export async function POST(request: NextRequest) {
         result: webhookResult
       });
 
-    } catch (webhookError) {
-      console.error('❌ Webhook error:', webhookError);
+    } catch (webhookError: unknown) {
+      const error = webhookError as Error;
+      console.error('❌ Webhook error:', error);
       return NextResponse.json({ 
         success: false, 
         database: 'saved',
         webhook: 'failed',
-        error: webhookError.message 
+        error: error.message 
       }, { status: 500 });
     }
 
