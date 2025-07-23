@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faPhone, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
@@ -56,7 +56,11 @@ const Header: React.FC = () => {
               </a>
             </div>
           </div>
-          <button className="mobile-nav-toggle" aria-label="Toggle mobile menu" onClick={() => setMobileOpen(true)}>
+          <button
+            className={`mobile-nav-toggle${mobileOpen ? ' active' : ''}`}
+            aria-label="Toggle mobile menu"
+            onClick={() => setMobileOpen(true)}
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -71,8 +75,13 @@ const Header: React.FC = () => {
               <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" />
             </Link>
           </div>
-          <button className="mobile-nav-close" aria-label="Close mobile menu" onClick={() => setMobileOpen(false)}>
-            <FontAwesomeIcon icon={faTimes as IconProp} style={{ fontSize: '28px', color: '#fff', transform: 'scaleY(0.85)' }} />
+          <button
+            className="mobile-nav-close"
+            aria-label="Close mobile menu"
+            onClick={() => setMobileOpen(false)}
+          >
+            <span></span>
+            <span></span>
           </button>
         </div>
         <nav className="mobile-nav-links">

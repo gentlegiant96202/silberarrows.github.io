@@ -1988,6 +1988,7 @@ body.no-scroll.menu-open::after {
         border-left: none !important;
         padding-left: 0;
         gap: 15px;
+        justify-self: center;
     }
 
     .header-right .contact-buttons {
