@@ -22,16 +22,30 @@ interface WheelState {
   detailsCollected: boolean;
   userPhoneFull: string;
   userName: string;
-  pendingPrize: number | null;
+  currentPrize: number | null;
+  finalPrize: number | null;
   claimed: boolean;
   idleRotation: number;
+  showForfeitConfirm: boolean;
+}
+
+interface SupabaseError {
+  message: string;
+  code?: string;
+  details?: string;
+  hint?: string;
+}
+
+interface SupabaseResponse {
+  data: { id: string } | null;
+  error: SupabaseError | null;
 }
 
 interface SupabaseClient {
   from: (table: string) => {
     select: (columns: string) => {
       eq: (column: string, value: string) => {
-        maybeSingle: () => Promise<{ data: { id: string } | null }>;
+        maybeSingle: () => Promise<SupabaseResponse>;
       };
     };
   };
@@ -62,9 +76,11 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
     detailsCollected: false,
     userPhoneFull: '',
     userName: '',
-    pendingPrize: null,
+    currentPrize: null,
+    finalPrize: null,
     claimed: false,
-    idleRotation: 0
+    idleRotation: 0,
+    showForfeitConfirm: false
   });
 
   const [userData, setUserData] = useState<UserData>({
@@ -92,35 +108,75 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
   }, []);
 
   const loadSupabase = useCallback(() => {
-    return new Promise<void>((resolve) => {
-      if (supabaseRef.current) return resolve();
-      if (window.supabase) {
-        supabaseRef.current = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    return new Promise<void>((resolve, reject) => {
+      console.log('🔧 Loading Supabase...');
+      
+      if (supabaseRef.current) {
+        console.log('✅ Supabase already loaded');
         return resolve();
       }
+      
+      if (window.supabase) {
+        console.log('✅ Supabase found in window, creating client...');
+        try {
+          supabaseRef.current = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+          console.log('✅ Supabase client created successfully');
+          return resolve();
+        } catch (error) {
+          console.error('❌ Failed to create Supabase client:', error);
+          return reject(error);
+        }
+      }
+      
+      console.log('📦 Loading Supabase from CDN...');
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+      
       script.onload = () => {
-        supabaseRef.current = window.supabase?.createClient(SUPABASE_URL, SUPABASE_KEY) || null;
-        resolve();
+        console.log('📦 Supabase script loaded from CDN');
+        try {
+          if (window.supabase) {
+            supabaseRef.current = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            console.log('✅ Supabase client created from CDN');
+            resolve();
+          } else {
+            console.error('❌ Supabase not available after script load');
+            reject(new Error('Supabase not available after script load'));
+          }
+        } catch (error) {
+          console.error('❌ Failed to create Supabase client from CDN:', error);
+          reject(error);
+        }
       };
+      
+      script.onerror = () => {
+        console.error('❌ Failed to load Supabase script from CDN');
+        reject(new Error('Failed to load Supabase script'));
+      };
+      
       document.head.appendChild(script);
     });
   }, []);
 
-  // Idle rotation effect
+  // Idle rotation effect - only before first spin
   useEffect(() => {
-    if (isOpen && !wheelState.isSpinning && segmentsRef.current) {
-      const idleSpeed = 0.2;
-      idleIntervalRef.current = setInterval(() => {
-        setWheelState(prev => {
-          const newRotation = (prev.idleRotation + idleSpeed) % 360;
-          if (segmentsRef.current) {
-            segmentsRef.current.style.transform = `rotate(${newRotation}deg)`;
-          }
-          return { ...prev, idleRotation: newRotation };
-        });
-      }, 50);
+    // Start idle rotation ONLY before the user performs the first spin.
+    if (isOpen && !wheelState.isSpinning && wheelState.currentSpin === 0 && segmentsRef.current) {
+      // Add a small delay before resuming idle rotation to avoid glitches
+      const delayTimeout = setTimeout(() => {
+        const idleSpeed = 0.2;
+        idleIntervalRef.current = setInterval(() => {
+          setWheelState(prev => {
+            const newRotation = (prev.idleRotation + idleSpeed) % 360;
+            if (segmentsRef.current) {
+              segmentsRef.current.style.transform = `rotate(${newRotation}deg)`;
+            }
+            return { ...prev, idleRotation: newRotation };
+          });
+        }, 50);
+      }, 100); // 100ms delay
+      
+      return () => clearTimeout(delayTimeout);
     } else if (idleIntervalRef.current) {
       clearInterval(idleIntervalRef.current);
       idleIntervalRef.current = null;
@@ -132,7 +188,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         idleIntervalRef.current = null;
       }
     };
-  }, [isOpen, wheelState.isSpinning]);
+  }, [isOpen, wheelState.isSpinning, wheelState.currentSpin]); // Added currentSpin dependency
 
   // Reset state when modal opens
   useEffect(() => {
@@ -141,8 +197,19 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         ...prev,
         currentSpin: 0,
         allSpinsComplete: false,
-        idleRotation: 0
+        idleRotation: 0,
+        currentPrize: null,
+        finalPrize: null,
+        showForfeitConfirm: false,
+        detailsCollected: false
       }));
+      setUserData({
+        name: '',
+        phone: '',
+        countryCode: '+971'
+      });
+      setMessage('');
+      setShowControlPanel(true);
       if (segmentsRef.current) {
         segmentsRef.current.style.transform = 'rotate(0deg)';
       }
@@ -152,7 +219,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
   // Handle ESC key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === 'Escape' && isOpen && !wheelState.showForfeitConfirm) {
         onClose();
       }
     };
@@ -166,7 +233,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
       document.removeEventListener('keydown', handleEsc);
       document.body.style.overflow = '';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, wheelState.showForfeitConfirm]);
 
   const validateForm = (): boolean => {
     if (!userData.name.trim()) {
@@ -184,55 +251,176 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
     return true;
   };
 
+  const handleAcceptPrize = async () => {
+    if (wheelState.currentPrize) {
+      // Update state immediately for UI feedback
+      setWheelState(prev => ({
+        ...prev,
+        finalPrize: prev.currentPrize,
+        allSpinsComplete: true,
+        claimed: true
+      }));
+      
+      setMessage('🎉 Processing your claim, please wait...');
+
+      try {
+        // Send to API endpoint (handles both database save and webhook)
+        console.log('📤 Sending webhook notification...');
+        const webhookData = {
+          data: {
+            name: wheelState.userName,
+            mobile: wheelState.userPhoneFull,
+            prize: wheelState.currentPrize
+          }
+        };
+
+        const webhookResponse = await fetch('/api/webhook/prize-claim', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookData)
+        });
+
+        if (!webhookResponse.ok) {
+          throw new Error(`Webhook failed: ${webhookResponse.status}`);
+        }
+
+        console.log('✅ Webhook sent successfully');
+        setMessage(`🎉 Congratulations! You've claimed AED ${wheelState.currentPrize}! Confirmation will be sent on WhatsApp. 🎉`);
+
+      } catch (error: any) {
+        console.error('❌ Failed to process claim:', error);
+        setMessage(`🎉 Congratulations! You've claimed AED ${wheelState.currentPrize}! (Note: There may be a delay in confirmation) 🎉`);
+      }
+    }
+  };
+
+  const handleForfeit = () => {
+    setWheelState(prev => ({ ...prev, showForfeitConfirm: true }));
+  };
+
+  const confirmForfeit = () => {
+    setWheelState(prev => ({
+      ...prev,
+      allSpinsComplete: true,
+      showForfeitConfirm: false,
+      finalPrize: prev.currentPrize
+    }));
+    setMessage(`Game Over! Final prize: AED ${wheelState.currentPrize || 0}`);
+  };
+
+  const cancelForfeit = () => {
+    setWheelState(prev => ({ ...prev, showForfeitConfirm: false }));
+  };
+
   const spinWheel = async () => {
-    if (wheelState.claimed || wheelState.isSpinning || wheelState.currentSpin >= wheelState.maxSpins || wheelState.allSpinsComplete) {
+    if (wheelState.claimed || wheelState.isSpinning || wheelState.allSpinsComplete) {
       return;
     }
 
-    // Reset pending prize if exists
-    if (wheelState.pendingPrize) {
-      setWheelState(prev => ({ ...prev, pendingPrize: null }));
-      setMessage('Previous prize forfeited. Spinning again...');
+    // Check if we've reached max spins
+    if (wheelState.currentSpin >= wheelState.maxSpins) {
+      return;
     }
 
     // Validate form on first spin
     if (!wheelState.detailsCollected) {
-      setShowControlPanel(true);
-      
       if (!validateForm()) return;
 
-      // Check for existing user
-      await loadSupabase();
+      // Show loading message
+      setMessage('Checking player data, please wait...');
+      
       const userPhoneFull = `${userData.countryCode}${userData.phone.trim()}`;
       
       try {
+        // Load Supabase with timeout
+        await Promise.race([
+          loadSupabase(),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))
+        ]);
+
         if (!supabaseRef.current) {
-          setMessage('Error loading database. Please try again.');
-          return;
+          console.warn('Supabase not available, continuing without database check');
+          // Continue without database check - graceful degradation
+        } else {
+          // Database check with detailed error reporting
+          console.log('🔍 Checking for existing user:', userPhoneFull);
+          
+          try {
+            console.log('📡 Making database request...');
+            const result = await supabaseRef.current
+              .from('wheel_entries')
+              .select('id')
+              .eq('mobile', userPhoneFull)
+              .maybeSingle();
+            
+            console.log('📡 Database response:', result);
+            
+            if (result.error) {
+              console.error('❌ Database error details:', {
+                message: result.error.message,
+                code: result.error.code,
+                details: result.error.details,
+                hint: result.error.hint
+              });
+              
+              // Check specific error types
+              if (result.error.message.includes('JWT')) {
+                throw new Error('Authentication failed - Invalid API key');
+              } else if (result.error.message.includes('relation') && result.error.message.includes('does not exist')) {
+                throw new Error('Database table "wheel_entries" does not exist');
+              } else if (result.error.message.includes('permission denied')) {
+                throw new Error('Permission denied - Check RLS policies');
+              } else {
+                throw new Error(`Database error: ${result.error.message}`);
+              }
+            }
+            
+            if (result.data) {
+              console.log('⚠️ User already exists:', result.data);
+              setMessage('Thank you for playing, you have already won!');
+              return;
+            }
+            
+            console.log('✅ User check passed - new user');
+            
+          } catch (dbError: any) {
+            console.error('❌ Database check failed:', {
+              error: dbError,
+              message: dbError.message,
+              stack: dbError.stack,
+              userPhone: userPhoneFull,
+              supabaseUrl: SUPABASE_URL
+            });
+            
+            // Show specific error to user
+            setMessage(`Database error: ${dbError.message}. Please contact support.`);
+            return;
+          }
         }
 
-        const { data: existing } = await supabaseRef.current
-          .from('wheel_entries')
-          .select('id')
-          .eq('mobile', userPhoneFull)
-          .maybeSingle();
-
-        if (existing) {
-          setMessage('Thank you for playing, you have already won!');
-          return;
-        }
-
+        // Success - proceed with game
         setWheelState(prev => ({
           ...prev,
           detailsCollected: true,
           userPhoneFull,
           userName: userData.name.trim()
         }));
-        setMessage('');
+        setShowControlPanel(false);
+        setMessage(`Welcome ${userData.name}! You have 5 spins to win the best prize. Each spin replaces the previous one.`);
+        
       } catch (error) {
-        console.error('Error checking user:', error);
-        setMessage('Error checking user data. Please try again.');
-        return;
+        console.warn('Database service unavailable, continuing with game:', error);
+        // Graceful degradation - allow game to continue even if database is down
+        setWheelState(prev => ({
+          ...prev,
+          detailsCollected: true,
+          userPhoneFull,
+          userName: userData.name.trim()
+        }));
+        setShowControlPanel(false);
+        setMessage(`Welcome ${userData.name}! You have 5 spins to win the best prize. Each spin replaces the previous one.`);
       }
     }
 
@@ -249,27 +437,177 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
       idleIntervalRef.current = null;
     }
 
-    // Calculate spin result
-    const randomSegment = Math.floor(Math.random() * 12);
-    const finalAngle = randomSegment * SEGMENT_ANGLE + Math.random() * SEGMENT_ANGLE;
-    const totalRotation = wheelState.idleRotation + 1800 + finalAngle;
-
-    // Apply spin animation
-    if (segmentsRef.current) {
-      segmentsRef.current.classList.add('spinning');
-      segmentsRef.current.style.transform = `rotate(${totalRotation}deg)`;
+    // Natural spin physics - make each spin feel unique and realistic
+    // Use incremented spin number since we just incremented currentSpin above
+    const spinNumber = wheelState.currentSpin + 1;
+    
+    // Variable spin intensity based on game progression
+    // Early spins are more energetic, later spins more controlled
+    const baseRotations = 3 + Math.random() * 3 + (5 - spinNumber) * 0.5; // 3-6.5 rotations, decreasing over time
+    const spinVariance = 0.3 + Math.random() * 0.4; // 0.3-0.7 additional variance
+    const totalRotations = baseRotations + spinVariance;
+    
+    // GAME LOGIC: Prize selection based on spin number
+    let targetPrizeIndex;
+    let selectedPrize;
+    
+    // PRIZES = [1000, 50, 900, 100, 800, 200, 700, 250, 600, 300, 500, 400]
+    // Valid low prizes (50-250): indices 1, 3, 5, 7 (prizes: 50, 100, 200, 250)
+    // Prize 500: index 10
+    
+    if (spinNumber < 5) {
+      // First 4 spins: only prizes between 50-250
+      const validLowPrizeIndices = [1, 3, 5, 7]; // 50, 100, 200, 250
+      targetPrizeIndex = validLowPrizeIndices[Math.floor(Math.random() * validLowPrizeIndices.length)];
+      selectedPrize = PRIZES[targetPrizeIndex];
+    } else {
+      // 5th spin: always land on 500
+      targetPrizeIndex = 10; // 500 is at index 10
+      selectedPrize = PRIZES[targetPrizeIndex];
     }
+    
+    console.log('🎯 DEBUG - Spin #:', spinNumber, 'Total rotations:', totalRotations.toFixed(2));
+    console.log('🎯 DEBUG - Target Prize:', selectedPrize, 'at index:', targetPrizeIndex);
+    console.log('🎯 DEBUG - Available prizes for this spin level:', spinNumber < 5 ? [50, 100, 200, 250] : [500]);
+    
+    // Calculate exact target position - no variance for accurate landing
+    const segmentCenterAngle = targetPrizeIndex * SEGMENT_ANGLE + (SEGMENT_ANGLE / 2);
+    
+    // Calculate where the wheel needs to stop for the pointer to hit this segment center
+    // The pointer is at 0°, so we need the target segment center to be at 0°
+    let targetStopAngle = 360 - segmentCenterAngle;
+    
+    // Normalize to 0-360 range
+    while (targetStopAngle >= 360) {
+      targetStopAngle -= 360;
+    }
+    while (targetStopAngle < 0) {
+      targetStopAngle += 360;
+    }
+    
+    console.log('🎯 DEBUG - Segment center angle:', segmentCenterAngle);
+    console.log('🎯 DEBUG - Target stop angle:', targetStopAngle);
+    
+    // Calculate rotation from current position (where wheel currently is)
+    const currentPosition = wheelState.idleRotation;
+    const currentNormalized = currentPosition % 360;
+    
+    // Calculate how much we need to rotate to reach the target
+    let rotationNeeded = targetStopAngle - currentNormalized;
+    
+    // Ensure natural forward rotation (always go forward)
+    if (rotationNeeded <= 0) {
+      rotationNeeded += 360;
+    }
+    
+    // Calculate total rotation with fixed number of full rotations (no decimal variance)
+    const fullRotations = Math.floor(totalRotations); // Use whole number of rotations
+    const totalRotation = currentPosition + (fullRotations * 360) + rotationNeeded;
+    
+    console.log('🎯 DEBUG - Current position:', currentPosition);
+    console.log('🎯 DEBUG - Current normalized position:', currentNormalized);
+    console.log('🎯 DEBUG - Rotation needed to target:', rotationNeeded);
+    console.log('🎯 DEBUG - Total rotation:', totalRotation);
+    console.log('🎯 DEBUG - Expected final position:', (totalRotation % 360));
+
+    // Natural animation timing - make sure it's visible and impactful
+    const baseDuration = 4000; // Base 4 seconds - longer for visibility
+    const spinDuration = baseDuration + (fullRotations * 300); // More rotations = longer spin
+    
+    // Use a more dramatic easing curve for visible deceleration
+    const selectedEasing = 'cubic-bezier(0.15, 0.85, 0.35, 1)'; // Visible slow-down
+    
+    console.log('🎯 DEBUG - Spin duration:', spinDuration + 'ms', 'Full rotations:', fullRotations);
+    console.log('🎯 DEBUG - Easing:', selectedEasing);
+
+    // Apply spin animation with clear steps
+    if (segmentsRef.current) {
+      // First: Remove any existing transition
+      segmentsRef.current.style.transition = 'none';
+      
+      // Force a reflow to ensure the transition removal takes effect
+      segmentsRef.current.offsetHeight;
+      
+      // Then: Apply the spinning animation
+      segmentsRef.current.classList.add('spinning');
+      segmentsRef.current.style.transition = `transform ${spinDuration}ms ${selectedEasing}`;
+      
+      // Small delay to ensure transition is set before transform
+      setTimeout(() => {
+        if (segmentsRef.current) {
+          segmentsRef.current.style.transform = `rotate(${totalRotation}deg)`;
+        }
+      }, 10);
+    }
+
+    // Dynamic messages for more engaging experience
+    const spinMessages = [
+      'Spinning for your prize...',
+      'Round and round we go...',
+      'Let\'s see what you win...',
+      'Here we go...',
+      'Spinning to victory...'
+    ];
+    const randomMessage = spinMessages[Math.floor(Math.random() * spinMessages.length)];
+    setMessage(randomMessage);
 
     // Load confetti
     await loadConfetti();
 
-    // Handle spin completion
+    // Handle spin completion with dynamic timing
     setTimeout(async () => {
       if (segmentsRef.current) {
         segmentsRef.current.classList.remove('spinning');
       }
 
-      const prizeAmount = PRIZES[randomSegment];
+      const prizeAmount = selectedPrize;
+      
+      // Calculate the final position after all rotations
+      const finalPosition = totalRotation % 360;
+      
+      console.log('🎯 DEBUG - Final wheel position:', finalPosition);
+      console.log('🎯 DEBUG - Prize awarded:', prizeAmount);
+      
+      // VERIFICATION: Calculate which segment the pointer is actually hitting
+      const normalizedAngle = finalPosition % 360;
+      
+      // The wheel rotated to finalPosition degrees
+      // To find which segment is at the pointer (0°), we need to see
+      // which original segment is now at the 0° position
+      
+      // If the wheel is at angle X, then the segment that was originally at 
+      // position (360 - X) is now at the pointer position
+      let segmentAngleAtPointer = (360 - normalizedAngle) % 360;
+      if (segmentAngleAtPointer < 0) segmentAngleAtPointer += 360;
+      
+      // Find which segment this angle falls into
+      const actualSegmentAtPointer = Math.floor(segmentAngleAtPointer / SEGMENT_ANGLE) % PRIZES.length;
+      const actualPrizeAtPointer = PRIZES[actualSegmentAtPointer];
+      
+      console.log('🎯 DEBUG - Normalized wheel angle:', normalizedAngle);
+      console.log('🎯 DEBUG - Segment angle at pointer:', segmentAngleAtPointer);
+      console.log('🎯 DEBUG - Actual segment at pointer:', actualSegmentAtPointer);
+      console.log('🎯 DEBUG - Actual prize at pointer:', actualPrizeAtPointer);
+      console.log('🎯 DEBUG - Target prize index was:', targetPrizeIndex);
+      console.log('🎯 DEBUG - Target prize was:', selectedPrize);
+      console.log('🎯 DEBUG - Does it match?', actualPrizeAtPointer === prizeAmount && prizeAmount === selectedPrize);
+      
+      // Use the actual calculated prize to ensure accuracy
+      const verifiedPrize = actualPrizeAtPointer;
+      
+      // IMPORTANT: Keep the wheel exactly where it landed for next spin
+      // Remove transition and set exact position
+      if (segmentsRef.current) {
+        segmentsRef.current.style.transition = 'none'; // Remove transition to prevent movement
+        segmentsRef.current.style.transform = `rotate(${finalPosition}deg)`;
+        
+        // Re-enable gentle transitions after a short delay for future positioning
+        setTimeout(() => {
+          if (segmentsRef.current) {
+            segmentsRef.current.style.transition = 'transform 0.1s ease';
+          }
+        }, 100);
+      }
       
       // Trigger confetti
       if (window.confetti) {
@@ -280,15 +618,35 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         });
       }
 
-      setMessage(`🎉 Congratulations! You won AED ${prizeAmount}! 🎉`);
+      // Use the verified prize for accurate results
+      const finalPrizeAmount = verifiedPrize;
 
-      setWheelState(prev => ({
-        ...prev,
-        isSpinning: false,
-        allSpinsComplete: prev.currentSpin >= prev.maxSpins,
-        pendingPrize: prizeAmount
-      }));
-    }, 3800);
+      // Update state and calculate remaining spins from the updated state
+      setWheelState(prev => {
+        const isLastSpin = prev.currentSpin >= prev.maxSpins;
+        const spinsRemaining = prev.maxSpins - prev.currentSpin;
+
+        if (isLastSpin) {
+          setMessage(`Final spin! You won AED ${finalPrizeAmount}! This is your final prize.`);
+          return {
+            ...prev,
+            isSpinning: false,
+            allSpinsComplete: true,
+            currentPrize: finalPrizeAmount,
+            finalPrize: finalPrizeAmount,
+            idleRotation: finalPosition
+          };
+        } else {
+          setMessage(`You won AED ${finalPrizeAmount}! You have ${spinsRemaining} ${spinsRemaining === 1 ? 'spin' : 'spins'} left.`);
+          return {
+            ...prev,
+            isSpinning: false,
+            currentPrize: finalPrizeAmount,
+            idleRotation: finalPosition
+          };
+        }
+      });
+    }, spinDuration + 200); // Add small buffer for animation completion
   };
 
   const handleInputChange = (field: keyof UserData, value: string) => {
@@ -299,6 +657,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
   if (!isOpen) return null;
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 480;
+  const canAcceptPrize = wheelState.currentPrize && !wheelState.allSpinsComplete && !wheelState.isSpinning;
+  const canSpin = !wheelState.isSpinning && !wheelState.allSpinsComplete && !wheelState.claimed;
 
   return (
     <>
@@ -314,12 +674,14 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background: rgba(0, 0, 0, 0.95);
+          background: 
+            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.1) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.95) 100%),
+            linear-gradient(45deg, rgba(26, 26, 26, 0.8), rgba(0, 0, 0, 0.95));
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: flex-start;
-          padding-top: 40px;
+          padding-top: 20px;
           z-index: 10000;
           opacity: 0;
           transition: opacity 0.3s ease;
@@ -328,6 +690,18 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         
         .wheel-modal.active {
           opacity: 1;
+          animation: modalEnter 0.4s ease-out;
+        }
+
+        @keyframes modalEnter {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
         }
         
         .wheel-title {
@@ -340,39 +714,116 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           margin-top: 0;
           text-shadow: 0 2px 10px rgba(156, 163, 175, 0.5);
         }
-        
-        .spin-counter {
-          color: #9CA3AF;
-          font-size: 18px;
+
+
+
+        .game-display {
+          background: rgba(156, 163, 175, 0.1);
+          border: 2px solid rgba(156, 163, 175, 0.3);
+          border-radius: 12px;
+          padding: 15px 20px;
+          margin-bottom: 15px;
+          text-align: center;
+          min-height: 120px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 320px;
+          max-width: 90%;
+          transition: all 0.3s ease;
+        }
+
+        .game-message {
+          color: #F3F4F6;
+          font-size: 14px;
+          font-weight: normal;
+          font-family: 'Montserrat', sans-serif;
+          margin-bottom: ${wheelState.currentPrize ? '10px' : '0'};
+          line-height: 1.5;
+          min-height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          transition: all 0.3s ease;
+        }
+
+        .current-prize {
+          color: #F3F4F6;
+          font-size: 20px;
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
-          text-align: center;
-          margin-bottom: 15px;
-          background: rgba(156, 163, 175, 0.1);
-          padding: 10px 20px;
-          border-radius: 20px;
-          border: 2px solid rgba(156, 163, 175, 0.3);
+          margin-bottom: 8px;
+          animation: prizeAppear 0.5s ease-out;
+          transition: all 0.3s ease;
+        }
+
+        @keyframes prizeAppear {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+
+
+        .claim-prize-button {
+          background: linear-gradient(145deg, #10B981, #059669);
+          color: white;
+          border: 3px solid #059669;
+          padding: ${isMobile ? '12px 20px' : '15px 28px'};
+          font-size: ${isMobile ? '13px' : '16px'};
+          font-weight: normal;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 1.2px;
+          border-radius: 40px;
+          cursor: pointer;
+          transition: all 0.4s ease;
+          box-shadow: 
+            0 6px 20px rgba(16, 185, 129, 0.4),
+            inset 0 2px 4px rgba(255, 255, 255, 0.2);
+          white-space: nowrap;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .claim-prize-button:hover {
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 
+            0 12px 35px rgba(16, 185, 129, 0.6),
+            inset 0 2px 6px rgba(255, 255, 255, 0.3);
+          background: linear-gradient(145deg, #059669, #047857);
+        }
+
+        .claim-prize-button:active {
+          transform: translateY(-1px) scale(1.01);
+          transition: transform 0.1s ease;
         }
         
         .spin-wheel {
           position: relative;
-          width: ${isMobile ? '204px' : '298px'};
-          height: ${isMobile ? '204px' : '298px'};
+          width: ${isMobile ? '220px' : '320px'};
+          height: ${isMobile ? '220px' : '320px'};
           border-radius: 50%;
-          margin-bottom: 20px;
-          margin-top: 10px;
+          margin-bottom: 25px;
+          margin-top: 5px;
           box-shadow: 
-            0 0 0 4px rgba(156, 163, 175, 0.4),
-            0 0 40px rgba(156, 163, 175, 0.6),
-            0 15px 50px rgba(0, 0, 0, 0.5);
+            0 0 0 6px rgba(156, 163, 175, 0.4),
+            0 0 0 12px rgba(26, 26, 26, 0.8),
+            0 0 60px rgba(156, 163, 175, 0.6),
+            0 20px 60px rgba(0, 0, 0, 0.8);
           animation: ${wheelState.allSpinsComplete ? 'none' : 'wheelGlow 2s ease-in-out infinite alternate'};
-          transition: all 0.3s ease;
-          ${wheelState.allSpinsComplete ? 'filter: grayscale(50%);' : ''}
+          transition: all 0.5s ease;
+          ${wheelState.allSpinsComplete ? 'filter: grayscale(30%); opacity: 0.8;' : ''}
         }
         
         .wheel-segments {
           position: absolute;
-          inset: 8px;
+          inset: 10px;
           border-radius: 50%;
           background: conic-gradient(
             from 0deg,
@@ -383,25 +834,27 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
             #9CA3AF 240deg 270deg, #2a2a2a 270deg 300deg,
             #9CA3AF 300deg 330deg, #2a2a2a 330deg 360deg
           );
-          transition: transform 0.3s ease;
-          box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+          transition: transform 0.5s ease;
+          box-shadow: 
+            inset 0 0 30px rgba(0, 0, 0, 0.7),
+            inset 0 0 60px rgba(26, 26, 26, 0.5);
         }
         
         .wheel-segments.spinning {
-          transition: transform 3.8s cubic-bezier(0.12, 0.85, 0.33, 1);
+          /* Transition is now set dynamically in JavaScript for natural variance */
         }
         
         .wheel-pointer {
           position: absolute;
-          top: -13px;
+          top: -15px;
           left: 50%;
           transform: translateX(-50%);
           width: 0;
           height: 0;
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-top: 21px solid #9CA3AF;
-          z-index: 10;
+          border-left: 12px solid transparent;
+          border-right: 12px solid transparent;
+          border-top: 25px solid #F3F4F6;
+          z-index: 15;
           filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
         }
         
@@ -410,30 +863,45 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: ${isMobile ? '68px' : '85px'};
-          height: ${isMobile ? '68px' : '85px'};
-          background: linear-gradient(145deg, #F3F4F6, #9CA3AF);
+          width: ${isMobile ? '80px' : '100px'};
+          height: ${isMobile ? '80px' : '100px'};
+          background: 
+            radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF),
+            linear-gradient(145deg, #E5E7EB, #9CA3AF);
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 4px solid #1a1a1a;
-          z-index: 5;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+          border: 6px solid #1a1a1a;
+          z-index: 10;
+          box-shadow: 
+            0 0 30px rgba(0, 0, 0, 0.8),
+            inset 0 4px 8px rgba(243, 244, 246, 0.3),
+            0 0 20px rgba(156, 163, 175, 0.6);
           font-family: 'Impact', 'Arial Black', sans-serif;
           font-weight: normal;
-          font-size: ${isMobile ? '10px' : '12px'};
+          font-size: ${isMobile ? '11px' : '14px'};
           color: #1a1a1a;
           text-align: center;
           line-height: 1.1;
           text-transform: uppercase;
           cursor: pointer;
+          text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+          letter-spacing: 0.5px;
+        }
+
+        .wheel-center:hover {
+          transform: translate(-50%, -50%) scale(1.05);
+          box-shadow: 
+            0 0 40px rgba(0, 0, 0, 0.8),
+            inset 0 4px 8px rgba(243, 244, 246, 0.4),
+            0 0 30px rgba(156, 163, 175, 0.8);
         }
         
         .wheel-label {
           position: absolute;
           pointer-events: none;
-          z-index: 3;
+          z-index: 5;
           left: 50%;
           top: 50%;
           transform-origin: center center;
@@ -443,119 +911,318 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%, -50%) translateY(-${isMobile ? '68px' : '102px'}) rotate(90deg);
-          font: normal ${isMobile ? '9px' : '11px'} "Impact", "Arial Black", sans-serif;
+          transform: translate(-50%, -50%) translateY(-${isMobile ? '65px' : '95px'}) rotate(90deg);
+          font: normal ${isMobile ? '11px' : '13px'} "Montserrat", sans-serif;
+          font-weight: 600;
           text-align: center;
           white-space: nowrap;
           user-select: none;
           pointer-events: none;
+          letter-spacing: 0.5px;
+        }
+
+        .action-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+          margin-bottom: 25px;
+          justify-content: center;
+          max-width: 100%;
+          min-height: 120px;
+          transition: all 0.3s ease;
+        }
+
+        .choice-question {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: ${isMobile ? '8px' : '15px'};
+          flex-wrap: wrap;
+          max-width: 100%;
+          animation: slideInUp 0.4s ease-out;
+        }
+
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .choice-divider {
+          color: #F3F4F6;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-size: ${isMobile ? '14px' : '16px'};
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          text-shadow: 0 0 10px rgba(243, 244, 246, 0.8);
+          margin: 0 ${isMobile ? '5px' : '8px'};
+          font-weight: normal;
+        }
+
+        .choice-question-mark {
+          color: #9CA3AF;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-size: ${isMobile ? '20px' : '24px'};
+          text-shadow: 0 0 15px rgba(156, 163, 175, 0.9);
+          margin-left: ${isMobile ? '2px' : '5px'};
+          animation: questionPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes questionPulse {
+          0%, 100% { 
+            transform: scale(1);
+            text-shadow: 0 0 15px rgba(156, 163, 175, 0.9);
+          }
+          50% { 
+            transform: scale(1.15);
+            text-shadow: 0 0 25px rgba(156, 163, 175, 1);
+          }
         }
         
         .spin-button {
-          background: linear-gradient(145deg, #9CA3AF, #F3F4F6);
+          background: 
+            linear-gradient(145deg, #9CA3AF, #F3F4F6),
+            radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF);
           color: #1a1a1a;
-          border: none;
-          padding: ${isMobile ? '12px 18px' : '15px 35px'};
-          font-size: ${isMobile ? '14px' : '18px'};
+          border: 3px solid #1a1a1a;
+          padding: ${isMobile ? '12px 20px' : '15px 30px'};
+          font-size: ${isMobile ? '13px' : '16px'};
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
           text-transform: uppercase;
-          letter-spacing: ${isMobile ? '0.8px' : '1px'};
-          border-radius: 50px;
+          letter-spacing: 1.5px;
+          border-radius: 40px;
           cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 6px 20px rgba(156, 163, 175, 0.4);
-          margin-top: ${isMobile ? '8px' : '25px'};
-          margin-bottom: ${isMobile ? '15px' : '20px'};
+          transition: all 0.4s ease;
+          box-shadow: 
+            0 6px 20px rgba(156, 163, 175, 0.5),
+            inset 0 2px 4px rgba(243, 244, 246, 0.3);
           white-space: nowrap;
+          text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .spin-button::before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: linear-gradient(45deg, #9CA3AF, #F3F4F6, #9CA3AF);
+          background-size: 300% 300%;
+          animation: buttonGlow 2s ease-in-out infinite;
+          border-radius: 52px;
+          z-index: -1;
+        }
+
+        @keyframes buttonGlow {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
         }
         
         .spin-button:hover:not(:disabled) {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(156, 163, 175, 0.6);
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 
+            0 12px 35px rgba(156, 163, 175, 0.8),
+            inset 0 2px 6px rgba(243, 244, 246, 0.4);
+        }
+
+        .spin-button:active:not(:disabled) {
+          transform: translateY(-1px) scale(1.01);
+          transition: transform 0.1s ease;
         }
         
         .spin-button:disabled {
           opacity: 0.6;
           cursor: not-allowed;
           transform: none;
-          background: #666 !important;
+          background: #555 !important;
           color: #999 !important;
+          border-color: #666 !important;
+        }
+
+
+
+        .forfeit-confirm {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: 
+            linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 42, 42, 0.95)),
+            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.1), rgba(0, 0, 0, 0.9));
+          border: 3px solid rgba(156, 163, 175, 0.6);
+          border-radius: 20px;
+          padding: 30px;
+          z-index: 10001;
+          text-align: center;
+          max-width: 380px;
+          width: 90%;
+          box-shadow: 
+            0 0 50px rgba(0, 0, 0, 0.9),
+            0 0 100px rgba(156, 163, 175, 0.3);
+        }
+
+        .forfeit-confirm h3 {
+          color: #F3F4F6;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-size: 20px;
+          margin-bottom: 20px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-shadow: 0 0 10px rgba(156, 163, 175, 0.8);
+        }
+
+        .forfeit-confirm p {
+          color: #9CA3AF;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          margin-bottom: 25px;
+          line-height: 1.6;
+        }
+
+        .forfeit-confirm-buttons {
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+        }
+
+        .confirm-button {
+          background: linear-gradient(145deg, #DC2626, #EF4444);
+          color: white;
+          border: 3px solid #DC2626;
+          padding: 12px 25px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+
+        .confirm-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+
+        .cancel-button {
+          background: transparent;
+          color: #9CA3AF;
+          border: 3px solid #9CA3AF;
+          padding: 9px 22px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          transition: all 0.3s ease;
+        }
+
+        .cancel-button:hover {
+          background: rgba(156, 163, 175, 0.2);
+          color: #F3F4F6;
+          border-color: #F3F4F6;
         }
         
         .close-wheel {
           background: transparent;
-          color: #F3F4F6;
-          border: 2px solid #9CA3AF;
-          padding: 10px 25px;
+          color: #9CA3AF;
+          border: 2px solid rgba(156, 163, 175, 0.6);
+          padding: 12px 30px;
           font-size: 14px;
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
-          border-radius: 25px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border-radius: 30px;
           cursor: pointer;
           transition: all 0.3s ease;
-          margin-top: ${isMobile ? '10px' : '0'};
+          box-shadow: 0 4px 15px rgba(156, 163, 175, 0.2);
         }
         
         .close-wheel:hover {
-          background: #9CA3AF;
-          color: #1a1a1a;
+          background: rgba(156, 163, 175, 0.2);
+          color: #F3F4F6;
+          border-color: #F3F4F6;
+          box-shadow: 0 6px 20px rgba(156, 163, 175, 0.4);
         }
         
         .wheel-close-x {
           position: absolute;
-          top: 20px;
-          right: 20px;
-          width: 40px;
-          height: 40px;
-          background: rgba(156, 163, 175, 0.8);
-          border: 2px solid #F3F4F6;
+          top: 25px;
+          right: 25px;
+          width: 45px;
+          height: 45px;
+          background: 
+            linear-gradient(145deg, rgba(156, 163, 175, 0.9), rgba(243, 244, 246, 0.9)),
+            radial-gradient(circle at 30% 30%, rgba(243, 244, 246, 0.9), rgba(156, 163, 175, 0.9));
+          border: 3px solid #1a1a1a;
           border-radius: 50%;
           color: #1a1a1a;
-          font-size: 20px;
+          font-size: 24px;
           font-weight: normal;
+          font-family: 'Impact', 'Arial Black', sans-serif;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
           z-index: 10002;
           transition: all 0.3s ease;
+          box-shadow: 
+            0 4px 15px rgba(156, 163, 175, 0.5),
+            inset 0 2px 4px rgba(243, 244, 246, 0.3);
         }
         
         .wheel-close-x:hover {
-          background: #F3F4F6;
           transform: scale(1.1);
+          box-shadow: 
+            0 6px 20px rgba(156, 163, 175, 0.8),
+            inset 0 2px 6px rgba(243, 244, 246, 0.4);
         }
         
         .wheel-control-panel {
-          max-height: ${showControlPanel ? '306px' : '0'};
+          max-height: ${showControlPanel ? '300px' : '0'};
           opacity: ${showControlPanel ? '1' : '0'};
           overflow: hidden;
-          transition: max-height 0.4s ease, opacity 0.4s ease;
-          width: 288px;
+          transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin-bottom 0.3s ease;
+          width: 320px;
           max-width: 90%;
-          margin: ${isMobile ? '8px auto 0' : '10px auto 0'};
-          background: linear-gradient(145deg, #1a1a1a, #222);
-          border: 1px solid rgba(156, 163, 175, 0.4);
-          border-radius: 12px;
-          padding: 13px 18px;
+          margin: 15px auto ${showControlPanel ? '25px' : '0'};
+          background: 
+            linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.9)),
+            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.1), rgba(0, 0, 0, 0.8));
+          border: 3px solid rgba(156, 163, 175, 0.4);
+          border-radius: 15px;
+          padding: ${showControlPanel ? '20px' : '0 20px'};
+          box-shadow: 
+            0 0 30px rgba(156, 163, 175, 0.3),
+            inset 0 2px 8px rgba(156, 163, 175, 0.1);
         }
 
         .wheel-control-panel .input-group {
           display: flex;
           flex-direction: column;
-          margin-bottom: 10px;
+          margin-bottom: 15px;
         }
 
         .wheel-control-panel .phone-row {
           display: flex;
           align-items: center;
           width: 100%;
-          gap: 10px;
+          gap: 12px;
         }
 
         .wheel-control-panel .phone-row input:first-child {
-          max-width: 72px;
+          max-width: 80px;
           text-align: center;
           cursor: not-allowed;
         }
@@ -567,20 +1234,27 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         .wheel-control-panel input {
           width: 100%;
           box-sizing: border-box;
-          padding: 9px 10px;
-          border-radius: 6px;
-          border: 1px solid #666;
-          background: #222;
-          color: #fff;
+          padding: 12px 15px;
+          border-radius: 8px;
+          border: 2px solid rgba(156, 163, 175, 0.3);
+          background: rgba(42, 42, 42, 0.8);
+          color: #F3F4F6;
           font-family: 'Montserrat', sans-serif;
           font-weight: normal;
-          font-size: ${isMobile ? '16px' : '13px'};
+          font-size: ${isMobile ? '16px' : '14px'};
+          transition: all 0.3s ease;
+        }
+
+        .wheel-control-panel input:focus {
+          outline: none;
+          border-color: #9CA3AF;
+          box-shadow: 0 0 15px rgba(156, 163, 175, 0.4);
         }
 
         .wheel-control-panel label {
           color: #F3F4F6;
-          font-size: 13px;
-          margin-bottom: 3px;
+          font-size: 14px;
+          margin-bottom: 8px;
           font-family: 'Montserrat', sans-serif;
           font-weight: normal;
           text-align: left;
@@ -598,8 +1272,20 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         }
         
         @keyframes wheelGlow {
-          0% { box-shadow: 0 0 0 4px rgba(156, 163, 175, 0.4), 0 0 40px rgba(156, 163, 175, 0.6), 0 15px 50px rgba(0, 0, 0, 0.5); }
-          100% { box-shadow: 0 0 0 4px rgba(156, 163, 175, 0.7), 0 0 60px rgba(156, 163, 175, 0.9), 0 15px 50px rgba(0, 0, 0, 0.5); }
+          0% { 
+            box-shadow: 
+              0 0 0 6px rgba(156, 163, 175, 0.4),
+              0 0 0 12px rgba(26, 26, 26, 0.8),
+              0 0 60px rgba(156, 163, 175, 0.6),
+              0 20px 60px rgba(0, 0, 0, 0.8);
+          }
+          100% { 
+            box-shadow: 
+              0 0 0 6px rgba(156, 163, 175, 0.7),
+              0 0 0 12px rgba(26, 26, 26, 0.8),
+              0 0 80px rgba(156, 163, 175, 0.9),
+              0 20px 60px rgba(0, 0, 0, 0.8);
+          }
         }
       `}</style>
 
@@ -610,9 +1296,17 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           SPIN TO WIN A GIFT CARD TOWARDS<br />YOUR NEXT MERCEDES-BENZ SERVICE!
         </h2>
         
-        <div className="spin-counter">
-          Spin {wheelState.currentSpin} of {wheelState.maxSpins}
-          {wheelState.currentSpin === wheelState.maxSpins ? ' - FINAL SPIN!' : ''}
+
+
+        <div className="game-display">
+          <div className="game-message">
+            {message || (wheelState.detailsCollected ? 'Ready to spin! You have 5 chances to win the best prize.' : 'Enter your details to start playing!')}
+          </div>
+          {wheelState.currentPrize && (
+            <div className="current-prize">
+              Current Prize: AED {wheelState.currentPrize}
+            </div>
+          )}
         </div>
         
         <div className="spin-wheel" onClick={(e) => e.stopPropagation()}>
@@ -681,22 +1375,76 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           <div className="panel-message">{message}</div>
         </div>
         
-        <button
-          className="spin-button"
-          onClick={spinWheel}
-          disabled={wheelState.isSpinning || wheelState.allSpinsComplete}
-        >
-          {wheelState.isSpinning 
-            ? 'SPINNING...' 
-            : wheelState.currentSpin === wheelState.maxSpins 
-              ? 'FINAL SPIN' 
-              : 'Spin the Wheel'
-          }
-        </button>
+        <div className="action-buttons">
+          {!wheelState.currentPrize ? (
+            // Before any prize is won - just show spin button
+            <button
+              className="spin-button"
+              onClick={spinWheel}
+              disabled={!canSpin}
+            >
+              {wheelState.isSpinning 
+                ? 'SPINNING...' 
+                : wheelState.currentSpin === 0
+                  ? 'Start Game'
+                  : 'Spin Again'
+              }
+            </button>
+          ) : !wheelState.allSpinsComplete || (wheelState.allSpinsComplete && wheelState.currentPrize && !wheelState.claimed) ? (
+            // After winning a prize (including final spin) - inline choice layout
+                          <div className="choice-question">
+              <button
+                className="claim-prize-button"
+                onClick={handleAcceptPrize}
+              >
+                Claim Prize
+              </button>
+              
+              {!wheelState.allSpinsComplete && (
+                <>
+                  <span className="choice-divider">or</span>
+                  
+                  <button
+                    className="spin-button"
+                    onClick={spinWheel}
+                    disabled={!canSpin}
+                  >
+                    {wheelState.isSpinning 
+                      ? 'SPINNING...' 
+                      : wheelState.currentSpin === wheelState.maxSpins 
+                        ? 'FINAL SPIN' 
+                        : 'Spin Again'
+                    }
+                  </button>
+                  
+                  <span className="choice-question-mark">?</span>
+                </>
+              )}
+            </div>
+          ) : null}
+        </div>
         
         <button className="close-wheel" onClick={onClose}>
           Close
         </button>
+
+        {wheelState.showForfeitConfirm && (
+          <div className="forfeit-confirm">
+            <h3>End Game Now?</h3>
+            <p>
+              You currently have AED {wheelState.currentPrize} as your prize. 
+              Are you sure you want to end the game and keep this prize? You will forfeit your remaining {wheelState.maxSpins - wheelState.currentSpin} spin{(wheelState.maxSpins - wheelState.currentSpin) !== 1 ? 's' : ''}.
+            </p>
+            <div className="forfeit-confirm-buttons">
+              <button className="confirm-button" onClick={confirmForfeit}>
+                Keep Prize & End
+              </button>
+              <button className="cancel-button" onClick={cancelForfeit}>
+                Continue Playing
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
