@@ -4442,3 +4442,10 @@ p,
         font-size: 0.95rem !important;
     }
 }
+
+/* Add this new media query */
+@media (max-width: 992px) {
+  .mobile-nav-toggle {
+    display: flex;
+  }
+}
