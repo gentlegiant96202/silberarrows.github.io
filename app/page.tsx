@@ -10,7 +10,6 @@ export default function HomePage() {
       const servicesNav = document.querySelector('.services-nav ul');
       const servicePanes = document.querySelectorAll('.service-pane');
       if (!servicesNav || !servicePanes.length) return false;
-      if (servicesNav.children.length) return true; // already initialized
       servicesNav.innerHTML = '';
       const serviceData: Record<string, { title: string; mobileTitle: string }> = {
         'scheduled-maintenance': { title: 'Maintenance', mobileTitle: 'Maintenance' },
