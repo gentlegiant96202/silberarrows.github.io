@@ -1801,7 +1801,7 @@ body.no-scroll.menu-open::after {
 
     .team-member:hover {
         transform: translateY(-10px);
-        border-color: rgba(191, 149, 63, 0.3);
+        border-color: rgba(156, 163, 175, 0.5);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 

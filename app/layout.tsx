@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
 import './globals.css'
+import SmoothScrollProvider from '../components/SmoothScrollProvider'
 
 export const metadata: Metadata = {
   title: 'Silver Arrows | Premium Mercedes-Benz Service Center Dubai',
@@ -24,9 +24,9 @@ export default function RootLayout({
         <link rel="preload" href="/assets/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
       <body>
-        {children}
-        {/* Optimized JavaScript - much smaller */}
-        <Script src="/js/main-optimized.js" strategy="afterInteractive" />
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   )

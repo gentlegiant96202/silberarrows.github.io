@@ -11,9 +11,11 @@ const Header: React.FC = () => {
     if (mobileOpen) {
       document.body.classList.add('no-scroll');
       document.body.classList.add('menu-open');
+      document.body.classList.add('nav-open'); // For compatibility with existing CSS
     } else {
       document.body.classList.remove('no-scroll');
       document.body.classList.remove('menu-open');
+      document.body.classList.remove('nav-open');
     }
   }, [mobileOpen]);
 
