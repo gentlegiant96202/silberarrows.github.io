@@ -2333,13 +2333,6 @@ body.no-scroll.menu-open::after {
     main {
         padding-bottom: 120px;
     }
-}
-
-@media (max-width: 480px) {
-    main {
-        padding-bottom: 110px;
-    }
-}
 
     /* Services Layout Mobile - Keep tabs and cards side by side */
     .services-layout {
@@ -2537,6 +2530,10 @@ body.no-scroll.menu-open::after {
 }
 
 @media (max-width: 480px) {
+    main {
+        padding-bottom: 110px;
+    }
+
     .mobile-footer {
         padding: 15px;
         /* Larger height for Android compatibility */
