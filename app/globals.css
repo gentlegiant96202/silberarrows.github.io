@@ -2251,19 +2251,20 @@ body.no-scroll.menu-open::after {
     justify-content: center;
 }
 
-.footer-actions {
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    gap: 15px;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    overflow: hidden;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-}
+    .footer-actions {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        gap: 15px;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        overflow: visible;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        height: 80px;
+        min-height: 80px;
+    }
 
 .footer-action {
     font-family: var(--impact-font);
@@ -2535,12 +2536,12 @@ body.no-scroll.menu-open::after {
     }
 
     .mobile-footer {
-        padding: 20px 15px;
-        /* Much larger height for Android compatibility */
+        padding: 15px;
+        /* Height to accommodate 70px spin wheel + padding */
         height: 110px;
         min-height: 110px;
         max-height: 110px;
-        overflow: hidden;
+        overflow: visible;
         left: 0;
         right: 0;
         width: 100%;
@@ -2553,6 +2554,8 @@ body.no-scroll.menu-open::after {
         max-width: 100%;
         margin: 0;
         padding: 0;
+        overflow: visible;
+        height: auto;
     }
 
     .footer-actions {
