@@ -179,6 +179,129 @@ export default function ServicesPage() {
         </div>
       </main>
       <Footer />
+      
+      {/* Services Page Specific Initialization Script */}
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          // Services page initialization - runs after page load
+          function initServicesPageNavigation() {
+            console.log('🚀 Services page direct init');
+            
+            const servicesNav = document.querySelector('.services-nav ul');
+            const servicePanes = document.querySelectorAll('.service-pane');
+            
+            if (!servicesNav || !servicePanes.length) {
+              console.log('❌ Services nav elements not found');
+              return false;
+            }
+            
+            // Clear existing content
+            servicesNav.innerHTML = '';
+            
+            // Service data mapping
+            const serviceData = {
+              'scheduled-maintenance': { title: 'Maintenance', mobileTitle: 'Maintenance' },
+              'brake-service': { title: 'Brake Service', mobileTitle: 'Brakes' },
+              'tyre-replacement': { title: 'Tyre Service', mobileTitle: 'Tyres' },
+              'wheel-alignment': { title: 'Wheel Alignment', mobileTitle: 'Alignment' },
+              'battery-replacement': { title: 'Battery Service', mobileTitle: 'Battery' },
+              'ac-service': { title: 'Air Conditioning', mobileTitle: 'A/C' },
+              'engine-repair': { title: 'Engine Repair', mobileTitle: 'Engine' },
+              'suspension-repair': { title: 'Suspension', mobileTitle: 'Suspension' },
+              'diagnostics': { title: 'Diagnostics', mobileTitle: 'Diagnostics' },
+              'detailing': { title: 'Detailing', mobileTitle: 'Detailing' }
+            };
+
+            // Create navigation buttons
+            servicePanes.forEach((pane, index) => {
+              const serviceKey = pane.getAttribute('data-service');
+              const serviceInfo = serviceData[serviceKey];
+              
+              if (!serviceInfo) return;
+
+              const li = document.createElement('li');
+              const button = document.createElement('button');
+              
+              button.setAttribute('data-service', serviceKey);
+              button.textContent = serviceInfo.mobileTitle || serviceInfo.title;
+              
+              // Set first tab as active
+              if (index === 0) {
+                button.classList.add('active');
+                pane.classList.add('active');
+              }
+              
+              li.appendChild(button);
+              servicesNav.appendChild(li);
+
+              // Add click handler
+              button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all buttons and panes
+                document.querySelectorAll('.services-nav button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.service-pane').forEach(pane => pane.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding pane
+                this.classList.add('active');
+                document.getElementById(serviceKey).classList.add('active');
+              });
+            });
+
+            // Add animation class for staggered button animations
+            setTimeout(() => {
+              const servicesNavContainer = document.querySelector('.services-nav');
+              if (servicesNavContainer) {
+                servicesNavContainer.classList.add('animate-in');
+              }
+            }, 100);
+            
+            console.log('✅ Services navigation initialized successfully');
+            return true;
+          }
+          
+          // Multiple initialization attempts
+          function tryServicesInit() {
+            let attempts = 0;
+            const maxAttempts = 10;
+            
+            function attempt() {
+              if (initServicesPageNavigation()) {
+                console.log('✅ Services init successful on attempt', attempts + 1);
+                return;
+              }
+              
+              attempts++;
+              if (attempts < maxAttempts) {
+                console.log('🔄 Services init retry', attempts, '/', maxAttempts);
+                setTimeout(attempt, 200);
+              } else {
+                console.log('❌ Services init failed after all attempts');
+              }
+            }
+            
+            attempt();
+          }
+          
+          // Start initialization immediately if DOM is ready
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', tryServicesInit);
+          } else {
+            tryServicesInit();
+          }
+          
+          // Additional fallback on window load
+          window.addEventListener('load', () => {
+            setTimeout(() => {
+              const nav = document.querySelector('.services-nav ul');
+              if (nav && nav.children.length === 0) {
+                console.log('🔄 Window load fallback init');
+                tryServicesInit();
+              }
+            }, 300);
+          });
+        `
+      }} />
     </>
   );
 } 
