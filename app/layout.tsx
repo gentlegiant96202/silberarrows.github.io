@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import './globals.css'
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: 'Silver Arrows | Premium Mercedes-Benz Service Center Dubai',

@@ -3,6 +3,10 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faMedal } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export default function HomePage() {
   useEffect(() => {
@@ -70,11 +74,11 @@ export default function HomePage() {
             <div className="hero-cta-container">
               <button className="hero-cta quote-trigger"><span>GET A FREE QUOTE</span></button>
               <div className="hero-contact-actions">
-                <a href="tel:+97143805515" className="hero-action"><i className="fas fa-phone-alt"></i><span>+971 4 380 5515</span></a>
-                <a href="https://wa.me/97143805515" className="hero-action"><i className="fab fa-whatsapp"></i><span>WhatsApp Us</span></a>
+                <a href="tel:+97143805515" className="hero-action"><FontAwesomeIcon icon={faPhone as IconProp} /><span>+971 4 380 5515</span></a>
+                <a href="https://wa.me/97143805515" className="hero-action"><FontAwesomeIcon icon={faWhatsapp as IconProp} /><span>WhatsApp Us</span></a>
               </div>
             </div>
-            <div className="year-badge"><i className="fas fa-medal"></i>Setting the Standard since 2011</div>
+            <div className="year-badge"><FontAwesomeIcon icon={faMedal as IconProp} />Setting the Standard since 2011</div>
           </div>
         </section>
 

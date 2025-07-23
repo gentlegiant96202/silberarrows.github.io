@@ -1,4 +1,8 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const Footer: React.FC = () => {
   return (
@@ -6,7 +10,7 @@ const Footer: React.FC = () => {
       <div className="footer-content">
         <div className="footer-actions">
           <a href="tel:+97143805515" className="footer-action">
-            <i className="fas fa-phone"></i>
+            <FontAwesomeIcon icon={faPhone as IconProp} />
             <span>Call Us</span>
           </a>
           
@@ -20,7 +24,7 @@ const Footer: React.FC = () => {
           </a>
           
           <a href="https://wa.me/+97143805515" className="footer-action">
-            <i className="fab fa-whatsapp"></i>
+            <FontAwesomeIcon icon={faWhatsapp as IconProp} />
             <span>WhatsApp</span>
           </a>
         </div>

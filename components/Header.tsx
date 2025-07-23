@@ -1,5 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faPhone, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const Header: React.FC = () => {
   return (
@@ -8,8 +12,8 @@ const Header: React.FC = () => {
       top: 0,
       zIndex: 1000,
       height: '80px',
-      background: 'rgba(18, 18, 18, 0.5)',
-      backdropFilter: 'blur(20px)',
+      background: 'rgba(18, 18, 18, 0.8)', // darker overlay
+      backdropFilter: 'blur(30px)', // stronger blur
       borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
     }}>
       <header>
@@ -27,21 +31,21 @@ const Header: React.FC = () => {
           </nav>
           <div className="header-contact">
             <div className="address-container">
-              <i className="fas fa-map-marker-alt"></i>
+              <FontAwesomeIcon icon={faMapMarkerAlt as IconProp} />
               <span>Al Manara St, Al Quoz, Dubai</span>
             </div>
             <div className="contact-buttons">
               <a href="tel:+97143805515" className="contact-btn phone-btn">
-                <i className="fas fa-phone-alt"></i>
+                <FontAwesomeIcon icon={faPhone as IconProp} />
                 <span>+971 4 380 5515</span>
               </a>
               <a href="https://wa.me/97143805515" className="contact-btn whatsapp">
-                <i className="fab fa-whatsapp"></i>
+                <FontAwesomeIcon icon={faWhatsapp as IconProp} />
               </a>
             </div>
           </div>
           <button className="mobile-nav-toggle" aria-label="Toggle mobile menu">
-            <span></span><span></span><span></span><span></span>
+            <FontAwesomeIcon icon={faBars as IconProp} />
           </button>
         </div>
       </header>
@@ -54,7 +58,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <button className="mobile-nav-close" aria-label="Close mobile menu">
-            <span></span><span></span>
+            <FontAwesomeIcon icon={faTimes as IconProp} />
           </button>
         </div>
         <nav className="mobile-nav-links">
@@ -64,11 +68,11 @@ const Header: React.FC = () => {
           <Link href="/contact/" className="nav-link">Contact</Link>
           <div className="mobile-contact-info">
             <a href="tel:+97143805515" className="contact-btn phone-btn">
-              <i className="fas fa-phone-alt"></i>
+              <FontAwesomeIcon icon={faPhone as IconProp} />
               <span>+971 4 380 5515</span>
             </a>
             <div className="address">
-              <i className="fas fa-map-marker-alt"></i>
+              <FontAwesomeIcon icon={faMapMarkerAlt as IconProp} />
               <span>Al Manara St, Al Quoz, Dubai</span>
             </div>
           </div>
