@@ -12,9 +12,11 @@ const Header: React.FC = () => {
   // lock scroll when menu open
   useEffect(() => {
     if (mobileOpen) {
-      document.body.classList.add('nav-open');
+      document.body.classList.add('no-scroll');
+      document.body.classList.add('menu-open');
     } else {
-      document.body.classList.remove('nav-open');
+      document.body.classList.remove('no-scroll');
+      document.body.classList.remove('menu-open');
     }
   }, [mobileOpen]);
 
@@ -51,20 +53,18 @@ const Header: React.FC = () => {
                 <FontAwesomeIcon icon={faPhone as IconProp} />
                 <span>+971 4 380 5515</span>
               </a>
-              <a href="https://wa.me/97143805515" className="contact-btn whatsapp">
-                <FontAwesomeIcon icon={faWhatsapp as IconProp} />
-              </a>
+              {/* Hamburger replaces WhatsApp icon on mobile */}
+              <button
+                className={`mobile-nav-toggle${mobileOpen ? ' active' : ''}`}
+                aria-label="Toggle mobile menu"
+                onClick={() => setMobileOpen(prev => !prev)}
+                style={{ zIndex: 1500 }}
+              >
+                <span></span><span></span><span></span>
+              </button>
             </div>
           </div>
-          <button
-            className={`mobile-nav-toggle${mobileOpen ? ' active' : ''}`}
-            aria-label="Toggle mobile menu"
-            onClick={() => setMobileOpen(true)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          {/* Removed standalone hamburger button */}
         </div>
       </header>
 
@@ -85,10 +85,10 @@ const Header: React.FC = () => {
           </button>
         </div>
         <nav className="mobile-nav-links">
-          <Link href="/" className="nav-link">Home</Link>
-          <Link href="/services/" className="nav-link">Services</Link>
-          <Link href="/service-contracts/" className="nav-link">Service Contracts</Link>
-          <Link href="/contact/" className="nav-link">Contact</Link>
+          <Link href="/" className="nav-link" onClick={() => setMobileOpen(false)}>Home</Link>
+          <Link href="/services/" className="nav-link" onClick={() => setMobileOpen(false)}>Services</Link>
+          <Link href="/service-contracts/" className="nav-link" onClick={() => setMobileOpen(false)}>Service Contracts</Link>
+          <Link href="/contact/" className="nav-link" onClick={() => setMobileOpen(false)}>Contact</Link>
           <div className="mobile-contact-info">
             <a href="tel:+97143805515" className="contact-btn phone-btn">
               <FontAwesomeIcon icon={faPhone as IconProp} />
