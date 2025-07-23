@@ -1,9 +1,60 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function HomePage() {
+  useEffect(() => {
+    function initServicesPageNavigation() {
+      const servicesNav = document.querySelector('.services-nav ul');
+      const servicePanes = document.querySelectorAll('.service-pane');
+      if (!servicesNav || !servicePanes.length) return false;
+      if (servicesNav.children.length) return true; // already initialized
+      servicesNav.innerHTML = '';
+      const serviceData: Record<string, { title: string; mobileTitle: string }> = {
+        'scheduled-maintenance': { title: 'Maintenance', mobileTitle: 'Maintenance' },
+        'brake-service': { title: 'Brake Service', mobileTitle: 'Brakes' },
+        'tyre-replacement': { title: 'Tyre Service', mobileTitle: 'Tyres' },
+        'wheel-alignment': { title: 'Wheel Alignment', mobileTitle: 'Alignment' },
+        'battery-replacement': { title: 'Battery Service', mobileTitle: 'Battery' },
+        'ac-service': { title: 'Air Conditioning', mobileTitle: 'A/C' },
+        'engine-repair': { title: 'Engine Repair', mobileTitle: 'Engine' },
+        'suspension-repair': { title: 'Suspension', mobileTitle: 'Suspension' },
+        'diagnostics': { title: 'Diagnostics', mobileTitle: 'Diagnostics' },
+        'detailing': { title: 'Detailing', mobileTitle: 'Detailing' }
+      };
+      servicePanes.forEach((pane, index) => {
+        const serviceKey = pane.getAttribute('data-service') as string;
+        const info = serviceData[serviceKey];
+        if (!info) return;
+        const li = document.createElement('li');
+        const button = document.createElement('button');
+        button.setAttribute('data-service', serviceKey);
+        button.textContent = info.mobileTitle || info.title;
+        if (index === 0) {
+          button.classList.add('active');
+          pane.classList.add('active');
+        }
+        li.appendChild(button);
+        servicesNav.appendChild(li);
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.querySelectorAll('.services-nav button').forEach((btn) => btn.classList.remove('active'));
+          document.querySelectorAll('.service-pane').forEach((p) => p.classList.remove('active'));
+          button.classList.add('active');
+          document.getElementById(serviceKey)?.classList.add('active');
+        });
+      });
+      setTimeout(() => document.querySelector('.services-nav')?.classList.add('animate-in'), 100);
+      return true;
+    }
+    function tryInit(attempt = 0) {
+      if (initServicesPageNavigation()) return;
+      if (attempt < 10) setTimeout(() => tryInit(attempt + 1), 200);
+    }
+    tryInit();
+  }, []);
   return (
     <>
       <Header />
