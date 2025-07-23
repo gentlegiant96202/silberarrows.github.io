@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import './globals.css'
 
-
 export const metadata: Metadata = {
   title: 'Silver Arrows | Premium Mercedes-Benz Service Center Dubai',
   description: 'Dubai\'s premier independent Mercedes-Benz service center. Expert maintenance, repair, and diagnostics exclusively for Mercedes-Benz vehicles since 2011.',
@@ -26,8 +25,8 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        {/* JavaScript */}
-        <Script src="/js/main.js" strategy="afterInteractive" />
+        {/* Optimized JavaScript - much smaller */}
+        <Script src="/js/main-optimized.js" strategy="afterInteractive" />
       </body>
     </html>
   )
