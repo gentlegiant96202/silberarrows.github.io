@@ -4446,6 +4446,9 @@ p,
 /* Add this new media query */
 @media (max-width: 992px) {
   .mobile-nav-toggle {
-    display: flex;
+    display: flex !important;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2200;
   }
 }
