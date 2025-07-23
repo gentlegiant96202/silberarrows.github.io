@@ -26,7 +26,7 @@ const services: Record<string, {
   },
   'brake-service': {
     title: 'Brake Service & Repair',
-    description: 'Your Mercedes-Benz\'s braking system is critical to safety and performance. We conduct comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts. Whether it\'s routine pad replacement or complex hydraulic repairs, we ensure optimal braking performance and peace of mind, without compromising factory standards.',
+    description: 'Your Mercedes-Benz braking system is critical to safety and performance. We conduct comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts. Whether it\'s routine pad replacement or complex hydraulic repairs, we ensure optimal braking performance and peace of mind, without compromising factory standards.',
     heroImg: 'brake-service-640.webp',
     featuresTitle: 'What\'s Included',
     features: [
