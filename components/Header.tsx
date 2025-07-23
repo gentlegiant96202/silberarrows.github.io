@@ -45,7 +45,7 @@ const Header: React.FC = () => {
             </div>
           </div>
           <button className="mobile-nav-toggle" aria-label="Toggle mobile menu">
-            <FontAwesomeIcon icon={faBars as IconProp} style={{ fontSize: '32px', color: '#fff' }} />
+            <FontAwesomeIcon icon={faBars as IconProp} style={{ fontSize: '28px', color: '#fff', transform: 'scaleY(0.85)' }} />
           </button>
         </div>
       </header>
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <button className="mobile-nav-close" aria-label="Close mobile menu">
-            <FontAwesomeIcon icon={faTimes as IconProp} style={{ fontSize: '32px', color: '#fff' }} />
+            <FontAwesomeIcon icon={faTimes as IconProp} style={{ fontSize: '28px', color: '#fff', transform: 'scaleY(0.85)' }} />
           </button>
         </div>
         <nav className="mobile-nav-links">
