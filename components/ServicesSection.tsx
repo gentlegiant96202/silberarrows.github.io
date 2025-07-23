@@ -109,6 +109,8 @@ const services: Service[] = [
     mobileTitle: 'Engine',
     description: 'From minor engine issues to complete overhauls using factory repair methods.',
     images: {
+      avif: { src320: '/assets/images/ENGINE-320.avif', src640: '/assets/images/ENGINE-640.avif' },
+      webp: { src320: '/assets/images/ENGINE-320.webp', src640: '/assets/images/ENGINE-640.webp' },
       fallback: '/assets/images/ENGINE.webp'
     },
     href: '/services/engine-repair/',
@@ -169,12 +171,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
           <picture>
             <source 
               type="image/avif" 
-              srcSet={`${service.images.avif.src320} 320w, ${service.images.avif.src640} 640w`} 
+              srcSet={`${service.images.avif?.src320} 320w, ${service.images.avif?.src640} 640w`} 
               sizes="(max-width:600px) 320px, 640px" 
             />
             <source 
               type="image/webp" 
-              srcSet={`${service.images.webp.src320} 320w, ${service.images.webp.src640} 640w`} 
+              srcSet={`${service.images.webp?.src320} 320w, ${service.images.webp?.src640} 640w`} 
               sizes="(max-width:600px) 320px, 640px" 
             />
             <img 
