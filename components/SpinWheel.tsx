@@ -90,7 +90,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
   });
 
   const [message, setMessage] = useState('');
-  const [showControlPanel, setShowControlPanel] = useState(false);
+  const [showExpandableForm, setShowExpandableForm] = useState(false); // Form expands from game display
   
   const segmentsRef = useRef<HTMLDivElement>(null);
   const idleIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -209,7 +209,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         countryCode: '+971'
       });
       setMessage('');
-      setShowControlPanel(true);
+      setShowExpandableForm(false); // Don't show expandable form when opening
       if (segmentsRef.current) {
         segmentsRef.current.style.transform = 'rotate(0deg)';
       }
@@ -299,7 +299,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
 
 
 
-  const spinWheel = async () => {
+  const startActualSpin = async () => {
+    // Start spinning logic extracted from spinWheel
     if (wheelState.claimed || wheelState.isSpinning || wheelState.allSpinsComplete) {
       return;
     }
@@ -307,107 +308,6 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
     // Check if we've reached max spins
     if (wheelState.currentSpin >= wheelState.maxSpins) {
       return;
-    }
-
-    // Validate form on first spin
-    if (!wheelState.detailsCollected) {
-      if (!validateForm()) return;
-
-      // Show loading message
-      setMessage('Checking player data, please wait...');
-      
-      const userPhoneFull = `${userData.countryCode}${userData.phone.trim()}`;
-      
-      try {
-        // Load Supabase with timeout
-        await Promise.race([
-          loadSupabase(),
-          new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))
-        ]);
-
-        if (!supabaseRef.current) {
-          console.warn('Supabase not available, continuing without database check');
-          // Continue without database check - graceful degradation
-        } else {
-          // Database check with detailed error reporting
-          console.log('🔍 Checking for existing user:', userPhoneFull);
-          
-          try {
-            console.log('📡 Making database request...');
-            const result = await supabaseRef.current
-              .from('wheel_entries')
-              .select('id')
-              .eq('mobile', userPhoneFull)
-              .maybeSingle();
-            
-            console.log('📡 Database response:', result);
-            
-            if (result.error) {
-              console.error('❌ Database error details:', {
-                message: result.error.message,
-                code: result.error.code,
-                details: result.error.details,
-                hint: result.error.hint
-              });
-              
-              // Check specific error types
-              if (result.error.message.includes('JWT')) {
-                throw new Error('Authentication failed - Invalid API key');
-              } else if (result.error.message.includes('relation') && result.error.message.includes('does not exist')) {
-                throw new Error('Database table "wheel_entries" does not exist');
-              } else if (result.error.message.includes('permission denied')) {
-                throw new Error('Permission denied - Check RLS policies');
-              } else {
-                throw new Error(`Database error: ${result.error.message}`);
-              }
-            }
-            
-            if (result.data) {
-              console.log('⚠️ User already exists:', result.data);
-              setMessage('Thank you for playing, you have already won!');
-              return;
-            }
-            
-            console.log('✅ User check passed - new user');
-            
-          } catch (dbError: unknown) {
-            const error = dbError as Error;
-            console.error('❌ Database check failed:', {
-              error: error,
-              message: error.message,
-              stack: error.stack,
-              userPhone: userPhoneFull,
-              supabaseUrl: SUPABASE_URL
-            });
-            
-            // Show specific error to user
-            setMessage(`Database error: ${error.message}. Please contact support.`);
-            return;
-          }
-        }
-
-        // Success - proceed with game
-        setWheelState(prev => ({
-          ...prev,
-          detailsCollected: true,
-          userPhoneFull,
-          userName: userData.name.trim()
-        }));
-        setShowControlPanel(false);
-        setMessage(`Welcome ${userData.name}! You have 5 spins to win the best prize. Each spin replaces the previous one.`);
-        
-      } catch (error) {
-        console.warn('Database service unavailable, continuing with game:', error);
-        // Graceful degradation - allow game to continue even if database is down
-        setWheelState(prev => ({
-          ...prev,
-          detailsCollected: true,
-          userPhoneFull,
-          userName: userData.name.trim()
-        }));
-        setShowControlPanel(false);
-        setMessage(`Welcome ${userData.name}! You have 5 spins to win the best prize. Each spin replaces the previous one.`);
-      }
     }
 
     // Start spinning
@@ -595,13 +495,64 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         }, 100);
       }
       
-      // Trigger confetti
+      // Trigger confetti explosion for every prize - ensure it appears in front
       if (window.confetti) {
-        window.confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
+        console.log('🎉 Triggering confetti for prize:', verifiedPrize);
+        
+        // Create high z-index confetti that appears in front of wheel
+        const createConfetti = (options: any) => {
+          (window.confetti as any)({
+            ...options,
+            zIndex: 999999, // Ensure confetti appears above everything
+            disableForReducedMotion: false
+          });
+          
+          // Also manually set canvas z-index if needed
+          setTimeout(() => {
+            const confettiCanvas = document.querySelector('canvas[style*="position: fixed"]') as HTMLCanvasElement;
+            if (confettiCanvas) {
+              confettiCanvas.style.zIndex = '999999';
+              confettiCanvas.style.pointerEvents = 'none';
+            }
+          }, 10);
+        };
+        
+        // Multiple confetti bursts for more impact
+        createConfetti({
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.6, x: 0.5 },
+          colors: ['#F3F4F6', '#9CA3AF', '#D1D5DB', '#6B7280'],
+          ticks: 300
         });
+        
+        // Second burst with slight delay
+        setTimeout(() => {
+          if (window.confetti) {
+            createConfetti({
+              particleCount: 100,
+              spread: 60,
+              origin: { y: 0.5, x: 0.3 },
+              colors: ['#F3F4F6', '#9CA3AF', '#D1D5DB'],
+              ticks: 250
+            });
+          }
+        }, 200);
+        
+        // Third burst from the right
+        setTimeout(() => {
+          if (window.confetti) {
+            createConfetti({
+              particleCount: 100,
+              spread: 60,
+              origin: { y: 0.5, x: 0.7 },
+              colors: ['#F3F4F6', '#9CA3AF', '#D1D5DB'],
+              ticks: 250
+            });
+          }
+        }, 400);
+      } else {
+        console.warn('⚠️ Confetti library not loaded - no confetti effect');
       }
 
       // Use the verified prize for accurate results
@@ -635,9 +586,165 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
     }, spinDuration + 200); // Add small buffer for animation completion
   };
 
+  const spinWheel = async () => {
+    if (wheelState.claimed || wheelState.isSpinning || wheelState.allSpinsComplete) {
+      return;
+    }
+
+    // Check if we've reached max spins
+    if (wheelState.currentSpin >= wheelState.maxSpins) {
+      return;
+    }
+
+    // Show expandable form on first spin attempt
+    if (!wheelState.detailsCollected) {
+      setShowExpandableForm(true);
+      setMessage('Please enter your details to start playing!');
+      return;
+    }
+
+    // If details are collected, proceed with actual spinning
+    await startActualSpin();
+  };
+
   const handleInputChange = (field: keyof UserData, value: string) => {
     setUserData(prev => ({ ...prev, [field]: value }));
     if (message) setMessage('');
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate form
+    if (!validateForm()) return;
+
+    // Show loading message
+    setMessage('Checking player data, please wait...');
+    
+    const userPhoneFull = `${userData.countryCode}${userData.phone.trim()}`;
+    
+    try {
+      // Load Supabase with timeout
+      await Promise.race([
+        loadSupabase(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))
+      ]);
+
+      if (!supabaseRef.current) {
+        console.warn('Supabase not available, continuing without database check');
+        // Continue without database check - graceful degradation
+      } else {
+        // Database check with detailed error reporting
+        console.log('🔍 Checking for existing user:', userPhoneFull);
+        
+        try {
+          console.log('📡 Making database request...');
+          const result = await supabaseRef.current
+            .from('wheel_entries')
+            .select('id')
+            .eq('mobile', userPhoneFull)
+            .maybeSingle();
+          
+          console.log('📡 Database response:', result);
+          
+          if (result.error) {
+            console.error('❌ Database error details:', {
+              message: result.error.message,
+              code: result.error.code,
+              details: result.error.details,
+              hint: result.error.hint
+            });
+            
+            // Check specific error types
+            if (result.error.message.includes('JWT')) {
+              throw new Error('Authentication failed - Invalid API key');
+            } else if (result.error.message.includes('relation') && result.error.message.includes('does not exist')) {
+              throw new Error('Database table "wheel_entries" does not exist');
+            } else if (result.error.message.includes('permission denied')) {
+              throw new Error('Permission denied - Check RLS policies');
+            } else {
+              throw new Error(`Database error: ${result.error.message}`);
+            }
+          }
+          
+          if (result.data) {
+            console.log('⚠️ User already exists:', result.data);
+            setMessage('Thank you for playing, you have already won!');
+            return;
+          }
+          
+          console.log('✅ User check passed - new user');
+          
+        } catch (dbError: unknown) {
+          const error = dbError as Error;
+          console.error('❌ Database check failed:', {
+            error: error,
+            message: error.message,
+            stack: error.stack,
+            userPhone: userPhoneFull,
+            supabaseUrl: SUPABASE_URL
+          });
+          
+          // Show specific error to user
+          setMessage(`Database error: ${error.message}. Please contact support.`);
+          return;
+        }
+      }
+
+      // Success - proceed with game
+      setWheelState(prev => ({
+        ...prev,
+        detailsCollected: true,
+        userPhoneFull,
+        userName: userData.name.trim()
+      }));
+      setShowExpandableForm(false); // Hide expandable form after validation
+      setMessage(`Welcome ${userData.name}! You have 5 spins to win the best prize. Each spin replaces the previous one.`);
+      
+      // Auto-start the first spin after successful validation - longer delay to ensure state updates
+      setTimeout(() => {
+        // Double-check state before spinning to prevent form re-appearance
+        if (!wheelState.detailsCollected) {
+          // Force state update if needed
+          setWheelState(prev => ({
+            ...prev,
+            detailsCollected: true,
+            userPhoneFull,
+            userName: userData.name.trim()
+          }));
+        }
+        // Start spinning directly without going through spinWheel() validation
+        startActualSpin();
+      }, 800);
+      
+    } catch (error) {
+      console.warn('Database service unavailable, continuing with game:', error);
+      // Graceful degradation - allow game to continue even if database is down
+      setWheelState(prev => ({
+        ...prev,
+        detailsCollected: true,
+        userPhoneFull,
+        userName: userData.name.trim()
+      }));
+      setShowExpandableForm(false); // Hide expandable form after validation
+      setMessage(`Welcome ${userData.name}! You have 5 spins to win the best prize. Each spin replaces the previous one.`);
+      
+      // Auto-start the first spin after successful validation - longer delay to ensure state updates
+      setTimeout(() => {
+        // Double-check state before spinning to prevent form re-appearance
+        if (!wheelState.detailsCollected) {
+          // Force state update if needed
+          setWheelState(prev => ({
+            ...prev,
+            detailsCollected: true,
+            userPhoneFull,
+            userName: userData.name.trim()
+          }));
+        }
+        // Start spinning directly without going through spinWheel() validation
+        startActualSpin();
+      }, 800);
+    }
   };
 
   if (!isOpen) return null;
@@ -672,6 +779,15 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           transition: opacity 0.3s ease;
           overflow-y: auto;
         }
+
+        .wheel-modal-content {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          max-width: 100%;
+        }
         
         .wheel-modal.active {
           opacity: 1;
@@ -691,41 +807,39 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         
         .wheel-title {
           color: #F3F4F6;
-          font-size: 22px;
+          font-size: ${isMobile ? '20px' : '24px'};
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
           text-align: center;
-          margin-bottom: 15px;
+          margin-bottom: 18px;
           margin-top: 0;
           text-shadow: 0 2px 10px rgba(156, 163, 175, 0.5);
         }
-
-
 
         .game-display {
           background: rgba(156, 163, 175, 0.1);
           border: 2px solid rgba(156, 163, 175, 0.3);
           border-radius: 10px;
-          padding: 12px 16px;
-          margin-bottom: 12px;
+          padding: 16px 20px;
+          margin-bottom: 16px;
           text-align: center;
-          min-height: 100px;
+          min-height: 120px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          width: 280px;
+          width: ${isMobile ? '320px' : '380px'};
           max-width: 90%;
           transition: all 0.3s ease;
         }
 
         .game-message {
           color: #F3F4F6;
-          font-size: 14px;
+          font-size: ${isMobile ? '16px' : '16px'};
           font-weight: normal;
           font-family: 'Montserrat', sans-serif;
-          margin-bottom: ${wheelState.currentPrize ? '10px' : '0'};
+          margin-bottom: ${wheelState.currentPrize ? '12px' : '0'};
           line-height: 1.5;
-          min-height: 40px;
+          min-height: 48px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -735,10 +849,12 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
 
         .current-prize {
           color: #F3F4F6;
-          font-size: 20px;
-          font-weight: normal;
-          font-family: 'Impact', 'Arial Black', sans-serif;
-          margin-bottom: 8px;
+          font-size: ${isMobile ? '18px' : '20px'};
+          font-weight: 600;
+          font-family: 'Montserrat', sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 10px;
           animation: prizeAppear 0.5s ease-out;
           transition: all 0.3s ease;
         }
@@ -754,14 +870,12 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           }
         }
 
-
-
         .claim-prize-button {
           background: linear-gradient(145deg, #10B981, #059669);
           color: white;
           border: 3px solid #059669;
-          padding: ${isMobile ? '10px 16px' : '12px 22px'};
-          font-size: ${isMobile ? '12px' : '14px'};
+          padding: ${isMobile ? '12px 20px' : '14px 26px'};
+          font-size: ${isMobile ? '14px' : '16px'};
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
           text-transform: uppercase;
@@ -788,11 +902,21 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           transform: translateY(-1px) scale(1.01);
           transition: transform 0.1s ease;
         }
+
+        /* Wheel Container */
+        .wheel-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 20px;
+          z-index: 10;
+        }
         
         .spin-wheel {
           position: relative;
-          width: ${isMobile ? '180px' : '260px'};
-          height: ${isMobile ? '180px' : '260px'};
+          width: ${isMobile ? '220px' : '320px'};
+          height: ${isMobile ? '220px' : '320px'};
           border-radius: 50%;
           margin-bottom: 20px;
           margin-top: 5px;
@@ -804,6 +928,143 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           animation: ${wheelState.allSpinsComplete ? 'none' : 'wheelGlow 2s ease-in-out infinite alternate'};
           transition: filter 0.5s ease, opacity 0.5s ease;
           ${wheelState.allSpinsComplete ? 'filter: grayscale(30%); opacity: 0.8;' : ''}
+          ${showExpandableForm ? 'filter: blur(3px) brightness(0.7);' : ''}
+        }
+
+        /* Expandable Form Section */
+        .expandable-form-section {
+          position: absolute;
+          top: 190px;
+          left: 50%;
+          transform: translateX(-50%) ${showExpandableForm ? 'translateY(0)' : 'translateY(-30px)'};
+          z-index: 20;
+          max-height: ${showExpandableForm ? '500px' : '0'};
+          opacity: ${showExpandableForm ? '1' : '0'};
+          visibility: ${showExpandableForm ? 'visible' : 'hidden'};
+          overflow: hidden;
+          transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+          width: ${isMobile ? '320px' : '380px'};
+          max-width: 90%;
+          background: 
+            linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 42, 42, 0.95)),
+            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.15), rgba(0, 0, 0, 0.9));
+          border: 3px solid rgba(156, 163, 175, 0.6);
+          border-radius: 12px;
+          padding: ${showExpandableForm ? '24px' : '0 24px'};
+          box-shadow: 
+            0 0 50px rgba(0, 0, 0, 0.8),
+            0 0 25px rgba(156, 163, 175, 0.4),
+            inset 0 2px 6px rgba(156, 163, 175, 0.1);
+          backdrop-filter: blur(8px);
+        }
+
+        .expandable-form .input-group {
+          margin-bottom: 18px;
+        }
+
+        .expandable-form .phone-row {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 12px;
+        }
+
+        .expandable-form .phone-row input:first-child {
+          max-width: 80px;
+          text-align: center;
+          cursor: not-allowed;
+          background: rgba(60, 60, 60, 0.8);
+        }
+
+        .expandable-form .phone-row input:last-child {
+          flex: 1;
+        }
+
+        .expandable-form input {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 16px 18px;
+          border-radius: 10px;
+          border: 2px solid rgba(156, 163, 175, 0.4);
+          background: rgba(42, 42, 42, 0.9);
+          color: #F3F4F6;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: normal;
+          font-size: ${isMobile ? '16px' : '16px'};
+          transition: all 0.3s ease;
+        }
+
+        .expandable-form input:focus {
+          outline: none;
+          border-color: #9CA3AF;
+          box-shadow: 
+            0 0 20px rgba(156, 163, 175, 0.4),
+            inset 0 2px 6px rgba(156, 163, 175, 0.1);
+          background: rgba(42, 42, 42, 1);
+        }
+
+        .expandable-form label {
+          color: #F3F4F6;
+          font-size: 14px;
+          margin-bottom: 8px;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: normal;
+          display: block;
+          text-align: left;
+        }
+
+        .expandable-form-message {
+          color: #9CA3AF;
+          font-size: 13px;
+          min-height: 18px;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: normal;
+          text-align: center;
+          margin-bottom: 15px;
+          line-height: 1.3;
+        }
+
+        .expandable-form-button {
+          background: 
+            linear-gradient(145deg, #9CA3AF, #F3F4F6),
+            radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF);
+          color: #1a1a1a;
+          border: 3px solid #1a1a1a;
+          padding: 16px 28px;
+          font-size: 16px;
+          font-weight: normal;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 1.2px;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: all 0.4s ease;
+          box-shadow: 
+            0 5px 20px rgba(156, 163, 175, 0.5),
+            inset 0 2px 6px rgba(243, 244, 246, 0.3);
+          width: 100%;
+          text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .expandable-form-button:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 
+            0 8px 30px rgba(156, 163, 175, 0.7),
+            inset 0 2px 8px rgba(243, 244, 246, 0.4);
+        }
+
+        .expandable-form-button:active:not(:disabled) {
+          transform: translateY(0);
+          transition: transform 0.1s ease;
+        }
+
+        .expandable-form-button:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          transform: none;
+          background: #555 !important;
+          color: #999 !important;
+          border-color: #666 !important;
         }
         
         .wheel-segments {
@@ -843,45 +1104,46 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
         }
         
-        .wheel-center {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: ${isMobile ? '60px' : '80px'};
-          height: ${isMobile ? '60px' : '80px'};
-          background: 
-            radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF),
-            linear-gradient(145deg, #E5E7EB, #9CA3AF);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 4px solid #1a1a1a;
-          z-index: 10;
-          box-shadow: 
-            0 0 20px rgba(0, 0, 0, 0.8),
-            inset 0 3px 6px rgba(243, 244, 246, 0.3),
-            0 0 15px rgba(156, 163, 175, 0.6);
-          font-family: 'Impact', 'Arial Black', sans-serif;
-          font-weight: normal;
-          font-size: ${isMobile ? '9px' : '12px'};
-          color: #1a1a1a;
-          text-align: center;
-          line-height: 1.1;
-          text-transform: uppercase;
-          cursor: pointer;
-          text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
-          letter-spacing: 0.5px;
-        }
+                  .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: ${isMobile ? '80px' : '100px'};
+            height: ${isMobile ? '80px' : '100px'};
+            background: 
+              radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF),
+              linear-gradient(145deg, #E5E7EB, #9CA3AF);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #1a1a1a;
+            z-index: 10;
+            box-shadow: 
+              0 0 20px rgba(0, 0, 0, 0.8),
+              inset 0 3px 6px rgba(243, 244, 246, 0.3),
+              0 0 15px rgba(156, 163, 175, 0.6);
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-weight: normal;
+            font-size: ${isMobile ? '11px' : '14px'};
+            color: #1a1a1a;
+            text-align: center;
+            line-height: 1.1;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+          }
 
-        .wheel-center:hover {
-          transform: translate(-50%, -50%) scale(1.05);
-          box-shadow: 
-            0 0 40px rgba(0, 0, 0, 0.8),
-            inset 0 4px 8px rgba(243, 244, 246, 0.4),
-            0 0 30px rgba(156, 163, 175, 0.8);
-        }
+          .wheel-center:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 
+              0 0 40px rgba(0, 0, 0, 0.8),
+              inset 0 4px 8px rgba(243, 244, 246, 0.4),
+              0 0 30px rgba(156, 163, 175, 0.8);
+          }
         
         .wheel-label {
           position: absolute;
@@ -896,8 +1158,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%, -50%) translateY(-${isMobile ? '55px' : '75px'}) rotate(90deg);
-          font: normal ${isMobile ? '10px' : '12px'} "Montserrat", sans-serif;
+          transform: translate(-50%, -50%) translateY(-${isMobile ? '70px' : '95px'}) rotate(90deg);
+          font: normal ${isMobile ? '12px' : '14px'} "Montserrat", sans-serif;
           font-weight: 600;
           text-align: center;
           white-space: nowrap;
@@ -976,8 +1238,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
             radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF);
           color: #1a1a1a;
           border: 3px solid #1a1a1a;
-          padding: ${isMobile ? '10px 16px' : '12px 24px'};
-          font-size: ${isMobile ? '12px' : '14px'};
+          padding: ${isMobile ? '12px 20px' : '14px 28px'};
+          font-size: ${isMobile ? '14px' : '16px'};
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
           text-transform: uppercase;
@@ -1033,17 +1295,13 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           color: #999 !important;
           border-color: #666 !important;
         }
-
-
-
-
         
         .close-wheel {
           background: transparent;
           color: #9CA3AF;
           border: 2px solid rgba(156, 163, 175, 0.6);
-          padding: 12px 30px;
-          font-size: 14px;
+          padding: 14px 34px;
+          font-size: 16px;
           font-weight: normal;
           font-family: 'Impact', 'Arial Black', sans-serif;
           text-transform: uppercase;
@@ -1094,88 +1352,6 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
             inset 0 2px 6px rgba(243, 244, 246, 0.4);
         }
         
-        .wheel-control-panel {
-          max-height: ${showControlPanel ? '260px' : '0'};
-          opacity: ${showControlPanel ? '1' : '0'};
-          overflow: hidden;
-          transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin-bottom 0.3s ease;
-          width: 280px;
-          max-width: 90%;
-          margin: 12px auto ${showControlPanel ? '20px' : '0'};
-          background: 
-            linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.9)),
-            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.1), rgba(0, 0, 0, 0.8));
-          border: 3px solid rgba(156, 163, 175, 0.4);
-          border-radius: 12px;
-          padding: ${showControlPanel ? '16px' : '0 16px'};
-          box-shadow: 
-            0 0 25px rgba(156, 163, 175, 0.3),
-            inset 0 2px 6px rgba(156, 163, 175, 0.1);
-        }
-
-        .wheel-control-panel .input-group {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 15px;
-        }
-
-        .wheel-control-panel .phone-row {
-          display: flex;
-          align-items: center;
-          width: 100%;
-          gap: 12px;
-        }
-
-        .wheel-control-panel .phone-row input:first-child {
-          max-width: 80px;
-          text-align: center;
-          cursor: not-allowed;
-        }
-
-        .wheel-control-panel .phone-row input:last-child {
-          flex: 1;
-        }
-
-        .wheel-control-panel input {
-          width: 100%;
-          box-sizing: border-box;
-          padding: 12px 15px;
-          border-radius: 8px;
-          border: 2px solid rgba(156, 163, 175, 0.3);
-          background: rgba(42, 42, 42, 0.8);
-          color: #F3F4F6;
-          font-family: 'Montserrat', sans-serif;
-          font-weight: normal;
-          font-size: ${isMobile ? '16px' : '14px'};
-          transition: all 0.3s ease;
-        }
-
-        .wheel-control-panel input:focus {
-          outline: none;
-          border-color: #9CA3AF;
-          box-shadow: 0 0 15px rgba(156, 163, 175, 0.4);
-        }
-
-        .wheel-control-panel label {
-          color: #F3F4F6;
-          font-size: 14px;
-          margin-bottom: 8px;
-          font-family: 'Montserrat', sans-serif;
-          font-weight: normal;
-          text-align: left;
-        }
-
-        .wheel-control-panel .panel-message {
-          color: #9CA3AF;
-          font-size: 13px;
-          min-height: 16px;
-          font-family: 'Montserrat', sans-serif;
-          font-weight: normal;
-          text-align: center;
-          white-space: ${isMobile ? 'normal' : 'nowrap'};
-          line-height: ${isMobile ? '1.3' : 'normal'};
-        }
-        
         @keyframes wheelGlow {
           0% { 
             box-shadow: 
@@ -1197,143 +1373,161 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
       <div className={`wheel-modal ${isOpen ? 'active' : ''}`}>
         <button className="wheel-close-x" onClick={onClose}>×</button>
         
-        <h2 className="wheel-title">
-          SPIN TO WIN A GIFT CARD TOWARDS<br />YOUR NEXT MERCEDES-BENZ SERVICE!
-        </h2>
-        
-
-
-        <div className="game-display">
-          <div className="game-message">
-            {message || (wheelState.detailsCollected ? 'Ready to spin! You have 5 chances to win the best prize.' : 'Enter your details to start playing!')}
-          </div>
-          {wheelState.currentPrize && (
-            <div className="current-prize">
-              Current Prize: AED {wheelState.currentPrize}
+        <div className="wheel-modal-content">
+          <h2 className="wheel-title">
+            SPIN TO WIN A GIFT CARD TOWARDS<br />YOUR NEXT MERCEDES-BENZ SERVICE!
+          </h2>
+          
+          <div className="game-display">
+            <div className="game-message">
+              {message || (wheelState.detailsCollected ? 'Ready to spin! You have 5 chances to win the best prize.' : 'Click the wheel or "Start Game" to begin!')}
             </div>
-          )}
-        </div>
-        
-        <div className="spin-wheel" onClick={(e) => e.stopPropagation()}>
-          <div 
-            ref={segmentsRef}
-            className="wheel-segments"
-          >
-            {PRIZES.map((amount, index) => {
-              const midAngle = index * SEGMENT_ANGLE + 15;
-              return (
-                <div
-                  key={index}
-                  className="wheel-label"
-                  style={{
-                    transform: `translate(-50%, -50%) rotate(${midAngle}deg)`
-                  }}
-                >
-                  <span
-                    style={{
-                      color: index % 2 === 0 ? '#1a1a1a' : '#fff',
-                      textShadow: index % 2 === 0 
-                        ? '0 1px 3px rgba(255,255,255,0.8)' 
-                        : '0 1px 3px rgba(0,0,0,0.8)'
-                    }}
-                  >
-                    AED {amount}
-                  </span>
-                </div>
-              );
-            })}
+            {wheelState.currentPrize && (
+              <div className="current-prize">
+                Current Prize: AED {wheelState.currentPrize}
+              </div>
+            )}
           </div>
-          <div className="wheel-pointer"></div>
-          <div className="wheel-center" onClick={spinWheel}>
-            Spin<br />to<br />Win
-          </div>
-        </div>
-        
-        <div className="wheel-control-panel">
-          <div className="input-group">
-            <label htmlFor="wheelUserName">Name</label>
-            <input
-              type="text"
-              id="wheelUserName"
-              placeholder="Your Name"
-              value={userData.name}
-              onChange={(e) => handleInputChange('name', e.target.value)}
-            />
-          </div>
-          <div className="input-group">
-            <label>WhatsApp Number</label>
-            <div className="phone-row">
-              <input
-                type="text"
-                value={userData.countryCode}
-                readOnly
-                style={{ cursor: 'not-allowed' }}
-              />
-              <input
-                type="tel"
-                placeholder="5xxxxxxx"
-                value={userData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="panel-message">{message}</div>
-        </div>
-        
-        <div className="action-buttons">
-          {!wheelState.currentPrize ? (
-            // Before any prize is won - just show spin button
-            <button
-              className="spin-button"
-              onClick={spinWheel}
-              disabled={!canSpin}
-            >
-              {wheelState.isSpinning 
-                ? 'SPINNING...' 
-                : wheelState.currentSpin === 0
-                  ? 'Start Game'
-                  : 'Spin Again'
-              }
-            </button>
-          ) : !wheelState.allSpinsComplete || (wheelState.allSpinsComplete && wheelState.currentPrize && !wheelState.claimed) ? (
-            // After winning a prize (including final spin) - inline choice layout
-                          <div className="choice-question">
-              <button
-                className="claim-prize-button"
-                onClick={handleAcceptPrize}
-              >
-                Claim Prize
-              </button>
+
+          {/* Expandable Form Section */}
+          <div className="expandable-form-section">
+            <form onSubmit={handleFormSubmit} className="expandable-form">
+              <div className="input-group">
+                <label htmlFor="expandableUserName">Your Name</label>
+                <input
+                  type="text"
+                  id="expandableUserName"
+                  placeholder="Enter your name"
+                  value={userData.name}
+                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  required
+                />
+              </div>
               
-              {!wheelState.allSpinsComplete && (
-                <>
-                  <span className="choice-divider">or</span>
-                  
-                  <button
-                    className="spin-button"
-                    onClick={spinWheel}
-                    disabled={!canSpin}
-                  >
-                    {wheelState.isSpinning 
-                      ? 'SPINNING...' 
-                      : wheelState.currentSpin === wheelState.maxSpins 
-                        ? 'FINAL SPIN' 
-                        : 'Spin Again'
-                    }
-                  </button>
-                  
-                  <span className="choice-question-mark">?</span>
-                </>
-              )}
+              <div className="input-group">
+                <label>WhatsApp Number</label>
+                <div className="phone-row">
+                  <input
+                    type="text"
+                    value={userData.countryCode}
+                    readOnly
+                    style={{ cursor: 'not-allowed' }}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="5xxxxxxx"
+                    value={userData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    required
+                    pattern="[0-9]{7,15}"
+                  />
+                </div>
+              </div>
+              
+              <div className="expandable-form-message">{message}</div>
+              
+              <button
+                type="submit"
+                className="expandable-form-button"
+                disabled={!userData.name.trim() || !userData.phone.trim()}
+              >
+                Start Game
+              </button>
+            </form>
+          </div>
+          
+          <div className="wheel-container">
+            <div className="spin-wheel" onClick={(e) => e.stopPropagation()}>
+              <div 
+                ref={segmentsRef}
+                className="wheel-segments"
+              >
+                {PRIZES.map((amount, index) => {
+                  const midAngle = index * SEGMENT_ANGLE + 15;
+                  return (
+                    <div
+                      key={index}
+                      className="wheel-label"
+                      style={{
+                        transform: `translate(-50%, -50%) rotate(${midAngle}deg)`
+                      }}
+                    >
+                      <span
+                        style={{
+                          color: index % 2 === 0 ? '#1a1a1a' : '#fff',
+                          textShadow: index % 2 === 0 
+                            ? '0 1px 3px rgba(255,255,255,0.8)' 
+                            : '0 1px 3px rgba(0,0,0,0.8)'
+                        }}
+                      >
+                        AED {amount}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="wheel-pointer"></div>
+              <div className="wheel-center" onClick={spinWheel}>
+                Spin<br />to<br />Win
+              </div>
             </div>
-          ) : null}
+          </div>
+          
+          <div className="action-buttons">
+            {!wheelState.currentPrize ? (
+              // Before any prize is won - show spin button (unless expandable form is visible)
+              !showExpandableForm && (
+                <button
+                  className="spin-button"
+                  onClick={spinWheel}
+                  disabled={!canSpin}
+                >
+                  {wheelState.isSpinning 
+                    ? 'SPINNING...' 
+                    : wheelState.currentSpin === 0
+                      ? 'Start Game'
+                      : 'Spin Again'
+                  }
+                </button>
+              )
+            ) : !wheelState.allSpinsComplete || (wheelState.allSpinsComplete && wheelState.currentPrize && !wheelState.claimed) ? (
+              // After winning a prize (including final spin) - inline choice layout
+              <div className="choice-question">
+                <button
+                  className="claim-prize-button"
+                  onClick={handleAcceptPrize}
+                >
+                  Claim Prize
+                </button>
+                
+                {!wheelState.allSpinsComplete && (
+                  <>
+                    <span className="choice-divider">or</span>
+                    
+                    <button
+                      className="spin-button"
+                      onClick={spinWheel}
+                      disabled={!canSpin}
+                    >
+                      {wheelState.isSpinning 
+                        ? 'SPINNING...' 
+                        : wheelState.currentSpin === wheelState.maxSpins 
+                          ? 'FINAL SPIN' 
+                          : 'Spin Again'
+                      }
+                    </button>
+                    
+                    <span className="choice-question-mark">?</span>
+                  </>
+                )}
+              </div>
+            ) : null}
+          </div>
+          
+          <button className="close-wheel" onClick={onClose}>
+            Close
+          </button>
         </div>
-        
-        <button className="close-wheel" onClick={onClose}>
-          Close
-        </button>
-
-
       </div>
     </>
   );
