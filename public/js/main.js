@@ -110,8 +110,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const servicesNav = document.querySelector('.services-nav ul');
     const servicePanes = document.querySelectorAll('.service-pane');
     
-    // Skip if nav already built (prevents duplicate desktop/mobile tabs)
-    if (!servicesNav || !servicePanes.length || servicesNav.children.length > 0) return;
+    // Debug logging
+    console.log('🔧 Services nav init:', !!servicesNav, 'panes:', servicePanes.length, 'existing buttons:', servicesNav?.children?.length || 0);
+    
+    // Skip if nav doesn't exist or no panes found
+    if (!servicesNav || !servicePanes.length) {
+      console.log('⚠️ Services nav init failed: missing elements');
+      return;
+    }
+    
+    // Clear existing buttons to ensure fresh start
+    servicesNav.innerHTML = '';
 
     // Service data mapping
     const serviceData = {
@@ -179,8 +188,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
-  // Initialize services navigation
-  initializeServicesNavigation();
+  // Initialize services navigation with retry mechanism for Next.js
+  function tryInitServices(attempts = 0) {
+    const maxAttempts = 5;
+    const servicesNav = document.querySelector('.services-nav ul');
+    const servicePanes = document.querySelectorAll('.service-pane');
+    
+    if (servicesNav && servicePanes.length > 0) {
+      console.log('✅ Services elements found, initializing...');
+      initializeServicesNavigation();
+    } else if (attempts < maxAttempts) {
+      console.log(`🔄 Services init retry ${attempts + 1}/${maxAttempts}`);
+      setTimeout(() => tryInitServices(attempts + 1), 200);
+    } else {
+      console.log('❌ Services init failed after all retries');
+    }
+  }
+  
+  tryInitServices();
+
+  // Additional fallback for services page specific initialization
+  if (window.location.pathname === '/services' || window.location.pathname === '/services/') {
+    // Extra initialization attempts for services page
+    setTimeout(() => {
+      console.log('🎯 Services page specific init');
+      tryInitServices();
+    }, 500);
+    
+    // Also try when page becomes visible (in case of tab switching)
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        setTimeout(tryInitServices, 100);
+      }
+    });
+  }
 
   // Hero Quote Button - Clean Implementation
   const heroQuoteButton = document.querySelector('.hero-cta.quote-trigger');
@@ -1340,4 +1381,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // Trigger the init functions immediately if the DOM was already loaded before this script executed
 if (document.readyState !== 'loading') {
   document.dispatchEvent(new Event('DOMContentLoaded'));
-} 
+}
+
+// Additional window load event for services initialization fallback
+window.addEventListener('load', () => {
+  // Final attempt to initialize services if they haven't been initialized yet
+  setTimeout(() => {
+    const servicesNav = document.querySelector('.services-nav ul');
+    if (servicesNav && servicesNav.children.length === 0) {
+      console.log('🔄 Window load fallback: attempting services init');
+      initializeServicesNavigation();
+    }
+  }, 300);
+}); 
