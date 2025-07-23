@@ -188,7 +188,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
-  // Initialize services navigation with retry mechanism for Next.js
+  // Initialize services navigation with retry mechanism for Next.js (only on /services)
+  if (window.location.pathname !== '/services' && window.location.pathname !== '/services/') {
+    // Skip legacy init on other pages (handled by React components)
+    console.log('ℹ️ Skipping legacy services navigation init on non-services page');
+  } else {
+
   function tryInitServices(attempts = 0) {
     const maxAttempts = 5;
     const servicesNav = document.querySelector('.services-nav ul');
@@ -206,6 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   tryInitServices();
+
+  }
 
   // Additional fallback for services page specific initialization
   if (window.location.pathname === '/services' || window.location.pathname === '/services/') {
