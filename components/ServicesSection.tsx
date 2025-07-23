@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 interface ServiceImages {
-  avif: {
+  avif?: {
     src320: string;
     src640: string;
   };
-  webp: {
+  webp?: {
     src320: string;
     src640: string;
   };
@@ -107,10 +107,8 @@ const services: Service[] = [
     id: 'engine-repair',
     title: 'Engine Repair & Overhaul',
     mobileTitle: 'Engine',
-    description: 'Expert engine diagnostics, repair, and complete overhaul services for optimal performance.',
+    description: 'From minor engine issues to complete overhauls using factory repair methods.',
     images: {
-      avif: { src320: '/assets/images/ENGINE-320.avif', src640: '/assets/images/ENGINE-640.avif' },
-      webp: { src320: '/assets/images/ENGINE-320.webp', src640: '/assets/images/ENGINE-640.webp' },
       fallback: '/assets/images/ENGINE.webp'
     },
     href: '/services/engine-repair/',
@@ -162,20 +160,32 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
+  const hasResponsiveImages = service.images.avif && service.images.webp;
+  
   return (
     <div className="service-card service-card--has-image">
       <div className="service-card-image">
-        <picture>
-          <source 
-            type="image/avif" 
-            srcSet={`${service.images.avif.src320} 320w, ${service.images.avif.src640} 640w`}
-            sizes="(max-width:600px) 320px, 640px" 
-          />
-          <source 
-            type="image/webp" 
-            srcSet={`${service.images.webp.src320} 320w, ${service.images.webp.src640} 640w`}
-            sizes="(max-width:600px) 320px, 640px" 
-          />
+        {hasResponsiveImages ? (
+          <picture>
+            <source 
+              type="image/avif" 
+              srcSet={`${service.images.avif.src320} 320w, ${service.images.avif.src640} 640w`} 
+              sizes="(max-width:600px) 320px, 640px" 
+            />
+            <source 
+              type="image/webp" 
+              srcSet={`${service.images.webp.src320} 320w, ${service.images.webp.src640} 640w`} 
+              sizes="(max-width:600px) 320px, 640px" 
+            />
+            <img 
+              src={service.images.fallback} 
+              alt={service.alt} 
+              width="640" 
+              height="427" 
+              loading="lazy" 
+            />
+          </picture>
+        ) : (
           <img 
             src={service.images.fallback} 
             alt={service.alt} 
@@ -183,7 +193,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
             height="427" 
             loading="lazy" 
           />
-        </picture>
+        )}
       </div>
       <div className="service-card-content">
         <h3>{service.title}</h3>
