@@ -4450,5 +4450,7 @@ p,
     flex-shrink: 0;
     position: relative;
     z-index: 2200;
+    order: -1; /* place at start of flex row */
+    margin-right: auto;
   }
 }
