@@ -11,7 +11,7 @@ export default function ContactPage() {
         <section className="contact-hero">
           <div className="contact-hero-content">
             <h1 className="contact-hero-title">CONTACT US</h1>
-            <p className="contact-hero-subtitle">Get in touch with Dubai's trusted Mercedes-Benz specialists</p>
+            <p className="contact-hero-subtitle">Get in touch with Dubai&apos;s trusted Mercedes-Benz specialists</p>
           </div>
         </section>
 

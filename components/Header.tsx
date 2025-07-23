@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   return (
@@ -13,16 +14,16 @@ const Header: React.FC = () => {
     }}>
       <header>
         <div className="logo-container">
-          <a href="/">
+          <Link href="/">
             <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" />
-          </a>
+          </Link>
         </div>
         <div className="header-right">
           <nav className="desktop-nav">
-            <a href="/" className="nav-link">Home</a>
-            <a href="/services/" className="nav-link">Services</a>
-            <a href="/service-contracts/" className="nav-link">Service Contracts</a>
-            <a href="/contact/" className="nav-link">Contact</a>
+            <Link href="/" className="nav-link">Home</Link>
+            <Link href="/services/" className="nav-link">Services</Link>
+            <Link href="/service-contracts/" className="nav-link">Service Contracts</Link>
+            <Link href="/contact/" className="nav-link">Contact</Link>
           </nav>
           <div className="header-contact">
             <div className="address-container">
@@ -48,19 +49,19 @@ const Header: React.FC = () => {
       <div className="mobile-nav-container">
         <div className="mobile-nav-header">
           <div className="logo-container">
-            <a href="/">
+            <Link href="/">
               <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" />
-            </a>
+            </Link>
           </div>
           <button className="mobile-nav-close" aria-label="Close mobile menu">
             <span></span><span></span>
           </button>
         </div>
         <nav className="mobile-nav-links">
-          <a href="/" className="nav-link">Home</a>
-          <a href="/services/" className="nav-link">Services</a>
-          <a href="/service-contracts/" className="nav-link">Service Contracts</a>
-          <a href="/contact/" className="nav-link">Contact</a>
+          <Link href="/" className="nav-link">Home</Link>
+          <Link href="/services/" className="nav-link">Services</Link>
+          <Link href="/service-contracts/" className="nav-link">Service Contracts</Link>
+          <Link href="/contact/" className="nav-link">Contact</Link>
           <div className="mobile-contact-info">
             <a href="tel:+97143805515" className="contact-btn phone-btn">
               <i className="fas fa-phone-alt"></i>

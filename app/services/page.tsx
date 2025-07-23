@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
@@ -28,8 +29,8 @@ export default function ServicesPage() {
                   </div>
                   <div className="service-card-content">
                     <h3>Scheduled Maintenance</h3>
-                    <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
-                    <a href="/services/scheduled-maintenance/" className="read-more-btn">Learn More</a>
+                    <p>Regular servicing is essential to retain your vehicle&apos;s efficiency, safety, and long-term value.</p>
+                    <Link href="/services/scheduled-maintenance/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -45,7 +46,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Brake Service &amp; Repair</h3>
                     <p>Comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts.</p>
-                    <a href="/services/brake-service/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/brake-service/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -61,7 +62,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Tyre Replacement &amp; Balancing</h3>
                     <p>We supply and fit Mercedes-Benz-approved tyres, including run-flats and AMG-specific sizes.</p>
-                    <a href="/services/tyre-replacement/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/tyre-replacement/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -77,7 +78,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Wheel Alignment</h3>
                     <p>Precise wheel alignment for steering accuracy, even tyre wear, and overall vehicle stability.</p>
-                    <a href="/services/wheel-alignment/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/wheel-alignment/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -93,7 +94,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Battery Testing &amp; Replacement</h3>
                     <p>Our battery services ensure reliable starts and prevent electrical issues.</p>
-                    <a href="/services/battery-service/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/battery-service/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -109,7 +110,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Air Conditioning Service &amp; Repair</h3>
                     <p>A properly functioning A/C system ensures cabin comfort and optimal air quality.</p>
-                    <a href="/services/air-conditioning/" className="read-more-btn">Learn More</a> 
+                    <Link href="/services/air-conditioning/" className="read-more-btn">Learn More</Link> 
                   </div>
                 </div>
               </div>
@@ -121,7 +122,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Engine Repair &amp; Overhaul</h3>
                     <p>From minor engine issues to complete overhauls using factory repair methods.</p>
-                    <a href="/services/engine-repair/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/engine-repair/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -137,7 +138,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Suspension &amp; Steering Repair</h3>
                     <p>We specialise in both conventional and advanced systems including AIRMATIC and ABC.</p>
-                    <a href="/services/suspension-repair/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/suspension-repair/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -153,7 +154,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Electrical &amp; Computer Diagnostics</h3>
                     <p>We identify and resolve issues with ECUs, control modules, sensors, and wiring faults.</p>
-                    <a href="/services/diagnostics/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/diagnostics/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -169,7 +170,7 @@ export default function ServicesPage() {
                   <div className="service-card-content">
                     <h3>Interior &amp; Exterior Detailing</h3>
                     <p>Restore your Mercedes-Benz to showroom condition with our professional detailing services.</p>
-                    <a href="/services/detailing/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/detailing/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>

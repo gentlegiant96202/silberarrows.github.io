@@ -16,7 +16,7 @@ export default function ServiceContractsPage() {
             </div>
             <div className="comparison-table">
               <div className="table-header">
-                <div className="feature-column-header">What's Included</div>
+                <div className="feature-column-header">What&apos;s Included</div>
                 <div className="package-column">
                   <div className="package-name">Standard</div>
                   <div className="package-description">Essential maintenance</div>

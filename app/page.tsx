@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -15,7 +16,7 @@ export default function HomePage() {
             </div>
             <div className="hero-tagline">Exclusive Automotive Excellence</div>
             <h1 className="hero-title">Independent<br /><span>Mercedes-Benz</span><br />Service Centre<br />in Dubai</h1>
-            <p className="hero-subtitle">Exclusively Servicing Mercedes-Benz Only.<br />Our trusted name ensures a service record from us<br />retains your vehicle's value.</p>
+            <p className="hero-subtitle">Exclusively Servicing Mercedes-Benz Only.<br />Our trusted name ensures a service record from us<br />retains your vehicle&apos;s value.</p>
             <div className="hero-cta-container">
               <button className="hero-cta quote-trigger"><span>GET A FREE QUOTE</span></button>
               <div className="hero-contact-actions">
@@ -47,7 +48,7 @@ export default function HomePage() {
                   <div className="feature-icon"><i className="fas fa-star"></i></div>
                   <div className="feature-content">
                     <h3>EXCLUSIVE TO MERCEDES-BENZ</h3>
-                    <p>We work on one marque only, Mercedes-Benz. That's where our expertise lies.</p>
+                    <p>We work on one marque only, Mercedes-Benz. That&apos;s where our expertise lies.</p>
                   </div>
                 </div>
               </div>
@@ -109,8 +110,8 @@ export default function HomePage() {
                   </div>
                   <div className="service-card-content">
                     <h3>Scheduled Maintenance</h3>
-                    <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
-                    <a href="/services/scheduled-maintenance/" className="read-more-btn">Learn More</a>
+                    <p>Regular servicing is essential to retain your vehicle&apos;s efficiency, safety, and long-term value.</p>
+                    <Link href="/services/scheduled-maintenance/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -126,7 +127,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Brake Service & Repair</h3>
                     <p>Comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts.</p>
-                    <a href="/services/brake-service/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/brake-service/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -142,7 +143,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Tyre Replacement & Balancing</h3>
                     <p>We supply and fit Mercedes-Benz-approved tyres, including run-flats and AMG-specific sizes.</p>
-                    <a href="/services/tyre-replacement/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/tyre-replacement/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -158,7 +159,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Wheel Alignment</h3>
                     <p>Precise wheel alignment for steering accuracy, even tyre wear, and overall vehicle stability.</p>
-                    <a href="/services/wheel-alignment/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/wheel-alignment/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -174,7 +175,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Battery Testing & Replacement</h3>
                     <p>Our battery services ensure reliable starts and prevent electrical issues.</p>
-                    <a href="/services/battery-service/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/battery-service/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -190,7 +191,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Air Conditioning Service & Repair</h3>
                     <p>A properly functioning A/C system ensures cabin comfort and optimal air quality.</p>
-                    <a href="/services/air-conditioning/" className="read-more-btn">Learn More</a> 
+                    <Link href="/services/air-conditioning/" className="read-more-btn">Learn More</Link> 
                   </div>
                 </div>
               </div>
@@ -202,7 +203,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Engine Repair & Overhaul</h3>
                     <p>From minor engine issues to complete overhauls using factory repair methods.</p>
-                    <a href="/services/engine-repair/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/engine-repair/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -218,7 +219,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Suspension & Steering Repair</h3>
                     <p>We specialise in both conventional and advanced systems including AIRMATIC and ABC.</p>
-                    <a href="/services/suspension-repair/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/suspension-repair/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -234,7 +235,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Electrical & Computer Diagnostics</h3>
                     <p>We identify and resolve issues with ECUs, control modules, sensors, and wiring faults.</p>
-                    <a href="/services/diagnostics/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/diagnostics/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -250,7 +251,7 @@ export default function HomePage() {
                   <div className="service-card-content">
                     <h3>Interior & Exterior Detailing</h3>
                     <p>Restore your Mercedes-Benz to showroom condition with our professional detailing services.</p>
-                    <a href="/services/detailing/" className="read-more-btn">Learn More</a>
+                    <Link href="/services/detailing/" className="read-more-btn">Learn More</Link>
                   </div>
                 </div>
               </div>
@@ -324,7 +325,7 @@ export default function HomePage() {
             </div>
             <div className="comparison-table">
               <div className="table-header">
-                <div className="feature-column-header">What's Included</div>
+                <div className="feature-column-header">What&apos;s Included</div>
                 <div className="package-column">
                   <div className="package-name">Standard</div>
                   <div className="package-description">Essential maintenance</div>
@@ -391,7 +392,7 @@ export default function HomePage() {
           <div className="contact-content">
             <div className="contact-header">
               <h2>CONTACT US</h2>
-              <p>Get in touch with Dubai's trusted Mercedes-Benz specialists</p>
+              <p>Get in touch with Dubai&apos;s trusted Mercedes-Benz specialists</p>
             </div>
             
             <div className="contact-grid">
