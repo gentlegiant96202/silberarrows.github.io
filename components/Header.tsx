@@ -45,12 +45,12 @@ const Header: React.FC = () => {
             </div>
           </div>
           <button className="mobile-nav-toggle" aria-label="Toggle mobile menu">
-            <FontAwesomeIcon icon={faBars as IconProp} />
+            <FontAwesomeIcon icon={faBars as IconProp} style={{ fontSize: '32px', color: '#fff' }} />
           </button>
         </div>
       </header>
 
-      <div className="mobile-nav-container">
+      <div className="mobile-nav-container" style={{ backdropFilter: 'blur(40px)', background: 'rgba(18,18,18,0.9)' }}>
         <div className="mobile-nav-header">
           <div className="logo-container">
             <Link href="/">
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <button className="mobile-nav-close" aria-label="Close mobile menu">
-            <FontAwesomeIcon icon={faTimes as IconProp} />
+            <FontAwesomeIcon icon={faTimes as IconProp} style={{ fontSize: '32px', color: '#fff' }} />
           </button>
         </div>
         <nav className="mobile-nav-links">
