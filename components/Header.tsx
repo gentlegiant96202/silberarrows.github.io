@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faPhone, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faPhone, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
@@ -57,7 +57,9 @@ const Header: React.FC = () => {
             </div>
           </div>
           <button className="mobile-nav-toggle" aria-label="Toggle mobile menu" onClick={() => setMobileOpen(true)}>
-            <FontAwesomeIcon icon={faBars as IconProp} style={{ fontSize: '28px', color: '#fff', transform: 'scaleY(0.85)' }} />
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
       </header>

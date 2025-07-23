@@ -1975,12 +1975,8 @@ body.no-scroll.menu-open::after {
         display: none;
     }
     
-    .logo-container {
-        margin-left: 20px;
-    }
-    
     .header-right {
-        gap: 8px;
+        gap: 15px;
     }
 
     .header-contact .address-container {
@@ -3068,29 +3064,12 @@ p,
     }
 
     .mobile-nav-toggle span {
-        position: relative;
-        top: auto;
-        left: auto;
         width: 18px;
-        height: 1.5px;
+        height: 2px;
         background: var(--light);
         border-radius: 2px;
         transition: all 0.25s ease-in-out;
-        align-self: center;
         display: block;
-        opacity: 1;
-        transform: none;
-    }
-
-    /* Override the original nth-child positioning */
-    .mobile-nav-toggle span:nth-child(1),
-    .mobile-nav-toggle span:nth-child(2), 
-    .mobile-nav-toggle span:nth-child(3),
-    .mobile-nav-toggle span:nth-child(4) {
-        position: relative;
-        top: auto;
-        width: 18px;
-        transform: none;
     }
 
     /* Year badge optimization */
