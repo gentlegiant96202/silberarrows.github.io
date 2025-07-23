@@ -289,30 +289,15 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         console.log('✅ Webhook sent successfully');
         setMessage(`🎉 Congratulations! You've claimed AED ${wheelState.currentPrize}! Confirmation will be sent on WhatsApp. 🎉`);
 
-      } catch (error: any) {
-        console.error('❌ Failed to process claim:', error);
+      } catch (error: unknown) {
+        const err = error as Error;
+        console.error('❌ Failed to process claim:', err);
         setMessage(`🎉 Congratulations! You've claimed AED ${wheelState.currentPrize}! (Note: There may be a delay in confirmation) 🎉`);
       }
     }
   };
 
-  const handleForfeit = () => {
-    setWheelState(prev => ({ ...prev, showForfeitConfirm: true }));
-  };
 
-  const confirmForfeit = () => {
-    setWheelState(prev => ({
-      ...prev,
-      allSpinsComplete: true,
-      showForfeitConfirm: false,
-      finalPrize: prev.currentPrize
-    }));
-    setMessage(`Game Over! Final prize: AED ${wheelState.currentPrize || 0}`);
-  };
-
-  const cancelForfeit = () => {
-    setWheelState(prev => ({ ...prev, showForfeitConfirm: false }));
-  };
 
   const spinWheel = async () => {
     if (wheelState.claimed || wheelState.isSpinning || wheelState.allSpinsComplete) {
@@ -385,17 +370,18 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
             
             console.log('✅ User check passed - new user');
             
-          } catch (dbError: any) {
+          } catch (dbError: unknown) {
+            const error = dbError as Error;
             console.error('❌ Database check failed:', {
-              error: dbError,
-              message: dbError.message,
-              stack: dbError.stack,
+              error: error,
+              message: error.message,
+              stack: error.stack,
               userPhone: userPhoneFull,
               supabaseUrl: SUPABASE_URL
             });
             
             // Show specific error to user
-            setMessage(`Database error: ${dbError.message}. Please contact support.`);
+            setMessage(`Database error: ${error.message}. Please contact support.`);
             return;
           }
         }
@@ -526,7 +512,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
       segmentsRef.current.style.transition = 'none';
       
       // Force a reflow to ensure the transition removal takes effect
-      segmentsRef.current.offsetHeight;
+      void segmentsRef.current.offsetHeight;
       
       // Then: Apply the spinning animation
       segmentsRef.current.classList.add('spinning');
@@ -657,7 +643,6 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
   if (!isOpen) return null;
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 480;
-  const canAcceptPrize = wheelState.currentPrize && !wheelState.allSpinsComplete && !wheelState.isSpinning;
   const canSpin = !wheelState.isSpinning && !wheelState.allSpinsComplete && !wheelState.claimed;
 
   return (
@@ -1051,87 +1036,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
 
 
 
-        .forfeit-confirm {
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: 
-            linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 42, 42, 0.95)),
-            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.1), rgba(0, 0, 0, 0.9));
-          border: 3px solid rgba(156, 163, 175, 0.6);
-          border-radius: 20px;
-          padding: 30px;
-          z-index: 10001;
-          text-align: center;
-          max-width: 380px;
-          width: 90%;
-          box-shadow: 
-            0 0 50px rgba(0, 0, 0, 0.9),
-            0 0 100px rgba(156, 163, 175, 0.3);
-        }
 
-        .forfeit-confirm h3 {
-          color: #F3F4F6;
-          font-family: 'Impact', 'Arial Black', sans-serif;
-          font-size: 20px;
-          margin-bottom: 20px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          text-shadow: 0 0 10px rgba(156, 163, 175, 0.8);
-        }
-
-        .forfeit-confirm p {
-          color: #9CA3AF;
-          font-family: 'Montserrat', sans-serif;
-          font-size: 14px;
-          margin-bottom: 25px;
-          line-height: 1.6;
-        }
-
-        .forfeit-confirm-buttons {
-          display: flex;
-          gap: 15px;
-          justify-content: center;
-        }
-
-        .confirm-button {
-          background: linear-gradient(145deg, #DC2626, #EF4444);
-          color: white;
-          border: 3px solid #DC2626;
-          padding: 12px 25px;
-          border-radius: 25px;
-          cursor: pointer;
-          font-family: 'Impact', 'Arial Black', sans-serif;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
-        }
-
-        .confirm-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
-        }
-
-        .cancel-button {
-          background: transparent;
-          color: #9CA3AF;
-          border: 3px solid #9CA3AF;
-          padding: 9px 22px;
-          border-radius: 25px;
-          cursor: pointer;
-          font-family: 'Impact', 'Arial Black', sans-serif;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          transition: all 0.3s ease;
-        }
-
-        .cancel-button:hover {
-          background: rgba(156, 163, 175, 0.2);
-          color: #F3F4F6;
-          border-color: #F3F4F6;
-        }
         
         .close-wheel {
           background: transparent;
@@ -1428,23 +1333,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           Close
         </button>
 
-        {wheelState.showForfeitConfirm && (
-          <div className="forfeit-confirm">
-            <h3>End Game Now?</h3>
-            <p>
-              You currently have AED {wheelState.currentPrize} as your prize. 
-              Are you sure you want to end the game and keep this prize? You will forfeit your remaining {wheelState.maxSpins - wheelState.currentSpin} spin{(wheelState.maxSpins - wheelState.currentSpin) !== 1 ? 's' : ''}.
-            </p>
-            <div className="forfeit-confirm-buttons">
-              <button className="confirm-button" onClick={confirmForfeit}>
-                Keep Prize & End
-              </button>
-              <button className="cancel-button" onClick={cancelForfeit}>
-                Continue Playing
-              </button>
-            </div>
-          </div>
-        )}
+
       </div>
     </>
   );

@@ -57,11 +57,12 @@ export async function POST(request: NextRequest) {
       const saveResult = await saveResponse.text();
       console.log('✅ Prize claim saved to database successfully!');
       console.log('✅ Database save result:', saveResult);
-    } catch (dbError: any) {
+    } catch (dbError: unknown) {
+      const error = dbError as Error;
       console.error('❌ Database error details:', {
-        message: dbError.message,
-        stack: dbError.stack,
-        name: dbError.name
+        message: error.message,
+        stack: error.stack,
+        name: error.name
       });
       // Continue with webhook even if database fails
     }
@@ -102,11 +103,12 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-  } catch (error: any) {
-    console.error('❌ Prize claim processing failed:', error);
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error('❌ Prize claim processing failed:', err);
     return NextResponse.json({ 
       success: false, 
-      error: error.message 
+      error: err.message 
     }, { status: 500 });
   }
 } 
