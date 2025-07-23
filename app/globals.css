@@ -4448,9 +4448,34 @@ p,
   .mobile-nav-toggle {
     display: flex !important;
     flex-shrink: 0;
-    position: relative;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 2200;
-    order: -1; /* place at start of flex row */
-    margin-right: auto;
+  }
+
+  header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    height: 80px;
+  }
+
+  .header-right {
+    position: relative;
+  }
+
+  .desktop-nav,
+  .header-contact {
+    display: none;
+  }
+
+  .logo-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
   }
 }
