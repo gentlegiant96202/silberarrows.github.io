@@ -10,12 +10,12 @@ interface ContractPricingData {
   engines: {
     type: string;
     standard: {
-      minor: number | null;
-      major: number | null;
+      twoYear: number | null;
+      fourYear: number | null;
     };
     amg?: {
-      minor: number | null;
-      major: number | null;
+      twoYear: number | null;
+      fourYear: number | null;
     };
   }[];
 }
@@ -26,7 +26,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '190',
     yearRange: '2014 to 2024',
     engines: [
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -34,8 +34,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '192',
     yearRange: '2024 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 2790, major: 3510 }, amg: { minor: 2790, major: 3510 } },
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1188, fourYear: 1620 } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -43,8 +43,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '290',
     yearRange: '2018 to Present',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1770, major: 2634 }, amg: { minor: 1770, major: 2634 } },
-      { type: '8 Cyl', standard: { minor: 1590, major: 3510 }, amg: { minor: 1590, major: 3510 } }
+      { type: '6 Cyl', standard: { twoYear: 960, fourYear: 1620 }, amg: { twoYear: 960, fourYear: 1620 } },
+      { type: '8 Cyl', standard: { twoYear: 960, fourYear: 1620 } }
     ]
   },
   {
@@ -52,7 +52,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '176',
     yearRange: '2012 to 2018',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1188, major: 1620 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1188, fourYear: 1620 } }
     ]
   },
   {
@@ -60,7 +60,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '177',
     yearRange: '2018 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 } }
     ]
   },
   {
@@ -68,7 +68,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '245',
     yearRange: '2005 to 2011',
     engines: [
-      { type: '4 Cyl', standard: { minor: 960, major: 1620 } }
+      { type: '4 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -76,7 +76,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '246',
     yearRange: '2011 to 2019',
     engines: [
-      { type: '4 Cyl', standard: { minor: 960, major: 1620 } }
+      { type: '4 Cyl', standard: { twoYear: null, fourYear: 1986 } }
     ]
   },
   {
@@ -84,7 +84,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '247',
     yearRange: '2019 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 960, major: 1620 } }
+      { type: '4 Cyl', standard: { twoYear: 1770, fourYear: 1950 } }
     ]
   },
   {
@@ -92,9 +92,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '202',
     yearRange: '1993 to 2000',
     engines: [
-      { type: '4 Cyl', standard: { minor: 864, major: 1632 } },
-      { type: '6 Cyl', standard: { minor: 1056, major: 1920 } },
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '4 Cyl', standard: { twoYear: 1830, fourYear: null } },
+      { type: '6 Cyl', standard: { twoYear: 1590, fourYear: 2070 } },
+      { type: '8 Cyl', standard: { twoYear: 1740, fourYear: null } }
     ]
   },
   {
@@ -102,9 +102,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '203',
     yearRange: '2000 to 2007',
     engines: [
-      { type: '4 Cyl', standard: { minor: 960, major: 1536 } },
-      { type: '6 Cyl', standard: { minor: 1152, major: 1728 } },
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '4 Cyl', standard: { twoYear: 1590, fourYear: 2070 } },
+      { type: '6 Cyl', standard: { twoYear: null, fourYear: null } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: 2790 } }
     ]
   },
   {
@@ -112,9 +112,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '204',
     yearRange: '2007 to 2014',
     engines: [
-      { type: '4 Cyl', standard: { minor: 972, major: 1620 }, amg: { minor: null, major: 1986 } },
-      { type: '6 Cyl', standard: { minor: 1188, major: 1836 }, amg: { minor: 1770, major: 2418 } },
-      { type: '8 Cyl', standard: { minor: null, major: null }, amg: { minor: 1830, major: 2670 } }
+      { type: '4 Cyl', standard: { twoYear: 972, fourYear: 1620 }, amg: { twoYear: null, fourYear: 1986 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1836 }, amg: { twoYear: 1770, fourYear: 2418 } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null }, amg: { twoYear: 1830, fourYear: 2670 } }
     ]
   },
   {
@@ -122,9 +122,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '205',
     yearRange: '2014 to 2021',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } },
-      { type: '6 Cyl', standard: { minor: 1440, major: 1920 }, amg: { minor: 1740, major: 2220 } },
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1590, fourYear: 2070 } },
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 1920 }, amg: { twoYear: 1740, fourYear: 2220 } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -132,7 +132,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '206',
     yearRange: '2021 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1590, fourYear: 2070 } }
     ]
   },
   {
@@ -140,9 +140,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '236',
     yearRange: '2024 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: null, major: null } },
-      { type: '6 Cyl', standard: { minor: 1590, major: 2790 } },
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '4 Cyl', standard: { twoYear: null, fourYear: null } },
+      { type: '6 Cyl', standard: { twoYear: 1590, fourYear: 2790 } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -150,8 +150,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '215',
     yearRange: '1999 to 2006',
     engines: [
-      { type: '8 Cyl', standard: { minor: 1296, major: 1944 } },
-      { type: '12 Cyl', standard: { minor: 1620, major: 2160 } }
+      { type: '8 Cyl', standard: { twoYear: 1188, fourYear: 1404 } },
+      { type: '12 Cyl', standard: { twoYear: 1590, fourYear: 1590 } }
     ]
   },
   {
@@ -159,8 +159,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '216',
     yearRange: '2006 to 2014',
     engines: [
-      { type: '8 Cyl', standard: { minor: 1560, major: 2280 }, amg: { minor: 1770, major: 2418 } },
-      { type: '12 Cyl', standard: { minor: 2040, major: 2760 }, amg: { minor: 1986, major: 2634 } }
+      { type: '8 Cyl', standard: { twoYear: 2418, fourYear: 2634 } },
+      { type: '12 Cyl', standard: { twoYear: 2910, fourYear: 2910 } }
     ]
   },
   {
@@ -168,7 +168,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '117',
     yearRange: '2013 to 2019',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1590, fourYear: 2070 } }
     ]
   },
   {
@@ -176,7 +176,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '118',
     yearRange: '2019 to 2025',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1590, fourYear: 2070 } }
     ]
   },
   {
@@ -184,7 +184,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '178',
     yearRange: '2025 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1590, fourYear: 2070 } }
     ]
   },
   {
@@ -192,9 +192,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '208',
     yearRange: '1998 to 2003',
     engines: [
-      { type: '4 Cyl', standard: { minor: 972, major: 1836 } },
-      { type: '6 Cyl', standard: { minor: 1188, major: 2052 } },
-      { type: '8 Cyl', standard: { minor: 1512, major: 2376 } }
+      { type: '4 Cyl', standard: { twoYear: 972, fourYear: 1836 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 2052 } },
+      { type: '8 Cyl', standard: { twoYear: 1512, fourYear: 2376 } }
     ]
   },
   {
@@ -202,9 +202,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '209',
     yearRange: '2003 to 2009',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1080, major: 1620 } },
-      { type: '6 Cyl', standard: { minor: 1296, major: 1836 } },
-      { type: '8 Cyl', standard: { minor: 1296, major: 1944 } }
+      { type: '4 Cyl', standard: { twoYear: 1080, fourYear: 1620 } },
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 1836 } },
+      { type: '8 Cyl', standard: { twoYear: 1296, fourYear: 1944 } }
     ]
   },
   {
@@ -212,8 +212,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '219',
     yearRange: '2005 to 2011',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1296, major: 1620 }, amg: { minor: 2070, major: 2552 } },
-      { type: '8 Cyl', standard: { minor: 1296, major: 1728 }, amg: { minor: 2310, major: 2550 } }
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 1620 } },
+      { type: '8 Cyl', standard: { twoYear: 1296, fourYear: 1728 } }
     ]
   },
   {
@@ -221,8 +221,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '218',
     yearRange: '2011 to 2018',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1440, major: 1800 }, amg: { minor: 2160, major: 2400 } },
-      { type: '8 Cyl', standard: { minor: 1440, major: 1920 } }
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 1800 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 1920 } }
     ]
   },
   {
@@ -230,8 +230,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '257',
     yearRange: '2018 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 } },
-      { type: '6 Cyl', standard: { minor: 1440, major: 1800 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 } },
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 1800 } }
     ]
   },
   {
@@ -239,9 +239,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '124',
     yearRange: '1984 to 1997',
     engines: [
-      { type: '4 Cyl', standard: { minor: 972, major: 1836 } },
-      { type: '6 Cyl', standard: { minor: 972, major: 1836 } },
-      { type: '8 Cyl', standard: { minor: 972, major: 1836 } }
+      { type: '4 Cyl', standard: { twoYear: 972, fourYear: 1836 } },
+      { type: '6 Cyl', standard: { twoYear: 972, fourYear: 1836 } },
+      { type: '8 Cyl', standard: { twoYear: 972, fourYear: 1836 } }
     ]
   },
   {
@@ -249,9 +249,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '210',
     yearRange: '1995 to 2002',
     engines: [
-      { type: '4 Cyl', standard: { minor: 972, major: 1728 } },
-      { type: '6 Cyl', standard: { minor: 1296, major: 1944 } },
-      { type: '8 Cyl', standard: { minor: 1512, major: 2160 } }
+      { type: '4 Cyl', standard: { twoYear: 972, fourYear: 1728 } },
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 1944 } },
+      { type: '8 Cyl', standard: { twoYear: 1512, fourYear: 2160 } }
     ]
   },
   {
@@ -259,9 +259,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '211',
     yearRange: '2002 to 2009',
     engines: [
-      { type: '4 Cyl', standard: { minor: 972, major: 1404 } },
-      { type: '6 Cyl', standard: { minor: 1188, major: 1728 } },
-      { type: '8 Cyl', standard: { minor: 1404, major: 1836 } }
+      { type: '4 Cyl', standard: { twoYear: 972, fourYear: 1404 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1728 } },
+      { type: '8 Cyl', standard: { twoYear: 1404, fourYear: 1836 } }
     ]
   },
   {
@@ -269,9 +269,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '212',
     yearRange: '2009 to 2016',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1080, major: 1620 }, amg: { minor: 1590, major: 1986 } },
-      { type: '6 Cyl', standard: { minor: 1188, major: 1836 } },
-      { type: '8 Cyl', standard: { minor: 1296, major: 1944 } }
+      { type: '4 Cyl', standard: { twoYear: 1080, fourYear: 1620 }, amg: { twoYear: 1188, fourYear: 1836 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1836 }, amg: { twoYear: 1296, fourYear: 1944 } },
+      { type: '8 Cyl', standard: { twoYear: 1296, fourYear: 1944 } }
     ]
   },
   {
@@ -279,9 +279,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '213',
     yearRange: '2016 to 2024',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1800 }, amg: { minor: 1590, major: 2190 } },
-      { type: '6 Cyl', standard: { minor: 1440, major: 2040 }, amg: { minor: 2190, major: 2790 } },
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '4 Cyl', standard: { twoYear: 1080, fourYear: 1728 }, amg: { twoYear: 1188, fourYear: 1944 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1800 }, amg: { twoYear: 1440, fourYear: 2040 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2040 } }
     ]
   },
   {
@@ -289,9 +289,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '214',
     yearRange: '2024 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1800 } },
-      { type: '6 Cyl', standard: { minor: 1440, major: 2040 } },
-      { type: '8 Cyl', standard: { minor: null, major: null } }
+      { type: '4 Cyl', standard: { twoYear: 1080, fourYear: 1728 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1944 } },
+      { type: '8 Cyl', standard: { twoYear: 1188, fourYear: 1944 } }
     ]
   },
   {
@@ -299,9 +299,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '207',
     yearRange: '2009 to 2017',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1080, major: 1728 } },
-      { type: '6 Cyl', standard: { minor: 1188, major: 1944 } },
-      { type: '8 Cyl', standard: { minor: 1188, major: 1944 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1800 } },
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2040 } }
     ]
   },
   {
@@ -309,8 +308,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '238',
     yearRange: '2018 to 2023',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1800 } },
-      { type: '6 Cyl', standard: { minor: 1440, major: 2040 } }
+      { type: '4 Cyl', standard: { twoYear: 1296, fourYear: 1944 }, amg: { twoYear: 1446, fourYear: 2070 } },
+      { type: '6 Cyl', standard: { twoYear: 1680, fourYear: 2310 }, amg: { twoYear: 2310, fourYear: 3270 } }
     ]
   },
   {
@@ -318,8 +317,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '463',
     yearRange: '1997 to 2018',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1296, major: 1944 }, amg: { minor: 1446, major: 2070 } },
-      { type: '8 Cyl', standard: { minor: 1680, major: 2310 }, amg: { minor: 2310, major: 3270 } }
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 1944 }, amg: { twoYear: 1446, fourYear: 2070 } },
+      { type: '8 Cyl', standard: { twoYear: 1680, fourYear: 2310 }, amg: { twoYear: 2310, fourYear: 3270 } }
     ]
   },
   {
@@ -327,7 +326,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '463A',
     yearRange: '2018 to Present',
     engines: [
-      { type: '8 Cyl', standard: { minor: 1680, major: 2640 }, amg: { minor: 2790, major: 3270 } }
+      { type: '8 Cyl', standard: { twoYear: 1680, fourYear: 2640 }, amg: { twoYear: 2790, fourYear: 3270 } }
     ]
   },
   {
@@ -335,7 +334,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '164',
     yearRange: '2006 to 2012',
     engines: [
-      { type: '8 Cyl', standard: { minor: 1296, major: 1944 } }
+      { type: '8 Cyl', standard: { twoYear: 1296, fourYear: 1944 } }
     ]
   },
   {
@@ -343,7 +342,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '166',
     yearRange: '2012 to 2019',
     engines: [
-      { type: '8 Cyl', standard: { minor: 1440, major: 2160 }, amg: { minor: 2070, major: 2790 } }
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2160 }, amg: { twoYear: 2070, fourYear: 2790 } }
     ]
   },
   {
@@ -351,8 +350,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '167',
     yearRange: '2019 to Present',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1440, major: 2160 }, amg: { minor: 2070, major: 2790 } },
-      { type: '8 Cyl', standard: { minor: 1440, major: 2160 } }
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2160 }, amg: { twoYear: 2070, fourYear: 2790 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2160 } }
     ]
   },
   {
@@ -360,7 +359,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '156',
     yearRange: '2013 to 2020',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1590, fourYear: 2070 } }
     ]
   },
   {
@@ -368,7 +367,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '247',
     yearRange: '2020 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 }, amg: { twoYear: 1590, fourYear: 2070 } }
     ]
   },
   {
@@ -376,7 +375,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '247',
     yearRange: '2020 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1620 } }
     ]
   },
   {
@@ -384,9 +383,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '253',
     yearRange: '2015 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1188, major: 1620 }, amg: { minor: 1590, major: 2070 } },
-      { type: '6 Cyl', standard: { minor: 1590, major: 2070 } },
-      { type: '8 Cyl', standard: { minor: null, major: 2790 } }
+      { type: '4 Cyl', standard: { twoYear: 1188, fourYear: 1944 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1944 } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -394,7 +393,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '204',
     yearRange: '2008 to 2015',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1188, major: 1944 } }
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1944 } }
     ]
   },
   {
@@ -402,7 +401,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '240',
     yearRange: '2002 to 2012',
     engines: [
-      { type: '12 Cyl', standard: { minor: 3120, major: 3600 } }
+      { type: '12 Cyl', standard: { twoYear: 3120, fourYear: 3600 } }
     ]
   },
   {
@@ -410,8 +409,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '222',
     yearRange: '2015 to 2021',
     engines: [
-      { type: '8 Cyl', standard: { minor: 3120, major: 3600 } },
-      { type: '12 Cyl', standard: { minor: 3120, major: 3600 } }
+      { type: '8 Cyl', standard: { twoYear: 3120, fourYear: 3600 } },
+      { type: '12 Cyl', standard: { twoYear: 3120, fourYear: 3600 } }
     ]
   },
   {
@@ -419,8 +418,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '223',
     yearRange: '2021 to Present',
     engines: [
-      { type: '8 Cyl', standard: { minor: 3120, major: 3600 } },
-      { type: '12 Cyl', standard: { minor: 3120, major: 3600 } }
+      { type: '8 Cyl', standard: { twoYear: 3120, fourYear: 3600 } },
+      { type: '12 Cyl', standard: { twoYear: 3120, fourYear: 3600 } }
     ]
   },
   {
@@ -428,7 +427,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '167',
     yearRange: '2020 to Present',
     engines: [
-      { type: '8 Cyl', standard: { minor: 3120, major: 3600 } }
+      { type: '8 Cyl', standard: { twoYear: 3120, fourYear: 3600 } }
     ]
   },
   {
@@ -436,8 +435,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '163',
     yearRange: '1997 to 2005',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1296, major: 2160 } },
-      { type: '8 Cyl', standard: { minor: 1296, major: 2160 } }
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 2160 } },
+      { type: '8 Cyl', standard: { twoYear: 1296, fourYear: 2160 } }
     ]
   },
   {
@@ -445,8 +444,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '164',
     yearRange: '2005 to 2011',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1296, major: 1944 } },
-      { type: '8 Cyl', standard: { minor: 1296, major: 1944 } }
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 1944 } },
+      { type: '8 Cyl', standard: { twoYear: 1296, fourYear: 1944 } }
     ]
   },
   {
@@ -454,8 +453,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '166',
     yearRange: '2011 to 2019',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1296, major: 2160 } },
-      { type: '8 Cyl', standard: { minor: 1440, major: 2160 } }
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2160 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2160 } }
     ]
   },
   {
@@ -463,8 +462,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '292',
     yearRange: '2015 to 2019',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1440, major: 2160 } },
-      { type: '8 Cyl', standard: { minor: 1440, major: 2160 } }
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2160 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2160 } }
     ]
   },
   {
@@ -472,9 +471,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '167',
     yearRange: '2019 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1440, major: 2160 }, amg: { minor: 1590, major: 2310 } },
-      { type: '6 Cyl', standard: { minor: 1440, major: 2160 }, amg: { minor: 1440, major: 2070 } },
-      { type: '8 Cyl', standard: { minor: 1440, major: 2280 }, amg: { minor: 2070, major: 2790 } }
+      { type: '4 Cyl', standard: { twoYear: 1440, fourYear: 2160 }, amg: { twoYear: 1590, fourYear: 2310 } },
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2160 }, amg: { twoYear: 1440, fourYear: 2070 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2280 }, amg: { twoYear: 2070, fourYear: 2790 } }
     ]
   },
   {
@@ -482,8 +481,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '251',
     yearRange: '2005 to 2015',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1188, major: 1944 }, amg: { minor: 1878, major: 2526 } },
-      { type: '8 Cyl', standard: { minor: 1296, major: 1944 } }
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1944 }, amg: { twoYear: 1878, fourYear: 2526 } },
+      { type: '8 Cyl', standard: { twoYear: 1080, fourYear: 1836 }, amg: { twoYear: 1188, fourYear: 1944 } }
     ]
   },
   {
@@ -491,9 +490,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '140',
     yearRange: '1991 to 1999',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1188, major: 1944 }, amg: { minor: 1878, major: 2634 } },
-      { type: '8 Cyl', standard: { minor: 1080, major: 1836 } },
-      { type: '12 Cyl', standard: { minor: 1728, major: 2484 } }
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1944 } },
+      { type: '8 Cyl', standard: { twoYear: 1296, fourYear: 1944 }, amg: { twoYear: 1770, fourYear: 1986 } },
+      { type: '12 Cyl', standard: { twoYear: 1836, fourYear: 2484 }, amg: { twoYear: 1986, fourYear: 2634 } }
     ]
   },
   {
@@ -501,9 +500,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '220',
     yearRange: '1999 to 2006',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1188, major: 1944 } },
-      { type: '8 Cyl', standard: { minor: 1296, major: 1944 }, amg: { minor: 1770, major: 2526 } },
-      { type: '12 Cyl', standard: { minor: 1836, major: 2484 }, amg: { minor: 1986, major: 2634 } }
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 1944 } },
+      { type: '8 Cyl', standard: { twoYear: 1404, fourYear: 2052 }, amg: { twoYear: 2070, fourYear: 2190 } },
+      { type: '12 Cyl', standard: { twoYear: 2040, fourYear: 3000 }, amg: { twoYear: 2190, fourYear: 3150 } }
     ]
   },
   {
@@ -511,9 +510,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '221',
     yearRange: '2005 to 2013',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1296, major: 1944 } },
-      { type: '8 Cyl', standard: { minor: 1404, major: 2052 }, amg: { minor: 2070, major: 2910 } },
-      { type: '12 Cyl', standard: { minor: 2040, major: 3000 }, amg: { minor: 2190, major: 3150 } }
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2280 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2280 }, amg: { twoYear: 2070, fourYear: 2190 } },
+      { type: '12 Cyl', standard: { twoYear: 2040, fourYear: 3000 }, amg: { twoYear: 2190, fourYear: 3150 } }
     ]
   },
   {
@@ -521,9 +520,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '222',
     yearRange: '2013 to 2020',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1440, major: 2280 } },
-      { type: '8 Cyl', standard: { minor: 1440, major: 2280 }, amg: { minor: 2070, major: 2910 } },
-      { type: '12 Cyl', standard: { minor: 2040, major: 3000 }, amg: { minor: 2190, major: 3150 } }
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2280 } },
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2280 }, amg: { twoYear: 2070, fourYear: 2190 } }
     ]
   },
   {
@@ -531,8 +529,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '223',
     yearRange: '2020 to Present',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1440, major: 2280 } },
-      { type: '8 Cyl', standard: { minor: 1440, major: 2280 }, amg: { minor: 2070, major: 2910 } }
+      { type: '8 Cyl', standard: { twoYear: 1440, fourYear: 2280 } },
+      { type: '12 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -540,8 +538,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '217',
     yearRange: '2014 to 2021',
     engines: [
-      { type: '8 Cyl', standard: { minor: 1440, major: 2280 } },
-      { type: '12 Cyl', standard: { minor: null, major: null } }
+      { type: '6 Cyl', standard: { twoYear: 1056, fourYear: 1920 } },
+      { type: '8 Cyl', standard: { twoYear: 1056, fourYear: 1920 } },
+      { type: '12 Cyl', standard: { twoYear: 1536, fourYear: 2304 } }
     ]
   },
   {
@@ -549,9 +548,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '129',
     yearRange: '1989 to 2001',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1056, major: 1920 } },
-      { type: '8 Cyl', standard: { minor: 1056, major: 1920 } },
-      { type: '12 Cyl', standard: { minor: 1536, major: 2304 } }
+      { type: '6 Cyl', standard: { twoYear: 1152, fourYear: 2400 }, amg: { twoYear: 1770, fourYear: 1878 } },
+      { type: '8 Cyl', standard: { twoYear: 1536, fourYear: 2496 }, amg: { twoYear: 2202, fourYear: 2550 } },
+      { type: '12 Cyl', standard: { twoYear: 2400, fourYear: 3600 }, amg: { twoYear: 2070, fourYear: 2550 } }
     ]
   },
   {
@@ -559,9 +558,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '230',
     yearRange: '2001 to 2011',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1152, major: 2400 }, amg: { minor: 1770, major: 2634 } },
-      { type: '8 Cyl', standard: { minor: 1536, major: 2496 }, amg: { minor: 1878, major: 2742 } },
-      { type: '12 Cyl', standard: { minor: 2400, major: 3600 }, amg: { minor: 2202, major: 3066 } }
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 2700 } },
+      { type: '8 Cyl', standard: { twoYear: 1728, fourYear: 2808 }, amg: { twoYear: 2550, fourYear: 3750 } },
+      { type: '12 Cyl', standard: { twoYear: null, fourYear: null }, amg: { twoYear: 2958, fourYear: 3750 } }
     ]
   },
   {
@@ -569,9 +568,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '231',
     yearRange: '2012 to 2020',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1296, major: 2700 } },
-      { type: '8 Cyl', standard: { minor: 1728, major: 2808 }, amg: { minor: 2550, major: 3750 } },
-      { type: '12 Cyl', standard: { minor: null, major: null }, amg: { minor: 2958, major: 3750 } }
+      { type: '4 Cyl', standard: { twoYear: null, fourYear: null } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null } }
     ]
   },
   {
@@ -579,8 +577,8 @@ const contractPricingData: ContractPricingData[] = [
     code: '232',
     yearRange: '2022 to Present',
     engines: [
-      { type: '4 Cyl', standard: { minor: 2070, major: 2634 } },
-      { type: '8 Cyl', standard: { minor: 2070, major: 2958 } }
+      { type: '4 Cyl', standard: { twoYear: 972, fourYear: 1536 } },
+      { type: '6 Cyl', standard: { twoYear: 1188, fourYear: 1728 } }
     ]
   },
   {
@@ -588,8 +586,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '170',
     yearRange: '1996 to 2004',
     engines: [
-      { type: '4 Cyl', standard: { minor: 972, major: 1536 } },
-      { type: '6 Cyl', standard: { minor: 1188, major: 1728 } }
+      { type: '4 Cyl', standard: { twoYear: 972, fourYear: 1920 } },
+      { type: '6 Cyl', standard: { twoYear: 1296, fourYear: 2112 }, amg: { twoYear: 1770, fourYear: 2526 } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null }, amg: { twoYear: 1770, fourYear: 2958 } }
     ]
   },
   {
@@ -597,9 +596,9 @@ const contractPricingData: ContractPricingData[] = [
     code: '171',
     yearRange: '2004 to 2010',
     engines: [
-      { type: '4 Cyl', standard: { minor: 972, major: 1920 } },
-      { type: '6 Cyl', standard: { minor: 1296, major: 2112 }, amg: { minor: 1770, major: 2526 } },
-      { type: '8 Cyl', standard: { minor: null, major: null }, amg: { minor: 1770, major: 2958 } }
+      { type: '4 Cyl', standard: { twoYear: 1080, fourYear: 1920 } },
+      { type: '6 Cyl', standard: { twoYear: 1440, fourYear: 2112 }, amg: { twoYear: 1590, fourYear: 2526 } },
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null }, amg: { twoYear: 1770, fourYear: 2958 } }
     ]
   },
   {
@@ -607,9 +606,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '172',
     yearRange: '2011 to 2020',
     engines: [
-      { type: '4 Cyl', standard: { minor: 1080, major: 1920 } },
-      { type: '6 Cyl', standard: { minor: 1440, major: 2112 }, amg: { minor: 1590, major: 2526 } },
-      { type: '8 Cyl', standard: { minor: null, major: null }, amg: { minor: 1770, major: 2958 } }
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null }, amg: { twoYear: null, fourYear: 7230 } }
     ]
   },
   {
@@ -617,7 +614,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '199',
     yearRange: '2003 to 2010',
     engines: [
-      { type: '8 Cyl', standard: { minor: null, major: null }, amg: { minor: null, major: 7230 } }
+      { type: '8 Cyl', standard: { twoYear: null, fourYear: null }, amg: { twoYear: null, fourYear: 7230 } }
     ]
   },
   {
@@ -625,7 +622,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '197',
     yearRange: '2010 to 2015',
     engines: [
-      { type: '8 Cyl', standard: { minor: 2790, major: 3510 } }
+      { type: '8 Cyl', standard: { twoYear: 1800, fourYear: 2340 } }
     ]
   },
   {
@@ -633,7 +630,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '638',
     yearRange: '1996 to 2003',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1800, major: 2340 } }
+      { type: '6 Cyl', standard: { twoYear: 1800, fourYear: 2340 } }
     ]
   },
   {
@@ -641,7 +638,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '639',
     yearRange: '2003 to 2014',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1800, major: 2340 } }
+      { type: '6 Cyl', standard: { twoYear: 1800, fourYear: 2340 } }
     ]
   },
   {
@@ -649,7 +646,7 @@ const contractPricingData: ContractPricingData[] = [
     code: '447',
     yearRange: '2014 to Present',
     engines: [
-      { type: '6 Cyl', standard: { minor: 1800, major: 2340 } }
+      { type: '6 Cyl', standard: { twoYear: 1800, fourYear: 2340 } }
     ]
   },
   // Electric Vehicles
@@ -658,7 +655,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'H243',
     yearRange: '2021 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1188, major: 1620 } }
+      { type: 'ELEC', standard: { twoYear: 1188, fourYear: 1620 } }
     ]
   },
   {
@@ -666,7 +663,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'X243',
     yearRange: '2021 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1188, major: 1620 } }
+      { type: 'ELEC', standard: { twoYear: 1188, fourYear: 1620 } }
     ]
   },
   {
@@ -674,7 +671,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'N293',
     yearRange: '2019 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1188, major: 1620 } }
+      { type: 'ELEC', standard: { twoYear: 1188, fourYear: 1620 } }
     ]
   },
   {
@@ -682,7 +679,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'V295',
     yearRange: '2021 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1440, major: 1800 } }
+      { type: 'ELEC', standard: { twoYear: 1440, fourYear: 1800 } }
     ]
   },
   {
@@ -690,7 +687,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'V297',
     yearRange: '2021 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1440, major: 1800 } }
+      { type: 'ELEC', standard: { twoYear: 1440, fourYear: 1800 } }
     ]
   },
   {
@@ -698,7 +695,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'W447',
     yearRange: '2020 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1440, major: 2340 } }
+      { type: 'ELEC', standard: { twoYear: 1440, fourYear: 2340 } }
     ]
   },
   {
@@ -706,7 +703,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'W463E',
     yearRange: '2024 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1800, major: 2340 } }
+      { type: 'ELEC', standard: { twoYear: 1800, fourYear: 2340 } }
     ]
   },
   {
@@ -714,7 +711,7 @@ const contractPricingData: ContractPricingData[] = [
     code: 'C174E',
     yearRange: '2025 to Present',
     engines: [
-      { type: 'ELEC', standard: { minor: 1188, major: 1620 } }
+      { type: 'ELEC', standard: { twoYear: 1188, fourYear: 1620 } }
     ]
   }
 ];
@@ -788,121 +785,127 @@ export default function ServiceContractPricing() {
   };
 
   return (
-    <div className="content-section pricing-section">
-      <h2 className="section-title">Service Contract Pricing Calculator</h2>
-      <p className="section-subtitle">Select your Mercedes-Benz model to see transparent contract pricing</p>
-
-      <div className="pricing-form">
-        {/* Model Selection */}
-        <div className="form-group">
-          <label className="form-label">Model Series</label>
-          <select 
-            className="form-select"
-            value={selectedModel}
-            onChange={(e) => handleModelChange(e.target.value)}
-          >
-            <option value="">Select Model Series</option>
-            {modelSeries.map(model => (
-              <option key={model} value={model}>{model}</option>
-            ))}
-          </select>
+    <section className="service-contracts-section">
+      <div className="contracts-container">
+        <div className="section-header">
+          <h2>SERVICE CONTRACT PRICING CALCULATOR</h2>
+          <p>Select your Mercedes-Benz model to see transparent contract pricing</p>
         </div>
 
-        {/* Year Selection */}
-        {selectedModel && (
-          <div className="form-group">
-            <label className="form-label">Year Range</label>
-            <select 
-              className="form-select"
-              value={selectedYear}
-              onChange={(e) => handleYearChange(e.target.value)}
-            >
-              <option value="">Select Year Range</option>
-              {availableYears.map(year => (
-                <option key={`${year.code}-${year.yearRange}`} value={year.yearRange}>
-                  {year.yearRange} ({year.code})
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
+        <div className="comparison-table">
+          <div className="pricing-form">
+            {/* Model Selection */}
+            <div className="form-group">
+              <label className="form-label">Model Series</label>
+              <select 
+                className="form-select"
+                value={selectedModel}
+                onChange={(e) => handleModelChange(e.target.value)}
+              >
+                <option value="">Select Model Series</option>
+                {modelSeries.map(model => (
+                  <option key={model} value={model}>{model}</option>
+                ))}
+              </select>
+            </div>
 
-        {/* Engine Selection */}
-        {selectedYear && (
-          <div className="form-group">
-            <label className="form-label">Engine Type</label>
-            <select 
-              className="form-select"
-              value={selectedEngine}
-              onChange={(e) => handleEngineChange(e.target.value)}
-            >
-              <option value="">Select Engine</option>
-              {availableEngines.map(engine => (
-                <option key={engine.type} value={engine.type}>{engine.type}</option>
-              ))}
-            </select>
-          </div>
-        )}
+            {/* Year Selection */}
+            {selectedModel && (
+              <div className="form-group">
+                <label className="form-label">Year Range</label>
+                <select 
+                  className="form-select"
+                  value={selectedYear}
+                  onChange={(e) => handleYearChange(e.target.value)}
+                >
+                  <option value="">Select Year Range</option>
+                  {availableYears.map(year => (
+                    <option key={`${year.code}-${year.yearRange}`} value={year.yearRange}>
+                      {year.yearRange} ({year.code})
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
-        {/* AMG Toggle */}
-        {hasAMGPricing && (
-          <div className="form-group">
-            <label className="amg-toggle">
-              <input
-                type="checkbox"
-                checked={isAMG}
-                onChange={(e) => setIsAMG(e.target.checked)}
-              />
-              <span className="toggle-text">AMG Model</span>
-            </label>
+            {/* Engine Selection */}
+            {selectedYear && (
+              <div className="form-group">
+                <label className="form-label">Engine Type</label>
+                <select 
+                  className="form-select"
+                  value={selectedEngine}
+                  onChange={(e) => handleEngineChange(e.target.value)}
+                >
+                  <option value="">Select Engine</option>
+                  {availableEngines.map(engine => (
+                    <option key={engine.type} value={engine.type}>{engine.type}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {/* AMG Toggle */}
+            {hasAMGPricing && (
+              <div className="form-group">
+                <label className="amg-toggle">
+                  <input
+                    type="checkbox"
+                    checked={isAMG}
+                    onChange={(e) => setIsAMG(e.target.checked)}
+                  />
+                  <span className="toggle-text">AMG Model</span>
+                </label>
+              </div>
+            )}
           </div>
-        )}
+
+          {/* Pricing Display */}
+          {currentPricing && (
+            <div className="pricing-result">
+              <div className="result-header">
+                <h4 className="result-title">
+                  {selectedModel} {selectedEngine} {isAMG ? 'AMG' : ''}
+                </h4>
+                <p className="result-subtitle">{selectedYear}</p>
+              </div>
+              
+              <div className="pricing-cards">
+                <div className="price-card">
+                  <div className="price-header">
+                    <Icon name="file-contract" size={20} variant="gold" />
+                    <span className="price-label">2 Year Package</span>
+                  </div>
+                  <div className="price-amount">
+                    {currentPricing.twoYear ? `AED ${currentPricing.twoYear.toLocaleString()}` : 'N/A'}
+                  </div>
+                </div>
+                
+                <div className="price-card featured">
+                  <div className="price-header">
+                    <Icon name="shield-alt" size={20} variant="gold" />
+                    <span className="price-label">4 Year Package</span>
+                  </div>
+                  <div className="price-amount">
+                    {currentPricing.fourYear ? `AED ${currentPricing.fourYear.toLocaleString()}` : 'N/A'}
+                  </div>
+                </div>
+              </div>
+
+              <div className="pricing-actions">
+                <a href="tel:+97143805515" className="btn-primary">
+                  <Icon name="phone-alt" size={16} variant="gold" flip={true} />
+                  Call Now
+                </a>
+                <a href="https://wa.me/97143805515" className="btn-secondary" target="_blank" rel="noopener noreferrer">
+                  <Icon name="whatsapp" size={16} variant="gold" />
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-
-      {/* Pricing Display */}
-      {currentPricing && (
-        <div className="pricing-result">
-          <div className="result-header">
-            <h4 className="result-title">
-              {selectedModel} {selectedEngine} {isAMG ? 'AMG' : ''}
-            </h4>
-            <p className="result-subtitle">{selectedYear}</p>
-          </div>
-          
-          <div className="pricing-cards">
-            <div className="price-card">
-              <div className="price-header">
-                <Icon name="file-contract" size={20} variant="gold" />
-                <span className="price-label">Minor Contract</span>
-              </div>
-              <div className="price-amount">
-                {currentPricing.minor ? `AED ${currentPricing.minor.toLocaleString()}` : 'N/A'}
-              </div>
-            </div>
-            
-            <div className="price-card featured">
-              <div className="price-header">
-                <Icon name="shield-alt" size={20} variant="gold" />
-                <span className="price-label">Major Contract</span>
-              </div>
-              <div className="price-amount">
-                {currentPricing.major ? `AED ${currentPricing.major.toLocaleString()}` : 'N/A'}
-              </div>
-            </div>
-          </div>
-
-          <div className="pricing-actions">
-            <a href="tel:+97143805515" className="btn-primary">
-              <Icon name="phone-alt" size={16} variant="gold" flip={true} />
-              Call Now
-            </a>
-            <a href="https://wa.me/97143805515" className="btn-secondary" target="_blank" rel="noopener noreferrer">
-              <Icon name="whatsapp" size={16} variant="gold" />
-              WhatsApp
-            </a>
-          </div>
-        </div>
-      )}
-    </div>
+    </section>
   );
 } 
