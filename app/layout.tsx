@@ -1,6 +1,9 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import SmoothScrollProvider from '../components/SmoothScrollProvider'
+import React from 'react';
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import './globals.css';
+import SmoothScrollProvider from '../components/SmoothScrollProvider';
+import CookieConsent from '../components/CookieConsent';
 
 export const metadata: Metadata = {
   title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai | Al Quoz',
@@ -28,7 +31,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -40,12 +43,48 @@ export default function RootLayout({
         <link rel="preload" href="/assets/fonts/impact.ttf" as="font" type="font/ttf" crossOrigin="" />
         <link rel="preload" href="/assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/assets/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossOrigin="" />
+        {/* Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Default consent settings (GDPR compliance)
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+              });
+              
+              // Initialize GTM
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-WCW6K7CB');
+            `,
+          }}
+        />
       </head>
       <body>
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
-      </body>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WCW6K7CB"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        
+                  <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
+          <CookieConsent />
+        </body>
     </html>
-  )
+  );
 }

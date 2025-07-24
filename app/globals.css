@@ -4692,7 +4692,7 @@ body.no-scroll.menu-open::after {
         }
     }
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
         .main-content {
             padding: 40px 1rem;
         }
