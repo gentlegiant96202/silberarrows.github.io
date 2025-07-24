@@ -10,10 +10,10 @@ interface ContractPricingData {
   engines: {
     type: string;
     pricing: {
-      standard: number[];
-      amg: number[];
-      premium: number[];
-      amgPremium: number[];
+      standard: (number | null)[];
+      amg: (number | null)[];
+      premium: (number | null)[];
+      amgPremium: (number | null)[];
     };
   }[];
 }
@@ -582,8 +582,8 @@ export default function ServiceContractPricing() {
     setSelectedEngine(engine);
   };
 
-  const formatPrice = (priceArray: number[]) => {
-    const validPrices = priceArray.filter(price => price !== null && price !== undefined);
+  const formatPrice = (priceArray: (number | null)[]) => {
+    const validPrices = priceArray.filter((price): price is number => price !== null && price !== undefined);
     if (validPrices.length === 0) return 'N/A';
     if (validPrices.length === 1) return `AED ${validPrices[0].toLocaleString()}`;
     return `AED ${validPrices[0].toLocaleString()} - ${validPrices[1].toLocaleString()}`;
