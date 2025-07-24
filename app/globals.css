@@ -863,11 +863,11 @@ body.no-scroll.menu-open::after {
 
 /* --- Services Section --- */
 .services-section {
-    width: 100%;
-    margin: 30px 0 20px 0;
-    padding: 40px 4%;
+    width: 92%;
+    margin: 40px auto;
+    padding: 60px 4%;
     background: none;
-    padding-bottom: 120px;
+    border-radius: 12px;
 }
 
 .section-header {
@@ -1258,9 +1258,12 @@ body.no-scroll.menu-open::after {
        ============================================ */
 
     .service-contracts-section {
-        padding: 80px 4% 60px;
+        width: 92%;
+        margin: 40px auto;
+        padding: 60px 4%;
         background: linear-gradient(135deg, rgba(18, 18, 18, 0.95) 0%, rgba(40, 40, 40, 0.95) 100%);
         position: relative;
+        border-radius: 12px;
     }
 
     .service-contracts-section::before {
@@ -1277,8 +1280,7 @@ body.no-scroll.menu-open::after {
     }
 
     .contracts-container {
-        max-width: 1200px;
-        margin: 0 auto;
+        width: 100%;
         position: relative;
         z-index: 1;
     }
@@ -1599,7 +1601,9 @@ body.no-scroll.menu-open::after {
     /* Responsive Design for Service Contracts */
     @media (max-width: 992px) {
         .service-contracts-section {
-            padding: 60px 4% 40px;
+            width: 95%;
+            margin: 30px auto;
+            padding: 50px 3%;
         }
         
 
@@ -1620,7 +1624,9 @@ body.no-scroll.menu-open::after {
 
     @media (max-width: 768px) {
         .service-contracts-section {
-            padding: 50px 4% 30px;
+            width: 98%;
+            margin: 20px auto;
+            padding: 40px 2%;
         }
         
         .comparison-table {
@@ -1761,14 +1767,19 @@ body.no-scroll.menu-open::after {
        ============================================ */
 
     .team-section {
-        padding: 40px 0;
+        width: 92%;
+        margin: 40px auto;
+        padding: 60px 4%;
         background: var(--dark);
         position: relative;
         overflow: hidden;
+        border-radius: 12px;
     }
 
     .team-section .container {
-        padding: 0 40px;  /* Add horizontal padding to container */
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     .team-section::before {
@@ -1946,7 +1957,8 @@ body.no-scroll.menu-open::after {
 
     @media (max-width: 992px) {
         .services-section {
-            margin: 40px 0;
+            width: 95%;
+            margin: 30px auto;
         }
 
         .section-header h2 {
@@ -1965,11 +1977,24 @@ body.no-scroll.menu-open::after {
 
     @media (max-width: 768px) {
         .services-section {
-            padding: 0 15px;
+            width: 98%;
+            margin: 20px auto;
+            padding: 40px 2%;
         }
 
         .section-header {
             margin-bottom: 30px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .services-section,
+        .team-section,
+        .service-contracts-section,
+        .contact-section {
+            width: 100%;
+            margin: 15px auto;
+            padding: 30px 3%;
         }
 
         .section-header h2 {
@@ -2547,11 +2572,13 @@ body.no-scroll.menu-open::after {
 
         /* Team Section Mobile */
         .team-section {
-            padding: 60px 0;
+            width: 98%;
+            margin: 20px auto;
+            padding: 40px 2%;
         }
 
         .team-section .container {
-            padding: 0 20px;  /* Reduce padding on mobile */
+            padding: 0;
         }
 
         /* Mobile Carousel */
@@ -3447,10 +3474,13 @@ body.no-scroll.menu-open::after {
 
     /* === Contact Section === */
     .contact-section {
+        width: 92%;
+        margin: 40px auto;
+        padding: 60px 4%;
         background: linear-gradient(135deg, #0a0a0a 0%, #151515 50%, #0a0a0a 100%);
-        padding: 80px 0 120px 0;
         position: relative;
         overflow: hidden;
+        border-radius: 12px;
     }
 
     .contact-section::before {
@@ -3951,7 +3981,9 @@ body.no-scroll.menu-open::after {
 
     @media (max-width: 768px) {
         .contact-section {
-            padding: 60px 0 100px 0;
+            width: 98%;
+            margin: 20px auto;
+            padding: 40px 2%;
         }
         
         .contact-content {
