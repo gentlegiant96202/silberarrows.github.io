@@ -4607,7 +4607,7 @@ body.no-scroll.menu-open::after {
         line-height: 1.5;
     }
 
-    /* Service Page Responsive Design */
+/* Service Page Responsive Design */
     @media (max-width: 992px) {
         .content-grid {
             grid-template-columns: 1fr;
@@ -4784,7 +4784,7 @@ body.no-scroll.menu-open::after {
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         .compact-hero {
             padding: 100px 0 60px;
         }
@@ -5038,6 +5038,7 @@ body.no-scroll.menu-open::after {
             flex-direction: row;
             align-items: flex-start;
             min-width: auto;
+            max-width: none;
             gap: 1rem;
         }
 
@@ -5054,6 +5055,10 @@ body.no-scroll.menu-open::after {
         .step-content {
             text-align: left;
             width: 100%;
+        }
+
+        .step-content h4 {
+            white-space: nowrap;
         }
 
         .step-number {
