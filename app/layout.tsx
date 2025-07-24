@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
 import SmoothScrollProvider from '../components/SmoothScrollProvider';
-import CookieConsent from '../components/CookieConsent';
 
 export const metadata: Metadata = {
   title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai | Al Quoz',
@@ -83,7 +82,6 @@ export default function RootLayout({
                   <SmoothScrollProvider>
             {children}
           </SmoothScrollProvider>
-          <CookieConsent />
         </body>
     </html>
   );
