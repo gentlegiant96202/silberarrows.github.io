@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 
 const CookieConsent: React.FC = () => {
   const [showConsent, setShowConsent] = useState(false);
-  const [consentGiven, setConsentGiven] = useState(false);
 
   useEffect(() => {
     // Check if consent was already given
@@ -12,7 +11,6 @@ const CookieConsent: React.FC = () => {
     if (!consent) {
       setShowConsent(true);
     } else {
-      setConsentGiven(consent === 'accepted');
       // Initialize tracking if consent was given
       if (consent === 'accepted') {
         initializeTracking();
@@ -34,14 +32,12 @@ const CookieConsent: React.FC = () => {
 
   const handleAccept = () => {
     localStorage.setItem('cookie-consent', 'accepted');
-    setConsentGiven(true);
     setShowConsent(false);
     initializeTracking();
   };
 
   const handleDecline = () => {
     localStorage.setItem('cookie-consent', 'declined');
-    setConsentGiven(false);
     setShowConsent(false);
     
     // Disable tracking

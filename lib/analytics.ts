@@ -1,8 +1,8 @@
 // Google Analytics & Ads Event Tracking
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (...args: unknown[]) => void;
+    dataLayer: Record<string, unknown>[];
   }
 }
 
@@ -12,7 +12,7 @@ if (typeof window !== 'undefined' && !window.dataLayer) {
 }
 
 // Helper function to send events to Google Analytics
-export const gtag = (...args: any[]) => {
+export const gtag = (...args: unknown[]) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag(...args);
   }
@@ -30,7 +30,7 @@ export const trackConversion = {
     
     // Google Ads Conversion
     gtag('event', 'conversion', {
-      send_to: `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/phone-call`,
+      send_to: `GTM-WCW6K7CB/phone-call`,
       value: 50.0,
       currency: 'AED'
     });
@@ -45,7 +45,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/whatsapp-contact`,
+      send_to: `GTM-WCW6K7CB/whatsapp-contact`,
       value: 30.0,
       currency: 'AED'
     });
@@ -60,7 +60,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/contact-form`,
+      send_to: `GTM-WCW6K7CB/contact-form`,
       value: 75.0,
       currency: 'AED'
     });
@@ -84,7 +84,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/quote-request`,
+      send_to: `GTM-WCW6K7CB/quote-request`,
       value: 100.0,
       currency: 'AED'
     });
@@ -108,7 +108,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/prize-claim`,
+      send_to: `GTM-WCW6K7CB/prize-claim`,
       value: prizeValue,
       currency: 'AED'
     });
@@ -117,7 +117,7 @@ export const trackConversion = {
 
 // Page View Tracking
 export const trackPageView = (url: string, title: string) => {
-  gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
+  gtag('config', 'GTM-WCW6K7CB', {
     page_location: url,
     page_title: title
   });
