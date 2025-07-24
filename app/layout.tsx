@@ -189,21 +189,7 @@ export default function RootLayout({
               function addProductionDebugButton() {
                 const debugBtn = document.createElement('button');
                 debugBtn.innerHTML = '🧪 Test Events';
-                debugBtn.style.cssText = \`
-                  position: fixed;
-                  top: 10px;
-                  right: 10px;
-                  z-index: 9999;
-                  background: #28a745;
-                  color: white;
-                  border: none;
-                  padding: 8px 12px;
-                  border-radius: 4px;
-                  font-weight: bold;
-                  cursor: pointer;
-                  font-size: 11px;
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                \`;
+                debugBtn.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 9999; background: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);';
                 
                 debugBtn.onclick = function() {
                   console.log('🧪 MANUAL TEST: Sending test events...');
@@ -235,7 +221,7 @@ export default function RootLayout({
                 phoneLinks.forEach((link, index) => {
                   link.removeEventListener('click', trackPhoneCall);
                   link.addEventListener('click', function(e) {
-                    console.log(\`📞 Phone link #\${index + 1} clicked: \${link.href}\`);
+                    console.log('📞 Phone link #' + (index + 1) + ' clicked: ' + link.href);
                     trackPhoneCall();
                   });
                 });
@@ -246,17 +232,17 @@ export default function RootLayout({
                   // Update href with prefilled message
                   const currentHref = link.getAttribute('href');
                   if (currentHref && currentHref.includes('wa.me')) {
-                    const phoneNumber = currentHref.match(/wa\.me\/([0-9]+)/);
+                    const phoneNumber = currentHref.match(/wa\\.me\\/([0-9]+)/);
                     if (phoneNumber) {
-                      const newHref = \`https://wa.me/\${phoneNumber[1]}?text=\${whatsappMessage}\`;
+                      const newHref = 'https://wa.me/' + phoneNumber[1] + '?text=' + whatsappMessage;
                       link.setAttribute('href', newHref);
-                      console.log(\`💬 WhatsApp link #\${index + 1} updated with prefilled message\`);
+                      console.log('💬 WhatsApp link #' + (index + 1) + ' updated with prefilled message');
                     }
                   }
                   
                   link.removeEventListener('click', trackWhatsAppClick);
                   link.addEventListener('click', function(e) {
-                    console.log(\`💬 WhatsApp link #\${index + 1} clicked: \${link.href}\`);
+                    console.log('💬 WhatsApp link #' + (index + 1) + ' clicked: ' + link.href);
                     trackWhatsAppClick();
                   });
                 });
