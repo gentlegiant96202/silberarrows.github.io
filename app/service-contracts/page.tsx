@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Mercedes-Benz Service Contracts Dubai | SilberArrows Maintenance Plans',
     description: 'Affordable Mercedes-Benz service contracts and maintenance plans in Dubai. Save money with professional service packages.',
-    url: 'https://silberarrows.ae/service-contracts',
+    url: 'https://mercedes-benz.silberarrows.com/service-contracts',
   },
 };
 

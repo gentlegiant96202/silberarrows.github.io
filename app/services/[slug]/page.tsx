@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${service.title} | SilberArrows Dubai`,
       description: `Professional ${service.title.toLowerCase()} for Mercedes-Benz vehicles in Dubai.`,
-      url: `https://silberarrows.ae/services/${slug}`,
+      url: `https://mercedes-benz.silberarrows.com/services/${slug}`,
     },
   };
 }

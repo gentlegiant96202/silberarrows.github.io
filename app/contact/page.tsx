@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact SilberArrows | Mercedes-Benz Service Dubai',
     description: 'Visit our Mercedes-Benz service center in Al Quoz, Dubai. Expert repair & maintenance services.',
-    url: 'https://silberarrows.ae/contact',
+    url: 'https://mercedes-benz.silberarrows.com/contact',
   },
 };
 

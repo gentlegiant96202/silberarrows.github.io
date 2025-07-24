@@ -7,14 +7,14 @@ export default function OrganizationSchema() {
     "name": "SilberArrows",
     "alternateName": "SilberArrows Mercedes-Benz Service",
     "description": "Independent Mercedes-Benz service center in Dubai specializing in expert maintenance, repair, and diagnostics since 2011.",
-    "url": "https://silberarrows.ae",
+    "url": "https://mercedes-benz.silberarrows.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://silberarrows.ae/assets/icons/logo.svg",
+      "url": "https://mercedes-benz.silberarrows.com/assets/icons/logo.svg",
       "width": "200",
       "height": "60"
     },
-    "image": "https://silberarrows.ae/assets/images/al-manara-location.webp",
+    "image": "https://mercedes-benz.silberarrows.com/assets/images/al-manara-location.webp",
     "telephone": "+971-4-380-5515",
     "email": "info@silberarrows.ae",
     "address": {

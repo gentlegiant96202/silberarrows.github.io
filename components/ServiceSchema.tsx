@@ -18,7 +18,7 @@ export default function ServiceSchema({
     "@type": "Service",
     "name": serviceName,
     "description": serviceDescription,
-    "url": `https://silberarrows.ae/services/${serviceSlug}`,
+    "url": `https://mercedes-benz.silberarrows.com/services/${serviceSlug}`,
     "category": category,
     "provider": {
       "@type": "AutomotiveServiceCenter",

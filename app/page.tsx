@@ -18,10 +18,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai',
     description: 'Dubai\'s trusted independent Mercedes-Benz specialists since 2011. Expert service in Al Quoz with genuine parts.',
-    url: 'https://silberarrows.ae',
+    url: 'https://mercedes-benz.silberarrows.com',
     images: [
       {
-        url: 'https://silberarrows.ae/assets/images/al-manara-location.webp',
+        url: 'https://mercedes-benz.silberarrows.com/assets/images/al-manara-location.webp',
         width: 800,
         height: 600,
         alt: 'SilberArrows Mercedes-Benz Service Center',

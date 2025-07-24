@@ -25,7 +25,7 @@ export default function ReviewSchema({ reviews = [], aggregateRating }: ReviewSc
     "@context": "https://schema.org",
     "@type": "AutomotiveServiceCenter",
     "name": "SilberArrows",
-    "url": "https://silberarrows.ae",
+    "url": "https://mercedes-benz.silberarrows.com",
     ...(aggregateRating && {
       "aggregateRating": {
         "@type": "AggregateRating",
