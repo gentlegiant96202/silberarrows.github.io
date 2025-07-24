@@ -15,7 +15,12 @@ const Footer: React.FC = () => {
     // Don't trigger if already animating
     if (isAnimating) return;
     
-    // Start the cinematic animation (don't hide original button yet)
+    // Hide the original button immediately
+    if (buttonRef.current) {
+      buttonRef.current.style.visibility = 'hidden';
+    }
+    
+    // Start the cinematic animation
     startButtonToModalAnimation();
   };
 
@@ -63,22 +68,17 @@ const Footer: React.FC = () => {
     // Modal structure: padding-top(20) + title(~25) + title-margin(18) + game-display(136) + wheel-margin(5) + wheel-radius
     const wheelCenterY = 20 + 25 + 18 + 136 + 5 + (wheelSize / 2);
     
-    // Start animation after brief delay - hide original and move clone up
+    // The clone is now positioned exactly where the original button was
+    // Start moving the clone up after a brief delay to let it settle
     setTimeout(() => {
-      // Now hide the original button just as the clone starts moving
-      if (buttonRef.current) {
-        buttonRef.current.style.visibility = 'hidden';
-      }
-      
-      // Start clone animation
       buttonClone.style.top = `${wheelCenterY - buttonRect.height/2}px`;
-    }, 50);
+    }, 100);
     
     // Open modal after animation completes (but keep clone for reverse animation)
     setTimeout(() => {
       setIsSpinWheelOpen(true);
       setIsAnimating(false);
-    }, 1250); // Match 1.2s animation duration + small buffer
+    }, 1300); // Match 1.2s animation duration + 100ms delay + small buffer
   };
 
   const handleCloseSpinWheel = () => {
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
       // Reset states
       setIsAnimating(false);
       setOriginalButtonRect(null);
-    }, 1250); // Match 1.2s animation duration + small buffer
+    }, 1300); // Match 1.2s animation duration + small buffer
   };
 
   return (
