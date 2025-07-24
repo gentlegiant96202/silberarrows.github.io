@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ServiceContracts from '../../components/ServiceContracts';
-import ServiceContractPricing from '../../components/ServiceContractPricing';
 import ContactSection from '../../components/ContactSection';
 
 export const metadata: Metadata = {
@@ -22,13 +21,10 @@ export default function ServiceContractsPage() {
     <>
       <Header />
       <main>
-        {/* Service Contracts Section - React Component */}
-        <ServiceContracts />
+                    {/* Service Contracts Section - React Component */}
+            <ServiceContracts />
 
-        {/* Service Contract Pricing Calculator */}
-        <ServiceContractPricing />
-
-        {/* Contact Section - React Component */}
+            {/* Contact Section - React Component */}
         <ContactSection />
       </main>
       <Footer />

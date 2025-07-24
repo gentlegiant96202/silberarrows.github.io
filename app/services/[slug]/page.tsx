@@ -6,7 +6,6 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Icon from '../../../components/Icon';
 import ServiceSchema from '../../../components/ServiceSchema';
-import ServicePricing from '../../../components/ServicePricing';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -376,11 +375,6 @@ export default async function ServiceDetailPage({ params }: Props) {
                 ))}
               </div>
             </div>
-
-            {/* Service Pricing Component - Only for Scheduled Maintenance */}
-            {slug === 'scheduled-maintenance' && (
-              <ServicePricing />
-            )}
           </div>
           
           {/* Related Services Section - For ALL services */}

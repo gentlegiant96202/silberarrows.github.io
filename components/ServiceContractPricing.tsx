@@ -10,711 +10,779 @@ interface ContractPricingData {
   engines: {
     type: string;
     pricing: {
-      standardPrice: (number | null)[];
-      standardAmgPrice: (number | null)[];
-      premiumPrice: (number | null)[];
-      premiumAmgPrice: (number | null)[];
+      standard2Year: number | null;
+      amg2Year: number | null;
+      premium4Year: number | null;
+      amg4Year: number | null;
     };
   }[];
 }
 
 const contractPricingData: ContractPricingData[] = [
+  // AMG GT
   {
     model: 'AMG GT',
     code: '190',
     yearRange: '2014 to 2024',
     engines: [
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [null, 3800], 
-          standardAmgPrice: [6100, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
-      }
-    ]
-  },
-  {
-    model: 'AMG GT',
-    code: '192',
-    yearRange: '2024 to Present',
-    engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [null, 6100], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: 6100,
+          premium4Year: null,
+          amg4Year: 16900
+        }
       },
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [null, 6100], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: 6100,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
+  // AMG GT 4-DR
   {
     model: 'AMG GT 4-DR',
     code: '290',
     yearRange: '2018 to Present',
     engines: [
-      { 
-        type: '6 Cyl', 
-        pricing: { 
-          standardPrice: [2900, 3700], 
-          standardAmgPrice: [8600, 2900], 
-          premiumPrice: [3700, 8600], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: 11700
+        }
       },
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: 16900
+        }
       }
     ]
   },
+  // A Class
   {
-    model: 'A-Class',
+    model: 'A',
     code: '176',
     yearRange: '2012 to 2018',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [16900, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'A-Class',
+    model: 'A',
     code: '177',
     yearRange: '2018 to Present',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [11700, 16900], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: 10000
+        }
       }
     ]
   },
+  // B Class
   {
-    model: 'B-Class',
+    model: 'B',
     code: '245',
     yearRange: '2005 to 2011',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [10000, 10000], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'B-Class',
+    model: 'B',
     code: '246',
     yearRange: '2011 to 2019',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [null, 16900], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'B-Class',
+    model: 'B',
     code: '247',
     yearRange: '2019 to Present',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
+  // C/CLC/CLE Class
   {
-    model: 'C-Class/CLC/CLE',
+    model: 'C/CLC/CLE',
     code: '202',
     yearRange: '1993 to 2000',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [2700, 3400], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       },
-      { 
-        type: '6 Cyl', 
-        pricing: { 
-          standardPrice: [2900, 3400], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       },
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [2900, 2900], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'C-Class/CLC/CLE',
+    model: 'C/CLC/CLE',
     code: '203',
     yearRange: '2000 to 2007',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       },
-      { 
-        type: '6 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: 7400,
+          amg4Year: 8400
+        }
       },
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [4500, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: 4200,
+          premium4Year: 9400,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'C-Class/CLC/CLE',
+    model: 'C/CLC/CLE',
     code: '204',
     yearRange: '2007 to 2014',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [null, 3700], 
-          standardAmgPrice: [4800, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: null
+        }
       },
-      { 
-        type: '6 Cyl', 
-        pricing: { 
-          standardPrice: [4000, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: null
+        }
       },
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [3800, 4800], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 4200,
+          premium4Year: 9400,
+          amg4Year: 12600
+        }
       }
     ]
   },
   {
-    model: 'C-Class/CLC/CLE',
+    model: 'C/CLC/CLE',
     code: '205',
     yearRange: '2014 to 2021',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [7600, 8800], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: null
+        }
       },
-      { 
-        type: '6 Cyl', 
-        pricing: { 
-          standardPrice: [9000, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: null
+        }
       },
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [9400, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 4200,
+          premium4Year: 9400,
+          amg4Year: 12600
+        }
       }
     ]
   },
   {
-    model: 'C-Class/CLC/CLE',
+    model: 'C/CLC/CLE',
     code: '206',
     yearRange: '2021 to Present',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [9400, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'C-Class/CLC/CLE',
+    model: 'C/CLC/CLE',
     code: '236',
     yearRange: '2024 to Present',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [9400, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       },
-      { 
-        type: '6 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       },
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [11900, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
+  // CL Class
   {
-    model: 'CL-Class',
+    model: 'CL',
     code: '215',
     yearRange: '1999 to 2006',
     engines: [
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       },
-      { 
-        type: '12 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '12 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'CL-Class',
+    model: 'CL',
     code: '216',
     yearRange: '2006 to 2014',
     engines: [
-      { 
-        type: '8 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       },
-      { 
-        type: '12 Cyl', 
-        pricing: { 
-          standardPrice: [null, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '12 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
+  // CLA Class
   {
-    model: 'CLA-Class',
+    model: 'CLA',
     code: '117',
     yearRange: '2013 to 2019',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [2900, 3700], 
-          standardAmgPrice: [8600, 2900], 
-          premiumPrice: [3700, 8600], 
-          premiumAmgPrice: [2900, 3700] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: 10000
+        }
       }
     ]
   },
   {
-    model: 'CLA-Class',
+    model: 'CLA',
     code: '118',
     yearRange: '2019 to 2025',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [8600, null], 
-          standardAmgPrice: [null, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: 10000
+        }
       }
     ]
   },
   {
-    model: 'CLA-Class',
+    model: 'CLA',
     code: '178',
     yearRange: '2025 to Present',
     engines: [
-      { 
-        type: '4 Cyl', 
-        pricing: { 
-          standardPrice: [10000, 10000], 
-          standardAmgPrice: [10000, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: 2900,
+          amg2Year: 3700,
+          premium4Year: 8600,
+          amg4Year: 10000
+        }
       }
     ]
   },
-  // Electric Vehicles
+  // CLK Class  
   {
-    model: 'EQA',
-    code: 'H243',
-    yearRange: '2021 to Present',
+    model: 'CLK',
+    code: '208',
+    yearRange: '1998 to 2003',
     engines: [
-      { 
-        type: 'ELEC', 
-        pricing: { 
-          standardPrice: [2900, null], 
-          standardAmgPrice: [2900, null], 
-          premiumPrice: [2900, null], 
-          premiumAmgPrice: [3300, null] 
-        } 
-      }
-    ]
-  },
-  {
-    model: 'EQB',
-    code: 'X243',
-    yearRange: '2021 to Present',
-    engines: [
-      { 
-        type: 'ELEC', 
-        pricing: { 
-          standardPrice: [3300, null], 
-          standardAmgPrice: [3300, null], 
-          premiumPrice: [4100, null], 
-          premiumAmgPrice: [null, null] 
-        } 
-      }
-    ]
-  },
-  {
-    model: 'EQC',
-    code: 'N293',
-    yearRange: '2019 to Present',
-    engines: [
-      { 
-        type: 'ELEC', 
-        pricing: { 
-          standardPrice: [5800, null], 
-          standardAmgPrice: [5800, null], 
-          premiumPrice: [5800, null], 
-          premiumAmgPrice: [6600, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      },
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      },
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'EQE',
-    code: 'V295',
-    yearRange: '2021 to Present',
+    model: 'CLK',
+    code: '209',
+    yearRange: '2003 to 2009',
     engines: [
-      { 
-        type: 'ELEC', 
-        pricing: { 
-          standardPrice: [6600, null], 
-          standardAmgPrice: [6600, null], 
-          premiumPrice: [8600, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      },
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      },
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      }
+    ]
+  },
+  // CLS Class
+  {
+    model: 'CLS',
+    code: '219',
+    yearRange: '2005 to 2011',
+    engines: [
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      },
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   },
   {
-    model: 'EQS',
-    code: 'V297',
-    yearRange: '2021 to Present',
+    model: 'CLS',
+    code: '218',
+    yearRange: '2011 to 2018',
     engines: [
-      { 
-        type: 'ELEC', 
-        pricing: { 
-          standardPrice: [2900, null], 
-          standardAmgPrice: [5800, null], 
-          premiumPrice: [null, null], 
-          premiumAmgPrice: [null, null] 
-        } 
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      },
+      {
+        type: '8 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      }
+    ]
+  },
+  {
+    model: 'CLS',
+    code: '257',
+    yearRange: '2018 to Present',
+    engines: [
+      {
+        type: '4 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
+      },
+      {
+        type: '6 Cyl',
+        pricing: {
+          standard2Year: null,
+          amg2Year: null,
+          premium4Year: null,
+          amg4Year: null
+        }
       }
     ]
   }
 ];
 
-export default function ServiceContractPricing() {
-  const [selectedModel, setSelectedModel] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedEngine, setSelectedEngine] = useState('');
+const formatPrice = (price: number | null): string => {
+  if (price === null) return 'N/A';
+  return `AED ${price.toLocaleString()}`;
+};
 
-  // Get unique model series for dropdown
-  const modelSeries = useMemo(() => {
-    const series = [...new Set(contractPricingData.map(item => item.model))];
-    return series.sort();
+export default function ServiceContractPricing() {
+  const [selectedModel, setSelectedModel] = useState<string>('');
+  const [selectedYear, setSelectedYear] = useState<string>('');
+  const [selectedEngine, setSelectedEngine] = useState<string>('');
+
+  // Get unique models
+  const availableModels = useMemo(() => {
+    return [...new Set(contractPricingData.map(item => item.model))].sort();
   }, []);
 
-  // Get year ranges for selected model
+  // Get available years for selected model
   const availableYears = useMemo(() => {
     if (!selectedModel) return [];
-    return contractPricingData.filter(item => item.model === selectedModel);
+    return contractPricingData
+      .filter(item => item.model === selectedModel)
+      .map(item => ({ code: item.code, yearRange: item.yearRange }))
+      .sort((a, b) => a.code.localeCompare(b.code));
   }, [selectedModel]);
 
-  // Get engines for selected year
+  // Get available engines for selected model and year
   const availableEngines = useMemo(() => {
-    if (!selectedYear) return [];
-    const yearData = contractPricingData.find(item => item.model === selectedModel && item.yearRange === selectedYear);
-    return yearData ? yearData.engines : [];
+    if (!selectedModel || !selectedYear) return [];
+    const selectedData = contractPricingData.find(
+      item => item.model === selectedModel && item.yearRange === selectedYear
+    );
+    return selectedData ? selectedData.engines.map(engine => engine.type) : [];
   }, [selectedModel, selectedYear]);
 
-  // Get pricing for current selection
+  // Get current pricing
   const currentPricing = useMemo(() => {
     if (!selectedModel || !selectedYear || !selectedEngine) return null;
     
-    const yearData = contractPricingData.find(item => item.model === selectedModel && item.yearRange === selectedYear);
-    if (!yearData) return null;
+    const selectedData = contractPricingData.find(
+      item => item.model === selectedModel && item.yearRange === selectedYear
+    );
     
-    const engine = yearData.engines.find(e => e.type === selectedEngine);
-    return engine ? engine.pricing : null;
+    if (!selectedData) return null;
+    
+    const engineData = selectedData.engines.find(engine => engine.type === selectedEngine);
+    return engineData ? engineData.pricing : null;
   }, [selectedModel, selectedYear, selectedEngine]);
 
-  const handleModelChange = (model: string) => {
-    setSelectedModel(model);
+  const handleModelChange = (value: string) => {
+    setSelectedModel(value);
     setSelectedYear('');
     setSelectedEngine('');
   };
 
-  const handleYearChange = (year: string) => {
-    setSelectedYear(year);
+  const handleYearChange = (value: string) => {
+    setSelectedYear(value);
     setSelectedEngine('');
   };
 
-  const handleEngineChange = (engine: string) => {
-    setSelectedEngine(engine);
-  };
-
-  const formatPrice = (priceArray: (number | null)[]) => {
-    const validPrices = priceArray.filter((price): price is number => price !== null && price !== undefined);
-    if (validPrices.length === 0) return 'N/A';
-    if (validPrices.length === 1) return `AED ${validPrices[0].toLocaleString()}`;
-    return `AED ${validPrices[0].toLocaleString()} - ${validPrices[1].toLocaleString()}`;
+  const handleEngineChange = (value: string) => {
+    setSelectedEngine(value);
   };
 
   return (
     <section className="service-contracts-section">
       <div className="contracts-container">
-        <div className="section-header">
-          <h2>SERVICE CONTRACT PRICING CALCULATOR</h2>
-          <p>Select your Mercedes-Benz model to see transparent contract pricing</p>
-        </div>
-
         <div className="comparison-table">
-          <div className="pricing-form">
-            {/* Model Selection */}
-            <div className="form-group">
-              <label className="form-label">Model Series</label>
-              <select 
-                className="form-select"
-                value={selectedModel}
-                onChange={(e) => handleModelChange(e.target.value)}
-              >
-                <option value="">Select Model Series</option>
-                {modelSeries.map(model => (
-                  <option key={model} value={model}>{model}</option>
-                ))}
-              </select>
+          <div className="pricing-section">
+            <div className="section-header">
+              <h2 className="section-title">Service Contract Pricing Calculator</h2>
+              <p className="section-subtitle">
+                Get instant pricing for your Mercedes-Benz service contract
+              </p>
             </div>
 
-            {/* Year Selection */}
-            {selectedModel && (
+            <div className="pricing-form">
               <div className="form-group">
-                <label className="form-label">Year Range</label>
-                <select 
+                <label className="form-label">Model Series</label>
+                <select
                   className="form-select"
-                  value={selectedYear}
-                  onChange={(e) => handleYearChange(e.target.value)}
+                  value={selectedModel}
+                  onChange={(e) => handleModelChange(e.target.value)}
                 >
-                  <option value="">Select Year Range</option>
-                  {availableYears.map(year => (
-                    <option key={`${year.code}-${year.yearRange}`} value={year.yearRange}>
-                      {year.yearRange} ({year.code})
+                  <option value="">Select Model</option>
+                  {availableModels.map((model) => (
+                    <option key={model} value={model}>
+                      {model}
                     </option>
                   ))}
                 </select>
               </div>
-            )}
 
-            {/* Engine Selection */}
-            {selectedYear && (
-              <div className="form-group">
-                <label className="form-label">Engine Type</label>
-                <select 
-                  className="form-select"
-                  value={selectedEngine}
-                  onChange={(e) => handleEngineChange(e.target.value)}
-                >
-                  <option value="">Select Engine</option>
-                  {availableEngines.map(engine => (
-                    <option key={engine.type} value={engine.type}>{engine.type}</option>
-                  ))}
-                </select>
+              {selectedModel && (
+                <div className="form-group">
+                  <label className="form-label">Year Range</label>
+                  <select
+                    className="form-select"
+                    value={selectedYear}
+                    onChange={(e) => handleYearChange(e.target.value)}
+                  >
+                    <option value="">Select Year Range</option>
+                    {availableYears.map((year) => (
+                      <option key={year.code} value={year.yearRange}>
+                        {year.yearRange} ({year.code})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {selectedYear && (
+                <div className="form-group">
+                  <label className="form-label">Engine Type</label>
+                  <select
+                    className="form-select"
+                    value={selectedEngine}
+                    onChange={(e) => handleEngineChange(e.target.value)}
+                  >
+                    <option value="">Select Engine Type</option>
+                    {availableEngines.map((engine) => (
+                      <option key={engine} value={engine}>
+                        {engine}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            </div>
+
+            {currentPricing && (
+              <div className="pricing-result">
+                <div className="result-header">
+                  <h3 className="result-title">
+                    {selectedModel} {selectedEngine}
+                  </h3>
+                  <p className="result-subtitle">{selectedYear}</p>
+                </div>
+
+                <div className="contract-pricing-grid">
+                  {/* Standard 2 Years */}
+                  <div className="price-card">
+                    <div className="price-header">
+                      <Icon name="file-contract" size={18} variant="gold" />
+                      <span className="price-label">Standard 2 Years</span>
+                    </div>
+                    <div className="price-amount">
+                      {formatPrice(currentPricing.standard2Year)}
+                    </div>
+                  </div>
+
+                  {/* AMG 2 Years */}
+                  <div className="price-card">
+                    <div className="price-header">
+                      <Icon name="star" size={18} variant="gold" />
+                      <span className="price-label">AMG 2 Years</span>
+                    </div>
+                    <div className="price-amount">
+                      {formatPrice(currentPricing.amg2Year)}
+                    </div>
+                  </div>
+
+                  {/* Premium 4 Years */}
+                  <div className={`price-card${currentPricing.premium4Year ? ' featured' : ''}`}>
+                    <div className="price-header">
+                      <Icon name="shield-alt" size={18} variant="gold" />
+                      <span className="price-label">Premium 4 Years</span>
+                    </div>
+                    <div className="price-amount">
+                      {formatPrice(currentPricing.premium4Year)}
+                    </div>
+                  </div>
+
+                  {/* AMG 4 Years */}
+                  <div className={`price-card${currentPricing.amg4Year ? ' featured' : ''}`}>
+                    <div className="price-header">
+                      <Icon name="medal" size={18} variant="gold" />
+                      <span className="price-label">AMG 4 Years</span>
+                    </div>
+                    <div className="price-amount">
+                      {formatPrice(currentPricing.amg4Year)}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pricing-actions">
+                  <button className="btn-primary">
+                    <Icon name="phone-alt" size={16} variant="dark" flip={true} />
+                    Call Now
+                  </button>
+                  <button className="btn-secondary">
+                    <Icon name="whatsapp" size={16} variant="white" />
+                    WhatsApp
+                  </button>
+                </div>
               </div>
             )}
           </div>
-
-          {/* Pricing Display */}
-          {currentPricing && (
-            <div className="pricing-result">
-              <div className="result-header">
-                <h4 className="result-title">
-                  {selectedModel} {selectedEngine}
-                </h4>
-                <p className="result-subtitle">{selectedYear}</p>
-              </div>
-              
-              <div className="contract-pricing-grid">
-                <div className="price-card">
-                  <div className="price-header">
-                    <Icon name="file-contract" size={18} variant="gold" />
-                    <span className="price-label">Standard Price</span>
-                  </div>
-                  <div className="price-amount">
-                    {formatPrice(currentPricing.standardPrice)}
-                  </div>
-                </div>
-                
-                <div className="price-card">
-                  <div className="price-header">
-                    <Icon name="star" size={18} variant="gold" />
-                    <span className="price-label">Standard AMG Price</span>
-                  </div>
-                  <div className="price-amount">
-                    {formatPrice(currentPricing.standardAmgPrice)}
-                  </div>
-                </div>
-
-                <div className="price-card featured">
-                  <div className="price-header">
-                    <Icon name="shield-alt" size={18} variant="gold" />
-                    <span className="price-label">Premium Price</span>
-                  </div>
-                  <div className="price-amount">
-                    {formatPrice(currentPricing.premiumPrice)}
-                  </div>
-                </div>
-
-                <div className="price-card featured">
-                  <div className="price-header">
-                    <Icon name="medal" size={18} variant="gold" />
-                    <span className="price-label">Premium AMG Price</span>
-                  </div>
-                  <div className="price-amount">
-                    {formatPrice(currentPricing.premiumAmgPrice)}
-                  </div>
-                </div>
-              </div>
-
-              <div className="pricing-actions">
-                <a href="tel:+97143805515" className="btn-primary">
-                  <Icon name="phone-alt" size={16} variant="gold" flip={true} />
-                  Call Now
-                </a>
-                <a href="https://wa.me/97143805515" className="btn-secondary" target="_blank" rel="noopener noreferrer">
-                  <Icon name="whatsapp" size={16} variant="gold" />
-                  WhatsApp
-                </a>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>

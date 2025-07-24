@@ -1298,7 +1298,7 @@ body.no-scroll.menu-open::after {
         transform: translateY(20px);
         animation: slideInUp 0.5s ease-out forwards;
         animation-delay: 0.1s;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(156, 163, 175, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
     /* Table Header */
@@ -4918,6 +4918,15 @@ body.no-scroll.menu-open::after {
             font-size: 0.7rem;
         }
 
+        .amg-only-indicator {
+            padding: 8px 12px;
+            height: 38px;
+        }
+
+        .amg-badge {
+            font-size: 0.7rem;
+        }
+
         /* Simple mobile comparison table - keep table structure but smaller */
         .service-comparison-table {
             overflow-x: auto;
@@ -5224,11 +5233,11 @@ body.no-scroll.menu-open::after {
 
     /* Service Pricing Component - Compact Version */
     .pricing-section {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.6);
+        border: none;
         border-radius: 12px;
         backdrop-filter: blur(10px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: none;
         margin-top: 1.5rem;
         padding: 2rem;
     }
@@ -5360,6 +5369,29 @@ body.no-scroll.menu-open::after {
         letter-spacing: 0.5px;
     }
 
+    .amg-only-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        background: linear-gradient(135deg, rgba(229, 229, 229, 0.2), rgba(229, 229, 229, 0.1));
+        border: 1px solid rgba(229, 229, 229, 0.4);
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        height: 42px;
+        box-sizing: border-box;
+    }
+
+    .amg-badge {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--primary-gold);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
     .pricing-result {
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding: 1.5rem 0.5rem 0 0.5rem;
@@ -5397,7 +5429,7 @@ body.no-scroll.menu-open::after {
 
     .contract-pricing-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.75rem;
         margin-bottom: 1.25rem;
         padding: 0 0.5rem;
