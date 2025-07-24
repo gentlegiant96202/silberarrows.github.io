@@ -79,10 +79,92 @@ export default function RootLayout({
           />
         </noscript>
         
-                  <SmoothScrollProvider>
-            {children}
-          </SmoothScrollProvider>
-        </body>
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
+
+        {/* Contact Tracking Script */}
+        <Script
+          id="contact-tracking"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Contact tracking functions
+              function trackPhoneCall() {
+                if (typeof gtag !== 'undefined') {
+                  gtag('event', 'phone_call', {
+                    event_category: 'contact',
+                    event_label: 'phone_click',
+                    value: 1
+                  });
+                  console.log('📞 Phone call tracked');
+                }
+              }
+              
+              function trackWhatsAppClick() {
+                if (typeof gtag !== 'undefined') {
+                  gtag('event', 'whatsapp_click', {
+                    event_category: 'contact',
+                    event_label: 'whatsapp_click',
+                    value: 1
+                  });
+                  console.log('💬 WhatsApp click tracked');
+                }
+              }
+              
+              // Add tracking to existing links when page loads
+              function initContactTracking() {
+                // WhatsApp prefilled message
+                const whatsappMessage = encodeURIComponent("Hi Team SilberArrows, I would like to get my Mercedes-Benz serviced!");
+                
+                // Find all phone links
+                const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+                phoneLinks.forEach(link => {
+                  link.addEventListener('click', trackPhoneCall);
+                });
+                
+                // Find all WhatsApp links and update with prefilled message
+                const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+                whatsappLinks.forEach(link => {
+                  // Update href with prefilled message
+                  const currentHref = link.getAttribute('href');
+                  if (currentHref && currentHref.includes('wa.me')) {
+                    const newHref = currentHref.includes('?') 
+                      ? currentHref + '&text=' + whatsappMessage
+                      : currentHref + '?text=' + whatsappMessage;
+                    link.setAttribute('href', newHref);
+                  }
+                  
+                  // Add click tracking
+                  link.addEventListener('click', trackWhatsAppClick);
+                });
+                
+                console.log('✅ Contact tracking initialized:', {
+                  phoneLinks: phoneLinks.length,
+                  whatsappLinks: whatsappLinks.length
+                });
+              }
+              
+              // Initialize when DOM is ready
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initContactTracking);
+              } else {
+                initContactTracking();
+              }
+              
+              // Re-initialize on navigation (for SPA behavior)
+              let lastUrl = location.href;
+              new MutationObserver(() => {
+                const url = location.href;
+                if (url !== lastUrl) {
+                  lastUrl = url;
+                  setTimeout(initContactTracking, 100); // Small delay for DOM updates
+                }
+              }).observe(document, { subtree: true, childList: true });
+            `,
+          }}
+        />
+      </body>
     </html>
   );
 }
