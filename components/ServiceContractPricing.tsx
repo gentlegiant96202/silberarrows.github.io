@@ -10,10 +10,10 @@ interface ContractPricingData {
   engines: {
     type: string;
     pricing: {
-      standard: (number | null)[];
-      amg: (number | null)[];
-      premium: (number | null)[];
-      amgPremium: (number | null)[];
+      standardPrice: (number | null)[];
+      standardAmgPrice: (number | null)[];
+      premiumPrice: (number | null)[];
+      premiumAmgPrice: (number | null)[];
     };
   }[];
 }
@@ -27,10 +27,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [null, 3800], 
-          amg: [6100, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, 3800], 
+          standardAmgPrice: [6100, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -43,19 +43,19 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [null, 6100], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, 6100], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [null, 6100], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, 6100], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -68,19 +68,19 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '6 Cyl', 
         pricing: { 
-          standard: [2900, 3700], 
-          amg: [8600, 2900], 
-          premium: [3700, 8600], 
-          amgPremium: [null, null] 
+          standardPrice: [2900, 3700], 
+          standardAmgPrice: [8600, 2900], 
+          premiumPrice: [3700, 8600], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -93,10 +93,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [16900, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [16900, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -109,10 +109,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [11700, 16900], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [11700, 16900], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -125,10 +125,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [10000, 10000], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [10000, 10000], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -141,10 +141,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [null, 16900], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, 16900], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -157,10 +157,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -173,28 +173,28 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [2700, 3400], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [2700, 3400], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '6 Cyl', 
         pricing: { 
-          standard: [2900, 3400], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [2900, 3400], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [2900, 2900], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [2900, 2900], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -207,28 +207,28 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '6 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [4500, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [4500, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -241,28 +241,28 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [null, 3700], 
-          amg: [4800, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, 3700], 
+          standardAmgPrice: [4800, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '6 Cyl', 
         pricing: { 
-          standard: [4000, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [4000, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [3800, 4800], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [3800, 4800], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -275,28 +275,28 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [7600, 8800], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [7600, 8800], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '6 Cyl', 
         pricing: { 
-          standard: [9000, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [9000, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [9400, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [9400, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -309,10 +309,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [9400, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [9400, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -325,28 +325,28 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [9400, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [9400, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '6 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [11900, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [11900, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -359,19 +359,19 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '12 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -384,19 +384,19 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '8 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       },
       { 
         type: '12 Cyl', 
         pricing: { 
-          standard: [null, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [null, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -409,10 +409,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [2900, 3700], 
-          amg: [8600, 2900], 
-          premium: [3700, 8600], 
-          amgPremium: [2900, 3700] 
+          standardPrice: [2900, 3700], 
+          standardAmgPrice: [8600, 2900], 
+          premiumPrice: [3700, 8600], 
+          premiumAmgPrice: [2900, 3700] 
         } 
       }
     ]
@@ -425,10 +425,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [8600, null], 
-          amg: [null, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [8600, null], 
+          standardAmgPrice: [null, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -441,10 +441,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: '4 Cyl', 
         pricing: { 
-          standard: [10000, 10000], 
-          amg: [10000, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [10000, 10000], 
+          standardAmgPrice: [10000, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -458,10 +458,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: 'ELEC', 
         pricing: { 
-          standard: [2900, null], 
-          amg: [2900, null], 
-          premium: [2900, null], 
-          amgPremium: [3300, null] 
+          standardPrice: [2900, null], 
+          standardAmgPrice: [2900, null], 
+          premiumPrice: [2900, null], 
+          premiumAmgPrice: [3300, null] 
         } 
       }
     ]
@@ -474,10 +474,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: 'ELEC', 
         pricing: { 
-          standard: [3300, null], 
-          amg: [3300, null], 
-          premium: [4100, null], 
-          amgPremium: [null, null] 
+          standardPrice: [3300, null], 
+          standardAmgPrice: [3300, null], 
+          premiumPrice: [4100, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -490,10 +490,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: 'ELEC', 
         pricing: { 
-          standard: [5800, null], 
-          amg: [5800, null], 
-          premium: [5800, null], 
-          amgPremium: [6600, null] 
+          standardPrice: [5800, null], 
+          standardAmgPrice: [5800, null], 
+          premiumPrice: [5800, null], 
+          premiumAmgPrice: [6600, null] 
         } 
       }
     ]
@@ -506,10 +506,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: 'ELEC', 
         pricing: { 
-          standard: [6600, null], 
-          amg: [6600, null], 
-          premium: [8600, null], 
-          amgPremium: [null, null] 
+          standardPrice: [6600, null], 
+          standardAmgPrice: [6600, null], 
+          premiumPrice: [8600, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -522,10 +522,10 @@ const contractPricingData: ContractPricingData[] = [
       { 
         type: 'ELEC', 
         pricing: { 
-          standard: [2900, null], 
-          amg: [5800, null], 
-          premium: [null, null], 
-          amgPremium: [null, null] 
+          standardPrice: [2900, null], 
+          standardAmgPrice: [5800, null], 
+          premiumPrice: [null, null], 
+          premiumAmgPrice: [null, null] 
         } 
       }
     ]
@@ -665,40 +665,40 @@ export default function ServiceContractPricing() {
                 <div className="price-card">
                   <div className="price-header">
                     <Icon name="file-contract" size={18} variant="gold" />
-                    <span className="price-label">Standard</span>
+                    <span className="price-label">Standard Price</span>
                   </div>
                   <div className="price-amount">
-                    {formatPrice(currentPricing.standard)}
+                    {formatPrice(currentPricing.standardPrice)}
                   </div>
                 </div>
                 
                 <div className="price-card">
                   <div className="price-header">
                     <Icon name="star" size={18} variant="gold" />
-                    <span className="price-label">AMG</span>
+                    <span className="price-label">Standard AMG Price</span>
                   </div>
                   <div className="price-amount">
-                    {formatPrice(currentPricing.amg)}
+                    {formatPrice(currentPricing.standardAmgPrice)}
                   </div>
                 </div>
 
                 <div className="price-card featured">
                   <div className="price-header">
                     <Icon name="shield-alt" size={18} variant="gold" />
-                    <span className="price-label">Premium</span>
+                    <span className="price-label">Premium Price</span>
                   </div>
                   <div className="price-amount">
-                    {formatPrice(currentPricing.premium)}
+                    {formatPrice(currentPricing.premiumPrice)}
                   </div>
                 </div>
 
                 <div className="price-card featured">
                   <div className="price-header">
                     <Icon name="medal" size={18} variant="gold" />
-                    <span className="price-label">AMG Premium</span>
+                    <span className="price-label">Premium AMG Price</span>
                   </div>
                   <div className="price-amount">
-                    {formatPrice(currentPricing.amgPremium)}
+                    {formatPrice(currentPricing.premiumAmgPrice)}
                   </div>
                 </div>
               </div>
