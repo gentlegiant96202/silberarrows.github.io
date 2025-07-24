@@ -270,7 +270,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           data: {
             name: wheelState.userName,
             mobile: wheelState.userPhoneFull,
-            prize: wheelState.currentPrize
+            prize: `AED ${wheelState.currentPrize} Gift Card`
           }
         };
 
