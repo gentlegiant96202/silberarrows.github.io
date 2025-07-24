@@ -28,9 +28,9 @@ export const trackConversion = {
       value: 1
     });
     
-    // Google Ads Conversion
+    // Google Ads Conversion (will be configured later)
     gtag('event', 'conversion', {
-      send_to: `GTM-WCW6K7CB/phone-call`,
+      send_to: 'AW-CONVERSION_ID/phone-call',
       value: 50.0,
       currency: 'AED'
     });
@@ -45,7 +45,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `GTM-WCW6K7CB/whatsapp-contact`,
+      send_to: 'AW-CONVERSION_ID/whatsapp-contact',
       value: 30.0,
       currency: 'AED'
     });
@@ -60,7 +60,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `GTM-WCW6K7CB/contact-form`,
+      send_to: 'AW-CONVERSION_ID/contact-form',
       value: 75.0,
       currency: 'AED'
     });
@@ -84,7 +84,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `GTM-WCW6K7CB/quote-request`,
+      send_to: 'AW-CONVERSION_ID/quote-request',
       value: 100.0,
       currency: 'AED'
     });
@@ -108,7 +108,7 @@ export const trackConversion = {
     });
 
     gtag('event', 'conversion', {
-      send_to: `GTM-WCW6K7CB/prize-claim`,
+      send_to: 'AW-CONVERSION_ID/prize-claim',
       value: prizeValue,
       currency: 'AED'
     });
@@ -117,7 +117,7 @@ export const trackConversion = {
 
 // Page View Tracking
 export const trackPageView = (url: string, title: string) => {
-  gtag('config', 'GTM-WCW6K7CB', {
+  gtag('config', 'G-GK0X6327FK', {
     page_location: url,
     page_title: title
   });
