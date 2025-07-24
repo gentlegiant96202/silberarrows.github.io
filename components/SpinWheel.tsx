@@ -119,13 +119,13 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
       if (window.supabase) {
         console.log('✅ Supabase found in window, creating client...');
         try {
-          supabaseRef.current = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        supabaseRef.current = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
           console.log('✅ Supabase client created successfully');
-          return resolve();
+        return resolve();
         } catch (error) {
           console.error('❌ Failed to create Supabase client:', error);
           return reject(error);
-        }
+      }
       }
       
       console.log('📦 Loading Supabase from CDN...');
@@ -138,7 +138,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           if (window.supabase) {
             supabaseRef.current = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
             console.log('✅ Supabase client created from CDN');
-            resolve();
+        resolve();
           } else {
             console.error('❌ Supabase not available after script load');
             reject(new Error('Supabase not available after script load'));
@@ -302,12 +302,12 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
   const startActualSpin = async () => {
     // Start spinning logic extracted from spinWheel
     if (wheelState.claimed || wheelState.isSpinning || wheelState.allSpinsComplete) {
-      return;
-    }
+          return;
+        }
 
     // Check if we've reached max spins
     if (wheelState.currentSpin >= wheelState.maxSpins) {
-      return;
+          return;
     }
 
     // Start spinning
@@ -421,7 +421,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
       // Small delay to ensure transition is set before transform
       setTimeout(() => {
         if (segmentsRef.current) {
-          segmentsRef.current.style.transform = `rotate(${totalRotation}deg)`;
+      segmentsRef.current.style.transform = `rotate(${totalRotation}deg)`;
         }
       }, 10);
     }
@@ -530,7 +530,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         setTimeout(() => {
           if (window.confetti) {
             createConfetti({
-              particleCount: 100,
+          particleCount: 100,
               spread: 60,
               origin: { y: 0.5, x: 0.3 },
               colors: ['#F3F4F6', '#9CA3AF', '#D1D5DB'],
@@ -563,23 +563,23 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         const isLastSpin = prev.currentSpin >= prev.maxSpins;
         const spinsRemaining = prev.maxSpins - prev.currentSpin;
 
-        if (isLastSpin) {
+      if (isLastSpin) {
           setMessage(`Final spin! You won AED ${finalPrizeAmount}! This is your final prize.`);
           return {
-            ...prev,
-            isSpinning: false,
-            allSpinsComplete: true,
+          ...prev,
+          isSpinning: false,
+          allSpinsComplete: true,
             currentPrize: finalPrizeAmount,
             finalPrize: finalPrizeAmount,
-            idleRotation: finalPosition
+          idleRotation: finalPosition
           };
-        } else {
+      } else {
           setMessage(`You won AED ${finalPrizeAmount}! You have ${spinsRemaining} ${spinsRemaining === 1 ? 'spin' : 'spins'} left.`);
           return {
-            ...prev,
-            isSpinning: false,
+          ...prev,
+          isSpinning: false,
             currentPrize: finalPrizeAmount,
-            idleRotation: finalPosition
+          idleRotation: finalPosition
           };
         }
       });
@@ -1104,46 +1104,46 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
         }
         
-                  .wheel-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: ${isMobile ? '80px' : '100px'};
-            height: ${isMobile ? '80px' : '100px'};
-            background: 
-              radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF),
-              linear-gradient(145deg, #E5E7EB, #9CA3AF);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .wheel-center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: ${isMobile ? '80px' : '100px'};
+          height: ${isMobile ? '80px' : '100px'};
+          background: 
+            radial-gradient(circle at 30% 30%, #F3F4F6, #9CA3AF),
+            linear-gradient(145deg, #E5E7EB, #9CA3AF);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
             border: 4px solid #1a1a1a;
-            z-index: 10;
-            box-shadow: 
+          z-index: 10;
+          box-shadow: 
               0 0 20px rgba(0, 0, 0, 0.8),
               inset 0 3px 6px rgba(243, 244, 246, 0.3),
               0 0 15px rgba(156, 163, 175, 0.6);
-            font-family: 'Impact', 'Arial Black', sans-serif;
-            font-weight: normal;
-            font-size: ${isMobile ? '11px' : '14px'};
-            color: #1a1a1a;
-            text-align: center;
-            line-height: 1.1;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
-            letter-spacing: 0.5px;
+          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-weight: normal;
+          font-size: ${isMobile ? '11px' : '14px'};
+          color: #1a1a1a;
+          text-align: center;
+          line-height: 1.1;
+          text-transform: uppercase;
+          cursor: pointer;
+          text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+          letter-spacing: 0.5px;
             transition: all 0.3s ease;
-          }
+        }
 
-          .wheel-center:hover {
-            transform: translate(-50%, -50%) scale(1.05);
-            box-shadow: 
-              0 0 40px rgba(0, 0, 0, 0.8),
-              inset 0 4px 8px rgba(243, 244, 246, 0.4),
-              0 0 30px rgba(156, 163, 175, 0.8);
-          }
+        .wheel-center:hover {
+          transform: translate(-50%, -50%) scale(1.05);
+          box-shadow: 
+            0 0 40px rgba(0, 0, 0, 0.8),
+            inset 0 4px 8px rgba(243, 244, 246, 0.4),
+            0 0 30px rgba(156, 163, 175, 0.8);
+        }
         
         .wheel-label {
           position: absolute;
@@ -1374,10 +1374,10 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         <button className="wheel-close-x" onClick={onClose}>×</button>
         
         <div className="wheel-modal-content">
-          <h2 className="wheel-title">
-            SPIN TO WIN A GIFT CARD TOWARDS<br />YOUR NEXT MERCEDES-BENZ SERVICE!
-          </h2>
-          
+        <h2 className="wheel-title">
+          SPIN TO WIN A GIFT CARD TOWARDS<br />YOUR NEXT MERCEDES-BENZ SERVICE!
+        </h2>
+        
           <div className="game-display">
             <div className="game-message">
               {message || (wheelState.detailsCollected ? 'Ready to spin! You have 5 chances to win the best prize.' : 'Click the wheel or "Start Game" to begin!')}
@@ -1387,8 +1387,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
                 Current Prize: AED {wheelState.currentPrize}
               </div>
             )}
-          </div>
-
+            </div>
+            
           {/* Expandable Form Section */}
           <div className="expandable-form-section">
             <form onSubmit={handleFormSubmit} className="expandable-form">
@@ -1402,7 +1402,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   required
                 />
-              </div>
+            </div>
               
               <div className="input-group">
                 <label>WhatsApp Number</label>
@@ -1421,7 +1421,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
                     required
                     pattern="[0-9]{7,15}"
                   />
-                </div>
+          </div>
               </div>
               
               <div className="expandable-form-message">{message}</div>
@@ -1432,63 +1432,63 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
                 disabled={!userData.name.trim() || !userData.phone.trim()}
               >
                 Start Game
-              </button>
+                  </button>
             </form>
-          </div>
-          
+        </div>
+        
           <div className="wheel-container">
-            <div className="spin-wheel" onClick={(e) => e.stopPropagation()}>
-              <div 
-                ref={segmentsRef}
-                className="wheel-segments"
-              >
-                {PRIZES.map((amount, index) => {
-                  const midAngle = index * SEGMENT_ANGLE + 15;
-                  return (
-                    <div
-                      key={index}
-                      className="wheel-label"
-                      style={{
-                        transform: `translate(-50%, -50%) rotate(${midAngle}deg)`
-                      }}
-                    >
-                      <span
-                        style={{
-                          color: index % 2 === 0 ? '#1a1a1a' : '#fff',
-                          textShadow: index % 2 === 0 
-                            ? '0 1px 3px rgba(255,255,255,0.8)' 
-                            : '0 1px 3px rgba(0,0,0,0.8)'
-                        }}
-                      >
-                        AED {amount}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="wheel-pointer"></div>
-              <div className="wheel-center" onClick={spinWheel}>
-                Spin<br />to<br />Win
-              </div>
-            </div>
+        <div className="spin-wheel" onClick={(e) => e.stopPropagation()}>
+          <div 
+            ref={segmentsRef}
+            className="wheel-segments"
+          >
+            {PRIZES.map((amount, index) => {
+              const midAngle = index * SEGMENT_ANGLE + 15;
+              return (
+                <div
+                  key={index}
+                  className="wheel-label"
+                  style={{
+                    transform: `translate(-50%, -50%) rotate(${midAngle}deg)`
+                  }}
+                >
+                  <span
+                    style={{
+                      color: index % 2 === 0 ? '#1a1a1a' : '#fff',
+                      textShadow: index % 2 === 0 
+                        ? '0 1px 3px rgba(255,255,255,0.8)' 
+                        : '0 1px 3px rgba(0,0,0,0.8)'
+                    }}
+                  >
+                    AED {amount}
+                  </span>
+                </div>
+              );
+            })}
           </div>
-          
-          <div className="action-buttons">
+          <div className="wheel-pointer"></div>
+          <div className="wheel-center" onClick={spinWheel}>
+            Spin<br />to<br />Win
+          </div>
+        </div>
+        </div>
+        
+        <div className="action-buttons">
             {!wheelState.currentPrize ? (
               // Before any prize is won - show spin button (unless expandable form is visible)
               !showExpandableForm && (
-                <button
-                  className="spin-button"
-                  onClick={spinWheel}
-                  disabled={!canSpin}
-                >
-                  {wheelState.isSpinning 
-                    ? 'SPINNING...' 
-                    : wheelState.currentSpin === 0
-                      ? 'Start Game'
-                      : 'Spin Again'
-                  }
-                </button>
+          <button
+            className="spin-button"
+            onClick={spinWheel}
+            disabled={!canSpin}
+          >
+            {wheelState.isSpinning 
+              ? 'SPINNING...' 
+                : wheelState.currentSpin === 0
+                  ? 'Start Game'
+                  : 'Spin Again'
+            }
+          </button>
               )
             ) : !wheelState.allSpinsComplete || (wheelState.allSpinsComplete && wheelState.currentPrize && !wheelState.claimed) ? (
               // After winning a prize (including final spin) - inline choice layout
@@ -1504,7 +1504,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
                   <>
                     <span className="choice-divider">or</span>
                     
-                    <button
+            <button
                       className="spin-button"
                       onClick={spinWheel}
                       disabled={!canSpin}
@@ -1515,19 +1515,19 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
                           ? 'FINAL SPIN' 
                           : 'Spin Again'
                       }
-                    </button>
+            </button>
                     
                     <span className="choice-question-mark">?</span>
                   </>
-                )}
+          )}
               </div>
             ) : null}
-          </div>
-          
-          <button className="close-wheel" onClick={onClose}>
-            Close
-          </button>
         </div>
+        
+        <button className="close-wheel" onClick={onClose}>
+          Close
+              </button>
+            </div>
       </div>
     </>
   );

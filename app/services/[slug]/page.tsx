@@ -5,6 +5,7 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Icon from '../../../components/Icon';
 import ServiceSchema from '../../../components/ServiceSchema';
+import ServicePricing from '../../../components/ServicePricing';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -267,72 +268,216 @@ export default async function ServiceDetailPage({ params }: Props) {
               <p className="section-description">{service.description}</p>
             </div>
             
-            <div className="content-grid">
-              {/* Left column */}
-              <div className="content-section">
-                <h2 className="section-title">{service.featuresTitle || 'What\'s Included'}</h2>
-                
-                {slug === 'scheduled-maintenance' ? (
-                  <>
-                    <div className="service-plans">
-                      <div className="plan-item">
-                        <h3 className="plan-title">Service A (Minor Service)</h3>
-                        <ul className="plan-features">
-                          <li><Icon name="check" size={16} variant="gold" /> Engine oil, oil filter, and air filter replacement</li>
-                          <li><Icon name="check" size={16} variant="gold" /> Check and top-up of all fluids</li>
-                          <li><Icon name="check" size={16} variant="gold" /> Visual inspection of underbody, engine bay, brakes, and tyres</li>
-                          <li><Icon name="check" size={16} variant="gold" /> Diagnostics check using XENTRY Diagnosis</li>
-                          <li><Icon name="check" size={16} variant="gold" /> Maintenance counter reset and full valet</li>
-                        </ul>
+            {slug === 'scheduled-maintenance' ? (
+              <>
+                {/* Service Comparison Table - Full Width */}
+                <div className="content-section">
+                  <h2 className="section-title">{service.featuresTitle || 'What\'s Included'}</h2>
+                  <div className="service-comparison-table">
+                    <div className="service-table-header">
+                      <div className="service-feature-column-header">What's Included</div>
+                      <div className="service-package-column">
+                        <div className="service-package-name">Service A</div>
+                        <div className="service-package-description">Minor Service</div>
                       </div>
-
-                      <div className="plan-item">
-                        <h3 className="plan-title">Service B (Major Service)</h3>
-                        <p className="plan-subtitle">Includes all Service A items, plus:</p>
-                        <ul className="plan-features">
-                          <li><Icon name="check" size={16} variant="gold" /> Dust or combination filter replacement</li>
-                          <li><Icon name="check" size={16} variant="gold" /> A/C system treatment</li>
-                          <li><Icon name="check" size={16} variant="gold" /> Wheel rotation and spare wheel or TIREFIT sealant check</li>
-                          <li><Icon name="check" size={16} variant="gold" /> Additional safety checks and updates</li>
-                        </ul>
+                      <div className="service-package-column premium">
+                        <div className="service-package-name">Service B</div>
+                        <div className="service-package-description">Major Service</div>
                       </div>
                     </div>
+                    
+                    <div className="service-table-body">
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Engine oil, oil filter, and air filter replacement</div>
+                        <div className="service-feature-value" data-service="Service A"><Icon name="check" size={16} variant="gold" /></div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Check and top-up of all fluids</div>
+                        <div className="service-feature-value" data-service="Service A"><Icon name="check" size={16} variant="gold" /></div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Visual inspection of underbody, engine bay, brakes, and tyres</div>
+                        <div className="service-feature-value" data-service="Service A"><Icon name="check" size={16} variant="gold" /></div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Diagnostics check using XENTRY Diagnosis</div>
+                        <div className="service-feature-value" data-service="Service A"><Icon name="check" size={16} variant="gold" /></div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Maintenance counter reset and full valet</div>
+                        <div className="service-feature-value" data-service="Service A"><Icon name="check" size={16} variant="gold" /></div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Dust or combination filter replacement</div>
+                        <div className="service-feature-value not-included" data-service="Service A">—</div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">A/C system treatment</div>
+                        <div className="service-feature-value not-included" data-service="Service A">—</div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Wheel rotation and spare wheel or TIREFIT sealant check</div>
+                        <div className="service-feature-value not-included" data-service="Service A">—</div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                      <div className="service-feature-row">
+                        <div className="service-feature-name">Additional safety checks and updates</div>
+                        <div className="service-feature-value not-included" data-service="Service A">—</div>
+                        <div className="service-feature-value" data-service="Service B"><Icon name="check" size={16} variant="gold" /></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Features Section - Full Width */}
+                <div className="content-section">
+                  <h2 className="section-title">{service.featuresTitle || 'What\'s Included'}</h2>
+                  {service.features && (
+                    <ul className="plan-features">
+                      {service.features.map((feature, index) => (
+                        <li key={index}>
+                          <Icon name="check" size={16} variant="gold" /> {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </>
+            )}
+
+            {/* Process Section - Full Width for ALL services */}
+            <div className="content-section process-section">
+              <h2 className="section-title">Our Process</h2>
+              <div className="process-steps">
+                {(service.process || [
+                  { title: 'Service History Review', description: 'Review of service history and factory schedule' },
+                  { title: 'Factory Specification', description: 'All maintenance tasks performed to factory specification' },
+                  { title: 'Genuine Parts & Oil', description: 'Use of Mercedes-Benz genuine oil and parts' },
+                  { title: 'Records Update', description: 'Update of your vehicle\'s service records and indicator reset' },
+                  { title: 'Technician Report', description: 'Technician report with maintenance recommendations' },
+                ]).map((step, idx) => (
+                  <div className="process-step" key={idx}>
+                    <div className="step-number">{idx + 1}</div>
+                    <div className="step-content">
+                      <h4>{step.title}</h4>
+                      {step.description && <p>{step.description}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Service Pricing Component - Only for Scheduled Maintenance */}
+            {slug === 'scheduled-maintenance' && (
+              <ServicePricing />
+            )}
+          </div>
+          
+          {/* Related Services Section - For ALL services */}
+          <div className="related-services-section">
+            <div className="main-content">
+              <h2 className="section-title related-title">Related Services</h2>
+              <div className="related-services-grid">
+                {slug === 'scheduled-maintenance' ? (
+                  <>
+                    <a href="/services/diagnostics" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Electrical & Computer Diagnostics</h3>
+                        <p>Complete your service with professional diagnostics using XENTRY Diagnosis system.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/brake-service" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Brake Service & Repair</h3>
+                        <p>Often recommended during major service - brake inspection and maintenance.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/air-conditioning" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Air Conditioning Service & Repair</h3>
+                        <p>Perfect add-on service - A/C system check and refrigerant service.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/battery-service" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Battery Testing & Replacement</h3>
+                        <p>Ensure reliable starts with battery testing and genuine Mercedes replacement.</p>
+                      </div>
+                    </a>
+                  </>
+                ) : slug === 'brake-service' ? (
+                  <>
+                    <a href="/services/scheduled-maintenance" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Scheduled Maintenance – Service A & B</h3>
+                        <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/wheel-alignment" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Wheel Alignment</h3>
+                        <p>Precise wheel alignment is essential for steering accuracy, even tyre wear, and overall vehicle stability.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/tyre-replacement" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Tyre Replacement & Balancing</h3>
+                        <p>Proper tyres are crucial for safety, performance, and comfort.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/diagnostics" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Electrical & Computer Diagnostics</h3>
+                        <p>Mercedes-Benz vehicles feature advanced electronics across all systems.</p>
+                      </div>
+                    </a>
                   </>
                 ) : (
                   <>
-                    {service.features && (
-                      <ul className="plan-features">
-                        {service.features.map((feature, index) => (
-                          <li key={index}>
-                            <Icon name="check" size={16} variant="gold" /> {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <a href="/services/scheduled-maintenance" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Scheduled Maintenance – Service A & B</h3>
+                        <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/diagnostics" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Electrical & Computer Diagnostics</h3>
+                        <p>Mercedes-Benz vehicles feature advanced electronics across all systems.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/brake-service" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Brake Service & Repair</h3>
+                        <p>Your Mercedes-Benz braking system is critical to safety and performance.</p>
+                      </div>
+                    </a>
+                    
+                    <a href="/services/air-conditioning" className="related-service-card">
+                      <div className="related-card-content">
+                        <h3>Air Conditioning Service & Repair</h3>
+                        <p>A properly functioning A/C system ensures cabin comfort and air quality.</p>
+                      </div>
+                    </a>
                   </>
                 )}
-              </div>
-
-              {/* Right column */}
-              <div className="content-section process-section">
-                <h2 className="section-title">Our Process</h2>
-                <div className="process-steps">
-                  {(service.process || [
-                    { title: 'Service History Review', description: 'Review of service history and factory schedule' },
-                    { title: 'Factory Specification', description: 'All maintenance tasks performed to factory specification' },
-                    { title: 'Genuine Parts & Oil', description: 'Use of Mercedes-Benz genuine oil and parts' },
-                    { title: 'Records Update', description: 'Update of your vehicle\'s service records and indicator reset' },
-                    { title: 'Technician Report', description: 'Technician report with maintenance recommendations' },
-                  ]).map((step, idx) => (
-                    <div className="process-step" key={idx}>
-                      <div className="step-number">{idx + 1}</div>
-                      <div className="step-content">
-                        <h4>{step.title}</h4>
-                        {step.description && <p>{step.description}</p>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
