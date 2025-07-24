@@ -4057,8 +4057,11 @@ body.no-scroll.menu-open::after {
         }
         
         .map-info-overlay {
-            position: static;
-            margin-bottom: 1rem;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            margin-bottom: 0;
             padding: 1rem;
             border-radius: 8px;
         }
