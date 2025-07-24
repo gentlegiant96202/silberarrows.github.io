@@ -101,7 +101,7 @@ export default function RootLayout({
           {children}
         </SmoothScrollProvider>
 
-        {/* Production-Ready Contact Tracking */}
+        {/* Production Contact Tracking */}
         <Script
           id="contact-tracking-production"
           strategy="afterInteractive"
@@ -113,188 +113,98 @@ export default function RootLayout({
                 const checkGA4 = () => {
                   attempts++;
                   if (typeof gtag !== 'undefined' && window.dataLayer) {
-                    console.log('✅ GA4 ready after', attempts, 'attempts');
                     callback();
                   } else if (attempts < maxAttempts) {
                     setTimeout(checkGA4, 500);
-                  } else {
-                    console.error('❌ GA4 failed to initialize after', maxAttempts, 'attempts');
                   }
                 };
                 checkGA4();
               }
               
-              // Enhanced tracking functions
+              // Tracking functions
               function trackPhoneCall() {
-                console.log('🎯 TRACKING: Phone call clicked');
-                
-                // Send to GA4 directly
                 if (typeof gtag !== 'undefined') {
                   gtag('event', 'phone_call', {
-                    event_category: 'contact',
-                    event_label: 'phone_click',
+                    event_category: 'engagement',
+                    event_label: 'contact_method',
                     value: 1
                   });
-                  console.log('✅ Phone event → GA4');
-                } else {
-                  console.error('❌ gtag not available for phone tracking');
                 }
                 
-                // Send to GTM dataLayer
                 if (window.dataLayer) {
                   window.dataLayer.push({
                     event: 'phone_call',
-                    event_category: 'contact',
-                    event_label: 'phone_click',
-                    value: 1,
-                    timestamp: new Date().toISOString()
+                    event_category: 'engagement',
+                    event_label: 'contact_method',
+                    value: 1
                   });
-                  console.log('✅ Phone event → GTM dataLayer');
-                } else {
-                  console.error('❌ dataLayer not available for phone tracking');
                 }
               }
               
               function trackWhatsAppClick() {
-                console.log('🎯 TRACKING: WhatsApp clicked');
-                
-                // Send to GA4 directly
                 if (typeof gtag !== 'undefined') {
                   gtag('event', 'whatsapp_click', {
-                    event_category: 'contact',
-                    event_label: 'whatsapp_click',
+                    event_category: 'engagement', 
+                    event_label: 'contact_method',
                     value: 1
                   });
-                  console.log('✅ WhatsApp event → GA4');
-                } else {
-                  console.error('❌ gtag not available for WhatsApp tracking');
                 }
                 
-                // Send to GTM dataLayer
                 if (window.dataLayer) {
                   window.dataLayer.push({
                     event: 'whatsapp_click',
-                    event_category: 'contact',
-                    event_label: 'whatsapp_click',
-                    value: 1,
-                    timestamp: new Date().toISOString()
+                    event_category: 'engagement',
+                    event_label: 'contact_method', 
+                    value: 1
                   });
-                  console.log('✅ WhatsApp event → GTM dataLayer');
-                } else {
-                  console.error('❌ dataLayer not available for WhatsApp tracking');
                 }
               }
               
-              // Debug button for production testing
-              function addProductionDebugButton() {
-                const debugBtn = document.createElement('button');
-                debugBtn.innerHTML = '🧪 Test Events';
-                debugBtn.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 9999; background: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);';
-                
-                debugBtn.onclick = function() {
-                  console.log('🧪 MANUAL TEST: Sending test events...');
-                  trackPhoneCall();
-                  setTimeout(() => trackWhatsAppClick(), 1000);
-                  
-                  // Show status
-                  debugBtn.innerHTML = '✅ Events Sent';
-                  debugBtn.style.background = '#007bff';
-                  setTimeout(() => {
-                    debugBtn.innerHTML = '🧪 Test Events';
-                    debugBtn.style.background = '#28a745';
-                  }, 3000);
-                };
-                
-                document.body.appendChild(debugBtn);
-                console.log('🧪 Production debug button added');
-              }
-              
-              // Initialize contact tracking
-              function initContactTracking() {
-                console.log('🚀 Initializing contact tracking...');
-                
-                // WhatsApp prefilled message
-                const whatsappMessage = encodeURIComponent("Hi Team SilberArrows, I would like to get my Mercedes-Benz serviced!");
-                
+              // Initialize tracking when GA4 is ready
+              waitForGA4(() => {
                 // Find and enhance phone links
                 const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-                phoneLinks.forEach((link, index) => {
-                  link.removeEventListener('click', trackPhoneCall);
-                  link.addEventListener('click', function(e) {
-                    console.log('📞 Phone link #' + (index + 1) + ' clicked: ' + link.href);
-                    trackPhoneCall();
-                  });
+                phoneLinks.forEach((link) => {
+                  link.addEventListener('click', trackPhoneCall);
                 });
                 
                 // Find and enhance WhatsApp links
-                const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"], a[href*="api.whatsapp"]');
-                whatsappLinks.forEach((link, index) => {
-                  // Update href with prefilled message
-                  const currentHref = link.getAttribute('href');
-                  if (currentHref && currentHref.includes('wa.me')) {
-                    const phoneNumber = currentHref.match(/wa\\.me\\/([0-9]+)/);
-                    if (phoneNumber) {
-                      const newHref = 'https://wa.me/' + phoneNumber[1] + '?text=' + whatsappMessage;
-                      link.setAttribute('href', newHref);
-                      console.log('💬 WhatsApp link #' + (index + 1) + ' updated with prefilled message');
-                    }
+                const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+                whatsappLinks.forEach((link) => {
+                  // Update href with prefilled message if needed
+                  if (!link.href.includes('text=')) {
+                    const prefillMessage = encodeURIComponent('Hi Team SilberArrows, I would like to get my Mercedes-Benz serviced!');
+                    const separator = link.href.includes('?') ? '&' : '?';
+                    link.href = link.href + separator + 'text=' + prefillMessage;
                   }
                   
-                  link.removeEventListener('click', trackWhatsAppClick);
-                  link.addEventListener('click', function(e) {
-                    console.log('💬 WhatsApp link #' + (index + 1) + ' clicked: ' + link.href);
-                    trackWhatsAppClick();
-                  });
+                  link.addEventListener('click', trackWhatsAppClick);
                 });
-                
-                console.log('✅ Contact tracking active:', {
-                  phoneLinks: phoneLinks.length,
-                  whatsappLinks: whatsappLinks.length,
-                  domain: window.location.hostname
-                });
-                
-                // Add debug button
-                addProductionDebugButton();
-              }
-              
-              // Initialize when GA4 is ready
-              waitForGA4(() => {
-                // Initialize tracking
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', initContactTracking);
-                } else {
-                  initContactTracking();
-                }
-                
-                // Re-initialize on navigation
-                let lastUrl = location.href;
-                new MutationObserver(() => {
-                  const url = location.href;
-                  if (url !== lastUrl) {
-                    lastUrl = url;
-                    console.log('🔄 Navigation detected, reinitializing...');
-                    setTimeout(initContactTracking, 200);
-                  }
-                }).observe(document, { subtree: true, childList: true });
               });
               
-              // Global debug functions
-              window.debugTracking = {
-                testPhone: trackPhoneCall,
-                testWhatsApp: trackWhatsAppClick,
-                reinit: initContactTracking,
-                status: function() {
-                  console.log('📊 Tracking Status:', {
-                    gtag: typeof gtag !== 'undefined' ? '✅ Available' : '❌ Missing',
-                    dataLayer: window.dataLayer ? '✅ Available' : '❌ Missing',
-                    phoneLinks: document.querySelectorAll('a[href^="tel:"]').length,
-                    whatsappLinks: document.querySelectorAll('a[href*="wa.me"]').length
-                  });
+              // Re-initialize on navigation changes (SPA behavior)
+              let currentUrl = window.location.href;
+              const observer = new MutationObserver(() => {
+                if (window.location.href !== currentUrl) {
+                  currentUrl = window.location.href;
+                  setTimeout(() => waitForGA4(() => {
+                    // Re-run tracking setup for new page content
+                    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+                    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+                    phoneLinks.forEach(link => link.addEventListener('click', trackPhoneCall));
+                    whatsappLinks.forEach(link => {
+                      if (!link.href.includes('text=')) {
+                        const prefillMessage = encodeURIComponent('Hi Team SilberArrows, I would like to get my Mercedes-Benz serviced!');
+                        const separator = link.href.includes('?') ? '&' : '?';
+                        link.href = link.href + separator + 'text=' + prefillMessage;
+                      }
+                      link.addEventListener('click', trackWhatsAppClick);
+                    });
+                  }), 1000);
                 }
-              };
-              
-              console.log('🎯 Production tracking loaded! Check GA4 DebugView for events.');
-            `,
+              });
+              observer.observe(document.body, { childList: true, subtree: true });
+            `
           }}
         />
       </body>
