@@ -53,21 +53,21 @@ const services: Record<string, {
 }> = {
   'scheduled-maintenance': {
     title: 'Scheduled Maintenance – Service A & B',
-    description: "Regular servicing is essential to retain your vehicle&apos;s efficiency, safety, and long-term value. We follow official Mercedes-Benz service schedules using XENTRY Diagnosis and genuine parts to maintain optimal performance and full-service history integrity.",
+    description: "Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value. We follow official Mercedes-Benz service schedules using XENTRY Diagnosis and genuine parts to maintain optimal performance and full-service history integrity.",
     heroImg: 'maintenance-640.webp',
     process: [
       { title: 'Review of service history and factory schedule', description: '' },
       { title: 'All maintenance tasks performed to factory specification', description: '' },
       { title: 'Use of Mercedes-Benz genuine oil and parts', description: '' },
-      { title: 'Update of your vehicle&apos;s service records and indicator reset', description: '' },
+      { title: "Update of your vehicle's service records and indicator reset", description: '' },
       { title: 'Technician report with maintenance recommendations', description: '' }
     ]
   },
   'brake-service': {
     title: 'Brake Service & Repair',
-    description: 'Your Mercedes-Benz braking system is critical to safety and performance. We conduct comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts. Whether it&apos;s routine pad replacement or complex hydraulic repairs, we ensure optimal braking performance and peace of mind, without compromising factory standards.',
+    description: "Your Mercedes-Benz braking system is critical to safety and performance. We conduct comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts. Whether it's routine pad replacement or complex hydraulic repairs, we ensure optimal braking performance and peace of mind, without compromising factory standards.",
     heroImg: 'brake-service-640.webp',
-    featuresTitle: 'What&apos;s Included',
+    featuresTitle: "What's Included",
     features: [
       'Brake pad and disc replacement',
       'Brake fluid flush and bleed',
@@ -273,10 +273,10 @@ export default async function ServiceDetailPage({ params }: Props) {
               <>
                 {/* Service Comparison Table - Full Width */}
                 <div className="content-section">
-                  <h2 className="section-title">{service.featuresTitle || 'What&apos;s Included'}</h2>
+                  <h2 className="section-title">{service.featuresTitle || "What's Included"}</h2>
                   <div className="service-comparison-table">
                     <div className="service-table-header">
-                      <div className="service-feature-column-header">What&apos;s Included</div>
+                      <div className="service-feature-column-header">What's Included</div>
                       <div className="service-package-column">
                         <div className="service-package-name">Service A</div>
                         <div className="service-package-description">Minor Service</div>
@@ -423,7 +423,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     <Link href="/services/scheduled-maintenance" className="related-service-card">
                       <div className="related-card-content">
                         <h3>Scheduled Maintenance – Service A & B</h3>
-                        <p>Regular servicing is essential to retain your vehicle&apos;s efficiency, safety, and long-term value.</p>
+                        <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
                       </div>
                     </Link>
                     
@@ -453,7 +453,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     <Link href="/services/scheduled-maintenance" className="related-service-card">
                       <div className="related-card-content">
                         <h3>Scheduled Maintenance – Service A & B</h3>
-                        <p>Regular servicing is essential to retain your vehicle&apos;s efficiency, safety, and long-term value.</p>
+                        <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
                       </div>
                     </Link>
                     
