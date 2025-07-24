@@ -60,16 +60,17 @@ export default function ContactPage() {
               {/* Map Column */}
               <div className="contact-map">
                 <div className="map-container">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3611.695183028338!2d55.2304157!3d25.1459942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f697d841a7417%3A0xa125c523dd3c7699!2sSilberArrows%20-%20Mercedes-Benz%20Sales%2C%20Service%20%26%20Lease!5e0!3m2!1sen!2sae!4v1752738482020!5m2!1sen!2sae"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
+                  <img
+                    src="/assets/images/al-manara-location.webp"
+                    alt="SilberArrows Mercedes-Benz Service Location - Al Manara Street, Al Quoz, Dubai"
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'cover',
+                      border: 0 
+                    }}
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Silver Arrows Mercedes-Benz Service Location"
-                  ></iframe>
+                  />
                   <div className="map-info-overlay">
                     <div className="overlay-content">
                       <div className="location-icon"><Icon name="location-dot" size={24} variant="gold" /></div>
