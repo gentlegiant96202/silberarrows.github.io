@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Icon from '../../../components/Icon';
+import ServiceSchema from '../../../components/ServiceSchema';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -242,6 +243,11 @@ export default async function ServiceDetailPage({ params }: Props) {
   if (service.features || service.process) {
     return (
       <>
+        <ServiceSchema 
+          serviceName={service.title}
+          serviceDescription={service.description}
+          serviceSlug={slug}
+        />
         <Header />
         <main>
           {/* Compact Hero */}
@@ -342,6 +348,11 @@ export default async function ServiceDetailPage({ params }: Props) {
   // Generic layout for other services
   return (
     <>
+      <ServiceSchema 
+        serviceName={service.title}
+        serviceDescription={service.description}
+        serviceSlug={slug}
+      />
       <Header />
       <main>
         {/* Hero */}

@@ -8,6 +8,8 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import TeamSection from '../components/TeamSection';
 import ServiceContracts from '../components/ServiceContracts';
 import ContactSection from '../components/ContactSection';
+import LocalBusinessSchema from '../components/LocalBusinessSchema';
+import OrganizationSchema from '../components/OrganizationSchema';
 
 export const metadata: Metadata = {
   title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai | Al Quoz',
@@ -32,6 +34,8 @@ export default function HomePage() {
   // Services navigation is now handled by main-optimized.js
   return (
     <>
+      <LocalBusinessSchema />
+      <OrganizationSchema />
       <Header />
       <main>
         {/* Hero Section - React Component */}

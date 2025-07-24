@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Icon from '../../components/Icon';
+import LocalBusinessSchema from '../../components/LocalBusinessSchema';
 
 export const metadata: Metadata = {
   title: 'Contact SilberArrows | Mercedes-Benz Service Dubai | Al Manara Street',
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <LocalBusinessSchema />
       <Header />
       <main>
         {/* Contact Hero Section */}
