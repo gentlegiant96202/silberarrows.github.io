@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       <header>
         <div className="logo-container">
           <Link href="/">
-            <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" />
+            <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" width="160" height="54" />
           </Link>
         </div>
         <div className="header-right">
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
         <div className="mobile-nav-header">
           <div className="logo-container">
             <Link href="/">
-              <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" />
+              <img src="/assets/icons/logo.svg" alt="Silber Arrows Logo" className="logo" width="160" height="54" />
             </Link>
           </div>
           <button

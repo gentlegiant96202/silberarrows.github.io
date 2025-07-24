@@ -18,7 +18,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member }) => {
   return (
     <div className="team-member">
       <div className="team-member-image">
-        <img src={member.image} alt={member.name} loading="lazy" />
+        <img src={member.image} alt={member.name} loading="lazy" width="400" height="400" />
         <div className="team-overlay">
           <div className="team-overlay-content">
             <p>{member.description}</p>

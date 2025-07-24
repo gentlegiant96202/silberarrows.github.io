@@ -28,7 +28,7 @@ export function HeroSection() {
     <section className={`hero${heroLoaded ? ' hero-loaded' : ''}`}>
       <div className="hero-content">
         <div className="hero-logo">
-          <img src="/assets/icons/silberarrows-logo.png" alt="Silver Arrows Logo" className="hero-logo-img" />
+          <img src="/assets/icons/silberarrows-logo.png" alt="Silver Arrows Logo" className="hero-logo-img" width="300" height="90" />
         </div>
         <div className="hero-tagline">Exclusive Automotive Excellence</div>
         <h1 className="hero-title">Independent<br /><span>Mercedes-Benz</span><br />Service Centre<br />in Dubai</h1>

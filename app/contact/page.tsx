@@ -77,6 +77,8 @@ export default function ContactPage() {
                   <img
                     src="/assets/images/al-manara-location.webp"
                     alt="SilberArrows Mercedes-Benz Service Location - Al Manara Street, Al Quoz, Dubai"
+                    width="800"
+                    height="600"
                     style={{ 
                       width: '100%', 
                       height: '100%', 

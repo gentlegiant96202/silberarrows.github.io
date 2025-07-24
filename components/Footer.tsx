@@ -117,7 +117,7 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <div className="mobile-footer">
+      <div className="mobile-footer" style={{ height: '80px', minHeight: '80px' }}>
         <div className="footer-content">
           <div className="footer-actions">
             <a href="tel:+97143805515" className="footer-action">
@@ -131,6 +131,12 @@ const Footer: React.FC = () => {
               className="spin-to-win-btn" 
               id="spinToWinBtn"
               disabled={isAnimating}
+              style={{
+                width: '70px',
+                height: '70px',
+                flexShrink: 0,
+                position: 'relative'
+              }}
             >
               <div className="sparkle"></div>
               <div className="sparkle"></div>
