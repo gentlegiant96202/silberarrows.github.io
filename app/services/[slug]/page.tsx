@@ -276,7 +276,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   <h2 className="section-title">{service.featuresTitle || "What's Included"}</h2>
                   <div className="service-comparison-table">
                     <div className="service-table-header">
-                      <div className="service-feature-column-header">What's Included</div>
+                      <div className="service-feature-column-header">{"What's Included"}</div>
                       <div className="service-package-column">
                         <div className="service-package-name">Service A</div>
                         <div className="service-package-description">Minor Service</div>
@@ -423,7 +423,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     <Link href="/services/scheduled-maintenance" className="related-service-card">
                       <div className="related-card-content">
                         <h3>Scheduled Maintenance – Service A & B</h3>
-                        <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
+                        <p>{"Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value."}</p>
                       </div>
                     </Link>
                     
@@ -453,7 +453,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     <Link href="/services/scheduled-maintenance" className="related-service-card">
                       <div className="related-card-content">
                         <h3>Scheduled Maintenance – Service A & B</h3>
-                        <p>Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.</p>
+                        <p>{"Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value."}</p>
                       </div>
                     </Link>
                     
