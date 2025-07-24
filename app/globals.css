@@ -4586,7 +4586,7 @@ body.no-scroll.menu-open::after {
     }
 
     .step-content {
-        text-align: center;
+        text-align: left;
         width: 100%;
     }
 
@@ -4596,7 +4596,6 @@ body.no-scroll.menu-open::after {
         font-weight: 600;
         color: var(--text-light);
         margin-bottom: 0.5rem;
-        text-transform: uppercase;
         letter-spacing: 0.3px;
     }
 
@@ -5057,9 +5056,7 @@ body.no-scroll.menu-open::after {
             width: 100%;
         }
 
-        .step-content h4 {
-            white-space: nowrap;
-        }
+
 
         .step-number {
             margin-bottom: 0;
