@@ -268,7 +268,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         console.log('📤 Sending webhook notification...');
         const webhookData = {
           data: {
-            name: wheelState.userName,
+            name: wheelState.userName.toUpperCase(),
             mobile: wheelState.userPhoneFull,
             prize: `${wheelState.currentPrize} AED Gift Card`
           }
