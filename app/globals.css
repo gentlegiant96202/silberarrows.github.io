@@ -3390,11 +3390,11 @@ body.no-scroll.menu-open::after {
         }
 
         .hero-action i {
-            font-size: 14px;        /* smaller icons */
+            font-size: 10px;        /* much smaller icons */
         }
 
         .hero-contact-actions .hero-action:first-child i[class*="fa-phone"] {
-            font-size: 12px;        /* reduce phone icon to match WhatsApp */
+            font-size: 10px;        /* same size as WhatsApp */
         }
     }
 
@@ -3412,11 +3412,11 @@ body.no-scroll.menu-open::after {
         }
 
         .hero-action i {
-            font-size: 12px;        /* smaller icons */
+            font-size: 8px;         /* much smaller icons */
         }
 
         .hero-contact-actions .hero-action:first-child i[class*="fa-phone"] {
-            font-size: 10px;        /* reduce phone icon to match WhatsApp */
+            font-size: 8px;         /* same size as WhatsApp */
         }
     }
 

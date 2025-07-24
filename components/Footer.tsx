@@ -15,12 +15,7 @@ const Footer: React.FC = () => {
     // Don't trigger if already animating
     if (isAnimating) return;
     
-    // Hide the original button immediately to prevent double visibility
-    if (buttonRef.current) {
-      buttonRef.current.style.visibility = 'hidden';
-    }
-    
-    // Start the cinematic animation
+    // Start the cinematic animation (don't hide original button yet)
     startButtonToModalAnimation();
   };
 
@@ -68,8 +63,14 @@ const Footer: React.FC = () => {
     // Modal structure: padding-top(20) + title(~25) + title-margin(18) + game-display(136) + wheel-margin(5) + wheel-radius
     const wheelCenterY = 20 + 25 + 18 + 136 + 5 + (wheelSize / 2);
     
-    // Start animation after brief delay - only move up, no size change
+    // Start animation after brief delay - hide original and move clone up
     setTimeout(() => {
+      // Now hide the original button just as the clone starts moving
+      if (buttonRef.current) {
+        buttonRef.current.style.visibility = 'hidden';
+      }
+      
+      // Start clone animation
       buttonClone.style.top = `${wheelCenterY - buttonRect.height/2}px`;
     }, 50);
     
