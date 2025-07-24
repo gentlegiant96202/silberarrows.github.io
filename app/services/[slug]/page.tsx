@@ -1,8 +1,43 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Icon from '../../../components/Icon';
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services[slug];
+  
+  if (!service) {
+    return {
+      title: 'Service Not Found | SilberArrows Dubai',
+      description: 'The requested Mercedes-Benz service was not found.'
+    };
+  }
+
+  const serviceKeywords: Record<string, string> = {
+    'scheduled-maintenance': 'Mercedes scheduled maintenance Dubai, Service A Service B Dubai, Mercedes maintenance Al Quoz, official Mercedes service schedule',
+    'diagnostics': 'Mercedes diagnostics Dubai, XENTRY diagnosis, Mercedes computer diagnostics, fault code reading Dubai, Mercedes ECU programming',
+    'brake-service': 'Mercedes brake service Dubai, brake pad replacement, brake disc service, Mercedes brake repair Al Quoz, brake system maintenance',
+    'air-conditioning': 'Mercedes A/C service Dubai, air conditioning repair, Mercedes climate control, A/C gas refill Dubai, cooling system service',
+    'engine-service': 'Mercedes engine service Dubai, engine repair, Mercedes engine diagnostics, engine oil service, timing chain service Dubai',
+    'suspension-repair': 'Mercedes suspension repair Dubai, shock absorber replacement, strut service, Mercedes suspension Dubai, air suspension repair',
+    'detailing': 'Mercedes detailing Dubai, car detailing Al Quoz, Mercedes cleaning service, paint protection, interior detailing Dubai',
+    'tyres-wheels': 'Mercedes tyre service Dubai, wheel alignment, tyre replacement, Mercedes rim repair, wheel balancing Dubai'
+  };
+
+  return {
+    title: `${service.title} | SilberArrows Mercedes Service Dubai`,
+    description: `Professional ${service.title.toLowerCase()} for Mercedes-Benz in Dubai. ${service.description.substring(0, 120)}... Expert service at Al Quoz.`,
+    keywords: serviceKeywords[slug] || `Mercedes ${slug} Dubai, Mercedes service Al Quoz, SilberArrows`,
+    openGraph: {
+      title: `${service.title} | SilberArrows Dubai`,
+      description: `Professional ${service.title.toLowerCase()} for Mercedes-Benz vehicles in Dubai.`,
+      url: `https://silberarrows.ae/services/${slug}`,
+    },
+  };
+}
 
 // Simple data map (can be expanded later or fetched from CMS)
 const services: Record<string, {

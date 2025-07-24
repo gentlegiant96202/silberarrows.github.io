@@ -1,7 +1,19 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Icon from '../../components/Icon';
+
+export const metadata: Metadata = {
+  title: 'Contact SilberArrows | Mercedes-Benz Service Dubai | Al Manara Street',
+  description: 'Visit SilberArrows Mercedes-Benz service center in Al Quoz, Dubai. Professional Mercedes repair & maintenance. Call +971 4 380 5515 or WhatsApp for expert service.',
+  keywords: 'SilberArrows contact, Mercedes service Dubai contact, Al Manara Street garage, Mercedes repair Al Quoz, Dubai Mercedes specialist contact',
+  openGraph: {
+    title: 'Contact SilberArrows | Mercedes-Benz Service Dubai',
+    description: 'Visit our Mercedes-Benz service center in Al Quoz, Dubai. Expert repair & maintenance services.',
+    url: 'https://silberarrows.ae/contact',
+  },
+};
 
 export default function ContactPage() {
   return (

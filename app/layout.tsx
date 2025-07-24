@@ -3,8 +3,26 @@ import './globals.css'
 import SmoothScrollProvider from '../components/SmoothScrollProvider'
 
 export const metadata: Metadata = {
-  title: 'Silver Arrows | Premium Mercedes-Benz Service Center Dubai',
-  description: 'Dubai\'s premier independent Mercedes-Benz service center. Expert maintenance, repair, and diagnostics exclusively for Mercedes-Benz vehicles since 2011.',
+  title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai | Al Quoz',
+  description: 'Dubai\'s trusted independent Mercedes-Benz specialists. Expert service, maintenance & repair in Al Quoz. Professional diagnostics, genuine parts, factory standards since 2011.',
+  keywords: 'Mercedes-Benz service Dubai, Mercedes repair Dubai, independent Mercedes service, Mercedes maintenance Al Quoz, SilberArrows, Mercedes specialist Dubai',
+  authors: [{ name: 'SilberArrows' }],
+  creator: 'SilberArrows',
+  publisher: 'SilberArrows',
+  robots: 'index, follow',
+  openGraph: {
+    title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai',
+    description: 'Dubai\'s trusted independent Mercedes-Benz specialists in Al Quoz. Expert service, maintenance & repair with genuine parts.',
+    url: 'https://silberarrows.ae',
+    siteName: 'SilberArrows',
+    locale: 'en_AE',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai',
+    description: 'Dubai\'s trusted independent Mercedes-Benz specialists in Al Quoz.',
+  },
 }
 
 export default function RootLayout({
