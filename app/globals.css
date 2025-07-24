@@ -4719,6 +4719,11 @@ body.no-scroll.menu-open::after {
             gap: 0.5rem;
         }
 
+        .contract-pricing-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
         .process-step {
             max-width: 140px;
         }
@@ -4855,6 +4860,11 @@ body.no-scroll.menu-open::after {
         .pricing-cards {
             grid-template-columns: 1fr;
             gap: 0.75rem;
+        }
+
+        .contract-pricing-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
         }
 
         .price-card {
@@ -5369,6 +5379,13 @@ body.no-scroll.menu-open::after {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .contract-pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
         margin-bottom: 1.25rem;
     }
 
