@@ -82,6 +82,26 @@ html {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+}
+
+/* Enhanced sticky header with glass morphism */
+@media (min-width: 769px) {
+    #header-placeholder {
+        background: rgba(18, 18, 18, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Mobile header - non-sticky */
+@media (max-width: 768px) {
+    #header-placeholder {
+        position: relative;
+        background: var(--glass-bg);
+    }
 }
 
 body.no-scroll {
@@ -97,11 +117,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 4%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+    background: transparent; /* Let the placeholder handle the background */
     height: 80px;
 }
 

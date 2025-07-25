@@ -20,15 +20,7 @@ const Header: React.FC = () => {
   }, [mobileOpen]);
 
   return (
-    <div id="header-placeholder" style={{
-      position: 'sticky',
-      top: 0,
-      zIndex: 1000,
-      height: '80px',
-      background: 'rgba(18, 18, 18, 0.8)', // darker overlay
-      backdropFilter: 'blur(30px)', // stronger blur
-      borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-    }}>
+    <div id="header-placeholder">
       <header>
         <div className="logo-container">
           <Link href="/">
