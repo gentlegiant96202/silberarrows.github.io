@@ -6,7 +6,7 @@ import Footer from '../../components/Footer';
 import ServicesSection from '../../components/ServicesSection';
 
 export const metadata: Metadata = {
-  title: 'Mercedes-Benz Services Dubai | SilberArrows Al Quoz | Expert Maintenance',
+  title: 'Mercedes-Benz Services Dubai | SilberArrows Al Quoz',
   description: 'Complete Mercedes-Benz services in Dubai: maintenance, diagnostics, brakes, A/C, engine & suspension. Expert specialists at Al Quoz.',
   keywords: 'Mercedes-Benz services Dubai, Mercedes maintenance Dubai, Mercedes diagnostics, Mercedes brake service Dubai, Mercedes A/C repair, engine service Al Quoz, suspension repair',
   openGraph: {

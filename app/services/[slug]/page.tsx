@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : service.description;
   
   return {
-    title: `${service.title} | SilberArrows Mercedes Service Dubai`,
+    title: `${service.title} | SilberArrows Dubai`,
     description: `${service.title} for Mercedes-Benz in Dubai. ${shortDesc} Expert service at Al Quoz.`,
     keywords: serviceKeywords[slug] || `Mercedes ${slug} Dubai, Mercedes service Al Quoz, SilberArrows`,
     openGraph: {
