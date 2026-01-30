@@ -4816,9 +4816,11 @@ body.no-scroll.menu-open::after {
          text-decoration: none;
          font-weight: 400;
          font-size: 17px;
-         transition: color 0.3s ease;
+         transition: all 0.3s ease;
          text-transform: uppercase;
          letter-spacing: 0.5px;
+         position: relative;
+         padding: 8px 0;
          /* Remove all browser default link styling */
          -webkit-tap-highlight-color: transparent;
          outline: none;
@@ -4826,8 +4828,23 @@ body.no-scroll.menu-open::after {
          background: none;
      }
      
+     .nav-link::after {
+         content: '';
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         width: 0;
+         height: 2px;
+         background: var(--gold);
+         transition: width 0.3s ease;
+     }
+     
      .nav-link:hover {
          color: var(--gold);
+     }
+     
+     .nav-link:hover::after {
+         width: 100%;
      }
      
      .nav-link:focus,
@@ -4835,6 +4852,7 @@ body.no-scroll.menu-open::after {
          color: var(--gold);
          outline: none;
          background: none;
+         transform: scale(0.95);
      }
      
      /* Remove blue flash on all navigation links */
