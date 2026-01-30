@@ -2539,7 +2539,7 @@ body.no-scroll.menu-open::after {
             border-radius: 0;
             margin: 0;
             text-align: center;
-            padding: 80px 5% 50px;
+            padding: 50px 5% 50px;
             background: none;
         }
 
@@ -2694,7 +2694,7 @@ body.no-scroll.menu-open::after {
             border-radius: 0;
             margin: 0;
             text-align: center;
-            padding: 80px 5% 50px; /* Fixed top padding for mobile header */
+            padding: 40px 5% 50px; /* Reduced top padding to move content up */
             background: none;
         }
 
@@ -2714,7 +2714,7 @@ body.no-scroll.menu-open::after {
         }
 
         .hero-content {
-            margin-top: -15px;
+            margin-top: -20px;
             text-align: center;
             align-items: center;
         }
