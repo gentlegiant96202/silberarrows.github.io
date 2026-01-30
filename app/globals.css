@@ -228,9 +228,9 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 6px;
-    width: 32px;
-    height: 32px;
+    gap: 7px;
+    width: 28px;
+    height: 42px; /* Match logo height */
     padding: 0;
     background: transparent;
     border: none;
@@ -241,40 +241,11 @@ header {
 /* Plain hamburger - three horizontal lines */
 .mobile-nav-toggle span {
     display: block;
-    width: 24px;
+    width: 28px;
     height: 2px;
     background: var(--light);
     border-radius: 2px;
     transition: all 0.3s ease;
-    transform-origin: center;
-}
-
-/* Hover state - animate to X */
-.mobile-nav-toggle:hover span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.mobile-nav-toggle:hover span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-}
-
-.mobile-nav-toggle:hover span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
-/* Active state (menu open) - stay as X */
-.mobile-nav-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.mobile-nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-}
-
-.mobile-nav-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
 }
 
 .mobile-nav-container {
@@ -333,8 +304,8 @@ header {
     background: none;
     border: none;
     padding: 0;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     position: relative;
     cursor: pointer;
     z-index: 2100;
@@ -343,6 +314,15 @@ header {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mobile-nav-container.active .mobile-nav-close {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    transition-delay: 0.2s;
 }
 
 .mobile-nav-close span {
@@ -355,7 +335,7 @@ header {
     opacity: 1;
     left: 0;
     top: 50%;
-    transition: .25s ease-in-out;
+    transition: all 0.3s ease;
 }
 
 .mobile-nav-close span:nth-child(1) {
@@ -364,6 +344,10 @@ header {
 
 .mobile-nav-close span:nth-child(2) {
     transform: rotate(-45deg);
+}
+
+.mobile-nav-close:hover {
+    transform: rotate(90deg) scale(1.1);
 }
 
 .mobile-nav-close:hover span {
@@ -2695,13 +2679,13 @@ body.no-scroll.menu-open::after {
         /* Hamburger - visible on mobile, matches logo height */
         .mobile-nav-toggle {
             display: flex !important;
-            width: 32px;
-            height: 32px;
-            gap: 6px;
+            width: 28px;
+            height: 42px;
+            gap: 7px;
         }
 
         .mobile-nav-toggle span {
-            width: 24px;
+            width: 28px;
             height: 2px;
         }
 
@@ -3896,13 +3880,13 @@ body.no-scroll.menu-open::after {
 
         .mobile-nav-toggle {
             display: flex !important;
-            width: 28px;
-            height: 28px;
-            gap: 5px;
+            width: 24px;
+            height: 38px;
+            gap: 6px;
         }
 
         .mobile-nav-toggle span {
-            width: 20px;
+            width: 24px;
             height: 2px;
         }
 
