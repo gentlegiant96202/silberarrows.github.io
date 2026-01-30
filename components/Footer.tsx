@@ -1,35 +1,13 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Icon from './Icon';
 import SpinWheel from './SpinWheel';
-
-function getBusinessStatus(): { isOpen: boolean; message: string } {
-  const now = new Date();
-  const dubaiTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Dubai' }));
-  const day = dubaiTime.getDay();
-  const hour = dubaiTime.getHours();
-  
-  const isWorkDay = day >= 1 && day <= 6;
-  const isWorkHours = hour >= 8 && hour < 18;
-  const isOpen = isWorkDay && isWorkHours;
-  
-  return { isOpen, message: isOpen ? 'Open Now' : 'Closed' };
-}
 
 const Footer: React.FC = () => {
   const [isSpinWheelOpen, setIsSpinWheelOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [originalButtonRect, setOriginalButtonRect] = useState<DOMRect | null>(null);
-  const [businessStatus, setBusinessStatus] = useState({ isOpen: true, message: 'Open Now' });
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    setBusinessStatus(getBusinessStatus());
-    const interval = setInterval(() => {
-      setBusinessStatus(getBusinessStatus());
-    }, 60000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleSpinClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -142,15 +120,8 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <div className="mobile-footer" style={{ height: '100px', minHeight: '100px' }}>
+      <div className="mobile-footer" style={{ height: '85px', minHeight: '85px' }}>
         <div className="footer-content">
-          <div className="footer-status-row">
-            <span className={`footer-status ${businessStatus.isOpen ? 'open' : 'closed'}`}>
-              <span className="status-dot"></span>
-              {businessStatus.message}
-            </span>
-            <span className="footer-hours">Call 8AM-6PM · WhatsApp 24/7</span>
-          </div>
           <div className="footer-actions">
             <a href="tel:+97143805515" className="footer-action">
               <Icon name="phone" size={20} variant="white" />
