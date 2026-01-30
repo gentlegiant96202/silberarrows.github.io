@@ -941,13 +941,14 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           position: absolute;
           top: 190px;
           left: 50%;
-          transform: translateX(-50%) ${showExpandableForm ? 'translateY(0) scale(1)' : 'translateY(-20px) scale(0.98)'};
+          transform: translateX(-50%) ${showExpandableForm ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.95)'};
           z-index: 20;
           max-height: ${showExpandableForm ? '500px' : '0'};
           opacity: ${showExpandableForm ? '1' : '0'};
           visibility: ${showExpandableForm ? 'visible' : 'hidden'};
           overflow: hidden;
-          transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.5s ease, padding 0.4s ease;
+          transition: opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out;
+          transition-delay: ${showExpandableForm ? '0.15s' : '0s'};
           width: ${isMobile ? '320px' : '380px'};
           max-width: 90%;
           background: 
@@ -1180,7 +1181,8 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           margin-bottom: 20px;
           justify-content: center;
           max-width: 100%;
-          min-height: 70px;
+          min-height: 55px;
+          height: 55px;
         }
 
         .choice-question {
@@ -1249,7 +1251,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           letter-spacing: 1.2px;
           border-radius: 30px;
           cursor: pointer;
-          transition: all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+          transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
           box-shadow: 
             0 5px 15px rgba(156, 163, 175, 0.5),
             inset 0 2px 4px rgba(243, 244, 246, 0.3);
@@ -1257,6 +1259,12 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
           position: relative;
           overflow: hidden;
+        }
+
+        .spin-button.fading-out {
+          opacity: 0 !important;
+          transform: scale(0.9) !important;
+          pointer-events: none !important;
         }
 
         .spin-button::before {
@@ -1268,10 +1276,16 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           bottom: -2px;
           background: linear-gradient(45deg, #9CA3AF, #D1D5DB, #9CA3AF);
           background-size: 200% 200%;
-          animation: buttonGlow 3s ease-in-out infinite;
+          animation: buttonGlow 4s ease-in-out infinite;
           border-radius: 52px;
           z-index: -1;
-          opacity: 0.6;
+          opacity: 0.4;
+          transition: opacity 0.4s ease;
+        }
+
+        .spin-button.fading-out::before {
+          opacity: 0;
+          animation: none;
         }
 
         @keyframes buttonGlow {
@@ -1479,16 +1493,11 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         
         <div className="action-buttons">
             {!wheelState.currentPrize ? (
-              // Before any prize is won - show spin button with fade effect when form shows
+              // Before any prize is won - show spin button with smooth fade when form shows
               <button
-                className={`spin-button ${showExpandableForm ? 'hidden-button' : ''}`}
+                className={`spin-button ${showExpandableForm ? 'fading-out' : ''}`}
                 onClick={spinWheel}
                 disabled={!canSpin || showExpandableForm}
-                style={{ 
-                  opacity: showExpandableForm ? 0 : 1,
-                  pointerEvents: showExpandableForm ? 'none' : 'auto',
-                  transform: showExpandableForm ? 'scale(0.95)' : 'scale(1)'
-                }}
               >
                 {wheelState.isSpinning 
                   ? 'SPINNING...' 
