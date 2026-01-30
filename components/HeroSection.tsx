@@ -3,9 +3,36 @@
 import { useState, useEffect } from 'react';
 import Icon from './Icon';
 
+// Check if business is currently open (Mon-Sat 8am-6pm Dubai time)
+function getBusinessStatus(): { isOpen: boolean; message: string } {
+  const now = new Date();
+  
+  // Convert to Dubai time (UTC+4)
+  const dubaiTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Dubai' }));
+  const day = dubaiTime.getDay(); // 0 = Sunday, 6 = Saturday
+  const hour = dubaiTime.getHours();
+  
+  // Sunday (0) is closed, Monday-Saturday (1-6) is open 8am-6pm
+  const isWorkDay = day >= 1 && day <= 6;
+  const isWorkHours = hour >= 8 && hour < 18;
+  const isOpen = isWorkDay && isWorkHours;
+  
+  if (isOpen) {
+    const closingHour = 18;
+    const hoursLeft = closingHour - hour;
+    if (hoursLeft <= 1) {
+      return { isOpen: true, message: 'Open Now · Closes Soon' };
+    }
+    return { isOpen: true, message: `Open Now · Closes ${closingHour > 12 ? closingHour - 12 : closingHour}PM` };
+  } else {
+    return { isOpen: false, message: 'Closed · We\'ll respond ASAP' };
+  }
+}
+
 export function HeroSection() {
   const [showContactActions, setShowContactActions] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [businessStatus, setBusinessStatus] = useState({ isOpen: true, message: 'Open Now' });
 
   useEffect(() => {
     // Preload the hero image
@@ -14,6 +41,16 @@ export function HeroSection() {
       setHeroLoaded(true);
     };
     img.src = '/assets/images/hero-bg-silver-optimized.avif';
+    
+    // Set business status
+    setBusinessStatus(getBusinessStatus());
+    
+    // Update status every minute
+    const interval = setInterval(() => {
+      setBusinessStatus(getBusinessStatus());
+    }, 60000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const handleQuoteClick = () => {
@@ -89,6 +126,30 @@ export function HeroSection() {
           <span className="divider"></span>
           <span className="rating-count">483 Reviews</span>
         </a>
+        
+        {/* Quick Stats */}
+        <div className="hero-quick-stats">
+          <div className="quick-stat">
+            <span className="stat-number">14+</span>
+            <span className="stat-label">Years Experience</span>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="quick-stat">
+            <span className="stat-number">5,000+</span>
+            <span className="stat-label">Vehicles Serviced</span>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="quick-stat">
+            <span className="stat-number">100%</span>
+            <span className="stat-label">Genuine Parts</span>
+          </div>
+        </div>
+        
+        {/* Working Hours Status */}
+        <div className={`hero-hours-status ${businessStatus.isOpen ? 'open' : 'closed'}`}>
+          <span className="status-dot"></span>
+          <span className="status-text">{businessStatus.message}</span>
+        </div>
       </div>
     </section>
   );

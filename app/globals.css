@@ -458,6 +458,32 @@ body.no-scroll.menu-open::after {
     overflow: hidden;
 }
 
+/* Subtle animated gradient overlay */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(156, 163, 175, 0.03) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(156, 163, 175, 0.02) 100%
+    );
+    background-size: 200% 200%;
+    animation: heroGradientShift 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes heroGradientShift {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+}
+
 .hero::before {
     content: "";
     position: absolute;
@@ -737,6 +763,85 @@ body.no-scroll.menu-open::after {
     height: 16px;
     background: rgba(255, 255, 255, 0.2);
     margin: 0 4px;
+}
+
+/* Hero Quick Stats */
+.hero-quick-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.quick-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quick-stat .stat-number {
+    font-family: var(--impact-font);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--light);
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.quick-stat .stat-label {
+    font-size: 11px;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Hero Working Hours Status */
+.hero-hours-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-hours-status .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.hero-hours-status.open .status-dot {
+    background: #10B981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.hero-hours-status.closed .status-dot {
+    background: #F59E0B;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.9); }
+}
+
+.hero-hours-status .status-text {
+    font-size: 12px;
+    color: var(--light);
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .hero-contact-actions {
@@ -2393,6 +2498,15 @@ body.no-scroll.menu-open::after {
             margin: 12px auto 0;
         }
 
+        .hero-quick-stats {
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .hero-hours-status {
+            margin: 12px auto 0;
+        }
+
         /* Keep feature cards in 2-col grid at tablet */
         .features-columns {
             display: grid;
@@ -2624,6 +2738,33 @@ body.no-scroll.menu-open::after {
 
         .hero-trust-badge {
             margin: 12px auto 0;
+        }
+
+        .hero-quick-stats {
+            justify-content: center;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .quick-stat .stat-number {
+            font-size: 20px;
+        }
+
+        .quick-stat .stat-label {
+            font-size: 10px;
+        }
+
+        .stat-divider {
+            height: 24px;
+        }
+
+        .hero-hours-status {
+            margin: 10px auto 0;
+            padding: 6px 12px;
+        }
+
+        .hero-hours-status .status-text {
+            font-size: 11px;
         }
     }
 
