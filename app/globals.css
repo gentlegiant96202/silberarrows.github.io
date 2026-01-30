@@ -608,13 +608,13 @@ body.no-scroll.menu-open::after {
 .hero-cta {
     font-family: var(--impact-font);
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     background: var(--gold-gradient);
     color: #121212;
-    padding: 15px 40px;
+    padding: 12px 40px 10px;
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
@@ -625,6 +625,42 @@ body.no-scroll.menu-open::after {
     border: none;
     cursor: pointer;
     min-width: 240px;
+}
+
+.hero-cta .cta-main-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Status inside CTA button */
+.hero-cta .cta-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.3px;
+    opacity: 0.85;
+}
+
+.hero-cta .cta-status .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.hero-cta .cta-status.open .status-dot {
+    background: #059669;
+    box-shadow: 0 0 4px rgba(5, 150, 105, 0.6);
+}
+
+.hero-cta .cta-status.closed .status-dot {
+    background: #D97706;
+    box-shadow: 0 0 4px rgba(217, 119, 6, 0.6);
 }
 
 .hero-cta .subtitle {
@@ -771,7 +807,7 @@ body.no-scroll.menu-open::after {
     align-items: center;
     gap: 16px;
     margin-top: 20px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .quick-stat {
@@ -2503,10 +2539,7 @@ body.no-scroll.menu-open::after {
         .hero-quick-stats {
             justify-content: center;
             margin-top: 16px;
-        }
-
-        .hero-hours-status {
-            margin: 12px auto 0;
+            flex-wrap: nowrap;
         }
 
         /* Keep feature cards in 2-col grid at tablet */
@@ -2744,29 +2777,21 @@ body.no-scroll.menu-open::after {
 
         .hero-quick-stats {
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             margin-top: 14px;
+            flex-wrap: nowrap;
         }
 
         .quick-stat .stat-number {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .quick-stat .stat-label {
-            font-size: 10px;
+            font-size: 9px;
         }
 
         .stat-divider {
-            height: 24px;
-        }
-
-        .hero-hours-status {
-            margin: 10px auto 0;
-            padding: 6px 12px;
-        }
-
-        .hero-hours-status .status-text {
-            font-size: 11px;
+            height: 22px;
         }
     }
 
@@ -3834,6 +3859,23 @@ body.no-scroll.menu-open::after {
             margin: 12px auto 0;
             font-size: 12px;
             padding: 8px 14px;
+        }
+
+        .hero-quick-stats {
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+
+        .quick-stat .stat-number {
+            font-size: 16px;
+        }
+
+        .quick-stat .stat-label {
+            font-size: 8px;
+        }
+
+        .stat-divider {
+            height: 20px;
         }
     }
 
