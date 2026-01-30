@@ -931,9 +931,9 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
             0 0 40px rgba(156, 163, 175, 0.6),
             0 15px 40px rgba(0, 0, 0, 0.8);
           animation: ${wheelState.allSpinsComplete ? 'none' : 'wheelGlow 2s ease-in-out infinite alternate'};
-          transition: filter 0.5s ease, opacity 0.5s ease;
+          transition: filter 0.4s ease, opacity 0.4s ease;
           ${wheelState.allSpinsComplete ? 'filter: grayscale(30%); opacity: 0.8;' : ''}
-          ${showExpandableForm ? 'filter: blur(3px) brightness(0.7);' : ''}
+          ${showExpandableForm ? 'filter: blur(2px) brightness(0.8);' : ''}
         }
 
         /* Expandable Form Section */
@@ -941,26 +941,25 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           position: absolute;
           top: 190px;
           left: 50%;
-          transform: translateX(-50%) ${showExpandableForm ? 'translateY(0)' : 'translateY(-30px)'};
+          transform: translateX(-50%) ${showExpandableForm ? 'translateY(0) scale(1)' : 'translateY(-20px) scale(0.98)'};
           z-index: 20;
           max-height: ${showExpandableForm ? '500px' : '0'};
           opacity: ${showExpandableForm ? '1' : '0'};
           visibility: ${showExpandableForm ? 'visible' : 'hidden'};
           overflow: hidden;
-          transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.5s ease, padding 0.4s ease;
           width: ${isMobile ? '320px' : '380px'};
           max-width: 90%;
           background: 
-            linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 42, 42, 0.95)),
-            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.15), rgba(0, 0, 0, 0.9));
-          border: 3px solid rgba(156, 163, 175, 0.6);
+            linear-gradient(145deg, rgba(26, 26, 26, 0.98), rgba(42, 42, 42, 0.98)),
+            radial-gradient(circle at 50% 50%, rgba(156, 163, 175, 0.1), rgba(0, 0, 0, 0.95));
+          border: 2px solid rgba(156, 163, 175, 0.5);
           border-radius: 12px;
           padding: ${showExpandableForm ? '24px' : '0 24px'};
           box-shadow: 
-            0 0 50px rgba(0, 0, 0, 0.8),
-            0 0 25px rgba(156, 163, 175, 0.4),
-            inset 0 2px 6px rgba(156, 163, 175, 0.1);
-          backdrop-filter: blur(8px);
+            0 0 40px rgba(0, 0, 0, 0.9),
+            0 0 15px rgba(156, 163, 175, 0.3);
+          backdrop-filter: blur(12px);
         }
 
         .expandable-form .input-group {
@@ -1181,8 +1180,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           margin-bottom: 20px;
           justify-content: center;
           max-width: 100%;
-          min-height: 100px;
-          transition: all 0.3s ease;
+          min-height: 70px;
         }
 
         .choice-question {
@@ -1251,7 +1249,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           letter-spacing: 1.2px;
           border-radius: 30px;
           cursor: pointer;
-          transition: all 0.4s ease;
+          transition: all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
           box-shadow: 
             0 5px 15px rgba(156, 163, 175, 0.5),
             inset 0 2px 4px rgba(243, 244, 246, 0.3);
@@ -1268,11 +1266,12 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           left: -2px;
           right: -2px;
           bottom: -2px;
-          background: linear-gradient(45deg, #9CA3AF, #F3F4F6, #9CA3AF);
-          background-size: 300% 300%;
-          animation: buttonGlow 2s ease-in-out infinite;
+          background: linear-gradient(45deg, #9CA3AF, #D1D5DB, #9CA3AF);
+          background-size: 200% 200%;
+          animation: buttonGlow 3s ease-in-out infinite;
           border-radius: 52px;
           z-index: -1;
+          opacity: 0.6;
         }
 
         @keyframes buttonGlow {
@@ -1480,21 +1479,24 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
         
         <div className="action-buttons">
             {!wheelState.currentPrize ? (
-              // Before any prize is won - show spin button (unless expandable form is visible)
-              !showExpandableForm && (
-          <button
-            className="spin-button"
-            onClick={spinWheel}
-            disabled={!canSpin}
-          >
-            {wheelState.isSpinning 
-              ? 'SPINNING...' 
-                : wheelState.currentSpin === 0
-                  ? 'Start Game'
-                  : 'Spin Again'
-            }
-          </button>
-              )
+              // Before any prize is won - show spin button with fade effect when form shows
+              <button
+                className={`spin-button ${showExpandableForm ? 'hidden-button' : ''}`}
+                onClick={spinWheel}
+                disabled={!canSpin || showExpandableForm}
+                style={{ 
+                  opacity: showExpandableForm ? 0 : 1,
+                  pointerEvents: showExpandableForm ? 'none' : 'auto',
+                  transform: showExpandableForm ? 'scale(0.95)' : 'scale(1)'
+                }}
+              >
+                {wheelState.isSpinning 
+                  ? 'SPINNING...' 
+                  : wheelState.currentSpin === 0
+                    ? 'Start Game'
+                    : 'Spin Again'
+                }
+              </button>
             ) : !wheelState.allSpinsComplete || (wheelState.allSpinsComplete && wheelState.currentPrize && !wheelState.claimed) ? (
               // After winning a prize (including final spin) - inline choice layout
               <div className="choice-question">
