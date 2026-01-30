@@ -1243,7 +1243,7 @@ body.no-scroll.menu-open::after {
 .services-section {
     width: 92%;
     margin: 40px auto;
-    padding: 60px 4%;
+    padding: 60px 0;
     background: none;
     border-radius: 12px;
 }
