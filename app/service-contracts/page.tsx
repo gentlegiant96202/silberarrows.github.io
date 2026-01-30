@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     title: 'Mercedes-Benz Service Contracts Dubai | SilberArrows Maintenance Plans',
     description: 'Affordable Mercedes-Benz service contracts and maintenance plans in Dubai. Save money with professional service packages.',
     url: 'https://mercedes-benz.silberarrows.com/service-contracts',
+    images: [{
+      url: 'https://mercedes-benz.silberarrows.com/assets/images/al-manara-location.webp',
+      width: 800,
+      height: 600,
+      alt: 'SilberArrows Mercedes-Benz Service Center Dubai',
+    }],
   },
 };
 

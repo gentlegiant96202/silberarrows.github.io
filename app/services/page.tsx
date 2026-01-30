@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     title: 'Mercedes-Benz Services Dubai | SilberArrows Al Quoz',
     description: 'Complete Mercedes-Benz services in Dubai - maintenance, diagnostics, repairs by expert specialists.',
     url: 'https://mercedes-benz.silberarrows.com/services',
+    images: [{
+      url: 'https://mercedes-benz.silberarrows.com/assets/images/al-manara-location.webp',
+      width: 800,
+      height: 600,
+      alt: 'SilberArrows Mercedes-Benz Service Center Dubai',
+    }],
   },
 };
 

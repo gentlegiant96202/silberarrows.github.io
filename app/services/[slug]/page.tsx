@@ -42,6 +42,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${service.title} | SilberArrows Dubai`,
       description: `Professional ${service.title.toLowerCase()} for Mercedes-Benz vehicles in Dubai.`,
       url: `https://mercedes-benz.silberarrows.com/services/${slug}`,
+      images: [{
+        url: `https://mercedes-benz.silberarrows.com/assets/images/${service.heroImg}`,
+        width: 640,
+        height: 427,
+        alt: `${service.title} - SilberArrows Dubai`,
+      }],
     },
   };
 }
