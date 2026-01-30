@@ -1116,12 +1116,35 @@ body.no-scroll.menu-open::after {
     align-items: flex-start;
     text-align: left;
     gap: 18px;
-    transition: all 0.4s ease;
+    transition: all 0.6s ease-out;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     min-height: 160px;
     height: 160px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Initial hidden state for animation */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Visible state - all cards fade in with staggered delays */
+.why-choose-us-section.is-visible .feature-column:nth-child(1) .feature-card:nth-child(1) {
+    opacity: 1; transform: translateY(0); transition-delay: 0.1s;
+}
+.why-choose-us-section.is-visible .feature-column:nth-child(1) .feature-card:nth-child(2) {
+    opacity: 1; transform: translateY(0); transition-delay: 0.2s;
+}
+.why-choose-us-section.is-visible .feature-column:nth-child(2) .feature-card:nth-child(1) {
+    opacity: 1; transform: translateY(0); transition-delay: 0.25s;
+}
+.why-choose-us-section.is-visible .feature-column:nth-child(2) .feature-card:nth-child(2) {
+    opacity: 1; transform: translateY(0); transition-delay: 0.35s;
+}
+.why-choose-us-section.is-visible .feature-column:nth-child(3) .feature-card:nth-child(1) {
+    opacity: 1; transform: translateY(0); transition-delay: 0.4s;
+}
+.why-choose-us-section.is-visible .feature-column:nth-child(3) .feature-card:nth-child(2) {
+    opacity: 1; transform: translateY(0); transition-delay: 0.5s;
 }
 
 .features-columns .feature-card:hover {
