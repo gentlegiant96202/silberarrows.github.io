@@ -4357,7 +4357,7 @@ body.no-scroll.menu-open::after {
         background: rgba(0, 0, 0, 0.25);
         backdrop-filter: blur(8px);
         border-radius: 12px;
-        padding: 2rem;
+        padding: 1.25rem 1.5rem;
         border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
@@ -4375,7 +4375,7 @@ body.no-scroll.menu-open::after {
         font-family: 'Inter', sans-serif;
         color: rgba(255, 255, 255, 0.8);
         font-size: 0.9rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .overlay-actions {
@@ -4404,22 +4404,6 @@ body.no-scroll.menu-open::after {
         background: var(--gold);
         color: var(--dark);
         transform: translateY(-1px);
-    }
-
-    .location-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, rgba(156, 163, 175, 0.2) 0%, rgba(156, 163, 175, 0.1) 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-    }
-
-    .location-icon i {
-        font-size: 1.3rem;
-        color: var(--gold);
     }
 
     .map-action.primary {
@@ -4681,16 +4665,6 @@ body.no-scroll.menu-open::after {
             margin-bottom: 0;
             padding: 1rem;
             border-radius: 8px;
-        }
-        
-        .location-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 0.75rem;
-        }
-        
-        .location-icon i {
-            font-size: 1.1rem;
         }
         
         .overlay-content h4 {

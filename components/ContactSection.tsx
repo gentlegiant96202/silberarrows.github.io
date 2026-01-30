@@ -144,9 +144,6 @@ export default function ContactSection() {
               />
               <div className="map-info-overlay">
                 <div className="overlay-content">
-                  <div className="location-icon">
-                    <Icon name="location-dot" size={24} variant="silver" />
-                  </div>
                   <h4>Visit Our Workshop</h4>
                   <p>Al Manara Street, Al Quoz<br />Dubai, United Arab Emirates</p>
                   <div className="overlay-actions">
