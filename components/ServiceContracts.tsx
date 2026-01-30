@@ -21,14 +21,14 @@ export default function ServiceContracts() {
     {
       name: 'Standard',
       description: 'Essential maintenance',
-      price: 'AED 2,700',
+      price: '2,700',
       period: '2 Years / 30,000 km',
       isPremium: false
     },
     {
       name: 'Premium',
       description: 'Comprehensive coverage package',
-      price: 'AED 5,800',
+      price: '5,800',
       period: '4 Years / 60,000 km',
       isPremium: true
     }
@@ -89,7 +89,10 @@ export default function ServiceContracts() {
                 <div className="package-description">{pkg.description}</div>
                 <div className="package-price">
                   <span className="price-starting">Starting from</span>
-                  <span className="price-amount">{pkg.price}</span>
+                  <div className="price-display">
+                    <span className="price-currency">AED</span>
+                    <span className="price-amount">{pkg.price}</span>
+                  </div>
                   <span className="price-period">{pkg.period}</span>
                 </div>
               </div>
