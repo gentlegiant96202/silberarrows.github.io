@@ -465,7 +465,7 @@ body.no-scroll.menu-open::after {
     right: 0;
     width: 55%;
     height: 120%;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.35)), 
                 url('/assets/images/hero-bg-silver-optimized.avif') 
                 no-repeat center 30%/cover;
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -475,7 +475,7 @@ body.no-scroll.menu-open::after {
 
 /* Hero background loaded state */
 .hero.hero-loaded::before {
-    opacity: 0.8;
+    opacity: 0.95;
 }
 
 /* Hero Logo */
@@ -582,9 +582,10 @@ body.no-scroll.menu-open::after {
 .hero-cta {
     font-family: var(--impact-font);
     display: inline-flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    gap: 8px;
     background: var(--gold-gradient);
     color: #121212;
     padding: 15px 40px;
@@ -644,6 +645,98 @@ body.no-scroll.menu-open::after {
     8% { left: -50%; }
     92% { left: 100%; }
     98%, 100% { left: 100%; }
+}
+
+/* CTA Button Arrow */
+.hero-cta .cta-arrow {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.hero-cta:hover .cta-arrow {
+    transform: translateX(4px);
+}
+
+/* Hero Trust Badge (Google Rating) */
+.hero-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.hero-trust-badge:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-trust-badge .google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.hero-trust-badge .rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.hero-trust-badge .rating-stars svg {
+    width: 14px;
+    height: 14px;
+    fill: #FBBC04;
+    opacity: 0;
+    animation: starFillIn 0.4s ease-out forwards;
+}
+
+.hero-trust-badge .rating-stars svg:nth-child(1) { animation-delay: 0.1s; }
+.hero-trust-badge .rating-stars svg:nth-child(2) { animation-delay: 0.2s; }
+.hero-trust-badge .rating-stars svg:nth-child(3) { animation-delay: 0.3s; }
+.hero-trust-badge .rating-stars svg:nth-child(4) { animation-delay: 0.4s; }
+.hero-trust-badge .rating-stars svg:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes starFillIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hero-trust-badge .rating-value {
+    font-weight: 700;
+    color: var(--light);
+    margin-left: 4px;
+}
+
+.hero-trust-badge .rating-count {
+    color: var(--light-gray);
+    font-size: 12px;
+}
+
+.hero-trust-badge .divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 4px;
 }
 
 .hero-contact-actions {
@@ -735,19 +828,27 @@ body.no-scroll.menu-open::after {
 .year-badge {
     display: inline-flex;
     align-items: center;
-    background: rgba(156, 163, 175, 0.15);
-    color: var(--gold);
-    padding: 10px 20px;
-    border-radius: 4px;
+    background: linear-gradient(135deg, rgba(156, 163, 175, 0.12), rgba(156, 163, 175, 0.08));
+    color: var(--silver);
+    padding: 12px 24px;
+    border-radius: 6px;
     font-weight: 600;
     font-size: 13px;
     margin-top: 0;
-    border: 1px solid rgba(156, 163, 175, 0.2);
-    backdrop-filter: blur(5px);
+    border: 1px solid rgba(156, 163, 175, 0.25);
+    backdrop-filter: blur(8px);
     position: relative;
     z-index: 1;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.year-badge:hover {
+    border-color: rgba(156, 163, 175, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .year-badge i {
