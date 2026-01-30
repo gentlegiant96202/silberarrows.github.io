@@ -3813,12 +3813,12 @@ body.no-scroll.menu-open::after {
 
         .hero-action {
             flex: 1;                /* equal width buttons */
-            padding: 10px 16px;     /* slightly wider padding */
+            padding: 12px 24px;     /* wider padding for better spacing */
             font-size: 12px;        /* smaller text */
             gap: 6px;               /* tighter icon gap */
-            min-width: 0;           /* allow shrinking */
+            min-width: 150px;       /* ensure minimum width */
             white-space: nowrap;    /* prevent text wrapping */
-            max-width: 145px;       /* increased max width for mobile */
+            max-width: none;        /* remove max constraint */
         }
 
         .hero-action i {
@@ -3837,10 +3837,11 @@ body.no-scroll.menu-open::after {
         }
 
         .hero-action {
-            padding: 8px 12px;      /* slightly wider padding for small screens */
+            padding: 10px 20px;     /* wider padding for better text spacing */
             font-size: 11px;        /* smaller text */
-            gap: 4px;               /* tighter icon gap */
-            max-width: 125px;       /* increased max width for small mobile */
+            gap: 6px;               /* icon gap */
+            min-width: 140px;       /* ensure minimum width */
+            max-width: none;        /* remove max width constraint */
         }
 
         .hero-action i {
