@@ -228,65 +228,53 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
-    width: 40px;
-    height: 40px;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
     padding: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
+    background: transparent;
+    border: none;
     cursor: pointer;
     z-index: 2100;
-    transition: all 0.3s ease;
 }
 
-/* Chevron arrow design - three > stacked */
+/* Plain hamburger - three horizontal lines */
 .mobile-nav-toggle span {
     display: block;
-    position: relative;
-    width: 8px;
-    height: 8px;
-    background: transparent;
-    border-right: 2px solid var(--light);
-    border-bottom: 2px solid var(--light);
-    transform: rotate(-45deg);
-    opacity: 1;
+    width: 24px;
+    height: 2px;
+    background: var(--light);
+    border-radius: 2px;
     transition: all 0.3s ease;
+    transform-origin: center;
 }
 
-/* Stagger the chevrons slightly */
-.mobile-nav-toggle span:nth-child(1) {
-    margin-left: -2px;
+/* Hover state - animate to X */
+.mobile-nav-toggle:hover span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
 }
 
-.mobile-nav-toggle span:nth-child(2) {
-    margin-left: 0;
+.mobile-nav-toggle:hover span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
 }
 
-.mobile-nav-toggle span:nth-child(3) {
-    margin-left: 2px;
+.mobile-nav-toggle:hover span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
-.mobile-nav-toggle:hover {
-    background: rgba(156, 163, 175, 0.2);
-    border-color: rgba(156, 163, 175, 0.3);
-}
-
-/* Active state - rotate chevrons to form X */
+/* Active state (menu open) - stay as X */
 .mobile-nav-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translateX(3px);
-    margin-left: 0;
+    transform: translateY(8px) rotate(45deg);
 }
 
 .mobile-nav-toggle.active span:nth-child(2) {
     opacity: 0;
-    width: 0;
-    height: 0;
+    transform: scaleX(0);
 }
 
 .mobile-nav-toggle.active span:nth-child(3) {
-    transform: rotate(-135deg) translateX(3px);
-    margin-left: 0;
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 .mobile-nav-container {
@@ -2707,17 +2695,14 @@ body.no-scroll.menu-open::after {
         /* Hamburger - visible on mobile, matches logo height */
         .mobile-nav-toggle {
             display: flex !important;
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            gap: 3px;
+            width: 32px;
+            height: 32px;
+            gap: 6px;
         }
 
         .mobile-nav-toggle span {
-            width: 10px;
-            height: 10px;
+            width: 24px;
+            height: 2px;
         }
 
         .hero {
@@ -3911,14 +3896,14 @@ body.no-scroll.menu-open::after {
 
         .mobile-nav-toggle {
             display: flex !important;
-            width: 44px;
-            height: 44px;
-            gap: 3px;
+            width: 28px;
+            height: 28px;
+            gap: 5px;
         }
 
         .mobile-nav-toggle span {
-            width: 9px;
-            height: 9px;
+            width: 20px;
+            height: 2px;
         }
 
         /* Year badge optimization */
