@@ -5,7 +5,7 @@ import './globals.css';
 import SmoothScrollProvider from '../components/SmoothScrollProvider';
 
 export const metadata: Metadata = {
-  title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai | Al Quoz',
+  title: 'SilberArrows | Mercedes-Benz Service Center Dubai',
   description: 'Dubai\'s trusted independent Mercedes-Benz specialists. Expert service, maintenance & repair in Al Quoz. Professional diagnostics, genuine parts, factory standards since 2011.',
   keywords: 'Mercedes-Benz service Dubai, Mercedes repair Dubai, independent Mercedes service, Mercedes maintenance Al Quoz, SilberArrows, Mercedes specialist Dubai',
   authors: [{ name: 'SilberArrows' }],
