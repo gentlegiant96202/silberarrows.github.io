@@ -2951,9 +2951,49 @@ body.no-scroll.menu-open::after {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
+        gap: 4px;
+    }
+
+    .footer-status-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 10px;
+        font-family: 'Inter', sans-serif;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.3px;
+    }
+
+    .footer-status {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 500;
+    }
+
+    .footer-status.open {
+        color: #22c55e;
+    }
+
+    .footer-status.closed {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-status .status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        animation: statusPulse 2s ease-in-out infinite;
+    }
+
+    .footer-hours {
+        color: rgba(255, 255, 255, 0.5);
     }
 
         .footer-actions {
