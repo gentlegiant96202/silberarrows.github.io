@@ -7,7 +7,7 @@ import LocalBusinessSchema from '../../components/LocalBusinessSchema';
 
 export const metadata: Metadata = {
   title: 'Contact SilberArrows | Mercedes-Benz Service Dubai | Al Manara Street',
-  description: 'Visit SilberArrows Mercedes-Benz service center in Al Quoz, Dubai. Professional Mercedes repair & maintenance. Call +971 4 380 5515 or WhatsApp for expert service.',
+  description: 'Visit SilberArrows Mercedes-Benz service in Al Quoz, Dubai. Call +971 4 380 5515 or WhatsApp for expert service.',
   keywords: 'SilberArrows contact, Mercedes service Dubai contact, Al Manara Street garage, Mercedes repair Al Quoz, Dubai Mercedes specialist contact',
   openGraph: {
     title: 'Contact SilberArrows | Mercedes-Benz Service Dubai',

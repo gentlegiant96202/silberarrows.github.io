@@ -28,7 +28,7 @@ const allServices = [
 
 export const metadata: Metadata = {
   title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai | Al Quoz',
-  description: 'Dubai\'s trusted independent Mercedes-Benz specialists since 2011. Expert maintenance, repair & diagnostics at Al Quoz. Professional service for all Mercedes models with genuine parts.',
+  description: 'Dubai\'s trusted Mercedes-Benz specialists since 2011. Expert maintenance, repair & diagnostics at Al Quoz with genuine parts.',
   keywords: 'SilberArrows, Mercedes-Benz service Dubai, independent Mercedes specialist, Mercedes repair Al Quoz, Mercedes maintenance Dubai, Mercedes diagnostics, genuine parts Dubai',
   openGraph: {
     title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai',

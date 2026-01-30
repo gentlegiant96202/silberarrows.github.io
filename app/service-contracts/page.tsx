@@ -7,7 +7,7 @@ import ContactSection from '../../components/ContactSection';
 
 export const metadata: Metadata = {
   title: 'Mercedes-Benz Service Contracts Dubai | SilberArrows Maintenance Plans',
-  description: 'Affordable Mercedes-Benz service contracts in Dubai. Comprehensive maintenance plans for A, B, C, E, S-Class & more. Save money with SilberArrows service packages in Al Quoz.',
+  description: 'Affordable Mercedes-Benz service contracts in Dubai. Maintenance plans for all models. Save with SilberArrows packages.',
   keywords: 'Mercedes service contracts Dubai, Mercedes maintenance plans, Mercedes service packages Dubai, A-Class service plan, C-Class maintenance contract, E-Class service Dubai',
   openGraph: {
     title: 'Mercedes-Benz Service Contracts Dubai | SilberArrows Maintenance Plans',

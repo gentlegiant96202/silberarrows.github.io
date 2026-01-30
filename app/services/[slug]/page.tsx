@@ -29,9 +29,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     'tyres-wheels': 'Mercedes tyre service Dubai, wheel alignment, tyre replacement, Mercedes rim repair, wheel balancing Dubai'
   };
 
+  // Create a short description under 160 chars
+  const shortDesc = service.description.length > 80 
+    ? service.description.substring(0, 80).trim() + '...'
+    : service.description;
+  
   return {
     title: `${service.title} | SilberArrows Mercedes Service Dubai`,
-    description: `Professional ${service.title.toLowerCase()} for Mercedes-Benz in Dubai. ${service.description.substring(0, 120)}... Expert service at Al Quoz.`,
+    description: `${service.title} for Mercedes-Benz in Dubai. ${shortDesc} Expert service at Al Quoz.`,
     keywords: serviceKeywords[slug] || `Mercedes ${slug} Dubai, Mercedes service Al Quoz, SilberArrows`,
     openGraph: {
       title: `${service.title} | SilberArrows Dubai`,
