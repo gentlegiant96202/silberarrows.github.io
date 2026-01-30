@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Icon from './Icon';
 
 // Check if business is currently open (Mon-Sat 8am-6pm Dubai time)
@@ -33,6 +33,8 @@ export function HeroSection() {
   const [showContactActions, setShowContactActions] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [businessStatus, setBusinessStatus] = useState({ isOpen: true, message: 'Open Now' });
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     // Preload the hero image
@@ -50,7 +52,22 @@ export function HeroSection() {
       setBusinessStatus(getBusinessStatus());
     }, 60000);
     
-    return () => clearInterval(interval);
+    // Scroll parallax effect
+    const handleScroll = () => {
+      if (!heroRef.current) return;
+      const heroHeight = heroRef.current.offsetHeight;
+      const scrollY = window.scrollY;
+      // Calculate progress from 0 to 1 as we scroll through the hero
+      const progress = Math.min(scrollY / (heroHeight * 0.6), 1);
+      setScrollProgress(progress);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const handleQuoteClick = () => {
@@ -61,9 +78,27 @@ export function HeroSection() {
     setShowContactActions(false);
   };
 
+  // Parallax transforms based on scroll
+  const contentOpacity = 1 - scrollProgress * 0.8;
+  const contentTranslateY = scrollProgress * -40;
+  const bgScale = 1 + scrollProgress * 0.05;
+
   return (
-    <section className={`hero${heroLoaded ? ' hero-loaded' : ''}`}>
-      <div className="hero-content">
+    <section 
+      ref={heroRef}
+      className={`hero${heroLoaded ? ' hero-loaded' : ''}`}
+      style={{
+        '--parallax-bg-scale': bgScale,
+      } as React.CSSProperties}
+    >
+      <div 
+        className="hero-content"
+        style={{
+          opacity: contentOpacity,
+          transform: `translateY(${contentTranslateY}px)`,
+          transition: 'opacity 0.1s ease-out, transform 0.1s ease-out',
+        }}
+      >
         <div className="hero-logo">
           <img src="/assets/icons/silberarrows-logo.png" alt="Silver Arrows Logo" className="hero-logo-img" width="300" height="90" />
         </div>

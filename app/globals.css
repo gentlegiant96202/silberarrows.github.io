@@ -496,7 +496,9 @@ body.no-scroll.menu-open::after {
                 no-repeat center 30%/cover;
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
     opacity: 0.7;
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.4s ease-out, transform 0.1s ease-out;
+    transform: scale(var(--parallax-bg-scale, 1));
+    transform-origin: center center;
 }
 
 /* Hero background loaded state */
