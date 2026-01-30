@@ -2145,7 +2145,7 @@ body.no-scroll.menu-open::after {
     .team-section {
         width: 92%;
         margin: 40px auto;
-        padding: 60px 4%;
+        padding: 60px 0;
         background: var(--dark);
         position: relative;
         overflow: hidden;
