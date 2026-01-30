@@ -2644,22 +2644,28 @@ body.no-scroll.menu-open::after {
             display: none;
         }
 
+        header {
+            width: 100%;
+            padding: 0 20px;
+            height: 70px;
+        }
+
         .logo-container {
             margin-left: 0;
         }
 
         .logo {
-            height: 48px;
+            height: 42px;
         }
 
         .header-right {
-            gap: 8px;
+            gap: 0;
         }
 
         .header-contact {
             border: none !important;
             padding-left: 0;
-            gap: 10px;
+            gap: 0;
         }
 
         .header-contact .address-container {
@@ -2669,26 +2675,28 @@ body.no-scroll.menu-open::after {
         .header-right .contact-buttons {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0;
         }
 
-        /* Phone button - compact on mobile */
+        /* Hide phone button on mobile - use footer instead */
         .contact-btn.phone-btn {
-            height: 40px;
-            padding: 0 12px;
-            font-size: 12px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: none !important;
         }
 
-        .contact-btn.phone-btn span {
-            display: inline !important;
-        }
-
-        /* Hamburger - visible on mobile */
+        /* Hamburger - visible on mobile, matches logo height */
         .mobile-nav-toggle {
             display: flex !important;
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .mobile-nav-toggle span {
+            width: 20px;
+            height: 2px;
+            background: var(--light);
         }
 
         .hero {
@@ -2951,73 +2959,48 @@ body.no-scroll.menu-open::after {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
+        gap: 4px;
     }
 
-    .footer-status-center {
+    .footer-status-row {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        padding: 8px 16px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        gap: 12px;
+        font-size: 10px;
+        font-family: 'Inter', sans-serif;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.3px;
     }
 
-    .footer-status-center.open {
-        border-color: rgba(34, 197, 94, 0.3);
-        background: rgba(34, 197, 94, 0.1);
-    }
-
-    .footer-status-center.closed {
-        border-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .footer-status-center .status-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        flex-shrink: 0;
-    }
-
-    .footer-status-center.open .status-dot {
-        background: #22c55e;
-        animation: statusPulse 2s ease-in-out infinite;
-    }
-
-    .footer-status-center.closed .status-dot {
-        background: rgba(255, 255, 255, 0.4);
-    }
-
-    .footer-status-center .status-text {
+    .footer-status {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        line-height: 1.2;
-    }
-
-    .footer-status-center .status-main {
-        font-family: var(--impact-font);
-        font-size: 11px;
+        align-items: center;
+        gap: 4px;
         font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
     }
 
-    .footer-status-center.open .status-main {
+    .footer-status.open {
         color: #22c55e;
     }
 
-    .footer-status-center.closed .status-main {
-        color: rgba(255, 255, 255, 0.7);
+    .footer-status.closed {
+        color: rgba(255, 255, 255, 0.5);
     }
 
-    .footer-status-center .status-sub {
-        font-family: 'Inter', sans-serif;
-        font-size: 9px;
+    .footer-status .status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        animation: statusPulse 2s ease-in-out infinite;
+    }
+
+    .footer-hours {
         color: rgba(255, 255, 255, 0.5);
     }
 
@@ -3025,15 +3008,15 @@ body.no-scroll.menu-open::after {
             width: 100%;
             max-width: 100%;
             display: flex;
-            gap: 12px;
+            gap: 15px;
             transition: all 0.3s ease;
             box-sizing: border-box;
             overflow: visible;
             flex-wrap: nowrap;
             align-items: center;
             justify-content: center;
-            height: 50px;
-            min-height: 50px;
+            height: 80px;
+            min-height: 80px;
         }
 
     .footer-action {
@@ -3900,16 +3883,15 @@ body.no-scroll.menu-open::after {
             height: 40px;
         }
 
+        /* Phone hidden on mobile */
         .contact-btn.phone-btn {
-            height: 36px;
-            padding: 0 10px;
-            font-size: 11px;
+            display: none !important;
         }
 
         .mobile-nav-toggle {
             display: flex !important;
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
         }
 
         .mobile-nav-toggle span {
