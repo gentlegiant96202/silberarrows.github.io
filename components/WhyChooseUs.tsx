@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 
 interface FeatureData {
@@ -32,6 +32,27 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
 };
 
 export default function WhyChooseUs() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Only trigger once
+        }
+      },
+      { threshold: 0.2 } // Trigger when 20% visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const features: FeatureData[] = [
     // Column 1
     {
@@ -77,7 +98,10 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="why-choose-us-section">
+    <section 
+      ref={sectionRef}
+      className={`why-choose-us-section${isVisible ? ' is-visible' : ''}`}
+    >
       <div className="why-choose-us-content">
         <div className="section-header">
           <h2>WHY CHOOSE US?</h2>
