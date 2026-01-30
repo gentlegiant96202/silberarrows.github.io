@@ -69,6 +69,61 @@
     border: 0;
 }
 
+/* SEO Services Navigation - visible links for crawlers */
+.services-seo-nav {
+    width: 92%;
+    margin: 0 auto 40px;
+    padding: 40px 4%;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.services-seo-nav h2 {
+    font-family: var(--impact-font);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--light);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.services-seo-nav ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+}
+
+.services-seo-nav li a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--silver);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.services-seo-nav li a:hover {
+    color: var(--gold);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    .services-seo-nav {
+        width: 100%;
+        border-radius: 0;
+        padding: 30px 5%;
+    }
+    
+    .services-seo-nav ul {
+        grid-template-columns: 1fr;
+    }
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background: var(--dark);

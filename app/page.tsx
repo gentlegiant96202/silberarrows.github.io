@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ServicesSection from '../components/ServicesSection';
@@ -10,6 +11,20 @@ import ServiceContracts from '../components/ServiceContracts';
 import ContactSection from '../components/ContactSection';
 import LocalBusinessSchema from '../components/LocalBusinessSchema';
 import OrganizationSchema from '../components/OrganizationSchema';
+
+// All services for SEO-friendly server-rendered links
+const allServices = [
+  { href: '/services/scheduled-maintenance/', title: 'Scheduled Maintenance' },
+  { href: '/services/brake-service/', title: 'Brake Service & Repair' },
+  { href: '/services/tyre-replacement/', title: 'Tyre Replacement & Balancing' },
+  { href: '/services/wheel-alignment/', title: 'Wheel Alignment' },
+  { href: '/services/battery-service/', title: 'Battery Testing & Replacement' },
+  { href: '/services/air-conditioning/', title: 'Air Conditioning Service & Repair' },
+  { href: '/services/engine-repair/', title: 'Engine Repair & Overhaul' },
+  { href: '/services/suspension-repair/', title: 'Suspension & Steering Repair' },
+  { href: '/services/diagnostics/', title: 'Electrical & Computer Diagnostics' },
+  { href: '/services/detailing/', title: 'Interior & Exterior Detailing' },
+];
 
 export const metadata: Metadata = {
   title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai | Al Quoz',
@@ -46,6 +61,13 @@ export default function HomePage() {
 
         {/* Services Section - React Component */}
         <ServicesSection />
+        
+        {/* Server-rendered service links for SEO crawlers (visually hidden) */}
+        <nav aria-label="All Mercedes-Benz Services" className="sr-only">
+          {allServices.map((service) => (
+            <Link key={service.href} href={service.href}>{service.title}</Link>
+          ))}
+        </nav>
 
         {/* Team Section - React Component */}
         <TeamSection />
