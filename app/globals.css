@@ -2420,7 +2420,7 @@ body.no-scroll.menu-open::after {
         .contact-section {
             width: 100%;
             margin: 15px auto;
-            padding: 30px 3%;
+            padding: 30px 3% 50px;
         }
 
         .section-header h2 {
@@ -4009,7 +4009,7 @@ body.no-scroll.menu-open::after {
     .contact-section {
         width: 92%;
         margin: 40px auto;
-        padding: 60px 0;
+        padding: 60px 0 80px;
         background: transparent;
         position: relative;
         overflow: hidden;
@@ -4551,7 +4551,7 @@ body.no-scroll.menu-open::after {
         .contact-section {
             width: 98%;
             margin: 20px auto;
-            padding: 40px 2%;
+            padding: 40px 2% 60px;
         }
         
         .contact-content {
