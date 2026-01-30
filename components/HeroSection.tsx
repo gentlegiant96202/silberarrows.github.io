@@ -135,7 +135,7 @@ export function HeroSection() {
           </div>
           <div className="stat-divider"></div>
           <div className="quick-stat">
-            <span className="stat-number">5,000+</span>
+            <span className="stat-number">10,000+</span>
             <span className="stat-label">Vehicles Serviced</span>
           </div>
           <div className="stat-divider"></div>
