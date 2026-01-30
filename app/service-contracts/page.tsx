@@ -21,8 +21,9 @@ export default function ServiceContractsPage() {
     <>
       <Header />
       <main>
-                    {/* Service Contracts Section - React Component */}
-            <ServiceContracts />
+        <h1 className="sr-only">Mercedes-Benz Service Contracts Dubai</h1>
+        {/* Service Contracts Section - React Component */}
+        <ServiceContracts />
 
             {/* Contact Section - React Component */}
         <ContactSection />

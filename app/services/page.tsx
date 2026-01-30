@@ -35,6 +35,7 @@ export default function ServicesPage() {
     <>
       <Header />
       <main>
+        <h1 className="sr-only">Mercedes-Benz Services in Dubai</h1>
         <ServicesSection />
         {/* Server-rendered service links for SEO crawlers */}
         <nav aria-label="All Mercedes-Benz Services" className="services-seo-nav">
