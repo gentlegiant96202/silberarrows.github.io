@@ -828,6 +828,7 @@ body.no-scroll.menu-open::after {
 .year-badge {
     display: inline-flex;
     align-items: center;
+    gap: 10px;
     background: linear-gradient(135deg, rgba(156, 163, 175, 0.12), rgba(156, 163, 175, 0.08));
     color: var(--silver);
     padding: 12px 24px;
@@ -2388,6 +2389,10 @@ body.no-scroll.menu-open::after {
             margin: 0 auto;
         }
 
+        .hero-trust-badge {
+            margin: 12px auto 0;
+        }
+
         /* Keep feature cards in 2-col grid at tablet */
         .features-columns {
             display: grid;
@@ -2602,10 +2607,23 @@ body.no-scroll.menu-open::after {
 
         .hero-cta-container {
             justify-content: center;
+            display: flex;
+        }
+
+        .hero-cta {
+            margin: 0 auto;
         }
         
         .hero-contact-actions {
-            justify-content: flex-end; /* align buttons to the right on mobile too */
+            justify-content: center;
+        }
+
+        .year-badge {
+            margin: 0 auto;
+        }
+
+        .hero-trust-badge {
+            margin: 12px auto 0;
         }
     }
 
@@ -3663,6 +3681,16 @@ body.no-scroll.menu-open::after {
 
         .hero-contact-actions .hero-action:first-child i[class*="fa-phone"] {
             font-size: 8px;         /* same size as WhatsApp */
+        }
+
+        .year-badge {
+            margin: 0 auto;
+        }
+
+        .hero-trust-badge {
+            margin: 12px auto 0;
+            font-size: 12px;
+            padding: 8px 14px;
         }
     }
 
