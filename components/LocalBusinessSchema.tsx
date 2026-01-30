@@ -51,6 +51,14 @@ export default function LocalBusinessSchema() {
         {
           "@type": "Offer",
           "itemOffered": {
+            "@type": "Service", 
+            "name": "Mercedes-Benz Brake Service",
+            "description": "Brake pad replacement, disc service and brake system maintenance"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
             "@type": "Service",
             "name": "Mercedes-Benz Scheduled Maintenance",
             "description": "Service A & B maintenance following official Mercedes-Benz schedules"
@@ -62,14 +70,6 @@ export default function LocalBusinessSchema() {
             "@type": "Service",
             "name": "Mercedes-Benz Diagnostics",
             "description": "Professional XENTRY diagnosis and computer diagnostics"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service", 
-            "name": "Mercedes-Benz Brake Service",
-            "description": "Brake pad replacement, disc service and brake system maintenance"
           }
         },
         {

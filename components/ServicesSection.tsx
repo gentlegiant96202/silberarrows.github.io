@@ -26,19 +26,6 @@ interface Service {
 
 const services: Service[] = [
   {
-    id: 'scheduled-maintenance',
-    title: 'Scheduled Maintenance',
-    mobileTitle: 'Maintenance',
-    description: 'Regular servicing is essential to retain your vehicle\'s efficiency, safety, and long-term value.',
-    images: {
-      avif: { src320: '/assets/images/maintenance-320.avif', src640: '/assets/images/maintenance-640.avif' },
-      webp: { src320: '/assets/images/maintenance-320.webp', src640: '/assets/images/maintenance-640.webp' },
-      fallback: '/assets/images/maintenance-640.webp'
-    },
-    href: '/services/scheduled-maintenance/',
-    alt: 'Scheduled Maintenance'
-  },
-  {
     id: 'brake-service',
     title: 'Brake Service & Repair',
     mobileTitle: 'Brakes',
@@ -50,6 +37,19 @@ const services: Service[] = [
     },
     href: '/services/brake-service/',
     alt: 'Brake Service'
+  },
+  {
+    id: 'scheduled-maintenance',
+    title: 'Scheduled Maintenance',
+    mobileTitle: 'Maintenance',
+    description: 'Regular servicing is essential to retain your vehicle\'s efficiency, safety, and long-term value.',
+    images: {
+      avif: { src320: '/assets/images/maintenance-320.avif', src640: '/assets/images/maintenance-640.avif' },
+      webp: { src320: '/assets/images/maintenance-320.webp', src640: '/assets/images/maintenance-640.webp' },
+      fallback: '/assets/images/maintenance-640.webp'
+    },
+    href: '/services/scheduled-maintenance/',
+    alt: 'Scheduled Maintenance'
   },
   {
     id: 'tyre-replacement',

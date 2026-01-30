@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 
 // All services for SEO-friendly server-rendered links
 const allServices = [
-  { href: '/services/scheduled-maintenance/', title: 'Scheduled Maintenance' },
   { href: '/services/brake-service/', title: 'Brake Service & Repair' },
+  { href: '/services/scheduled-maintenance/', title: 'Scheduled Maintenance' },
   { href: '/services/tyre-replacement/', title: 'Tyre Replacement & Balancing' },
   { href: '/services/wheel-alignment/', title: 'Wheel Alignment' },
   { href: '/services/battery-service/', title: 'Battery Testing & Replacement' },
