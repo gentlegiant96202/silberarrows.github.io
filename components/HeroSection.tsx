@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from './Icon';
 
 // Check if business is currently open (Mon-Sat 8am-6pm Dubai time)
@@ -33,9 +33,6 @@ export function HeroSection() {
   const [showContactActions, setShowContactActions] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [businessStatus, setBusinessStatus] = useState({ isOpen: true, message: 'Open Now' });
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     // Preload the hero image
@@ -53,40 +50,7 @@ export function HeroSection() {
       setBusinessStatus(getBusinessStatus());
     }, 60000);
     
-    // Scroll parallax effect
-    const handleScroll = () => {
-      if (!heroRef.current) return;
-      const heroHeight = heroRef.current.offsetHeight;
-      const scrollY = window.scrollY;
-      // Calculate progress from 0 to 1 as we scroll through the hero
-      const progress = Math.min(scrollY / (heroHeight * 0.6), 1);
-      setScrollProgress(progress);
-    };
-    
-    // Mouse tracking parallax (desktop only)
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current || window.innerWidth < 1024) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      // Calculate mouse position relative to hero center (-1 to 1)
-      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      setMousePosition({ x, y });
-    };
-    
-    const handleMouseLeave = () => {
-      // Smoothly reset when mouse leaves
-      setMousePosition({ x: 0, y: 0 });
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    heroRef.current?.addEventListener('mouseleave', handleMouseLeave);
-    
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const handleQuoteClick = () => {
@@ -97,56 +61,14 @@ export function HeroSection() {
     setShowContactActions(false);
   };
 
-  // Parallax transforms based on scroll
-  const contentOpacity = 1 - scrollProgress * 0.8;
-  const contentTranslateY = scrollProgress * -40;
-  const bgScale = 1 + scrollProgress * 0.05;
-  
-  // Mouse parallax transforms (subtle movement based on cursor)
-  const mouseX = mousePosition.x;
-  const mouseY = mousePosition.y;
-
   return (
-    <section 
-      ref={heroRef}
-      className={`hero${heroLoaded ? ' hero-loaded' : ''}`}
-      style={{
-        '--parallax-bg-scale': bgScale,
-        '--parallax-bg-x': `${mouseX * -15}px`,
-        '--parallax-bg-y': `${mouseY * -10}px`,
-      } as React.CSSProperties}
-    >
-      <div 
-        className="hero-content"
-        style={{
-          opacity: contentOpacity,
-          transform: `translateY(${contentTranslateY}px)`,
-          transition: 'opacity 0.1s ease-out, transform 0.1s ease-out',
-        }}
-      >
-        <div 
-          className="hero-logo"
-          style={{
-            transform: `translate(${mouseX * 8}px, ${mouseY * 4}px)`,
-            transition: 'transform 0.3s ease-out',
-          }}
-        >
+    <section className={`hero${heroLoaded ? ' hero-loaded' : ''}`}>
+      <div className="hero-content">
+        <div className="hero-logo">
           <img src="/assets/icons/silberarrows-logo.png" alt="Silver Arrows Logo" className="hero-logo-img" width="300" height="90" />
         </div>
-        <div 
-          className="hero-tagline"
-          style={{
-            transform: `translate(${mouseX * 6}px, ${mouseY * 3}px)`,
-            transition: 'transform 0.3s ease-out',
-          }}
-        >Exclusive Automotive Excellence</div>
-        <h1 
-          className="hero-title"
-          style={{
-            transform: `translate(${mouseX * 10}px, ${mouseY * 5}px)`,
-            transition: 'transform 0.3s ease-out',
-          }}
-        >Independent<br /><span>Mercedes-Benz</span><br />Service Centre<br />in Dubai</h1>
+        <div className="hero-tagline">Exclusive Automotive Excellence</div>
+        <h1 className="hero-title">Independent<br /><span>Mercedes-Benz</span><br />Service Centre<br />in Dubai</h1>
         <p className="hero-subtitle">Exclusively Servicing Mercedes-Benz Only.<br />Our trusted name ensures a service record from us<br />retains your vehicle&apos;s value.</p>
         
         <div className="hero-cta-container" onClick={handleClickOutside}>

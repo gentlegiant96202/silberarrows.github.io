@@ -496,9 +496,7 @@ body.no-scroll.menu-open::after {
                 no-repeat center 30%/cover;
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
     opacity: 0.7;
-    transition: opacity 0.4s ease-out, transform 0.3s ease-out;
-    transform: scale(var(--parallax-bg-scale, 1)) translate(var(--parallax-bg-x, 0), var(--parallax-bg-y, 0));
-    transform-origin: center center;
+    transition: opacity 0.4s ease-out;
 }
 
 /* Hero background loaded state */
@@ -1023,9 +1021,25 @@ body.no-scroll.menu-open::after {
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
-    filter: brightness(0.2);
     z-index: 1;
     background-repeat: no-repeat;
+}
+
+/* Gradient overlay - lighter at top, darker at bottom for text readability */
+.why-choose-us-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.6) 40%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+    z-index: 1;
 }
 
 .why-choose-us-content {
@@ -1036,7 +1050,7 @@ body.no-scroll.menu-open::after {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 .why-choose-us-content .section-header {
@@ -1094,25 +1108,27 @@ body.no-scroll.menu-open::after {
 }
 
 .features-columns .feature-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 24px;
     display: flex;
     align-items: flex-start;
     text-align: left;
     gap: 18px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     min-height: 160px;
     height: 160px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .features-columns .feature-card:hover {
-    transform: translateY(-5px);
-    background: rgba(156, 163, 175, 0.08);
-    border-color: rgba(156, 163, 175, 0.3);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .features-columns .feature-icon {
@@ -3661,7 +3677,28 @@ body.no-scroll.menu-open::after {
 
 
     /* Visible state for cards with staggered delay */
-    .why-choose-us-section.is-visible .feature-card:nth-child(1),
+    /* Column 1 cards */
+    .why-choose-us-section.is-visible .feature-column:nth-child(1) .feature-card:nth-child(1) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.2s;
+    }
+    .why-choose-us-section.is-visible .feature-column:nth-child(1) .feature-card:nth-child(2) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.3s;
+    }
+    /* Column 2 cards */
+    .why-choose-us-section.is-visible .feature-column:nth-child(2) .feature-card:nth-child(1) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.35s;
+    }
+    .why-choose-us-section.is-visible .feature-column:nth-child(2) .feature-card:nth-child(2) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.45s;
+    }
+    /* Column 3 cards */
+    .why-choose-us-section.is-visible .feature-column:nth-child(3) .feature-card:nth-child(1) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.5s;
+    }
+    .why-choose-us-section.is-visible .feature-column:nth-child(3) .feature-card:nth-child(2) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.6s;
+    }
+
     .warranty-section.is-visible .warranty-card-simple:nth-child(1),
     .service-detail.is-visible .plan-card:nth-child(1),
     .service-detail.is-visible .coverage-item:nth-child(1),
@@ -3669,7 +3706,6 @@ body.no-scroll.menu-open::after {
         opacity: 1; transform: translateY(0); transition-delay: 0.3s;
     }
 
-    .why-choose-us-section.is-visible .feature-card:nth-child(2),
     .warranty-section.is-visible .warranty-card-simple:nth-child(2),
     .service-detail.is-visible .plan-card:nth-child(2),
     .service-detail.is-visible .coverage-item:nth-child(2),
