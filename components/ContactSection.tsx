@@ -70,13 +70,13 @@ export default function ContactSection() {
       href: 'tel:+97143805515',
       icon: 'phone',
       text: 'Call',
-      variant: 'gold' as const
+      variant: 'silver' as const
     },
     {
       href: 'https://wa.me/97143805515',
       icon: 'whatsapp',
       text: 'WhatsApp',
-      variant: 'gold' as const,
+      variant: 'silver' as const,
       isExternal: true
     }
   ];
@@ -95,7 +95,7 @@ export default function ContactSection() {
               {contactCards.map((card) => (
                 <div key={card.id} className={`contact-card ${card.id}-card`}>
                   <div className="card-icon">
-                    <Icon name={card.icon} size={24} variant="gold" flip={card.flip} />
+                    <Icon name={card.icon} size={24} variant="silver" flip={card.flip} />
                   </div>
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
@@ -106,7 +106,7 @@ export default function ContactSection() {
                       target={card.isExternal ? '_blank' : undefined}
                       rel={card.isExternal ? 'noopener noreferrer' : undefined}
                     >
-                      <Icon name={card.actionIcon} size={16} variant="gold" flip={card.flip} />
+                      <Icon name={card.actionIcon} size={16} variant="silver" flip={card.flip} />
                       {card.actionText}
                     </a>
                   </div>
@@ -116,7 +116,7 @@ export default function ContactSection() {
             
             <div className="hours-card">
               <div className="hours-header">
-                <Icon name="clock" size={20} variant="gold" />
+                <Icon name="clock" size={20} variant="silver" />
                 <h3>Working Hours</h3>
               </div>
               <div className="hours-grid">
@@ -148,7 +148,7 @@ export default function ContactSection() {
               <div className="map-info-overlay">
                 <div className="overlay-content">
                   <div className="location-icon">
-                    <Icon name="location-dot" size={24} variant="gold" />
+                    <Icon name="location-dot" size={24} variant="silver" />
                   </div>
                   <h4>Visit Our Workshop</h4>
                   <p>Al Manara Street, Al Quoz<br />Dubai, United Arab Emirates</p>

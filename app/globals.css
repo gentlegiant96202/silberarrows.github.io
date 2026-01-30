@@ -2145,7 +2145,7 @@ body.no-scroll.menu-open::after {
     .team-section {
         width: 92%;
         margin: 40px auto;
-        padding: 60px 0;
+        padding: 60px 4%;
         background: var(--dark);
         position: relative;
         overflow: hidden;
@@ -3981,13 +3981,14 @@ body.no-scroll.menu-open::after {
     .contact-section {
         width: 92%;
         margin: 40px auto;
-        padding: 60px 4%;
-        background: linear-gradient(135deg, #0a0a0a 0%, #151515 50%, #0a0a0a 100%);
+        padding: 60px 0;
+        background: transparent;
         position: relative;
         overflow: hidden;
         border-radius: 12px;
     }
 
+    /* Workshop background image */
     .contact-section::before {
         content: '';
         position: absolute;
@@ -3995,8 +3996,27 @@ body.no-scroll.menu-open::after {
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle at 70% 30%, rgba(156, 163, 175, 0.04) 0%, transparent 60%);
-        pointer-events: none;
+        background-image: url('/assets/images/why-choose-us-bg-optimized.avif');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+    }
+
+    /* Gradient overlay for readability */
+    .contact-section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.6) 50%,
+            rgba(0, 0, 0, 0.75) 100%
+        );
+        z-index: 1;
     }
 
     .contact-content {
@@ -4004,7 +4024,7 @@ body.no-scroll.menu-open::after {
         margin: 0 auto;
         padding: 0 2rem;
         position: relative;
-        z-index: 2;
+        z-index: 3;
     }
 
     .contact-header {
@@ -4053,8 +4073,8 @@ body.no-scroll.menu-open::after {
     }
 
     .contact-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 16px;
         padding: 2rem;
         text-align: center;
@@ -4063,6 +4083,16 @@ body.no-scroll.menu-open::after {
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-card:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(156, 163, 175, 0.4);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
 
     .contact-card::before {
@@ -4072,7 +4102,7 @@ body.no-scroll.menu-open::after {
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(135deg, rgba(156, 163, 175, 0.05) 0%, transparent 50%);
+        background: linear-gradient(135deg, rgba(156, 163, 175, 0.08) 0%, transparent 50%);
         opacity: 0;
         transition: opacity 0.4s ease;
         pointer-events: none;
@@ -4082,18 +4112,12 @@ body.no-scroll.menu-open::after {
         opacity: 1;
     }
 
-    .contact-card:hover {
-        transform: translateY(-4px);
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(156, 163, 175, 0.2);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-icon {
+    .contact-section .card-icon {
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: linear-gradient(135deg, rgba(156, 163, 175, 0.1) 0%, rgba(156, 163, 175, 0.05) 100%);
+        background: linear-gradient(135deg, rgba(156, 163, 175, 0.15) 0%, rgba(156, 163, 175, 0.08) 100%);
+        border: 1px solid rgba(156, 163, 175, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -4101,19 +4125,20 @@ body.no-scroll.menu-open::after {
         transition: all 0.3s ease;
     }
 
-    .contact-card:hover .card-icon {
-        background: linear-gradient(135deg, rgba(156, 163, 175, 0.2) 0%, rgba(156, 163, 175, 0.1) 100%);
-        transform: scale(1.05);
+    .contact-section .contact-card:hover .card-icon {
+        background: linear-gradient(135deg, rgba(156, 163, 175, 0.25) 0%, rgba(156, 163, 175, 0.15) 100%);
+        border-color: rgba(156, 163, 175, 0.4);
+        transform: scale(1.08);
     }
 
     /* Maintain phone icon flip on hover */
-    .contact-card:hover .card-icon .fa-phone-alt {
-        transform: scale(1.05) scaleX(-1) !important;
+    .contact-section .contact-card:hover .card-icon .fa-phone-alt {
+        transform: scale(1.08) scaleX(-1) !important;
     }
 
-    .card-icon i {
+    .contact-section .card-icon i {
         font-size: 1.5rem;
-        color: var(--gold);
+        color: var(--silver);
     }
 
     .contact-card h3 {
@@ -4186,16 +4211,21 @@ body.no-scroll.menu-open::after {
 
     /* Hours Card */
     .hours-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 16px;
         padding: 2rem;
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
     .hours-card:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(156, 163, 175, 0.15);
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(156, 163, 175, 0.3);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .hours-header {
@@ -4207,7 +4237,7 @@ body.no-scroll.menu-open::after {
 
     .hours-header i {
         font-size: 1.3rem;
-        color: var(--gold);
+        color: var(--silver);
     }
 
     .hours-header h3 {
