@@ -4,7 +4,7 @@ interface IconProps {
   name: string;
   className?: string;
   size?: number | string;
-  variant?: 'white' | 'dark' | 'gold' | 'inherit';
+  variant?: 'white' | 'dark' | 'gold' | 'silver' | 'inherit';
   flip?: boolean;
 }
 
@@ -46,6 +46,8 @@ const Icon: React.FC<IconProps> = ({ name, className = '', size = 24, variant = 
         return 'brightness(0) saturate(100%)'; // Pure black
       case 'gold':
         return 'brightness(0) saturate(100%) invert(85%) sepia(10%) saturate(200%) hue-rotate(180deg) brightness(90%)'; // Gold/silver tone
+      case 'silver':
+        return 'brightness(0) saturate(100%) invert(70%) sepia(5%) saturate(150%) hue-rotate(180deg) brightness(95%)'; // Silver/grey tone
       case 'inherit':
         return 'none'; // No filter, use original colors
       default:
