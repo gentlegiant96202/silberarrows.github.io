@@ -2951,48 +2951,73 @@ body.no-scroll.menu-open::after {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
-        gap: 4px;
     }
 
-    .footer-status-row {
+    .footer-status-center {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
-        font-size: 10px;
-        font-family: 'Inter', sans-serif;
-        color: rgba(255, 255, 255, 0.6);
-        letter-spacing: 0.3px;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .footer-status {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-weight: 500;
+    .footer-status-center.open {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.1);
     }
 
-    .footer-status.open {
-        color: #22c55e;
+    .footer-status-center.closed {
+        border-color: rgba(255, 255, 255, 0.15);
     }
 
-    .footer-status.closed {
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    .footer-status .status-dot {
-        width: 6px;
-        height: 6px;
+    .footer-status-center .status-dot {
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
-        background: currentColor;
+        flex-shrink: 0;
+    }
+
+    .footer-status-center.open .status-dot {
+        background: #22c55e;
         animation: statusPulse 2s ease-in-out infinite;
     }
 
-    .footer-hours {
+    .footer-status-center.closed .status-dot {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-status-center .status-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.2;
+    }
+
+    .footer-status-center .status-main {
+        font-family: var(--impact-font);
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .footer-status-center.open .status-main {
+        color: #22c55e;
+    }
+
+    .footer-status-center.closed .status-main {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer-status-center .status-sub {
+        font-family: 'Inter', sans-serif;
+        font-size: 9px;
         color: rgba(255, 255, 255, 0.5);
     }
 
@@ -3000,15 +3025,15 @@ body.no-scroll.menu-open::after {
             width: 100%;
             max-width: 100%;
             display: flex;
-            gap: 15px;
+            gap: 12px;
             transition: all 0.3s ease;
             box-sizing: border-box;
             overflow: visible;
             flex-wrap: nowrap;
             align-items: center;
             justify-content: center;
-            height: 80px;
-            min-height: 80px;
+            height: 50px;
+            min-height: 50px;
         }
 
     .footer-action {
