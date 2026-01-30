@@ -93,7 +93,7 @@ export default function ContactPage() {
                       <h4>Visit Our Workshop</h4>
                       <p>Al Manara Street, Al Quoz<br />Dubai, United Arab Emirates</p>
                       <div className="overlay-actions">
-                        <a href="https://maps.app.goo.gl/wWEGEukBTrD6WC3KA?g_st=ipc" target="_blank" className="map-action primary"><Icon name="directions" size={16} variant="dark" />Get Directions</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=SilberArrows,+Al+Manara+Street,+Al+Quoz,+Dubai" target="_blank" className="map-action primary"><Icon name="directions" size={16} variant="dark" />Get Directions</a>
                         <a href="tel:+97143805515" className="map-action"><Icon name="phone" size={16} variant="gold" />Call</a>
                         <a href="https://wa.me/97143805515" target="_blank" className="map-action"><Icon name="whatsapp" size={16} variant="gold" />WhatsApp</a>
                       </div>

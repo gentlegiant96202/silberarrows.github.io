@@ -59,7 +59,7 @@ export default function ContactSection() {
 
   const mapOverlayActions = [
     {
-      href: 'https://maps.app.goo.gl/wWEGEukBTrD6WC3KA?g_st=ipc',
+      href: 'https://www.google.com/maps/dir/?api=1&destination=SilberArrows,+Al+Manara+Street,+Al+Quoz,+Dubai',
       icon: 'directions',
       text: 'Get Directions',
       variant: 'dark' as const,
