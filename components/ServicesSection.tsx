@@ -258,6 +258,14 @@ const ServicesSection: React.FC = () => {
           <ServiceCard service={activeService} />
         </div>
       </div>
+      {/* Hidden links for SEO - allows crawlers to discover all service pages */}
+      <nav aria-label="All services" className="sr-only">
+        {services.map((service) => (
+          <Link key={service.id} href={service.href}>
+            {service.title}
+          </Link>
+        ))}
+      </nav>
     </section>
   );
 };
