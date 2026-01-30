@@ -496,8 +496,8 @@ body.no-scroll.menu-open::after {
                 no-repeat center 30%/cover;
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
     opacity: 0.7;
-    transition: opacity 0.4s ease-out, transform 0.1s ease-out;
-    transform: scale(var(--parallax-bg-scale, 1));
+    transition: opacity 0.4s ease-out, transform 0.3s ease-out;
+    transform: scale(var(--parallax-bg-scale, 1)) translate(var(--parallax-bg-x, 0), var(--parallax-bg-y, 0));
     transform-origin: center center;
 }
 
