@@ -54,13 +54,23 @@ export default function ServiceSchema({
       "@type": "Offer",
       "name": serviceName,
       "description": serviceDescription,
+      "priceCurrency": "AED",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "AED",
+        "eligibleRegion": {
+          "@type": "Country",
+          "name": "United Arab Emirates"
+        }
+      },
       "seller": {
         "@type": "AutomotiveServiceCenter",
-        "name": "SilberArrows"
-      },
-      "areaServed": {
-        "@type": "City", 
-        "name": "Dubai"
+        "name": "SilberArrows",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dubai",
+          "addressCountry": "AE"
+        }
       }
     }
   };

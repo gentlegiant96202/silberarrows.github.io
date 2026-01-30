@@ -22,7 +22,6 @@ export default function OrganizationSchema() {
       "streetAddress": "Al Manara Street",
       "addressLocality": "Al Quoz",
       "addressRegion": "Dubai",
-      "postalCode": "",
       "addressCountry": "AE"
     },
     "geo": {
@@ -62,14 +61,10 @@ export default function OrganizationSchema() {
       "@type": "QuantitativeValue",
       "value": "10"
     },
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": "25.1459942",
-        "longitude": "55.2304157"
-      },
-      "geoRadius": "50000"
+    "areaServed": {
+      "@type": "City",
+      "name": "Dubai",
+      "@id": "https://www.wikidata.org/wiki/Q612"
     },
     "knowsAbout": [
       "Mercedes-Benz Maintenance",

@@ -37,22 +37,12 @@ export default function LocalBusinessSchema() {
         ],
         "opens": "08:00",
         "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Sunday",
-        "opens": "00:00",
-        "closes": "00:00"
       }
     ],
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": "25.1459942",
-        "longitude": "55.2304157"
-      },
-      "geoRadius": "50000"
+    "areaServed": {
+      "@type": "City",
+      "name": "Dubai",
+      "@id": "https://www.wikidata.org/wiki/Q612"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
