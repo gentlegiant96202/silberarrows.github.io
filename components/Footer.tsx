@@ -142,7 +142,7 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <div className="mobile-footer" style={{ height: '90px', minHeight: '90px' }}>
+      <div className="mobile-footer" style={{ height: '100px', minHeight: '100px' }}>
         <div className="footer-content">
           <div className="footer-status-row">
             <span className={`footer-status ${businessStatus.isOpen ? 'open' : 'closed'}`}>
