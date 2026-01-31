@@ -132,16 +132,6 @@ export default function ContactSection() {
           
           <div className="contact-map">
             <div className="map-container">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3611.8037075289847!2d55.22089837538945!3d25.139752777749247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d08c3f9e13%3A0x3f8b9c9c9c9c9c9c!2sAl%20Manara%20Street%2C%20Al%20Quoz%2C%20Dubai!5e0!3m2!1sen!2sae!4v1706617200000!5m2!1sen!2sae"
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(90%)' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="SilberArrows Mercedes-Benz Service Location"
-              />
               <div className="map-info-overlay">
                 <div className="overlay-content">
                   <h4>Visit Our Workshop</h4>
