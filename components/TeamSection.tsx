@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 interface TeamMemberData {
   name: string;
@@ -18,7 +19,15 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member }) => {
   return (
     <div className="team-member">
       <div className="team-member-image">
-        <img src={member.image} alt={member.name} loading="lazy" width="400" height="400" />
+        <Image 
+          src={member.image} 
+          alt={member.name} 
+          width={400} 
+          height={400}
+          sizes="(max-width: 768px) 280px, 350px"
+          quality={75}
+          style={{ objectFit: 'cover' }}
+        />
         <div className="team-overlay">
           <div className="team-overlay-content">
             <p>{member.description}</p>
