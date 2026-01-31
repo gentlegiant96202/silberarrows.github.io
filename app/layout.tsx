@@ -61,6 +61,17 @@ export default function RootLayout({
           @media(max-width:480px){.hero{padding:40px 5% 50px;min-height:60vh}.hero-content{max-width:90%;margin-top:-20px}.hero-logo{margin-bottom:12px}.hero-logo-img{height:65px}.hero-tagline{white-space:normal;font-size:12px}.hero-title{font-size:34px}.hero-subtitle{font-size:14px}.hero-cta{margin:0 auto}.hero-trust-badge{margin:12px auto 0}}
         `}} />
         
+        {/* Make Next.js CSS non-blocking - load async after critical CSS is applied */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function(){
+            var css=document.querySelector('link[rel="stylesheet"][href*="/_next/static/css"]');
+            if(css){
+              css.media='print';
+              css.onload=function(){this.media='all';this.onload=null;};
+            }
+          })();
+        `}} />
+        
         {/* Preload critical resources */}
         <link rel="preload" href="/assets/images/hero-bg-silver-optimized.avif" as="image" fetchPriority="high" />
         <link rel="preload" href="/assets/fonts/impact.ttf" as="font" type="font/ttf" crossOrigin="" />
