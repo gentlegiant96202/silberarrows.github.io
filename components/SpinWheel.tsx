@@ -765,7 +765,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           src: url('/assets/fonts/Anton-Regular.woff2') format('woff2');
           font-weight: 400;
           font-style: normal;
-          font-display: swap;
+          font-display: block;
         }
         
         .wheel-modal {
