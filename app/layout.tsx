@@ -45,8 +45,8 @@ export default function RootLayout({
         {/* Inline full stylesheet to eliminate render blocking */}
         <style dangerouslySetInnerHTML={{ __html: inlineCss }} />
         
-        {/* Preload critical resources */}
-        <link rel="preload" href="/assets/images/hero-bg-silver-optimized.avif" as="image" fetchPriority="high" />
+        {/* Preload critical resources - hero image only on desktop (769px+) */}
+        <link rel="preload" href="/assets/images/hero-bg-silver-optimized.avif" as="image" fetchPriority="high" media="(min-width: 769px)" />
         <link rel="preload" href="/assets/fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/assets/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossOrigin="" />
