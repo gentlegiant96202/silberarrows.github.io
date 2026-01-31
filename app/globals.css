@@ -488,12 +488,6 @@ body.no-scroll.menu-open::after {
                 url('/assets/images/hero-bg-silver-optimized.avif') 
                 no-repeat center 30%/cover;
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
-    opacity: 0.7;
-    transition: opacity 0.4s ease-out;
-}
-
-/* Hero background loaded state */
-.hero.hero-loaded::before {
     opacity: 0.95;
 }
 
@@ -2709,11 +2703,6 @@ body.no-scroll.menu-open::after {
                         url('/assets/images/hero-bg-silver-optimized.avif') 
                         no-repeat center 25%/cover;
             z-index: -1;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .hero.hero-loaded::before {
             opacity: 1;
         }
 

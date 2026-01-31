@@ -1,115 +1,41 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import Icon from './Icon';
-
-// Check if business is currently open (Mon-Sat 8am-6pm Dubai time)
-function getBusinessStatus(): { isOpen: boolean; message: string } {
-  const now = new Date();
-  
-  // Convert to Dubai time (UTC+4)
-  const dubaiTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Dubai' }));
-  const day = dubaiTime.getDay(); // 0 = Sunday, 6 = Saturday
-  const hour = dubaiTime.getHours();
-  
-  // Sunday (0) is closed, Monday-Saturday (1-6) is open 8am-6pm
-  const isWorkDay = day >= 1 && day <= 6;
-  const isWorkHours = hour >= 8 && hour < 18;
-  const isOpen = isWorkDay && isWorkHours;
-  
-  if (isOpen) {
-    const closingHour = 18;
-    const hoursLeft = closingHour - hour;
-    if (hoursLeft <= 1) {
-      return { isOpen: true, message: 'Open Now · Closes Soon' };
-    }
-    return { isOpen: true, message: `Open Now · Closes ${closingHour > 12 ? closingHour - 12 : closingHour}PM` };
-  } else {
-    return { isOpen: false, message: 'Closed · We\'ll respond ASAP' };
-  }
-}
+// Server Component - renders immediately, no JS dependency
+import { HeroCTA } from './HeroCTA';
 
 export function HeroSection() {
-  const [showContactActions, setShowContactActions] = useState(false);
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  const [businessStatus, setBusinessStatus] = useState({ isOpen: true, message: 'Open Now' });
-
-  useEffect(() => {
-    // Preload the hero image
-    const img = new Image();
-    img.onload = () => {
-      setHeroLoaded(true);
-    };
-    img.src = '/assets/images/hero-bg-silver-optimized.avif';
-    
-    // Set business status
-    setBusinessStatus(getBusinessStatus());
-    
-    // Update status every minute
-    const interval = setInterval(() => {
-      setBusinessStatus(getBusinessStatus());
-    }, 60000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleQuoteClick = () => {
-    setShowContactActions(true);
-  };
-
-  const handleClickOutside = () => {
-    setShowContactActions(false);
-  };
-
   return (
-    <section className={`hero${heroLoaded ? ' hero-loaded' : ''}`}>
+    <section className="hero hero-loaded">
       <div className="hero-content">
         <div className="hero-logo">
-          <img src="/assets/icons/silberarrows-logo.png" alt="Silver Arrows Logo" className="hero-logo-img" width="300" height="90" />
+          <img 
+            src="/assets/icons/silberarrows-logo.png" 
+            alt="Silver Arrows Logo" 
+            className="hero-logo-img" 
+            width="300" 
+            height="90" 
+          />
         </div>
         <div className="hero-tagline">Exclusive Automotive Excellence</div>
-        <h1 className="hero-title">Independent<br /><span>Mercedes-Benz</span><br />Service Centre<br />in Dubai</h1>
-        <p className="hero-subtitle">Exclusively Servicing Mercedes-Benz Only.<br />Our trusted name ensures a service record from us<br />retains your vehicle&apos;s value.</p>
+        <h1 className="hero-title">
+          Independent<br />
+          <span>Mercedes-Benz</span><br />
+          Service Centre<br />
+          in Dubai
+        </h1>
+        <p className="hero-subtitle">
+          Exclusively Servicing Mercedes-Benz Only.<br />
+          Our trusted name ensures a service record from us<br />
+          retains your vehicle&apos;s value.
+        </p>
         
-        <div className="hero-cta-container" onClick={handleClickOutside}>
-          <button 
-            className={`hero-cta quote-trigger ${showContactActions ? 'hide' : ''}`}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              handleQuoteClick();
-            }}
-          >
-            <div className="cta-main-row">
-              <span>GET A FREE QUOTE</span>
-              <span className="cta-arrow">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </div>
-            <div className={`cta-status ${businessStatus.isOpen ? 'open' : 'closed'}`}>
-              <span className="status-dot"></span>
-              <span className="status-text">{businessStatus.message}</span>
-            </div>
-          </button>
-          
-          <div 
-            className={`hero-contact-actions ${showContactActions ? 'active' : ''}`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <a href="tel:+97143805515" className="hero-action">
-              <Icon name="phone" size={18} />
-              <span>+971 4 380 5515</span>
-            </a>
-            <a href="https://wa.me/97143805515" className="hero-action">
-              <Icon name="whatsapp" size={18} />
-              <span>WhatsApp Us</span>
-            </a>
-          </div>
-        </div>
+        {/* Client Component - only this part needs JS */}
+        <HeroCTA />
         
-        <a href="https://www.google.com/search?q=silberarrows+dubai+reviews" target="_blank" rel="noopener noreferrer" className="hero-trust-badge">
+        <a 
+          href="https://www.google.com/search?q=silberarrows+dubai+reviews" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hero-trust-badge"
+        >
           <svg className="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -128,7 +54,7 @@ export function HeroSection() {
           <span className="rating-count">483 Reviews</span>
         </a>
         
-        {/* Quick Stats */}
+        {/* Quick Stats - Server rendered */}
         <div className="hero-quick-stats">
           <div className="quick-stat">
             <span className="stat-number">14+</span>
@@ -148,4 +74,4 @@ export function HeroSection() {
       </div>
     </section>
   );
-} 
+}
