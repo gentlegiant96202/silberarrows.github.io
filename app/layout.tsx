@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import fs from 'fs';
 import path from 'path';
 import SmoothScrollProvider from '../components/SmoothScrollProvider';
@@ -107,6 +108,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>
+        <SpeedInsights />
 
         {/* Production Contact Tracking */}
         <Script
