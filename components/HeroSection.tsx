@@ -7,11 +7,11 @@ export function HeroSection() {
       <div className="hero-content">
         <div className="hero-logo">
           <img 
-            src="/assets/icons/logo.svg" 
+            src="/assets/icons/silberarrows-logo.png" 
             alt="Silver Arrows Logo" 
             className="hero-logo-img" 
-            width="120" 
-            height="120" 
+            width="300" 
+            height="90" 
           />
         </div>
         <div className="hero-tagline">Exclusive Automotive Excellence</div>
