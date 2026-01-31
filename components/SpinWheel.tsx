@@ -761,8 +761,11 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
     <>
       <style jsx>{`
         @font-face {
-          font-family: 'Impact';
-          src: url('/assets/fonts/impact.ttf') format('truetype');
+          font-family: 'Anton';
+          src: url('/assets/fonts/Anton-Regular.woff2') format('woff2');
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
         }
         
         .wheel-modal {
@@ -814,7 +817,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           color: #F3F4F6;
           font-size: ${isMobile ? '20px' : '24px'};
           font-weight: normal;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           text-align: center;
           margin-bottom: 18px;
           margin-top: 0;
@@ -882,7 +885,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           padding: ${isMobile ? '12px 20px' : '14px 26px'};
           font-size: ${isMobile ? '14px' : '16px'};
           font-weight: normal;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           text-transform: uppercase;
           letter-spacing: 1px;
           border-radius: 30px;
@@ -1038,7 +1041,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           padding: 16px 28px;
           font-size: 16px;
           font-weight: normal;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           text-transform: uppercase;
           letter-spacing: 1.2px;
           border-radius: 30px;
@@ -1129,7 +1132,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
               0 0 20px rgba(0, 0, 0, 0.8),
               inset 0 3px 6px rgba(243, 244, 246, 0.3),
               0 0 15px rgba(156, 163, 175, 0.6);
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           font-weight: normal;
           font-size: ${isMobile ? '11px' : '14px'};
           color: #1a1a1a;
@@ -1208,7 +1211,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
 
         .choice-divider {
           color: #F3F4F6;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           font-size: ${isMobile ? '14px' : '16px'};
           text-transform: uppercase;
           letter-spacing: 2px;
@@ -1219,7 +1222,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
 
         .choice-question-mark {
           color: #9CA3AF;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           font-size: ${isMobile ? '20px' : '24px'};
           text-shadow: 0 0 15px rgba(156, 163, 175, 0.9);
           margin-left: ${isMobile ? '2px' : '5px'};
@@ -1246,7 +1249,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           padding: ${isMobile ? '12px 20px' : '14px 28px'};
           font-size: ${isMobile ? '14px' : '16px'};
           font-weight: normal;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           text-transform: uppercase;
           letter-spacing: 1.2px;
           border-radius: 30px;
@@ -1321,7 +1324,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           padding: 14px 34px;
           font-size: 16px;
           font-weight: normal;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           text-transform: uppercase;
           letter-spacing: 1px;
           border-radius: 30px;
@@ -1351,7 +1354,7 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
           color: #1a1a1a;
           font-size: 24px;
           font-weight: normal;
-          font-family: 'Impact', 'Arial Black', sans-serif;
+          font-family: 'Anton', 'Arial Black', sans-serif;
           cursor: pointer;
           display: flex;
           align-items: center;

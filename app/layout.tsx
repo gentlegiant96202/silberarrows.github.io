@@ -46,7 +46,7 @@ export default function RootLayout({
         
         {/* Preload critical resources */}
         <link rel="preload" href="/assets/images/hero-bg-silver-optimized.avif" as="image" fetchPriority="high" />
-        <link rel="preload" href="/assets/fonts/impact.ttf" as="font" type="font/ttf" crossOrigin="" />
+        <link rel="preload" href="/assets/fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/assets/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossOrigin="" />
         
