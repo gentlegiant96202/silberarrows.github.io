@@ -38,7 +38,7 @@ export default function ContactSection() {
       icon: 'whatsapp',
       title: 'WhatsApp',
       description: 'Quick service enquiries',
-      actionText: 'WhatsApp Us',
+      actionText: 'WHATSAPP US',
       actionLink: 'https://wa.me/97143805515',
       actionIcon: 'whatsapp',
       isExternal: true
