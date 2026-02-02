@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 
 interface TeamMemberData {
   name: string;
   position: string;
   specialty: string;
   image: string;
+  mobileImage: string;
   description: string;
 }
 
@@ -19,15 +19,22 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member }) => {
   return (
     <div className="team-member">
       <div className="team-member-image">
-        <Image 
-          src={member.image} 
-          alt={member.name} 
-          width={400} 
-          height={400}
-          sizes="(max-width: 768px) 280px, 350px"
-          quality={75}
-          style={{ objectFit: 'cover' }}
-        />
+        <picture>
+          {/* Mobile: smaller optimized image (400x600, ~10KB) */}
+          <source 
+            media="(max-width: 768px)" 
+            srcSet={member.mobileImage}
+            type="image/avif"
+          />
+          {/* Desktop: full size image */}
+          <img 
+            src={member.image} 
+            alt={member.name}
+            width={720}
+            height={1080}
+            loading="lazy"
+          />
+        </picture>
         <div className="team-overlay">
           <div className="team-overlay-content">
             <p>{member.description}</p>
@@ -50,6 +57,7 @@ export default function TeamSection() {
       position: 'Head of Service',
       specialty: 'Certified Mercedes-Benz Technician',
       image: '/assets/images/DAN-1_02.webp',
+      mobileImage: '/assets/images/DAN-1_02-mobile.avif',
       description: 'Leading our service operations with over 15 years of Mercedes-Benz expertise.'
     },
     {
@@ -57,6 +65,7 @@ export default function TeamSection() {
       position: 'Service Advisor',
       specialty: 'Certified Service Advisor',
       image: '/assets/images/LUSY-2_02.webp',
+      mobileImage: '/assets/images/LUSY-2_02-mobile.avif',
       description: 'Dedicated to providing exceptional customer service and technical support.'
     },
     {
@@ -64,6 +73,7 @@ export default function TeamSection() {
       position: 'Service Advisor',
       specialty: 'Certified Service Advisor',
       image: '/assets/images/ESSRAR-3_02.webp',
+      mobileImage: '/assets/images/ESSRAR-3_02-mobile.avif',
       description: 'Expert in customer relations and comprehensive service coordination.'
     }
   ];

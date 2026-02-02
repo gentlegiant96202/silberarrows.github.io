@@ -102,6 +102,16 @@ export default function WhyChooseUs() {
       ref={sectionRef}
       className={`why-choose-us-section${isVisible ? ' is-visible' : ''}`}
     >
+      {/* Mobile-only showroom image at top */}
+      <div className="why-choose-us-mobile-image">
+        <img 
+          src="/assets/images/why-choose-us-bg-mobile.avif" 
+          alt="Silver Arrows Mercedes-Benz Service Centre"
+          loading="lazy"
+        />
+        <div className="mobile-image-overlay"></div>
+      </div>
+      
       <div className="why-choose-us-content">
         <div className="section-header">
           <h2>WHY CHOOSE US?</h2>

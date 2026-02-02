@@ -1079,6 +1079,11 @@ body.no-scroll.menu-open::after {
     z-index: 1;
 }
 
+/* Mobile showroom image - hidden by default, shown on mobile */
+.why-choose-us-mobile-image {
+    display: none;
+}
+
 .why-choose-us-content {
     display: flex;
     flex-direction: column;
@@ -1229,8 +1234,54 @@ body.no-scroll.menu-open::after {
 
 /* Mobile: Stack features vertically */
 @media (max-width: 768px) {
+    /* Mobile: Show separate showroom image section */
+    .why-choose-us-section {
+        padding: 0;
+        border-radius: 0;
+        width: 100%;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    /* Hide background image on mobile */
+    .why-choose-us-section::before {
+        display: none;
+    }
+    
+    /* Hide gradient overlay on mobile */
+    .why-choose-us-section::after {
+        display: none;
+    }
+    
+    /* Show mobile image section - full image visible */
+    .why-choose-us-mobile-image {
+        display: block;
+        position: relative;
+        width: 94%;
+        margin: 0 auto;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    .why-choose-us-mobile-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    .why-choose-us-mobile-image .mobile-image-overlay {
+        display: none;
+    }
+    
+    /* Content section - separate below image */
     .why-choose-us-content {
-        gap: 40px;
+        gap: 30px;
+        padding: 40px 5%;
+        background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+        margin-top: 20px;
     }
 
     .features-columns {
@@ -4614,6 +4665,11 @@ body.no-scroll.menu-open::after {
             width: 98%;
             margin: 20px auto;
             padding: 40px 2% 100px;
+        }
+        
+        /* Mobile: use smaller optimized background image */
+        .contact-section::before {
+            background-image: url('/assets/images/why-choose-us-bg-mobile.avif');
         }
         
         .contact-content {
