@@ -1,40 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Icon from './Icon';
-
-function getBusinessStatus(): { isOpen: boolean; message: string } {
-  const now = new Date();
-  const dubaiTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Dubai' }));
-  const day = dubaiTime.getDay();
-  const hour = dubaiTime.getHours();
-  
-  const isWorkDay = day >= 1 && day <= 6;
-  const isWorkHours = hour >= 8 && hour < 18;
-  const isOpen = isWorkDay && isWorkHours;
-  
-  if (isOpen) {
-    const closingHour = 18;
-    const hoursLeft = closingHour - hour;
-    if (hoursLeft <= 1) {
-      return { isOpen: true, message: 'Open Now · Closes Soon' };
-    }
-    return { isOpen: true, message: `Open Now · Closes ${closingHour > 12 ? closingHour - 12 : closingHour}PM` };
-  }
-  return { isOpen: false, message: 'Closed · We\'ll respond ASAP' };
-}
 
 export function HeroCTA() {
   const [showContactActions, setShowContactActions] = useState(false);
-  const [businessStatus, setBusinessStatus] = useState({ isOpen: true, message: 'Open Now' });
-
-  useEffect(() => {
-    setBusinessStatus(getBusinessStatus());
-    const interval = setInterval(() => {
-      setBusinessStatus(getBusinessStatus());
-    }, 60000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="hero-cta-container" onClick={() => setShowContactActions(false)}>
@@ -54,9 +24,9 @@ export function HeroCTA() {
             </svg>
           </span>
         </div>
-        <div className={`cta-status ${businessStatus.isOpen ? 'open' : 'closed'}`}>
+        <div className="cta-status open">
           <span className="status-dot"></span>
-          <span className="status-text">{businessStatus.message}</span>
+          <span className="status-text">Speak to a Service Advisor</span>
         </div>
       </button>
       

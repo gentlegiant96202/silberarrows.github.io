@@ -1,5 +1,6 @@
 // Server Component - renders immediately, no JS dependency
 import { HeroCTA } from './HeroCTA';
+import Icon from './Icon';
 
 export function HeroSection() {
   return (
@@ -26,6 +27,18 @@ export function HeroSection() {
           Our trusted name ensures a service record from us<br />
           retains your vehicle&apos;s value.
         </p>
+        
+        {/* Hero Badges */}
+        <div className="hero-badges">
+          <div className="hero-badge">
+            <Icon name="shield-alt" size={16} variant="silver" />
+            <span>12 Month Warranty on Parts & Labour</span>
+          </div>
+          <div className="hero-badge">
+            <Icon name="truck" size={16} variant="silver" />
+            <span>Free Collection & Delivery</span>
+          </div>
+        </div>
         
         {/* Client Component - only this part needs JS */}
         <HeroCTA />

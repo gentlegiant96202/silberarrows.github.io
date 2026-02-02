@@ -31,6 +31,7 @@ const Header: React.FC = () => {
           <nav className="desktop-nav">
             <Link href="/" className="nav-link">Home</Link>
             <Link href="/services/" className="nav-link">Services</Link>
+            <Link href="/service-pricing/" className="nav-link">Service Pricing</Link>
             <Link href="/service-contracts/" className="nav-link">Service Contracts</Link>
             <Link href="/contact/" className="nav-link">Contact</Link>
           </nav>
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
             </div>
             <div className="contact-buttons">
               <a href="tel:+97143805515" className="contact-btn phone-btn">
-                <Icon name="phone" size={16} />
+                <Icon name="phone" size={16} variant="dark" />
                 <span>+971 4 380 5515</span>
               </a>
               {/* Hamburger replaces WhatsApp icon on mobile */}
@@ -51,7 +52,9 @@ const Header: React.FC = () => {
                 onClick={() => setMobileOpen(prev => !prev)}
                 style={{ zIndex: 1500 }}
               >
-                <span></span><span></span><span></span>
+                <span style={{ backgroundColor: '#1a1a1a' }}></span>
+                <span style={{ backgroundColor: '#1a1a1a' }}></span>
+                <span style={{ backgroundColor: '#1a1a1a' }}></span>
               </button>
             </div>
           </div>
@@ -78,6 +81,7 @@ const Header: React.FC = () => {
         <nav className="mobile-nav-links">
           <Link href="/" className="nav-link" onClick={() => setMobileOpen(false)}>Home</Link>
           <Link href="/services/" className="nav-link" onClick={() => setMobileOpen(false)}>Services</Link>
+          <Link href="/service-pricing/" className="nav-link" onClick={() => setMobileOpen(false)}>Service Pricing</Link>
           <Link href="/service-contracts/" className="nav-link" onClick={() => setMobileOpen(false)}>Service Contracts</Link>
           <Link href="/contact/" className="nav-link" onClick={() => setMobileOpen(false)}>Contact</Link>
           <div className="mobile-contact-info">

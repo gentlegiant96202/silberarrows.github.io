@@ -8,11 +8,11 @@ const Footer: React.FC = () => {
         <div className="footer-content">
           <div className="footer-actions">
             <a href="tel:+97143805515" className="footer-action">
-              <Icon name="phone" size={20} variant="white" />
+              <Icon name="phone" size={20} variant="dark" />
               <span>Call Us</span>
             </a>
             <a href="https://wa.me/97143805515" className="footer-action">
-              <Icon name="whatsapp" size={20} variant="white" />
+              <Icon name="whatsapp" size={20} variant="dark" />
               <span>WhatsApp Us</span>
             </a>
           </div>
