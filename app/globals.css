@@ -6796,11 +6796,16 @@ body {
 }
 
 /* Section backgrounds - light theme */
-.why-choose-us-section,
 .services-section,
 .team-section {
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Why Choose Us section - stays dark */
+.why-choose-us-section {
+    background: #000;
+    border: none;
 }
 
 /* Hide dark background images on these sections */
