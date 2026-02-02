@@ -613,6 +613,57 @@ body.no-scroll.menu-open::after {
     }
 }
 
+/* Landing Page Hero - equal spacing between elements */
+.hero:has(.lp-hero-title) .hero-logo {
+    margin-bottom: 12px;
+}
+
+.hero:has(.lp-hero-title) .hero-tagline {
+    margin-bottom: 12px;
+}
+
+.lp-hero-title {
+    font-size: 80px;
+    margin-bottom: 4px;
+    height: 100px;
+    min-height: 0;
+}
+
+.lp-hero-title + .hero-subtitle {
+    margin-top: 0;
+    min-height: auto;
+    margin-bottom: 8px;
+}
+
+.hero:has(.lp-hero-title) .hero-badges {
+    margin: 0 0 12px;
+}
+
+.lp-hero-title > span {
+    /* Reset the shine effect for non-highlighted text */
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: var(--light);
+    color: var(--light);
+    animation: none;
+    -webkit-animation: none;
+}
+
+.lp-hero-title .hero-title-shine {
+    /* Apply shine effect only to highlighted line */
+    background: #333 -webkit-gradient(linear, left top, right top, from(#333), to(#333), color-stop(0.5, #fff)) 0 0 no-repeat;
+    background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
+    -webkit-background-size: 200px;
+    color: rgba(255, 255, 255, 0.3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+    -webkit-animation: shine 8s infinite ease-in-out;
+    animation: shine 8s infinite ease-in-out;
+}
+
 
 
 .hero-subtitle {
@@ -2703,6 +2754,27 @@ body.no-scroll.menu-open::after {
             line-height: 0.9;
         }
 
+        .lp-hero-title {
+            font-size: 62px;
+            margin-bottom: 10px;
+        }
+        
+        .hero:has(.lp-hero-title) .hero-logo {
+            margin-bottom: 10px;
+        }
+        
+        .hero:has(.lp-hero-title) .hero-tagline {
+            margin-bottom: 10px;
+        }
+        
+        .lp-hero-title + .hero-subtitle {
+            margin-bottom: 10px;
+        }
+        
+        .hero:has(.lp-hero-title) .hero-badges {
+            margin: 0 0 10px;
+        }
+
         .hero-tagline {
             font-size: 15px;
             letter-spacing: 1.5px;
@@ -2953,6 +3025,24 @@ body.no-scroll.menu-open::after {
         .hero-title {
             font-size: 34px;                 /* smaller */
             line-height: 0.85; /* Tighter line spacing for small mobile text wrapping */
+        }
+
+        .lp-hero-title {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+        
+        .hero:has(.lp-hero-title) .hero-logo,
+        .hero:has(.lp-hero-title) .hero-tagline {
+            margin-bottom: 8px;
+        }
+        
+        .lp-hero-title + .hero-subtitle {
+            margin-bottom: 8px;
+        }
+        
+        .hero:has(.lp-hero-title) .hero-badges {
+            margin: 0 0 8px;
         }
 
         .hero-subtitle {
@@ -4068,6 +4158,25 @@ body.no-scroll.menu-open::after {
             font-size: 40px;
             line-height: 0.85; /* Tighter line spacing for mobile typography */
         }
+        
+        .lp-hero-title {
+            font-size: 46px;
+            margin-bottom: 8px;
+        }
+        
+        .hero:has(.lp-hero-title) .hero-logo,
+        .hero:has(.lp-hero-title) .hero-tagline {
+            margin-bottom: 8px;
+        }
+        
+        .lp-hero-title + .hero-subtitle {
+            margin-bottom: 8px;
+        }
+        
+        .hero:has(.lp-hero-title) .hero-badges {
+            margin: 0 0 8px;
+        }
+        
         .hero-tagline {
             font-size: 11px;
         }
@@ -4720,11 +4829,11 @@ body.no-scroll.menu-open::after {
     @media (max-width: 768px) {
         .contact-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 0.75rem;
         }
         
         .contact-header h2 {
-            font-size: 1.75rem;
+            font-size: 1.4rem;
         }
         
         .contact-cards-grid {
@@ -4740,8 +4849,8 @@ body.no-scroll.menu-open::after {
     @media (max-width: 768px) {
         .contact-section {
             width: 98%;
-            margin: 20px auto;
-            padding: 30px 2% 40px;
+            margin: 10px auto;
+            padding: 20px 2% 20px;
         }
         
         /* Mobile: use smaller optimized background image */
@@ -4754,52 +4863,52 @@ body.no-scroll.menu-open::after {
         }
         
         .contact-header {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .contact-header h2 {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             line-height: 1.0;
         }
         
         .contact-header p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.3;
         }
         
         .contact-cards-grid {
             grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
         
         .contact-card {
-            padding: 1rem;
+            padding: 0.75rem;
         }
         
         .contact-section .card-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 0.75rem;
+            width: 32px;
+            height: 32px;
+            margin-bottom: 0.5rem;
         }
         
         .contact-section .card-icon i {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
         
         .contact-card h3 {
-            font-size: 0.85rem;
-            margin-bottom: 0.25rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.2rem;
         }
         
         .contact-card p {
-            font-size: 0.75rem;
-            margin-bottom: 0.75rem;
+            font-size: 0.65rem;
+            margin-bottom: 0.5rem;
         }
         
         .action-link {
-            font-size: 0.7rem;
-            padding: 0.5rem 0.75rem;
-            gap: 0.35rem;
+            font-size: 0.6rem;
+            padding: 0.4rem 0.6rem;
+            gap: 0.25rem;
         }
         
         .hours-card {
@@ -4807,37 +4916,37 @@ body.no-scroll.menu-open::after {
         }
         
         .contact-methods {
-            gap: 1rem;
-        }
-        
-        .map-container {
-            height: 250px;
-        }
-        
-        .map-info-overlay {
-            padding: 1rem;
-            top: 0.75rem;
-            left: 0.75rem;
-            right: 0.75rem;
-        }
-        
-        .map-info-overlay h4 {
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .map-info-overlay p {
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .overlay-actions {
             gap: 0.5rem;
         }
         
-        .map-action {
+        .map-container {
+            height: 160px;
+        }
+        
+        .map-info-overlay {
+            padding: 0.75rem;
+            top: 0.5rem;
+            left: 0.5rem;
+            right: 0.5rem;
+        }
+        
+        .map-info-overlay h4 {
+            font-size: 0.8rem;
+            margin-bottom: 0.15rem;
+        }
+        
+        .map-info-overlay p {
             font-size: 0.65rem;
-            padding: 0.4rem 0.75rem;
+            margin-bottom: 0.35rem;
+        }
+        
+        .overlay-actions {
+            gap: 0.4rem;
+        }
+        
+        .map-action {
+            font-size: 0.6rem;
+            padding: 0.3rem 0.6rem;
         }
     }
 
