@@ -107,7 +107,9 @@ export default function WhyChooseUs() {
         <img 
           src="/assets/images/why-choose-us-bg-mobile.avif" 
           alt="Silver Arrows Mercedes-Benz Service Centre"
-          loading="lazy"
+          width={600}
+          height={425}
+          fetchPriority="high"
         />
         <div className="mobile-image-overlay"></div>
       </div>
