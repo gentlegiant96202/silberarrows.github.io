@@ -4407,6 +4407,7 @@ body.no-scroll.menu-open::after {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        justify-content: space-between;
     }
 
     .contact-cards-grid {
@@ -6999,7 +7000,7 @@ body {
 }
 
 .hours-item .time {
-    color: #555;
+    color: #fff;
 }
 
 /* Footer - light theme */
