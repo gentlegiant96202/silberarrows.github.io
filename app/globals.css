@@ -6797,3 +6797,166 @@ footer,
     background: linear-gradient(135deg, #1a1a1a, #333);
 }
 
+
+/* ============================================
+   LIGHT THEME - ADDITIONAL FIXES
+   ============================================ */
+
+/* Service card display area */
+.service-card-display {
+    background: #ffffff;
+}
+
+.service-card-display .service-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.service-card-display .service-card h3 {
+    color: #1a1a1a;
+}
+
+.service-card-display .service-card p {
+    color: #555;
+}
+
+/* Service card links */
+.service-card a,
+.service-card .learn-more {
+    color: #1a1a1a;
+}
+
+/* Header phone button */
+.contact-btn {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+}
+
+.contact-btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* Hero CTA button - keep visible on dark hero */
+.hero-cta {
+    background: #fff;
+    color: #1a1a1a;
+}
+
+.hero-cta:hover {
+    background: #f0f0f0;
+}
+
+/* Hero trust badge */
+.hero-trust-badge {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Hero quick stats */
+.hero-quick-stats {
+    color: #fff;
+}
+
+/* Service comparison table text */
+.feature-column-header,
+.feature-name {
+    color: #1a1a1a;
+}
+
+.package-column,
+.package-name {
+    color: #1a1a1a;
+}
+
+/* Check/X marks in comparison table */
+.feature-value {
+    color: #1a1a1a;
+}
+
+/* Action links in contact cards */
+.action-link {
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.action-link:hover {
+    background: #f0f0f0;
+    color: #1a1a1a;
+}
+
+/* Map overlay */
+.map-info-overlay {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.map-info-overlay h4 {
+    color: #1a1a1a;
+}
+
+.map-info-overlay p {
+    color: #555;
+}
+
+.map-action {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.map-action:hover {
+    background: #333;
+}
+
+/* Logo - may need inversion for light background */
+.logo {
+    filter: invert(1);
+}
+
+/* Service contracts description */
+.service-contracts-section p,
+.service-contracts-section .description {
+    color: #555;
+}
+
+/* Links in general */
+a {
+    color: #1a1a1a;
+}
+
+/* Warranty section if exists */
+.warranty-section {
+    background: #ffffff;
+}
+
+.warranty-card,
+.warranty-card-simple {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.warranty-card h3,
+.warranty-card-simple h3 {
+    color: #1a1a1a;
+}
+
+.warranty-card p,
+.warranty-card-simple p {
+    color: #555;
+}
+
+/* Stat numbers and labels */
+.stat-number {
+    color: #1a1a1a;
+}
+
+.stat-label {
+    color: #666;
+}
+
+/* Quick stats in hero - keep light for dark hero */
+.hero .stat-number,
+.hero .stat-label {
+    color: #fff;
+}
+
