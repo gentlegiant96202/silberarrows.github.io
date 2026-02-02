@@ -5,7 +5,7 @@
     src: url('/assets/fonts/Anton-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: block;
+    font-display: swap; /* swap for better LCP - fallback shows immediately, Anton swaps in when loaded */
 }
 
 @font-face {
