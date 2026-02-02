@@ -56,6 +56,17 @@ export default function HomePage() {
         {/* Hero Section - React Component */}
         <HeroSection />
 
+        {/* Mobile-only: Server-rendered LCP image for Why Choose Us (faster discovery) */}
+        <div className="why-choose-us-mobile-image-ssr">
+          <img 
+            src="/assets/images/why-choose-us-bg-mobile.avif" 
+            alt="Silver Arrows Mercedes-Benz Service Centre"
+            width={600}
+            height={425}
+            fetchPriority="high"
+          />
+        </div>
+
         {/* Why Choose Us Section - React Component */}
         <WhyChooseUs />
 

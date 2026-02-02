@@ -1084,6 +1084,11 @@ body.no-scroll.menu-open::after {
     display: none;
 }
 
+/* Server-rendered mobile image for faster LCP - hidden by default */
+.why-choose-us-mobile-image-ssr {
+    display: none;
+}
+
 .why-choose-us-content {
     display: flex;
     flex-direction: column;
@@ -1255,25 +1260,26 @@ body.no-scroll.menu-open::after {
         display: none;
     }
     
-    /* Show mobile image section - full image visible */
+    /* Hide component's mobile image (using server-rendered one instead for LCP) */
     .why-choose-us-mobile-image {
+        display: none;
+    }
+    
+    /* Show server-rendered mobile image for faster LCP */
+    .why-choose-us-mobile-image-ssr {
         display: block;
         position: relative;
         width: 94%;
-        margin: 0 auto;
+        margin: 20px auto 0;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
     
-    .why-choose-us-mobile-image img {
+    .why-choose-us-mobile-image-ssr img {
         width: 100%;
         height: auto;
         display: block;
-    }
-    
-    .why-choose-us-mobile-image .mobile-image-overlay {
-        display: none;
     }
     
     /* Content section - separate below image */
