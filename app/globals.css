@@ -157,26 +157,25 @@ html {
     width: 100%;
 }
 
-/* Enhanced fixed header with glass morphism */
-@media (min-width: 769px) {
-    #header-placeholder {
-        background: rgba(18, 18, 18, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
+/* Light theme header */
+#header-placeholder {
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Mobile header - also fixed for consistency */
-@media (max-width: 768px) {
-    #header-placeholder {
-        background: var(--glass-bg);
-        backdrop-filter: blur(var(--glass-blur));
-        -webkit-backdrop-filter: blur(var(--glass-blur));
-        border-bottom: 1px solid var(--glass-border);
-        box-shadow: var(--glass-shadow);
-    }
+/* Header nav links - dark text for light theme */
+header .nav-link {
+    color: #1a1a1a;
+}
+
+header .nav-link:hover {
+    color: #666;
+}
+
+/* Mobile hamburger - dark lines for light theme */
+.mobile-nav-toggle span {
+    background: #1a1a1a;
 }
 
 body.no-scroll {
@@ -6541,3 +6540,260 @@ body.no-scroll.menu-open::after {
         text-decoration: none;
         color: #ffffff;
     }
+
+/* ============================================
+   LIGHT THEME OVERRIDES
+   Applies to all sections EXCEPT hero
+   ============================================ */
+
+/* Body background */
+body {
+    background: #f5f5f5;
+}
+
+/* Section backgrounds - light theme */
+.why-choose-us-section,
+.services-section,
+.team-section,
+.service-contracts-section,
+.contact-section {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Hide dark background images on these sections */
+.why-choose-us-section::before,
+.why-choose-us-section::after,
+.contact-section::before,
+.contact-section::after {
+    display: none;
+}
+
+/* Section headers - dark text */
+.section-header h2,
+.why-choose-us-content .section-header h2,
+.services-section .section-header h2,
+.team-section .section-header h2,
+.service-contracts-section .section-header h2,
+.contact-section .contact-header h2 {
+    color: #1a1a1a;
+}
+
+.section-header p,
+.why-choose-us-content .section-header p,
+.services-section .section-header p,
+.team-section .section-header p,
+.contact-section .contact-header p {
+    color: #555;
+}
+
+/* Feature cards - light theme */
+.feature-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.feature-card:hover {
+    background: #f0f0f0;
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.feature-content h3 {
+    color: #1a1a1a;
+}
+
+.feature-content p {
+    color: #555;
+}
+
+/* Service cards - light theme */
+.service-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.service-card:hover {
+    background: #f0f0f0;
+}
+
+.service-card h3 {
+    color: #1a1a1a;
+}
+
+.service-card p {
+    color: #555;
+}
+
+/* Team section - light theme */
+.team-section {
+    background: #ffffff;
+}
+
+.team-member {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.team-member-info h3 {
+    color: #1a1a1a;
+}
+
+.team-designation {
+    color: #666;
+}
+
+.team-speciality {
+    color: #888;
+}
+
+/* Service contracts - light theme */
+.service-contracts-section {
+    background: #ffffff;
+}
+
+.comparison-table {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.table-header {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.feature-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.feature-name {
+    color: #1a1a1a;
+}
+
+/* Contact section - light theme */
+.contact-section {
+    background: #ffffff;
+}
+
+.contact-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.contact-card h3 {
+    color: #1a1a1a;
+}
+
+.contact-card p {
+    color: #555;
+}
+
+.hours-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.hours-card h3 {
+    color: #1a1a1a;
+}
+
+.hours-item .day {
+    color: #1a1a1a;
+}
+
+.hours-item .time {
+    color: #555;
+}
+
+/* Footer - light theme */
+footer,
+.site-footer {
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footer-content {
+    color: #1a1a1a;
+}
+
+.footer-links a {
+    color: #555;
+}
+
+.footer-links a:hover {
+    color: #1a1a1a;
+}
+
+.footer-copyright {
+    color: #888;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Mobile footer - light theme */
+.mobile-footer {
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footer-action {
+    color: #1a1a1a;
+    background: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-action:hover {
+    background: #eee;
+}
+
+/* Services nav tabs - light theme */
+.services-nav button {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #1a1a1a;
+}
+
+.services-nav button:hover,
+.services-nav button.active {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* Mobile nav - keep dark for contrast */
+.mobile-nav-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mobile-nav-links .nav-link {
+    color: #1a1a1a;
+}
+
+.mobile-nav-links .nav-link:hover {
+    color: #666;
+}
+
+.mobile-nav-close span {
+    background: #1a1a1a;
+}
+
+/* Why Choose Us mobile content - light theme */
+@media (max-width: 768px) {
+    .why-choose-us-content {
+        background: #ffffff;
+    }
+}
+
+/* Server-rendered mobile image - keep visible */
+.why-choose-us-mobile-image-ssr {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Icon colors for light theme */
+.feature-icon {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+}
+
+.card-icon {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+}
+
