@@ -165,7 +165,8 @@ html {
 }
 
 /* Header nav links - dark text for light theme */
-header .nav-link {
+header .nav-link,
+header .nav-link:visited {
     color: #1a1a1a;
 }
 
@@ -1125,6 +1126,7 @@ body.no-scroll.menu-open::after {
     border-radius: 12px;
     overflow: hidden; /* Important for animation */
     position: relative;
+    background-color: #000;
 }
 
 .why-choose-us-section::before {
