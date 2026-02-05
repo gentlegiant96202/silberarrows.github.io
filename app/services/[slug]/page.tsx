@@ -7,6 +7,22 @@ import Footer from '../../../components/Footer';
 import Icon from '../../../components/Icon';
 import ServiceSchema from '../../../components/ServiceSchema';
 
+// Generate static params to pre-render all service pages at build time
+export async function generateStaticParams() {
+  return [
+    { slug: 'scheduled-maintenance' },
+    { slug: 'brake-service' },
+    { slug: 'detailing' },
+    { slug: 'battery-service' },
+    { slug: 'air-conditioning' },
+    { slug: 'diagnostics' },
+    { slug: 'engine-repair' },
+    { slug: 'suspension-repair' },
+    { slug: 'tyre-replacement' },
+    { slug: 'wheel-alignment' },
+  ];
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services[slug];
