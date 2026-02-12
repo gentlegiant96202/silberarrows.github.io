@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Icon from './Icon';
+import ContactFormModal from './ContactFormModal';
 
 interface ContractPricingData {
   model: string;
@@ -596,6 +597,7 @@ export default function ServiceContractPricing() {
   const [selectedModel, setSelectedModel] = useState<string>('');
   const [selectedYear, setSelectedYear] = useState<string>('');
   const [selectedEngine, setSelectedEngine] = useState<string>('');
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // Get unique models
   const availableModels = useMemo(() => {
@@ -771,13 +773,12 @@ export default function ServiceContractPricing() {
                 </div>
 
                 <div className="pricing-actions">
-                  <button className="btn-primary">
+                  <button 
+                    className="btn-primary"
+                    onClick={() => setIsContactModalOpen(true)}
+                  >
                     <Icon name="phone-alt" size={16} variant="dark" flip={true} />
-                    Call Now
-                  </button>
-                  <button className="btn-secondary">
-                    <Icon name="whatsapp" size={16} variant="white" />
-                    WhatsApp
+                    Call or WhatsApp Us
                   </button>
                 </div>
               </div>
@@ -785,6 +786,11 @@ export default function ServiceContractPricing() {
           </div>
         </div>
       </div>
+      
+      <ContactFormModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </section>
   );
 } 

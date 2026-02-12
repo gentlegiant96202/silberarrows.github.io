@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Icon from '../../components/Icon';
+import PricingCTASection from '../../components/PricingCTASection';
 
 export const metadata: Metadata = {
   title: 'Mercedes-Benz Service Pricing Dubai | SilberArrows',
@@ -123,19 +124,7 @@ export default function ServicePricingPage() {
             </div>
 
             {/* Bottom CTA */}
-            <div className="pricing-bottom-cta">
-              <h3>Ready to Book?</h3>
-              <div className="pricing-cta-buttons">
-                <a href="tel:+97143805515" className="pricing-cta-btn primary">
-                  <Icon name="phone" size={18} variant="dark" />
-                  <span>Call +971 4 380 5515</span>
-                </a>
-                <a href="https://wa.me/97143805515?text=Hi%20Team%20SilberArrows%2C%20I%20would%20like%20to%20get%20a%20service%20quote%20for%20my%20Mercedes-Benz." target="_blank" rel="noopener noreferrer" className="pricing-cta-btn secondary">
-                  <Icon name="whatsapp" size={18} variant="white" />
-                  <span>WhatsApp Us</span>
-                </a>
-              </div>
-            </div>
+            <PricingCTASection />
           </div>
         </section>
       </main>

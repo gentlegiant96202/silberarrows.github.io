@@ -1,20 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import Icon from './Icon';
+import ContactFormModal from './ContactFormModal';
 
 export function HeroCTA() {
-  const [showContactActions, setShowContactActions] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="hero-cta-container" onClick={() => setShowContactActions(false)}>
+    <div className="hero-cta-container">
       <button 
-        className={`hero-cta quote-trigger ${showContactActions ? 'hide' : ''}`}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setShowContactActions(true);
-        }}
+        className="hero-cta quote-trigger"
+        onClick={() => setIsModalOpen(true)}
       >
         <div className="cta-main-row">
           <span>GET A FREE QUOTE</span>
@@ -30,19 +26,10 @@ export function HeroCTA() {
         </div>
       </button>
       
-      <div 
-        className={`hero-contact-actions ${showContactActions ? 'active' : ''}`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <a href="tel:+97143805515" className="hero-action">
-          <Icon name="phone" size={18} />
-          <span>+971 4 380 5515</span>
-        </a>
-        <a href="https://wa.me/97143805515" className="hero-action">
-          <Icon name="whatsapp" size={18} />
-          <span>WhatsApp Us</span>
-        </a>
-      </div>
+      <ContactFormModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 }

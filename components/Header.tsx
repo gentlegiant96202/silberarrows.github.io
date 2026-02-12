@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Icon from './Icon';
+import ContactFormModal from './ContactFormModal';
 
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // lock scroll when menu open
   useEffect(() => {
@@ -41,10 +43,13 @@ const Header: React.FC = () => {
               <span>Al Manara St, Al Quoz, Dubai</span>
             </div>
             <div className="contact-buttons">
-              <a href="tel:+97143805515" className="contact-btn phone-btn">
+              <button 
+                className="contact-btn phone-btn"
+                onClick={() => setIsContactModalOpen(true)}
+              >
                 <Icon name="phone" size={16} variant="dark" />
-                <span>+971 4 380 5515</span>
-              </a>
+                <span>Contact Us</span>
+              </button>
               {/* Hamburger replaces WhatsApp icon on mobile */}
               <button
                 className={`mobile-nav-toggle${mobileOpen ? ' active' : ''}`}
@@ -85,10 +90,16 @@ const Header: React.FC = () => {
           <Link href="/service-contracts/" className="nav-link" onClick={() => setMobileOpen(false)}>Service Contracts</Link>
           <Link href="/contact/" className="nav-link" onClick={() => setMobileOpen(false)}>Contact</Link>
           <div className="mobile-contact-info">
-            <a href="tel:+97143805515" className="contact-btn phone-btn">
+            <button 
+              className="contact-btn phone-btn"
+              onClick={() => {
+                setMobileOpen(false);
+                setIsContactModalOpen(true);
+              }}
+            >
               <Icon name="phone" size={16} />
-              <span>+971 4 380 5515</span>
-            </a>
+              <span>Contact Us</span>
+            </button>
             <div className="address">
               <Icon name="location-dot" size={16} />
               <span>Al Manara St, Al Quoz, Dubai</span>
@@ -96,6 +107,11 @@ const Header: React.FC = () => {
           </div>
         </nav>
       </div>
+      
+      <ContactFormModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </div>
   );
 };

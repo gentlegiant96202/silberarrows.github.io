@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { trackConversion } from '../lib/analytics';
+
 
 // Types
 interface SpinWheelProps {
@@ -263,10 +263,6 @@ export default function SpinWheel({ isOpen, onClose }: SpinWheelProps) {
       }));
       
       setMessage('🎉 Processing your claim, please wait...');
-
-      // Track prize claim conversion
-      console.log('🎯 TRACKING: Prize claimed -', wheelState.currentPrize, 'AED');
-      trackConversion.spinWheelClaim(wheelState.currentPrize);
 
       try {
         // Send to API endpoint (handles both database save and webhook)

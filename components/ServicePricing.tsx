@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Icon from './Icon';
+import ContactFormModal from './ContactFormModal';
 
 interface PricingData {
   model: string;
@@ -722,6 +723,7 @@ export default function ServicePricing() {
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedEngine, setSelectedEngine] = useState('');
   const [isAMG, setIsAMG] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // Get unique model series for dropdown
   const modelSeries = useMemo(() => {
@@ -890,17 +892,21 @@ export default function ServicePricing() {
           </div>
 
           <div className="pricing-actions">
-            <a href="tel:+97143805515" className="btn-primary">
+            <button 
+              className="btn-primary"
+              onClick={() => setIsContactModalOpen(true)}
+            >
               <Icon name="phone-alt" size={16} variant="gold" flip={true} />
-              Call Now
-            </a>
-            <a href="https://wa.me/97143805515" className="btn-secondary" target="_blank" rel="noopener noreferrer">
-              <Icon name="whatsapp" size={16} variant="gold" />
-              WhatsApp
-            </a>
+              Call or WhatsApp Us
+            </button>
           </div>
         </div>
       )}
+      
+      <ContactFormModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </div>
   );
 } 
