@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '../../../lib/supabase';
 
 const WEBHOOK_URL = 'https://bothook.io/v1/public/triggers/webhooks/c59aa2c4-f68c-414a-88fe-d601d92b01c3';
 
@@ -16,12 +17,19 @@ export async function POST(request: NextRequest) {
 
     const fullPhone = `${countryCode || '+971'}${phone}`;
 
-    // Send to webhook
-    const webhookResponse = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone: fullPhone }),
-    });
+    // Save to Supabase and send webhook in parallel
+    const [dbResult, webhookResponse] = await Promise.all([
+      supabase.from('leads').insert({ name, phone: fullPhone }),
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone: fullPhone }),
+      }),
+    ]);
+
+    if (dbResult.error) {
+      console.error('Supabase insert error:', dbResult.error.message);
+    }
 
     if (!webhookResponse.ok) {
       console.error('Webhook failed:', webhookResponse.status);
