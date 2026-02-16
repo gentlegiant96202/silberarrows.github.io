@@ -34,7 +34,7 @@ export function LandingHeroSection({ config }: LandingHeroSectionProps) {
               ) : (
                 line
               )}
-              {index < config.title.length - 1 && <br />}
+              {index < config.title.length - 1 && <br className={`title-br title-br-${index}`} />}
             </span>
           ))}
         </h1>

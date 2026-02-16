@@ -20,7 +20,8 @@ export const landingPages: Record<string, LandingPageConfig> = {
     tagline: 'Trusted Mercedes-Benz Service Center in Dubai',
     title: [
       'Mercedes-Benz',
-      'Service Center in Dubai'
+      'Service Center',
+      'in Dubai'
     ],
     highlightLine: 0,  // Highlight "Mercedes-Benz"
     subtitle: [

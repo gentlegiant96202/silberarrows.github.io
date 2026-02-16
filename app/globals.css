@@ -651,6 +651,16 @@ body.no-scroll.menu-open::after {
     -webkit-animation: none;
 }
 
+/* Desktop: hide break between "Service Center" and "in Dubai" so they stay on one line */
+.lp-hero-title .title-br-1 {
+    display: none;
+}
+
+/* Desktop: add a space before "in Dubai" when the <br> is hidden */
+.lp-hero-title > span:nth-child(3)::before {
+    content: '\00a0';
+}
+
 .lp-hero-title .hero-title-shine {
     /* Apply shine effect only to highlighted line */
     background: #333 -webkit-gradient(linear, left top, right top, from(#333), to(#333), color-stop(0.5, #fff)) 0 0 no-repeat;
@@ -3028,22 +3038,50 @@ body.no-scroll.menu-open::after {
             line-height: 0.85; /* Tighter line spacing for small mobile text wrapping */
         }
 
-        .lp-hero-title {
-            font-size: 40px;
-            margin-bottom: 8px;
+        /* --- LP HERO BALANCED MOBILE LAYOUT --- */
+        .hero:has(.lp-hero-title) {
+            padding: 70px 4% 20px;
         }
-        
+
+        .hero:has(.lp-hero-title) .hero-content {
+            margin-top: -20px;
+        }
+
+        .lp-hero-title {
+            font-size: 36px;
+            margin-bottom: 6px;
+            height: auto;
+        }
+
+        /* Mobile: show break between "Service Center" and "in Dubai" */
+        .lp-hero-title .title-br-1 {
+            display: block;
+        }
+
+        /* Mobile: remove the injected space before "in Dubai" */
+        .lp-hero-title > span:nth-child(3)::before {
+            content: none;
+        }
+
         .hero:has(.lp-hero-title) .hero-logo,
         .hero:has(.lp-hero-title) .hero-tagline {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
-        
+
         .lp-hero-title + .hero-subtitle {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
-        
+
         .hero:has(.lp-hero-title) .hero-badges {
-            margin: 0 0 8px;
+            margin: 0 0 6px;
+        }
+
+        .hero:has(.lp-hero-title) .hero-cta-container {
+            margin-bottom: 10px;
+        }
+
+        .hero:has(.lp-hero-title) .hero-trust-badge {
+            margin: 6px auto 0;
         }
 
         .hero-subtitle {
@@ -3074,42 +3112,42 @@ body.no-scroll.menu-open::after {
         .hero-badges {
             justify-content: center;
             flex-direction: row;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
             margin: 12px 0 14px;
             gap: 6px;
         }
 
         .hero-badge {
-            padding: 5px 10px;
+            padding: 4px 8px;
         }
 
         .hero-badge span {
-            font-size: 9px;
+            font-size: 8px;
         }
 
         .hero-badge .icon {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
         }
 
         .hero-quick-stats {
             justify-content: center;
             gap: 10px;
-            margin-top: 14px;
+            margin-top: 10px;
             flex-wrap: nowrap;
         }
 
         .quick-stat .stat-number {
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .quick-stat .stat-label {
-            font-size: 9px;
+            font-size: 8px;
         }
 
         .stat-divider {
-            height: 22px;
+            height: 20px;
         }
     }
 
@@ -4270,19 +4308,19 @@ body.no-scroll.menu-open::after {
 
         .hero-quick-stats {
             gap: 8px;
-            flex-wrap: nowrap;
+            margin-top: 8px;
         }
 
         .quick-stat .stat-number {
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .quick-stat .stat-label {
-            font-size: 8px;
+            font-size: 7px;
         }
 
         .stat-divider {
-            height: 20px;
+            height: 18px;
         }
     }
 
