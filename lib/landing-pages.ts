@@ -9,6 +9,7 @@ export interface LandingPageConfig {
   // Meta tags
   metaTitle: string;
   metaDescription: string;
+  metaKeywords: string;
   // Optional: different badges or CTAs per landing page
   badges?: { icon: string; text: string }[];
 }
@@ -16,19 +17,20 @@ export interface LandingPageConfig {
 export const landingPages: Record<string, LandingPageConfig> = {
   'mercedes-service': {
     slug: 'mercedes-service',
-    tagline: 'Trusted Mercedes Specialists in Dubai',
+    tagline: 'Trusted Mercedes-Benz Service Center in Dubai',
     title: [
       'Mercedes-Benz',
-      'Service in Dubai'
+      'Service Center in Dubai'
     ],
     highlightLine: 0,  // Highlight "Mercedes-Benz"
     subtitle: [
-      'Expert Mercedes service by certified technicians.',
-      'Genuine parts, competitive prices,',
-      'trusted by Dubai\'s Mercedes owners.'
+      'Your nearest Mercedes service center in Al Quoz.',
+      'Book your service appointment today',
+      'expert maintenance & car service with genuine parts.'
     ],
-    metaTitle: 'Mercedes Service Dubai | Expert Mercedes-Benz Service',
-    metaDescription: 'Professional Mercedes service in Dubai. Certified technicians, genuine parts, competitive prices. Trusted by 10,000+ Mercedes owners. Free collection & delivery.',
+    metaTitle: 'Mercedes Service Center Dubai | Expert Mercedes-Benz Service & Maintenance',
+    metaDescription: 'Dubai\'s trusted Mercedes-Benz service center near you. Book your Mercedes service appointment today. Expert car service, scheduled maintenance, genuine parts. Free collection & delivery.',
+    metaKeywords: 'mercedes service, mercedes benz service, benz service, mercedes service center, mercedes benz service center, benz service center, mb service center, mercedes service near me, mercedes benz service near me, mercedes service center near me, mercedes benz service center near me, mercedes service appointment, mercedes benz appointment, mercedes car service, mercedes benz car service, mercedes maintenance, mercedes benz maintenance, mercedes maintenance near me, mercedes service Dubai, mercedes service Al Quoz',
     badges: [
       { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
       { icon: 'truck', text: 'Free Collection & Delivery' }

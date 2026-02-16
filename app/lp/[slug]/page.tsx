@@ -52,7 +52,7 @@ export async function generateMetadata({
   return {
     title: config.metaTitle,
     description: config.metaDescription,
-    keywords: `Mercedes service Dubai, Mercedes-Benz service, Mercedes repair Dubai, ${slug.replace(/-/g, ' ')}`,
+    keywords: config.metaKeywords,
     openGraph: {
       title: config.metaTitle,
       description: config.metaDescription,
