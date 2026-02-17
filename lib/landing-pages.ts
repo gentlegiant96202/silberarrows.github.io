@@ -11,7 +11,7 @@ export interface LandingPageConfig {
   metaDescription: string;
   metaKeywords: string;
   // Optional: different badges or CTAs per landing page
-  badges?: { icon: string; text: string }[];
+  badges?: { icon: string; text: string; mobileHidden?: boolean }[];
 }
 
 export const landingPages: Record<string, LandingPageConfig> = {
@@ -35,7 +35,7 @@ export const landingPages: Record<string, LandingPageConfig> = {
     metaKeywords: 'mercedes service, mercedes benz service, benz service, mercedes car service, mercedes benz car service, mercedes service dubai, mercedes service al quoz, mercedes service appointment, mercedes benz appointment, mb service',
     badges: [
       { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
-      { icon: 'truck', text: 'Free Collection & Delivery' },
+      { icon: 'truck', text: 'Free Collection & Delivery', mobileHidden: true },
       { icon: 'tag', text: 'Service A from AED 1,499' }
     ]
   },

@@ -50,7 +50,7 @@ export function LandingHeroSection({ config }: LandingHeroSectionProps) {
         {/* Hero Badges */}
         <div className="hero-badges">
           {badges.map((badge, index) => (
-            <div key={index} className="hero-badge">
+            <div key={index} className={`hero-badge${badge.mobileHidden ? ' hero-badge-hide-mobile' : ''}`}>
               <Icon name={badge.icon} size={16} variant="silver" />
               <span>{badge.text}</span>
             </div>

@@ -3131,6 +3131,10 @@ body.no-scroll.menu-open::after {
             height: 10px;
         }
 
+        .hero-badge-hide-mobile {
+            display: none;
+        }
+
         .hero-quick-stats {
             justify-content: center;
             gap: 10px;
