@@ -15,23 +15,48 @@ export interface LandingPageConfig {
 }
 
 export const landingPages: Record<string, LandingPageConfig> = {
+  // AG1: Mercedes Service (General) — keywords: "mercedes service", "benz service", "mercedes car service"
   'mercedes-service': {
     slug: 'mercedes-service',
+    tagline: 'Expert Mercedes-Benz Service Specialist in Dubai',
+    title: [
+      'Mercedes-Benz',
+      'Service',
+      'in Dubai'
+    ],
+    highlightLine: 0,
+    subtitle: [
+      'Service A & B packages with genuine parts.',
+      'Save 30 to 40% vs the dealer. AED 375/hr labour rate.',
+      'Book your appointment today.'
+    ],
+    metaTitle: 'Mercedes Service Dubai | Expert Mercedes-Benz Service & Maintenance',
+    metaDescription: 'Expert Mercedes-Benz service in Al Quoz, Dubai. Service A & B packages with genuine parts, XENTRY diagnostics & 12-month warranty. AED 375/hr. Free collection & delivery.',
+    metaKeywords: 'mercedes service, mercedes benz service, benz service, mercedes car service, mercedes benz car service, mercedes service dubai, mercedes service al quoz, mercedes service appointment, mercedes benz appointment, mb service',
+    badges: [
+      { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
+      { icon: 'truck', text: 'Free Collection & Delivery' },
+      { icon: 'tag', text: 'Service A from AED 1,499' }
+    ]
+  },
+  // AG2: Mercedes Service Center — keywords: "mercedes service center", "benz service center"
+  'mercedes-service-center': {
+    slug: 'mercedes-service-center',
     tagline: 'Trusted Mercedes-Benz Service Center in Dubai',
     title: [
       'Mercedes-Benz',
       'Service Center',
       'in Dubai'
     ],
-    highlightLine: 0,  // Highlight "Mercedes-Benz"
+    highlightLine: 0,
     subtitle: [
-      'Your nearest Mercedes service center in Al Quoz.',
-      'Book your service appointment today',
-      'expert maintenance & car service with genuine parts.'
+      'Full-service Mercedes-Benz center in Al Quoz.',
+      'Factory-trained technicians, XENTRY diagnostics',
+      'and genuine parts. Open Mon–Sat.'
     ],
-    metaTitle: 'Mercedes Service Center Dubai | Expert Mercedes-Benz Service & Maintenance',
-    metaDescription: 'Dubai\'s trusted Mercedes-Benz service center near you. Book your Mercedes service appointment today. Expert car service, scheduled maintenance, genuine parts. Free collection & delivery.',
-    metaKeywords: 'mercedes service, mercedes benz service, benz service, mercedes service center, mercedes benz service center, benz service center, mb service center, mercedes service near me, mercedes benz service near me, mercedes service center near me, mercedes benz service center near me, mercedes service appointment, mercedes benz appointment, mercedes car service, mercedes benz car service, mercedes maintenance, mercedes benz maintenance, mercedes maintenance near me, mercedes service Dubai, mercedes service Al Quoz',
+    metaTitle: 'Mercedes Service Center Dubai | Mercedes-Benz Service Center Al Quoz',
+    metaDescription: 'Dubai\'s trusted Mercedes-Benz service center in Al Quoz. Factory-trained technicians, genuine parts, XENTRY diagnostics. 12-month warranty. Free collection & delivery. Book now.',
+    metaKeywords: 'mercedes service center, mercedes benz service center, benz service center, mercedes service center dubai, mercedes service center al quoz, mercedes benz service center near me, benz service center near me',
     badges: [
       { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
       { icon: 'truck', text: 'Free Collection & Delivery' }

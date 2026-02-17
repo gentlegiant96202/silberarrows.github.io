@@ -24,6 +24,7 @@ const Icon: React.FC<IconProps> = ({ name, className = '', size = 24, variant = 
     'truck': '/assets/icons/fontawesome/truck.svg',
     'check': '/assets/icons/fontawesome/check.svg',
     'phone-alt': '/assets/icons/fontawesome/phone-alt.svg',
+    'tag': '/assets/icons/fontawesome/tag.svg',
     // Brands
     'whatsapp': '/assets/icons/fontawesome/whatsapp.svg'
   };
