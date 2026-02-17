@@ -62,6 +62,52 @@ export const landingPages: Record<string, LandingPageConfig> = {
       { icon: 'truck', text: 'Free Collection & Delivery' }
     ]
   },
+  // AG3: Mercedes Service Near Me — keywords: "mercedes service near me", "mercedes garage near me", "mercedes maintenance near me"
+  'mercedes-service-near-me': {
+    slug: 'mercedes-service-near-me',
+    tagline: 'Your Nearest Mercedes-Benz Specialist in Dubai',
+    title: [
+      'Mercedes-Benz',
+      'Service',
+      'Near You'
+    ],
+    highlightLine: 0,
+    subtitle: [
+      'Independent Mercedes specialist in Al Quoz, Dubai.',
+      'Free collection and delivery across Dubai.',
+      'Book your service or walk in today.'
+    ],
+    metaTitle: 'Mercedes Service Near Me Dubai | Mercedes-Benz Service Al Quoz',
+    metaDescription: 'Mercedes-Benz service near you in Al Quoz, Dubai. Free collection & delivery across Dubai. 12-month warranty, genuine parts, XENTRY diagnostics. Book today.',
+    metaKeywords: 'mercedes service near me, mercedes benz service near me, mercedes service center near me, mercedes benz service center near me, mercedes garage near me, mercedes maintenance near me, mercedes benz near me, benz service center near me, service mercedes benz near me, mercedes benz near me service',
+    badges: [
+      { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
+      { icon: 'truck', text: 'Free Collection & Delivery' }
+    ]
+  },
+  // AG4 + AG5: Mercedes Repair — keywords: "mercedes repair", "benz repair", "mercedes repair near me", "mercedes mechanic near me"
+  'mercedes-repair': {
+    slug: 'mercedes-repair',
+    tagline: 'Expert Mercedes-Benz Repair Specialists in Dubai',
+    title: [
+      'Mercedes-Benz',
+      'Repair Specialists',
+      'in Dubai'
+    ],
+    highlightLine: 0,
+    subtitle: [
+      'Engine, gearbox, AC, electrical and suspension repair.',
+      'XENTRY diagnostics, genuine parts',
+      'and 12 month warranty on all repairs.'
+    ],
+    metaTitle: 'Mercedes Repair Dubai | Expert Mercedes-Benz Repair Al Quoz',
+    metaDescription: 'Expert Mercedes-Benz repair in Al Quoz, Dubai. Engine, gearbox, AC, electrical & suspension. XENTRY diagnostics, genuine parts, 12-month warranty. Free collection & delivery.',
+    metaKeywords: 'mercedes repair, mercedes benz repair, benz repair, mercedes auto repair, mercedes car repair, mercedes repair near me, mercedes benz repair near me, mercedes repair shop near me, mercedes mechanic near me, mercedes auto shop near me, mercedes repair dubai, mercedes repair al quoz',
+    badges: [
+      { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
+      { icon: 'truck', text: 'Free Collection & Delivery' }
+    ]
+  },
   'service-packages': {
     slug: 'service-packages',
     tagline: 'Mercedes-Benz Scheduled Maintenance Packages',
