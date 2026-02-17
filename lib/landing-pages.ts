@@ -36,6 +36,28 @@ export const landingPages: Record<string, LandingPageConfig> = {
       { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
       { icon: 'truck', text: 'Free Collection & Delivery' }
     ]
+  },
+  'service-packages': {
+    slug: 'service-packages',
+    tagline: 'Mercedes-Benz Scheduled Maintenance Packages',
+    title: [
+      'Mercedes-Benz',
+      'Service Packages',
+      'in Dubai'
+    ],
+    highlightLine: 0,
+    subtitle: [
+      'Service A, Service B & B1–B7 maintenance packages.',
+      'Genuine parts, competitive pricing',
+      'and expert Mercedes technicians.'
+    ],
+    metaTitle: 'Mercedes Service A & B Packages Dubai | B1 B3 B5 B7 Maintenance Cost',
+    metaDescription: 'Mercedes-Benz Service A, Service B, B1, B3, B5 & B7 maintenance packages in Dubai. Competitive pricing with genuine parts. Book your scheduled service today.',
+    metaKeywords: 'mercedes service a, service a mercedes benz, mb service a, benz service a, service a1 mercedes, mercedes service a cost, mercedes benz service a cost, benz service a cost, mercedes service b, service b mercedes benz, mb service b, benz service b, mercedes a and b service, mercedes benz service a and b, service a service b mercedes, mercedes service b cost, mercedes benz service b cost, mercedes b1 service, mercedes benz b1 service, mercedes b1 service cost, mercedes b3 service, mercedes benz b3 service, service b5 mercedes, mercedes benz service b7, b7 service mercedes, service a7 mercedes cost, service a5 mercedes cost, service b3 mercedes cost, w212 service b, w204 service a, service b mercedes c class',
+    badges: [
+      { icon: 'shield-alt', text: '12 Month Warranty on Parts & Labour' },
+      { icon: 'truck', text: 'Free Collection & Delivery' }
+    ]
   }
 };
 
