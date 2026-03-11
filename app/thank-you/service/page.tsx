@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Icon from '../../../components/Icon';
@@ -13,7 +13,9 @@ export const metadata: Metadata = {
 export default function ThankYouServicePage() {
   return (
     <div className="ty-page">
-      <MetaPixelContactEvent />
+      <Suspense fallback={null}>
+        <MetaPixelContactEvent />
+      </Suspense>
       <div className="ty-bg-pattern" />
       
       <div className="ty-card">
