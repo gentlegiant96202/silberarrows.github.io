@@ -5,6 +5,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import fs from 'fs';
 import path from 'path';
 import SmoothScrollProvider from '../components/SmoothScrollProvider';
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inlineCss = fs.readFileSync(path.join(process.cwd(), 'app/globals.css'), 'utf8');
 
@@ -37,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <head>
         {/* Viewport for mobile compatibility */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
