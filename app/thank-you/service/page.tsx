@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Icon from '../../../components/Icon';
+import MetaPixelContactEvent from '../../../components/MetaPixelContactEvent';
 
 export const metadata: Metadata = {
   title: 'Thank You | SilberArrows Mercedes-Benz Service Dubai',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function ThankYouServicePage() {
   return (
     <div className="ty-page">
+      <MetaPixelContactEvent />
       <div className="ty-bg-pattern" />
       
       <div className="ty-card">
