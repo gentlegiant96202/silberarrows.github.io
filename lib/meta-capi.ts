@@ -92,18 +92,19 @@ export interface BuildLeadPayloadOptions {
  * Build the single Lead event for Meta CAPI.
  * When META_TEST_EVENT_CODE is set (e.g. TEST50369), events go to Test events in Events Manager.
  */
-export function buildLeadPayload(options: BuildLeadPayloadOptions): { data: object[] } {
+export function buildLeadPayload(options: BuildLeadPayloadOptions): Record<string, unknown> {
   const testCode = process.env.META_TEST_EVENT_CODE;
   const event: Record<string, unknown> = {
     event_name: 'Lead',
     event_time: options.eventTime,
-    event_source_url: options.eventSourceUrl || undefined,
+    event_source_url: options.eventSourceUrl || 'https://mercedes-benz.silberarrows.com',
     action_source: 'website',
     event_id: options.eventId,
     user_data: options.userData,
   };
+  const payload: Record<string, unknown> = { data: [event] };
   if (testCode) {
-    event.test_event_code = testCode;
+    payload.test_event_code = testCode;
   }
-  return { data: [event] };
+  return payload;
 }
