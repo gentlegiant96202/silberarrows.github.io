@@ -11,11 +11,6 @@ function getClientIp(request: NextRequest): string | null {
 }
 
 export async function POST(request: NextRequest) {
-  console.log('[LEAD] Handler called. ENV check:', {
-    hasPixelId: !!process.env.META_PIXEL_ID,
-    hasToken: !!process.env.META_CAPI_ACCESS_TOKEN,
-    hasTestCode: !!process.env.META_TEST_EVENT_CODE,
-  });
   const eventTime = Math.floor(Date.now() / 1000);
 
   try {
@@ -60,9 +55,7 @@ export async function POST(request: NextRequest) {
     // Meta Conversions API (Lead) – optional; do not fail lead on CAPI errors
     const pixelId = process.env.META_PIXEL_ID;
     const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
-    if (!pixelId || !accessToken) {
-      console.warn('[CAPI] Skipped: META_PIXEL_ID or META_CAPI_ACCESS_TOKEN not set');
-    } else {
+    if (pixelId && accessToken) {
       const clientIp = getClientIp(request);
       const clientUserAgent = request.headers.get('user-agent') || null;
 
@@ -84,18 +77,15 @@ export async function POST(request: NextRequest) {
       });
 
       try {
-        console.log('[CAPI] Sending Lead event to Meta');
         const capiUrl = `https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${encodeURIComponent(accessToken)}`;
         const capiRes = await fetch(capiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-        const resText = await capiRes.text();
-        if (capiRes.ok) {
-          console.log('[CAPI] Meta response', capiRes.status, resText.slice(0, 200));
-        } else {
-          console.error('[CAPI] Meta error:', capiRes.status, resText);
+        if (!capiRes.ok) {
+          const errText = await capiRes.text();
+          console.error('[CAPI] Meta error:', capiRes.status, errText);
         }
       } catch (capiErr) {
         console.error('[CAPI] Request failed:', capiErr);
