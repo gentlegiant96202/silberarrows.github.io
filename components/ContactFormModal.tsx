@@ -4,6 +4,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 
+function getCookie(name: string): string | null {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
+
 interface ContactFormModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -62,6 +68,13 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
     }
     
     setIsSubmitting(true);
+
+    const eventId = typeof crypto !== 'undefined' && crypto.randomUUID
+      ? crypto.randomUUID()
+      : `lead-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const fbp = getCookie('_fbp');
+    const fbc = getCookie('_fbc');
+    const eventSourceUrl = typeof window !== 'undefined' ? window.location.href : undefined;
     
     try {
       const response = await fetch('/api/lead', {
@@ -71,7 +84,11 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
           name: formData.name.trim(),
           countryCode: formData.countryCode.trim(),
           phone: formData.phone.trim(),
-          source: window.location.pathname
+          source: window.location.pathname,
+          eventId,
+          ...(fbp && { fbp }),
+          ...(fbc && { fbc }),
+          ...(eventSourceUrl && { eventSourceUrl }),
         })
       });
       
@@ -79,8 +96,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
         throw new Error('Failed to submit');
       }
       
-      // Redirect to thank you page
-      router.push('/thank-you/service');
+      router.push('/thank-you/service?eid=' + encodeURIComponent(eventId));
       
     } catch (err) {
       console.error('Form submission error:', err);

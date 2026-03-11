@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 declare global {
   interface Window {
@@ -9,10 +10,11 @@ declare global {
 }
 
 /**
- * Fires Meta Pixel standard event "Contact" once when mounted.
- * Use on the thank-you page after form submission.
+ * On thank-you page: if eid in query (after form submit), fires Lead with eventID for CAPI dedup.
+ * Otherwise fires Contact once when mounted.
  */
 export default function MetaPixelContactEvent() {
+  const searchParams = useSearchParams();
   const firedRef = useRef(false);
 
   useEffect(() => {
@@ -20,8 +22,14 @@ export default function MetaPixelContactEvent() {
     if (typeof window === 'undefined' || !window.fbq) return;
 
     firedRef.current = true;
-    window.fbq('track', 'Contact');
-  }, []);
+    const eid = searchParams.get('eid');
+
+    if (eid) {
+      window.fbq('track', 'Lead', {}, { eventID: eid });
+    } else {
+      window.fbq('track', 'Contact');
+    }
+  }, [searchParams]);
 
   return null;
 }
