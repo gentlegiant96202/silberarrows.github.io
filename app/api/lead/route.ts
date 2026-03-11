@@ -11,6 +11,11 @@ function getClientIp(request: NextRequest): string | null {
 }
 
 export async function POST(request: NextRequest) {
+  console.log('[LEAD] Handler called. ENV check:', {
+    hasPixelId: !!process.env.META_PIXEL_ID,
+    hasToken: !!process.env.META_CAPI_ACCESS_TOKEN,
+    hasTestCode: !!process.env.META_TEST_EVENT_CODE,
+  });
   const eventTime = Math.floor(Date.now() / 1000);
 
   try {
