@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Icon from '../../../components/Icon';
 import MetaPixelContactEvent from '../../../components/MetaPixelContactEvent';
 
@@ -64,9 +63,9 @@ export default function ThankYouServicePage() {
         </div>
 
         {/* Back link */}
-        <Link href="/" className="ty-back">
+        <a href="/" className="ty-back">
           Back to Home
-        </Link>
+        </a>
       </div>
     </div>
   );
