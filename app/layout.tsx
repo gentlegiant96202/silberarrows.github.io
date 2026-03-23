@@ -20,6 +20,14 @@ export const metadata: Metadata = {
   creator: 'SilberArrows',
   publisher: 'SilberArrows',
   robots: 'index, follow',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: 'SilberArrows | Premier Mercedes-Benz Service Center Dubai',
     description: 'Dubai\'s trusted independent Mercedes-Benz specialists in Al Quoz. Expert service, maintenance & repair with genuine parts.',

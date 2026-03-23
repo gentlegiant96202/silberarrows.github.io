@@ -8,7 +8,7 @@ export default function LocalBusinessSchema() {
     "alternateName": "SilberArrows Mercedes-Benz Service",
     "description": "Dubai's trusted independent Mercedes-Benz specialists since 2011. Expert maintenance, repair & diagnostics at Al Quoz with genuine parts and factory standards.",
     "url": "https://mercedes-benz.silberarrows.com",
-    "logo": "https://mercedes-benz.silberarrows.com/assets/icons/logo.svg",
+    "logo": "https://mercedes-benz.silberarrows.com/icon.svg",
     "image": "https://mercedes-benz.silberarrows.com/assets/images/al-manara-location.webp",
     "telephone": "+971-4-380-5515",
     "priceRange": "$$",

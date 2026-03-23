@@ -10,7 +10,7 @@ export default function OrganizationSchema() {
     "url": "https://mercedes-benz.silberarrows.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://mercedes-benz.silberarrows.com/assets/icons/logo.svg",
+      "url": "https://mercedes-benz.silberarrows.com/icon.svg",
       "width": "200",
       "height": "60"
     },
