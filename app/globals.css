@@ -7778,22 +7778,16 @@ button.footer-action span {
 
 /* === Thank You Page === */
 .ty-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
+    position: relative;
+    min-height: 100dvh;
+    width: 100%;
     background: #f7f7f8;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
-
-.ty-page ~ #header-placeholder,
-.ty-page ~ .mobile-footer {
-    display: none !important;
+    padding: 1.5rem;
+    isolation: isolate;
 }
 
 /* Subtle grid pattern background */
@@ -7837,7 +7831,7 @@ button.footer-action span {
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 20px;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
-    margin: 1rem;
+    margin: 0;
 }
 
 /* Logo */

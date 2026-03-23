@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { useRouter } from 'next/navigation';
 
 function getCookie(name: string): string | null {
   if (typeof document === 'undefined') return null;
@@ -16,7 +15,6 @@ interface ContactFormModalProps {
 }
 
 export default function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
-  const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
   
@@ -96,7 +94,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
         throw new Error('Failed to submit');
       }
       
-      router.push('/thank-you/service?eid=' + encodeURIComponent(eventId));
+      window.location.assign('/thank-you/service?eid=' + encodeURIComponent(eventId));
       
     } catch (err) {
       console.error('Form submission error:', err);
