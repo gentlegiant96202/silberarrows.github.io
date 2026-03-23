@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Icon from '../../../components/Icon';
+import HardReloadHomeLink from '../../../components/HardReloadHomeLink';
 import MetaPixelContactEvent from '../../../components/MetaPixelContactEvent';
 
 export const metadata: Metadata = {
@@ -63,9 +64,7 @@ export default function ThankYouServicePage() {
         </div>
 
         {/* Back link */}
-        <a href="/" className="ty-back">
-          Back to Home
-        </a>
+        <HardReloadHomeLink />
       </div>
     </div>
   );
