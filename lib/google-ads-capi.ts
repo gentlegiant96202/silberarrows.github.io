@@ -107,7 +107,7 @@ export async function uploadClickConversion(data: GoogleAdsConversionData): Prom
     conversion.userIdentifiers = userIdentifiers;
   }
 
-  const url = `https://googleads.googleapis.com/v18/customers/${customerId}:uploadClickConversions`;
+  const url = `https://googleads.googleapis.com/v23/customers/${customerId}:uploadClickConversions`;
 
   const headers: Record<string, string> = {
     'Authorization': `Bearer ${accessToken}`,
