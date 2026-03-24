@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '../../../lib/supabase';
 import { buildLeadUserData, buildLeadPayload } from '../../../lib/meta-capi';
+import { uploadClickConversion } from '../../../lib/google-ads-capi';
 
 const WEBHOOK_URL = 'https://bothook.io/v1/public/triggers/webhooks/c59aa2c4-f68c-414a-88fe-d601d92b01c3';
 
@@ -23,6 +24,7 @@ export async function POST(request: NextRequest) {
       fbp,
       fbc,
       eventSourceUrl,
+      gclid,
     } = body;
 
     if (!name || !phone) {
@@ -89,6 +91,19 @@ export async function POST(request: NextRequest) {
         }
       } catch (capiErr) {
         console.error('[CAPI] Request failed:', capiErr);
+      }
+    }
+
+    // Google Ads Conversion Upload – optional; do not fail lead on errors
+    if (process.env.GOOGLE_ADS_CUSTOMER_ID && process.env.GOOGLE_ADS_DEVELOPER_TOKEN) {
+      try {
+        await uploadClickConversion({
+          gclid: gclid || null,
+          phone: fullPhone,
+          name,
+        });
+      } catch (gadsErr) {
+        console.error('[Google Ads] Conversion upload failed:', gadsErr);
       }
     }
 

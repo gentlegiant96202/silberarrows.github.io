@@ -72,6 +72,9 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
       : `lead-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const fbp = getCookie('_fbp');
     const fbc = getCookie('_fbc');
+    const gclid = getCookie('_gclid')
+      || new URLSearchParams(window.location.search).get('gclid')
+      || null;
     const eventSourceUrl = typeof window !== 'undefined' ? window.location.href : undefined;
     
     try {
@@ -86,6 +89,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
           eventId,
           ...(fbp && { fbp }),
           ...(fbc && { fbc }),
+          ...(gclid && { gclid }),
           ...(eventSourceUrl && { eventSourceUrl }),
         })
       });

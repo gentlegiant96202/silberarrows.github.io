@@ -133,6 +133,20 @@ export default function RootLayout({
           }}
         />
 
+        {/* Capture Google Ads click ID (gclid) in a 90-day cookie for server-side conversion tracking */}
+        <Script
+          id="gclid-capture"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                var m=window.location.search.match(/[?&]gclid=([^&]+)/);
+                if(m)document.cookie='_gclid='+m[1]+';max-age=7776000;path=/;SameSite=Lax';
+              })();
+            `,
+          }}
+        />
+
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
