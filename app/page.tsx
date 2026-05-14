@@ -9,7 +9,9 @@ import { Contact } from "@/components/sections/Contact";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
 import { FAQSchema } from "@/components/FAQSchema";
+import { PersonSchema } from "@/components/PersonSchema";
 import { services, homeFaqs } from "@/lib/services";
+import { team } from "@/lib/content";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -35,6 +37,7 @@ export default function HomePage() {
       <LocalBusinessSchema />
       <OrganizationSchema />
       <FAQSchema items={homeFaqs} />
+      <PersonSchema people={team} />
       <Hero />
       <WhyChooseUs />
       <Services />

@@ -1,15 +1,36 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { services, getServiceBySlug } from "@/lib/services";
+import { team } from "@/lib/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTAButton } from "@/components/CTAButton";
 import { ServiceSchema } from "@/components/ServiceSchema";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FAQSchema } from "@/components/FAQSchema";
+import { ArticleSchema } from "@/components/ArticleSchema";
 import { absoluteUrl, keywordsForServiceSlug } from "@/lib/seo";
 import { site } from "@/lib/site";
+
+const reviewerBySlug: Record<string, string> = {
+  "scheduled-maintenance": "Glen Cable",
+  "engine-repair": "Glen Cable",
+  "suspension-repair": "Glen Cable",
+  diagnostics: "Glen Cable",
+  "brake-service": "Michael Riley",
+  "battery-service": "Michael Riley",
+  "air-conditioning": "Michael Riley",
+  "tyre-replacement": "Michael Riley",
+  "wheel-alignment": "Michael Riley",
+  detailing: "Maroua Dafir",
+};
+
+function getReviewer(slug: string) {
+  const name = reviewerBySlug[slug] ?? "Glen Cable";
+  return team.find((m) => m.name === name) ?? team[0];
+}
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -64,6 +85,17 @@ export default async function ServiceDetailPage({
   if (!service) return notFound();
 
   const others = services.filter((s) => s.slug !== slug).slice(0, 4);
+  const reviewer = getReviewer(slug);
+  const articleAuthor = {
+    name: "SilberArrows Editorial Team",
+    role: "Mercedes-Benz Service Editorial Team",
+  };
+  const reviewerForSchema = {
+    name: reviewer.name,
+    role: reviewer.role,
+    cert: reviewer.cert,
+    image: reviewer.image,
+  };
 
   return (
     <>
@@ -72,6 +104,16 @@ export default async function ServiceDetailPage({
         serviceDescription={service.overview}
         serviceSlug={service.slug}
         image={service.hero}
+      />
+      <ArticleSchema
+        headline={`${service.title} for Mercedes-Benz in Dubai`}
+        description={service.overview}
+        url={`/services/${service.slug}`}
+        image={service.hero}
+        author={articleAuthor}
+        reviewer={reviewerForSchema}
+        articleSection={service.shortTitle}
+        keywords={keywordsForServiceSlug(slug)}
       />
       <BreadcrumbSchema
         items={[
@@ -105,6 +147,33 @@ export default async function ServiceDetailPage({
               <p className="mt-4 text-[color:var(--color-silver-400)] leading-relaxed">
                 {service.overview}
               </p>
+
+              <div className="mt-6 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/15">
+                  <Image
+                    src={reviewer.image}
+                    alt={reviewer.name}
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                    style={{ objectPosition: reviewer.imageFocus ?? "center 25%" }}
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
+                    Reviewed by
+                  </p>
+                  <p className="text-sm font-medium text-white truncate">
+                    {reviewer.name}
+                    <span className="ml-1.5 text-[color:var(--color-silver-400)] font-normal">
+                      &middot; {reviewer.role}
+                    </span>
+                  </p>
+                  <p className="text-[10px] text-[color:var(--color-silver-500)]">
+                    {reviewer.cert}
+                  </p>
+                </div>
+              </div>
 
               {service.comparison ? (
                 <div className="mt-10">

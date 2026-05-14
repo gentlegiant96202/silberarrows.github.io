@@ -1,0 +1,57 @@
+# SilberArrows
+
+> Independent Mercedes-Benz service centre in Al Quoz, Dubai. Established 2011. Specialists in Mercedes-Benz maintenance, repair, diagnostics, performance tuning (authorised RENNtech distributor), and classic Mercedes-Benz models. Genuine parts, factory schedules and XENTRY Diagnosis. 12-month warranty on parts and labour. Free collection and delivery across Dubai.
+
+## Business facts
+
+- Name: SilberArrows
+- Location: Al Manara Street, Al Quoz, Dubai, United Arab Emirates
+- Phone: +971 4 380 5515
+- WhatsApp: https://wa.me/97143805515
+- Hours: Monday to Saturday, 08:00 to 18:00 (closed Sunday)
+- Founded: 2011
+- Specialisation: Mercedes-Benz only (no other marques)
+- Reviews: 4.7 out of 5 from 509 Google reviews
+- Labour rate: AED 375 per hour (excludes Classic, Maybach, McLaren SLR)
+- Warranty: 12 months on all parts and labour
+
+## Core pages
+
+- [Homepage](https://mercedes-benz.silberarrows.com/): Overview of SilberArrows, services, team, pricing, and contracts.
+- [All Services](https://mercedes-benz.silberarrows.com/services): Index of every Mercedes-Benz service offered.
+- [Service Pricing](https://mercedes-benz.silberarrows.com/service-pricing): Transparent Minor and Major service pricing per Mercedes-Benz model, including EQ.
+- [Service Contracts](https://mercedes-benz.silberarrows.com/service-contracts): Standard (AED 2,700, 2 years / 30,000 km) and Premium (AED 5,800, 4 years / 60,000 km) maintenance plans.
+- [Contact](https://mercedes-benz.silberarrows.com/contact): Workshop address, phone, and contact form.
+
+## Mercedes-Benz services
+
+- [Scheduled Maintenance — Service A & B](https://mercedes-benz.silberarrows.com/services/scheduled-maintenance): Official Mercedes-Benz Service A (Minor) and Service B (Major) maintenance with genuine parts and XENTRY Diagnosis.
+- [Brake Service & Repair](https://mercedes-benz.silberarrows.com/services/brake-service): Brake pad/disc replacement, fluid flush, calliper inspection, EPB recalibration with XENTRY.
+- [Air Conditioning Service & Repair](https://mercedes-benz.silberarrows.com/services/air-conditioning): R134a and R1234yf refrigerant service, cabin filter replacement, leak detection.
+- [Electrical & Computer Diagnostics](https://mercedes-benz.silberarrows.com/services/diagnostics): XENTRY Diagnosis fault scanning, ECU coding, sensor and wiring repairs.
+- [Engine Repair & Overhaul](https://mercedes-benz.silberarrows.com/services/engine-repair): Timing chain, gasket, turbocharger and full engine rebuilds for M271, M272, M276, M278, OM651 and others.
+- [Suspension & Steering Repair](https://mercedes-benz.silberarrows.com/services/suspension-repair): Conventional, AIRMATIC and ABC (Active Body Control) suspension repair.
+- [Battery Testing & Replacement](https://mercedes-benz.silberarrows.com/services/battery-service): Genuine Mercedes-Benz battery installation with ECU registration.
+- [Tyre Replacement & Balancing](https://mercedes-benz.silberarrows.com/services/tyre-replacement): Mercedes-Benz-approved tyres including run-flats and AMG sizes, with TPMS calibration.
+- [Wheel Alignment](https://mercedes-benz.silberarrows.com/services/wheel-alignment): Hunter 3D laser four-wheel alignment, approved for AMG and 4MATIC variants.
+- [Interior & Exterior Detailing](https://mercedes-benz.silberarrows.com/services/detailing): Paint correction, ceramic coating (Gtechniq), interior shampoo and leather care.
+
+## Speciality areas
+
+- Mercedes-Benz AMG performance models
+- Mercedes-Benz Maybach
+- Mercedes EQ electric range
+- Classic Mercedes-Benz models
+- Performance tuning — sole authorised RENNtech distributor in Dubai
+
+## Frequently asked questions
+
+- We are an independent specialist, not a franchised Mercedes-Benz dealer.
+- Independent servicing can void or limit the manufacturer factory warranty under typical Mercedes-Benz warranty terms; customers still under factory warranty should confirm with their dealer before booking. SilberArrows backs all its own work with a 12-month warranty on parts and labour.
+- Customers typically save 30 to 40 percent on Service A, Service B and major repairs compared with Mercedes-Benz main-dealer pricing.
+- Free collection and delivery across Dubai is included with every service.
+
+## Optional
+
+- [Sitemap](https://mercedes-benz.silberarrows.com/sitemap.xml): Full machine-readable list of indexable pages.
+- [Robots](https://mercedes-benz.silberarrows.com/robots.txt): Crawler permissions.
