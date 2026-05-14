@@ -60,7 +60,7 @@ export function Contact({
               <div className="flex items-start gap-3">
                 <MapPin size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
                 <span>
-                  {site.address.line1}
+                  {site.address.line1},
                   <br />
                   {site.address.line2}
                 </span>

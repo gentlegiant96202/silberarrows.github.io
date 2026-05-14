@@ -29,7 +29,7 @@ export function WhyChooseUs() {
       <div className="container-page relative">
         <SectionHeader
           eyebrow="Why Choose Us"
-          title="Built For One Marque. Engineered For You."
+          title="Built For One Marque. Mercedes-Benz Specialists."
           intro="With over a decade of dedicated experience, we provide unparalleled expertise and premium service exclusively for Mercedes-Benz owners in Dubai."
         />
 
