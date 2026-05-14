@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Phone, MessageCircle, ArrowLeft, CheckCircle2 } from "lucide-react";
-import { Logo } from "@/components/Logo";
 import { MetaPixelContactEvent } from "@/components/MetaPixelContactEvent";
 import { site } from "@/lib/site";
 
@@ -30,9 +29,7 @@ export default function ThankYouPage() {
 
       <div className="container-page relative py-20 text-center">
         <div className="mx-auto flex flex-col items-center max-w-2xl">
-          <Logo size="xl" href={null} showWordmark={false} />
-
-          <div className="mt-10 inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-400/10 border border-emerald-400/30">
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-400/10 border border-emerald-400/30">
             <CheckCircle2
               size={28}
               className="text-emerald-300"
