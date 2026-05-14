@@ -1,5 +1,5 @@
 import { unstable_cache } from "next/cache";
-import { getSupabase } from "@/lib/supabase";
+import { getBlogSupabase } from "@/lib/supabase-blog";
 import type {
   BlogCategory,
   BlogListResult,
@@ -43,7 +43,7 @@ async function loadPosts(options: {
   perPage: number;
   categorySlug?: string;
 }): Promise<BlogListResult> {
-  const supabase = getSupabase();
+  const supabase = getBlogSupabase();
   const { page, perPage, categorySlug } = options;
 
   if (!supabase) {
@@ -86,7 +86,7 @@ async function loadPosts(options: {
 }
 
 async function loadPostBySlug(slug: string): Promise<BlogPost | null> {
-  const supabase = getSupabase();
+  const supabase = getBlogSupabase();
   if (!supabase) return null;
 
   const { data, error } = await supabase
@@ -107,7 +107,7 @@ async function loadPostBySlug(slug: string): Promise<BlogPost | null> {
 async function loadAllPublishedSlugs(): Promise<
   Array<{ slug: string; updated_at: string }>
 > {
-  const supabase = getSupabase();
+  const supabase = getBlogSupabase();
   if (!supabase) return [];
   const { data, error } = await supabase
     .from("posts")
@@ -121,7 +121,7 @@ async function loadAllPublishedSlugs(): Promise<
 }
 
 async function loadCategories(): Promise<BlogCategory[]> {
-  const supabase = getSupabase();
+  const supabase = getBlogSupabase();
   if (!supabase) return [];
   const { data, error } = await supabase
     .from("categories")
@@ -135,7 +135,7 @@ async function loadCategories(): Promise<BlogCategory[]> {
 }
 
 async function loadCategoryBySlug(slug: string): Promise<BlogCategory | null> {
-  const supabase = getSupabase();
+  const supabase = getBlogSupabase();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from("categories")
@@ -154,7 +154,7 @@ async function loadRelatedPosts(
   categoryId: string | null,
   limit: number
 ): Promise<BlogPostListItem[]> {
-  const supabase = getSupabase();
+  const supabase = getBlogSupabase();
   if (!supabase) return [];
 
   let query = supabase

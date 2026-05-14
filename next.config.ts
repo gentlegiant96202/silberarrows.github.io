@@ -1,7 +1,23 @@
 import type { NextConfig } from "next";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-const supabaseHost = supabaseUrl ? new URL(supabaseUrl).hostname : "";
+function hostFromEnv(envName: string): string | null {
+  const url = process.env[envName];
+  if (!url) return null;
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return null;
+  }
+}
+
+const supabaseHosts = Array.from(
+  new Set(
+    [
+      hostFromEnv("NEXT_PUBLIC_SUPABASE_URL"),
+      hostFromEnv("NEXT_PUBLIC_SUPABASE_BLOG_URL"),
+    ].filter((h): h is string => Boolean(h))
+  )
+);
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -22,15 +38,11 @@ const nextConfig: NextConfig = {
         hostname: "**.supabase.in",
         pathname: "/storage/v1/object/public/**",
       },
-      ...(supabaseHost
-        ? [
-            {
-              protocol: "https" as const,
-              hostname: supabaseHost,
-              pathname: "/storage/v1/object/public/**",
-            },
-          ]
-        : []),
+      ...supabaseHosts.map((hostname) => ({
+        protocol: "https" as const,
+        hostname,
+        pathname: "/storage/v1/object/public/**",
+      })),
     ],
   },
 };

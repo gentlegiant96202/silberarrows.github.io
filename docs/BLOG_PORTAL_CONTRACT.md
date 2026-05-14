@@ -10,19 +10,31 @@ must be mirrored on the portal side.
 
 ## 1. Shared backend
 
-Both apps share a single Supabase project.
+Both apps share **one Supabase project for the blog** (separate from the
+marketing site's leads project).
 
-- The marketing site reads with the **anon key** through
-  `lib/supabase.ts` (already wired up).
-- The portal must use the **service role key** for writes (never expose
-  the service role key to the browser; keep it in server-only env on the
-  portal app).
+- The marketing site reads blog content with the blog project's **anon
+  key** through `lib/supabase-blog.ts`.
+- The portal must use that same project's **service role key** for
+  writes (never expose the service role key to the browser; keep it in
+  server-only env on the portal app).
+- The marketing site has a separate Supabase client
+  (`lib/supabase.ts`, env: `NEXT_PUBLIC_SUPABASE_URL` /
+  `NEXT_PUBLIC_SUPABASE_ANON_KEY`) used only for the `leads` table — it
+  is unrelated to the blog and the portal does not need access to it.
 
-Required Supabase env on this site:
+Required Supabase env on the marketing site (this repo):
 
 ```
+# Leads project (existing)
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# Blog project (new – same project as the portal)
+NEXT_PUBLIC_SUPABASE_BLOG_URL=
+NEXT_PUBLIC_SUPABASE_BLOG_ANON_KEY=
+
+# Webhook secret (must match the portal)
 BLOG_REVALIDATE_SECRET=
 ```
 
