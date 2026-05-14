@@ -2,10 +2,11 @@
   "name": "silberarrows-nextjs",
   "version": "1.0.0",
   "private": true,
+  "workspaces": ["silberarrows-v2"],
   "scripts": {
-    "dev": "npm run dev --prefix silberarrows-v2",
-    "build": "npm run build --prefix silberarrows-v2",
-    "start": "npm start --prefix silberarrows-v2",
-    "lint": "npm run lint --prefix silberarrows-v2"
+    "dev": "npm run dev -w silberarrows-v2",
+    "build": "npm run build -w silberarrows-v2",
+    "start": "npm run start -w silberarrows-v2",
+    "lint": "npm run lint -w silberarrows-v2"
   }
 }
