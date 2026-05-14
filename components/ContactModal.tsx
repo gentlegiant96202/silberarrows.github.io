@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, Phone, MessageCircle } from "lucide-react";
-import { site } from "@/lib/site";
+import { X } from "lucide-react";
 
 function getCookie(name: string): string | null {
   if (typeof document === "undefined") return null;
@@ -195,23 +194,6 @@ export function ContactModal({
             We typically respond within minutes on WhatsApp or by phone.
           </p>
         </form>
-
-        <div className="mt-6 grid grid-cols-2 gap-3">
-          <a
-            href={site.phoneTel}
-            className="btn-ghost rounded-lg px-3 py-2.5 text-sm font-medium flex items-center justify-center gap-2"
-          >
-            <Phone size={14} /> Call
-          </a>
-          <a
-            href={site.whatsapp}
-            className="btn-ghost rounded-lg px-3 py-2.5 text-sm font-medium flex items-center justify-center gap-2"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MessageCircle size={14} /> WhatsApp
-          </a>
-        </div>
       </div>
     </div>
   );
