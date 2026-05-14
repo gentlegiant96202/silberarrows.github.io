@@ -14,6 +14,29 @@ export const defaultOgImage = {
   type: "image/jpeg",
 } as const;
 
+export const blogOgImage = {
+  url: absoluteUrl("/og-image.jpg"),
+  width: 1200,
+  height: 630,
+  alt: "SilberArrows Mercedes-Benz Blog Dubai",
+  type: "image/jpeg",
+} as const;
+
+export function buildPostOgImage(input: {
+  url?: string | null;
+  alt?: string | null;
+}) {
+  const raw = input.url;
+  if (!raw) return blogOgImage;
+  const absolute = raw.startsWith("http") ? raw : absoluteUrl(raw);
+  return {
+    url: absolute,
+    width: 1200,
+    height: 630,
+    alt: input.alt ?? blogOgImage.alt,
+  };
+}
+
 export const serviceKeywords: Record<string, string> = {
   "scheduled-maintenance":
     "Mercedes scheduled maintenance Dubai, Service A Service B Dubai, Mercedes maintenance Al Quoz, official Mercedes service schedule",

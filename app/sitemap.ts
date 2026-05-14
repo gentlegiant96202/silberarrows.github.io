@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/services";
+import { getAllPublishedSlugs, getCategories, getPosts } from "@/lib/blog/queries";
 import { site } from "@/lib/site";
 
 const baseUrl = site.url;
@@ -8,7 +9,9 @@ const lastModified = new Date(
   process.env.VERCEL_GIT_COMMIT_SHA ? Date.now() : "2026-05-14T00:00:00.000Z"
 );
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const corePages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
@@ -40,6 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified,
+      changeFrequency: "daily",
+      priority: 0.85,
+    },
   ];
 
   const servicePages: MetadataRoute.Sitemap = services.map((s) => ({
@@ -49,5 +58,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...corePages, ...servicePages];
+  let blogPages: MetadataRoute.Sitemap = [];
+  let categoryPages: MetadataRoute.Sitemap = [];
+
+  try {
+    const [{ posts }, slugs, categories] = await Promise.all([
+      getPosts(1, 1000),
+      getAllPublishedSlugs(),
+      getCategories(),
+    ]);
+
+    const slugLastMod = new Map(
+      slugs.map(({ slug, updated_at }) => [slug, updated_at])
+    );
+
+    blogPages = posts.map((p) => {
+      const last =
+        slugLastMod.get(p.slug) ??
+        p.updated_at ??
+        p.published_at ??
+        lastModified.toISOString();
+      return {
+        url: `${baseUrl}/blog/${p.slug}`,
+        lastModified: new Date(last),
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      };
+    });
+
+    categoryPages = categories.map((c) => ({
+      url: `${baseUrl}/blog/category/${c.slug}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    }));
+  } catch (err) {
+    console.error("[sitemap] blog query failed:", err);
+  }
+
+  return [...corePages, ...servicePages, ...categoryPages, ...blogPages];
 }

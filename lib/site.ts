@@ -37,5 +37,6 @@ export const nav = [
   { href: "/services", label: "Services" },
   { href: "/service-pricing", label: "Service Pricing" },
   { href: "/service-contracts", label: "Service Contracts" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
