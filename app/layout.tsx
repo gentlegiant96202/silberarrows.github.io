@@ -53,6 +53,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="legacy-sw-cleanup"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                if (typeof navigator === 'undefined' || !('serviceWorker' in navigator)) return;
+                navigator.serviceWorker.getRegistrations().then(function(regs){
+                  regs.forEach(function(r){ r.unregister(); });
+                }).catch(function(){});
+                if (typeof caches !== 'undefined') {
+                  caches.keys().then(function(keys){
+                    keys.forEach(function(k){ caches.delete(k); });
+                  }).catch(function(){});
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="bg-spotlight font-sans antialiased text-[color:var(--color-silver-100)]">
         <noscript>
           <iframe
