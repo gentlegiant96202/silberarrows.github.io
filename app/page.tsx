@@ -8,7 +8,8 @@ import { Contracts } from "@/components/sections/Contracts";
 import { Contact } from "@/components/sections/Contact";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
-import { services } from "@/lib/services";
+import { FAQSchema } from "@/components/FAQSchema";
+import { services, homeFaqs } from "@/lib/services";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -33,11 +34,47 @@ export default function HomePage() {
     <>
       <LocalBusinessSchema />
       <OrganizationSchema />
+      <FAQSchema items={homeFaqs} />
       <Hero />
       <WhyChooseUs />
       <Services />
       <Team />
       <Contracts />
+
+      <section className="pb-16 md:pb-24" aria-labelledby="home-faqs">
+        <div className="container-page">
+          <div className="mx-auto max-w-3xl">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-silver-400)]">
+              Frequently Asked Questions
+            </p>
+            <h2
+              id="home-faqs"
+              className="mt-3 text-3xl md:text-4xl font-semibold text-silver-shine"
+            >
+              Mercedes-Benz Service Dubai FAQs
+            </h2>
+            <div className="mt-8 divide-y divide-white/10 rounded-2xl glass-card ring-silver">
+              {homeFaqs.map((faq, i) => (
+                <details
+                  key={i}
+                  className="group px-6 py-5 open:bg-white/[0.02]"
+                >
+                  <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-medium text-white marker:hidden list-none">
+                    <span>{faq.question}</span>
+                    <span className="silver-tick inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs transition group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-300)]">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Contact />
       <nav
         aria-label="All Mercedes-Benz Services"

@@ -4,39 +4,68 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ContactModalProvider } from "@/components/ContactModalProvider";
+import { site } from "@/lib/site";
+import { defaultOgImage } from "@/lib/seo";
+
+const siteUrl = site.url;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mercedes-benz.silberarrows.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "SilberArrows | Mercedes-Benz Service Center Dubai",
     template: "%s",
   },
   description:
     "Dubai's trusted independent Mercedes-Benz specialists. Expert service, maintenance & repair in Al Quoz. Professional diagnostics, genuine parts, factory standards since 2011.",
-  keywords:
-    "Mercedes-Benz service Dubai, Mercedes repair Dubai, independent Mercedes service, Mercedes maintenance Al Quoz, SilberArrows, Mercedes specialist Dubai",
-  authors: [{ name: "SilberArrows" }],
+  applicationName: "SilberArrows",
+  authors: [{ name: "SilberArrows", url: siteUrl }],
   creator: "SilberArrows",
   publisher: "SilberArrows",
-  robots: { index: true, follow: true },
-  icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    shortcut: "/icon.svg",
+  category: "automotive",
+  formatDetection: { telephone: true, address: true, email: true },
+  alternates: { canonical: siteUrl },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/icon.svg",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_AE",
-    url: "https://mercedes-benz.silberarrows.com",
+    url: siteUrl,
     siteName: "SilberArrows",
     title: "SilberArrows | Premier Mercedes-Benz Service Center Dubai",
     description:
       "Dubai's trusted independent Mercedes-Benz specialists in Al Quoz. Expert service, maintenance & repair with genuine parts.",
+    images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "SilberArrows | Premier Mercedes-Benz Service Center Dubai",
     description:
       "Dubai's trusted independent Mercedes-Benz specialists in Al Quoz.",
+    images: [defaultOgImage.url],
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
   },
 };
 
@@ -52,8 +81,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en-AE">
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://www.facebook.com" />
         <Script
           id="legacy-sw-cleanup"
           strategy="beforeInteractive"

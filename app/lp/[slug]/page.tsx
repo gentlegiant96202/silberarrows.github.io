@@ -6,8 +6,6 @@ import { Services } from "@/components/sections/Services";
 import { Team } from "@/components/sections/Team";
 import { Contracts } from "@/components/sections/Contracts";
 import { Contact } from "@/components/sections/Contact";
-import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
-import { OrganizationSchema } from "@/components/OrganizationSchema";
 import { landingPages } from "@/lib/content";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -51,8 +49,6 @@ export default async function LandingPage({
 
   return (
     <>
-      <LocalBusinessSchema />
-      <OrganizationSchema />
       <Hero
         tagline={lp.tagline}
         titleParts={lp.titleParts}

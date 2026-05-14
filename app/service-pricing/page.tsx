@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTAButton } from "@/components/CTAButton";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { pricing } from "@/lib/content";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -26,6 +27,12 @@ export const metadata: Metadata = {
 export default function ServicePricingPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Service Pricing", href: "/service-pricing" },
+        ]}
+      />
       <PageHero
         title="Service Pricing"
         intro={pricing.intro}

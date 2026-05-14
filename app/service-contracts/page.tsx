@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { Contracts } from "@/components/sections/Contracts";
 import { Contact } from "@/components/sections/Contact";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -28,7 +29,12 @@ export const metadata: Metadata = {
 export default function ServiceContractsPage() {
   return (
     <>
-      <h1 className="sr-only">Mercedes-Benz Service Contracts Dubai</h1>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Service Contracts", href: "/service-contracts" },
+        ]}
+      />
       <PageHero
         title="Service Contracts"
         intro="Peace of mind, guaranteed. Maintenance packages designed to keep your Mercedes-Benz in peak condition."

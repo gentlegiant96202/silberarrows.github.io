@@ -6,6 +6,8 @@ import { services, getServiceBySlug } from "@/lib/services";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTAButton } from "@/components/CTAButton";
 import { ServiceSchema } from "@/components/ServiceSchema";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { FAQSchema } from "@/components/FAQSchema";
 import { absoluteUrl, keywordsForServiceSlug } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -69,7 +71,16 @@ export default async function ServiceDetailPage({
         serviceName={service.title}
         serviceDescription={service.overview}
         serviceSlug={service.slug}
+        image={service.hero}
       />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: service.shortTitle, href: `/services/${service.slug}` },
+        ]}
+      />
+      {service.faqs?.length ? <FAQSchema items={service.faqs} /> : null}
       <PageHero
         title={service.title}
         intro={service.overview}
@@ -222,6 +233,42 @@ export default async function ServiceDetailPage({
           </aside>
         </div>
       </section>
+
+      {service.faqs?.length ? (
+        <section className="pb-16 md:pb-24" aria-labelledby={`${service.slug}-faqs`}>
+          <div className="container-page">
+            <div className="mx-auto max-w-3xl">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-silver-400)]">
+                Frequently Asked Questions
+              </p>
+              <h2
+                id={`${service.slug}-faqs`}
+                className="mt-3 text-3xl md:text-4xl font-semibold text-silver-shine"
+              >
+                {service.shortTitle} FAQs
+              </h2>
+              <div className="mt-8 divide-y divide-white/10 rounded-2xl glass-card ring-silver">
+                {service.faqs.map((faq, i) => (
+                  <details
+                    key={i}
+                    className="group px-6 py-5 open:bg-white/[0.02]"
+                  >
+                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-medium text-white marker:hidden list-none">
+                      <span>{faq.question}</span>
+                      <span className="silver-tick inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs transition group-open:rotate-45">
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-300)]">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
     </>
   );
 }

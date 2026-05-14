@@ -7,10 +7,11 @@ export function absoluteUrl(path: string): string {
 }
 
 export const defaultOgImage = {
-  url: absoluteUrl("/assets/images/al-manara-location.webp"),
-  width: 800,
-  height: 600,
+  url: absoluteUrl("/og-image.jpg"),
+  width: 1200,
+  height: 630,
   alt: "SilberArrows Mercedes-Benz Service Center Dubai",
+  type: "image/jpeg",
 } as const;
 
 export const serviceKeywords: Record<string, string> = {

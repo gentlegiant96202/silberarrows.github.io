@@ -1,33 +1,42 @@
+import { site } from "@/lib/site";
+
+const baseUrl = site.url;
+
 export function OrganizationSchema() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
     name: "SilberArrows",
-    alternateName: "SilberArrows Mercedes-Benz Service",
+    legalName: "SilberArrows Mercedes-Benz Service",
+    alternateName: ["SilberArrows Mercedes-Benz Service", "Silber Arrows"],
     description:
-      "Independent Mercedes-Benz service center in Dubai specializing in expert maintenance, repair, and diagnostics since 2011.",
-    url: "https://mercedes-benz.silberarrows.com",
+      "Independent Mercedes-Benz service center in Dubai specializing in expert maintenance, repair and diagnostics since 2011.",
+    url: baseUrl,
     logo: {
       "@type": "ImageObject",
-      url: "https://mercedes-benz.silberarrows.com/icon.svg",
-      width: "200",
-      height: "60",
+      url: `${baseUrl}/icon.svg`,
+      width: 512,
+      height: 512,
     },
-    image:
-      "https://mercedes-benz.silberarrows.com/assets/images/al-manara-location.webp",
+    image: [
+      `${baseUrl}/assets/images/al-manara-location.webp`,
+      `${baseUrl}/assets/images/hero-bg-silver-optimized.webp`,
+    ],
     telephone: "+971-4-380-5515",
-    email: "info@silberarrows.ae",
+    email: "info@silberarrows.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Al Manara Street",
       addressLocality: "Al Quoz",
       addressRegion: "Dubai",
+      postalCode: "00000",
       addressCountry: "AE",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: "25.1459942",
-      longitude: "55.2304157",
+      latitude: site.geo.lat,
+      longitude: site.geo.lng,
     },
     contactPoint: [
       {
@@ -35,6 +44,7 @@ export function OrganizationSchema() {
         telephone: "+971-4-380-5515",
         contactType: "customer service",
         availableLanguage: ["English", "Arabic"],
+        areaServed: "AE",
         hoursAvailable: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: [
@@ -54,13 +64,11 @@ export function OrganizationSchema() {
         url: "https://wa.me/97143805515",
         contactType: "customer service",
         availableLanguage: ["English", "Arabic"],
+        areaServed: "AE",
       },
     ],
     foundingDate: "2011",
-    numberOfEmployees: {
-      "@type": "QuantitativeValue",
-      value: "10",
-    },
+    numberOfEmployees: { "@type": "QuantitativeValue", value: 10 },
     areaServed: {
       "@type": "City",
       name: "Dubai",
@@ -74,15 +82,20 @@ export function OrganizationSchema() {
       "Mercedes-Benz Service",
       "Automotive Service",
     ],
-    sameAs: ["https://wa.me/97143805515"],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: site.reviews.rating,
+      reviewCount: site.reviews.count,
+      bestRating: "5",
+      worstRating: "1",
+    },
+    sameAs: ["https://wa.me/97143805515", site.reviews.url],
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(organizationSchema, null, 2),
-      }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
     />
   );
 }

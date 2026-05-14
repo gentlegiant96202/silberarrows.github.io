@@ -1,57 +1,50 @@
 import type { MetadataRoute } from "next";
+import { services } from "@/lib/services";
+import { site } from "@/lib/site";
 
-const baseUrl = "https://mercedes-benz.silberarrows.com";
+const baseUrl = site.url;
 
-const serviceRoutes = [
-  "scheduled-maintenance",
-  "brake-service",
-  "detailing",
-  "battery-service",
-  "air-conditioning",
-  "diagnostics",
-  "engine-repair",
-  "suspension-repair",
-  "tyre-replacement",
-  "wheel-alignment",
-];
+const lastModified = new Date(
+  process.env.VERCEL_GIT_COMMIT_SHA ? Date.now() : "2026-05-14T00:00:00.000Z"
+);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const corePages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: `${baseUrl}/`,
+      lastModified,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
       url: `${baseUrl}/services`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/contact`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/service-pricing`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/service-contracts`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
   ];
 
-  const servicePages: MetadataRoute.Sitemap = serviceRoutes.map((slug) => ({
-    url: `${baseUrl}/services/${slug}`,
-    lastModified: new Date(),
+  const servicePages: MetadataRoute.Sitemap = services.map((s) => ({
+    url: `${baseUrl}/services/${s.slug}`,
+    lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

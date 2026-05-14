@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { Services } from "@/components/sections/Services";
 import { Contact } from "@/components/sections/Contact";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { services } from "@/lib/services";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -28,6 +29,12 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+        ]}
+      />
       <PageHero
         title="Mercedes-Benz Services in Dubai"
         intro="Complete service and repair across all Mercedes-Benz models. Genuine parts, factory-trained technicians, XENTRY diagnostics."

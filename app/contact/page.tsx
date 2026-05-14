@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { Contact } from "@/components/sections/Contact";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -27,6 +28,12 @@ export default function ContactPage() {
   return (
     <>
       <LocalBusinessSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Contact", href: "/contact" },
+        ]}
+      />
       <PageHero
         title="Contact Us"
         intro="Get in touch with Dubai's trusted Mercedes-Benz specialists."
