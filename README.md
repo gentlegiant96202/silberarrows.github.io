@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SilberArrows v2
+
+A modern, black-themed website with silver accents for **SilberArrows** — Dubai's independent Mercedes-Benz service centre.
+
+Built from scratch with **Next.js 15 (App Router)**, **React 19**, **TypeScript** and **Tailwind CSS v4**. All copy is sourced from `SITE_CONTENT.md` at the repo root.
+
+## Stack
+
+- Next.js 15 (App Router, RSC)
+- React 19
+- TypeScript (strict)
+- Tailwind CSS v4 (zero-config via `@tailwindcss/postcss`)
+- `lucide-react` for icons
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The dev server runs at [http://localhost:3001](http://localhost:3001).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route                              | Purpose                                              |
+| ---------------------------------- | ---------------------------------------------------- |
+| `/`                                | Home (hero, why us, services, team, contracts, etc.) |
+| `/services`                        | Services index                                       |
+| `/services/[slug]`                 | 10 service detail pages (statically generated)       |
+| `/service-pricing`                 | Transparent pricing tables                           |
+| `/service-contracts`               | Standard / Premium service contracts                 |
+| `/contact`                         | Contact + workshop map                               |
+| `/thank-you/service`               | Post-submit thank you (noindex)                      |
+| `/lp/[slug]`                       | 5 PPC landing pages (noindex, follow)                |
 
-## Learn More
+## Design System
 
-To learn more about Next.js, take a look at the following resources:
+- **Theme**: black foundation (`#050505 → #1c1c20`) with **silver** accents (`#e5e4e2 → #6c6c72`).
+- **Type**: Inter, with display headings using a vertical silver gradient (`text-silver-shine`).
+- **UI primitives**: `glass-card`, `ring-silver`, `btn-silver`, `btn-ghost`, `divider-chrome` defined in `app/globals.css`.
+- **Motion**: subtle rise / fade animations, hover lifts, shimmer on key surfaces.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Folder Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+silberarrows-nextjs/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx                    # Home
+│   ├── globals.css                 # Theme tokens & utilities
+│   ├── icon.svg
+│   ├── not-found.tsx
+│   ├── services/
+│   │   ├── page.tsx
+│   │   └── [slug]/page.tsx
+│   ├── service-pricing/page.tsx
+│   ├── service-contracts/page.tsx
+│   ├── contact/page.tsx
+│   ├── thank-you/service/page.tsx
+│   └── lp/[slug]/page.tsx
+├── components/
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   ├── Logo.tsx
+│   ├── ContactModal.tsx
+│   ├── ContactModalProvider.tsx
+│   ├── CTAButton.tsx
+│   └── sections/
+│       ├── Hero.tsx
+│       ├── PageHero.tsx
+│       ├── SectionHeader.tsx
+│       ├── WhyChooseUs.tsx
+│       ├── Services.tsx
+│       ├── Team.tsx
+│       ├── Contracts.tsx
+│       └── Contact.tsx
+├── lib/
+│   ├── site.ts          # Business info, nav, badges
+│   ├── services.ts      # 10 services with overviews & process
+│   ├── content.ts       # Team, why-choose, contracts, pricing, lp
+│   └── utils.ts
+├── public/
+└── ...config files
+```
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Image filenames from the original site are referenced in `lib/services.ts` (`hero` field) but the build does not yet ship binary assets — drop your `.webp/.avif` files into `public/assets/images/` to enable them in service detail hero backgrounds if desired.
+- The contact modal redirects users to WhatsApp with their pre-filled details.
