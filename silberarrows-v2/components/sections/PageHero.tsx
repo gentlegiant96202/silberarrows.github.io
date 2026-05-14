@@ -1,0 +1,87 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+export type Crumb = { label: string; href?: string };
+
+export function PageHero({
+  title,
+  intro,
+  crumbs,
+  className,
+  backgroundImage,
+}: {
+  title: string | React.ReactNode;
+  intro?: string;
+  crumbs?: Crumb[];
+  className?: string;
+  backgroundImage?: string;
+}) {
+  return (
+    <section
+      className={cn(
+        "relative overflow-hidden border-b border-white/5 pt-24 pb-16 md:pt-32 md:pb-24",
+        className
+      )}
+    >
+      {backgroundImage && (
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-[0.35]"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.65)_0%,rgba(5,5,5,0.85)_60%,rgba(5,5,5,0.98)_100%)]" />
+        </div>
+      )}
+
+      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+      <div
+        className="pointer-events-none absolute -top-32 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full opacity-40"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(212,212,216,0.18), transparent 60%)",
+        }}
+      />
+
+      <div className="container-page relative">
+        {crumbs && (
+          <nav className="mb-6 flex items-center gap-1.5 text-xs text-[color:var(--color-silver-500)]">
+            {crumbs.map((c, i) => (
+              <span key={i} className="flex items-center gap-1.5">
+                {i > 0 && <ChevronRight size={12} />}
+                {c.href ? (
+                  <Link
+                    href={c.href}
+                    className="hover:text-white transition uppercase tracking-[0.16em]"
+                  >
+                    {c.label}
+                  </Link>
+                ) : (
+                  <span className="uppercase tracking-[0.16em] text-[color:var(--color-silver-300)]">
+                    {c.label}
+                  </span>
+                )}
+              </span>
+            ))}
+          </nav>
+        )}
+
+        <div className="max-w-3xl">
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.01em] text-silver-shine leading-[0.95] uppercase">
+            {title}
+          </h1>
+          {intro && (
+            <p className="mt-6 text-base md:text-lg text-[color:var(--color-silver-300)] leading-relaxed">
+              {intro}
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
