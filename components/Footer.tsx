@@ -90,7 +90,7 @@ export function Footer() {
 
         <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-xs text-[color:var(--color-silver-500)]">
           <p>
-            Copyright {site.name} {new Date().getFullYear()}. All rights
+            &copy; {site.name} {new Date().getFullYear()}. All rights
             reserved.
           </p>
           <p className="flex items-center gap-2">
