@@ -4,17 +4,25 @@ import { MapPin, MessageCircle, Phone, Clock, Navigation } from "lucide-react";
 import { site } from "@/lib/site";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { useContactModal } from "@/components/ContactModalProvider";
+import { cn } from "@/lib/utils";
 
 export function Contact({
   showHeader = true,
+  className,
 }: {
   showHeader?: boolean;
+  className?: string;
 }) {
   const { openModal } = useContactModal();
   const mapLink = `https://www.google.com/maps/search/?api=1&query=${site.geo.lat},${site.geo.lng}`;
 
   return (
-    <section className="relative py-20 md:py-28 border-t border-white/5">
+    <section
+      className={cn(
+        "relative py-20 md:py-28 border-t border-white/5",
+        className
+      )}
+    >
       <div className="container-page">
         {showHeader && (
           <SectionHeader

@@ -40,7 +40,7 @@ export default function ContactPage() {
         backgroundImage="/assets/images/al-manara-location.webp"
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
-      <Contact showHeader={false} />
+      <Contact showHeader={false} className="pt-0 md:pt-0 border-t-0" />
     </>
   );
 }

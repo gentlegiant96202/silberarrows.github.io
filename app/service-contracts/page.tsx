@@ -44,7 +44,7 @@ export default function ServiceContractsPage() {
           { label: "Service Contracts" },
         ]}
       />
-      <Contracts />
+      <Contracts className="pt-0 md:pt-0 border-t-0" />
       <Contact />
     </>
   );

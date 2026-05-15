@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { PostCard } from "@/components/blog/PostCard";
+import { FeaturePostCard } from "@/components/blog/FeaturePostCard";
 import { Pagination } from "@/components/blog/Pagination";
 import { CategoryPills } from "@/components/blog/CategoryPills";
 import { EmptyState } from "@/components/blog/EmptyState";
@@ -12,6 +13,11 @@ import { site } from "@/lib/site";
 export const revalidate = 300;
 
 const canonical = `${site.url}/blog`;
+
+// Only promote a lead-story when there are enough follow-up posts to fill the
+// grid below it. Under this threshold the page renders as a uniform grid so a
+// sparse blog never balloons into a single page-sized hero.
+const FEATURE_THRESHOLD = 5;
 
 export const metadata: Metadata = {
   title: "Mercedes-Benz Blog Dubai | SilberArrows Service Guides",
@@ -41,8 +47,9 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
     getCategories(),
   ]);
 
-  const featured = posts[0];
-  const rest = posts.slice(1);
+  const showFeature = page === 1 && posts.length >= FEATURE_THRESHOLD;
+  const featured = showFeature ? posts[0] : null;
+  const gridPosts = showFeature ? posts.slice(1) : posts;
 
   const collectionSchema = {
     "@context": "https://schema.org",
@@ -87,7 +94,7 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
         crumbs={[{ label: "Home", href: "/" }, { label: "Blog" }]}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="pb-16 md:pb-24">
         <div className="container-page">
           <CategoryPills categories={categories} />
 
@@ -95,15 +102,20 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
             <EmptyState />
           ) : (
             <>
-              {featured && page === 1 ? (
+              {featured ? (
                 <div className="mt-10">
-                  <PostCard post={featured} variant="feature" />
+                  <FeaturePostCard post={featured} />
                 </div>
               ) : null}
 
-              {(page === 1 ? rest : posts).length ? (
-                <div className="mt-10 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-                  {(page === 1 ? rest : posts).map((p) => (
+              {gridPosts.length ? (
+                <div
+                  className={
+                    (featured ? "mt-8" : "mt-10") +
+                    " grid gap-7 md:grid-cols-2 lg:grid-cols-3"
+                  }
+                >
+                  {gridPosts.map((p) => (
                     <PostCard key={p.id} post={p} />
                   ))}
                 </div>

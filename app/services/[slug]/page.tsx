@@ -134,7 +134,7 @@ export default async function ServiceDetailPage({
         ]}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="pb-16 md:pb-24">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_360px]">
           <div>
             <div className="rounded-2xl glass-card ring-silver p-7 md:p-10">

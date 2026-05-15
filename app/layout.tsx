@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { MobileContactBar } from "@/components/MobileContactBar";
 import { ContactModalProvider } from "@/components/ContactModalProvider";
 import { site } from "@/lib/site";
 import { defaultOgImage } from "@/lib/seo";
@@ -107,7 +108,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-spotlight font-sans antialiased text-[color:var(--color-silver-100)]">
+      <body className="bg-spotlight font-sans antialiased text-[color:var(--color-silver-100)] pb-[calc(env(safe-area-inset-bottom)+5rem)] lg:pb-0">
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-WCW6K7CB"
@@ -133,6 +134,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <MobileContactBar />
         </ContactModalProvider>
 
         <Script

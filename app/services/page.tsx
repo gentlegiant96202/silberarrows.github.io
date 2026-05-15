@@ -41,7 +41,7 @@ export default function ServicesPage() {
         backgroundImage="/assets/images/hero-bg-silver-optimized.avif"
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
-      <Services />
+      <Services className="pt-0 md:pt-0 border-t-0" />
       <Contact />
       <nav aria-label="All Mercedes-Benz Services" className="sr-only">
         <ul>

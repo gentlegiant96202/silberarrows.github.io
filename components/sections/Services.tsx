@@ -3,10 +3,16 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { services } from "@/lib/services";
 import { SectionHeader } from "@/components/sections/SectionHeader";
+import { cn } from "@/lib/utils";
 
-export function Services() {
+export function Services({ className }: { className?: string }) {
   return (
-    <section className="relative py-20 md:py-28 border-t border-white/5">
+    <section
+      className={cn(
+        "relative py-20 md:py-28 border-t border-white/5",
+        className
+      )}
+    >
       <div className="container-page">
         <SectionHeader
           eyebrow="Our Services"

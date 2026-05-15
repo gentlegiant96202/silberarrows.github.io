@@ -4,9 +4,14 @@ import { SectionHeader } from "@/components/sections/SectionHeader";
 import { CTAButton } from "@/components/CTAButton";
 import { cn } from "@/lib/utils";
 
-export function Contracts() {
+export function Contracts({ className }: { className?: string }) {
   return (
-    <section className="relative py-20 md:py-28 border-t border-white/5">
+    <section
+      className={cn(
+        "relative py-20 md:py-28 border-t border-white/5",
+        className
+      )}
+    >
       <div className="container-page">
         <SectionHeader
           eyebrow="Service Contracts"

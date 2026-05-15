@@ -37,8 +37,8 @@ export function Header() {
           : "bg-transparent border-b border-transparent"
       )}
     >
-      <div className="container-page flex h-20 items-center justify-between md:h-24">
-        <Logo size="md" showWordmark={false} />
+      <div className="container-page flex h-24 items-center justify-between md:h-28">
+        <Logo size="lg" showWordmark={false} />
 
         <nav className="hidden lg:flex items-center gap-1">
           {nav.map((item) => {

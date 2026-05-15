@@ -92,7 +92,7 @@ export default async function BlogCategoryPage({
         ]}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="pb-16 md:pb-24">
         <div className="container-page">
           <CategoryPills categories={categories} activeSlug={slug} />
 

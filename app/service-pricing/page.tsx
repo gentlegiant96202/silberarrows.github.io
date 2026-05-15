@@ -40,7 +40,7 @@ export default function ServicePricingPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Service Pricing" }]}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="pb-16 md:pb-24">
         <div className="container-page">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-silver-400)]">
