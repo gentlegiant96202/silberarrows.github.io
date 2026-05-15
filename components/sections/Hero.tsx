@@ -188,17 +188,17 @@ export function Hero({
           <div className="relative anim-fade">
             <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-square overflow-hidden rounded-3xl ring-chrome">
               {/* chrome top hairline */}
-              <div className="absolute inset-x-6 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
+              <div className="pointer-events-none absolute inset-x-6 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
 
               {/* Auto-rotating exterior-to-interior carousel */}
               <HeroCarousel images={heroCarouselImages} />
 
               {/* Gradient overlays for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
 
               {/* Top-left badge: established */}
-              <div className="silver-chip absolute left-5 top-5 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md">
+              <div className="pointer-events-none silver-chip absolute left-5 top-5 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md">
                 <Award
                   size={11}
                   className="text-[color:var(--color-platinum)]"
@@ -207,7 +207,7 @@ export function Hero({
               </div>
 
               {/* Bottom info plate */}
-              <div className="absolute inset-x-5 bottom-5 z-10">
+              <div className="pointer-events-none absolute inset-x-5 bottom-5 z-10">
                 <div className="relative overflow-hidden rounded-2xl glass-card ring-silver p-5 backdrop-blur-xl">
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
                   <div className="flex items-center gap-3">
@@ -226,7 +226,7 @@ export function Hero({
               </div>
 
               {/* Floating stat plate top-right */}
-              <div className="hidden md:block absolute right-5 top-5 z-10">
+              <div className="pointer-events-none hidden md:block absolute right-5 top-5 z-10">
                 <div className="relative overflow-hidden rounded-xl glass-card ring-chrome px-4 py-3 backdrop-blur-xl">
                   <p className="text-2xl font-semibold text-silver-shine leading-none">
                     {site.stats[0].value}
