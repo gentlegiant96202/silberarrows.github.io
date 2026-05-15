@@ -104,7 +104,7 @@ export function Hero({
                 {titleParts.map((p, i) => (
                   <span
                     key={i}
-                    className="block text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] xl:text-[3.75rem] leading-[0.85] whitespace-nowrap"
+                    className="block text-[2.25rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] xl:text-[4rem] leading-[0.85] whitespace-nowrap"
                     style={
                       { animationDelay: `${0.05 * i}s` } as React.CSSProperties
                     }
@@ -151,38 +151,34 @@ export function Hero({
                 ))}
               </div>
 
-              <div className="anim-rise mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
-                <CTAButton
-                  label="Get a Free Quote"
-                  sub="Speak to a Service Advisor"
-                  size="lg"
-                />
+              <div className="anim-rise mt-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
+                <CTAButton label="Get a Free Quote" size="lg" />
                 <a
                   href={site.reviews.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md px-4 py-3 hover:bg-black/60 transition"
+                  className="group inline-flex items-center gap-3 transition hover:opacity-90"
                 >
-                <span className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={14}
-                      className="fill-[color:var(--color-platinum)] text-[color:var(--color-platinum)]"
-                    />
-                  ))}
-                </span>
-                <span className="text-left">
-                  <span className="block text-sm font-semibold text-white">
-                    {site.reviews.rating}{" "}
-                    <span className="text-[color:var(--color-silver-500)] font-normal">
-                      / 5
+                  <span className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={14}
+                        className="fill-[color:var(--color-platinum)] text-[color:var(--color-platinum)]"
+                      />
+                    ))}
+                  </span>
+                  <span className="text-left leading-tight">
+                    <span className="block text-sm font-semibold text-white">
+                      {site.reviews.rating}{" "}
+                      <span className="text-[color:var(--color-silver-500)] font-normal">
+                        / 5
+                      </span>
+                    </span>
+                    <span className="block text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
+                      {site.reviews.count} Google Reviews
                     </span>
                   </span>
-                  <span className="block text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
-                    {site.reviews.count} Google Reviews
-                  </span>
-                </span>
                 </a>
               </div>
             </div>
