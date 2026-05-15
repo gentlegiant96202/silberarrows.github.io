@@ -1,7 +1,34 @@
-import Image from "next/image";
 import { Star, ShieldCheck, Truck, Award } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
+import { HeroCarousel, type HeroCarouselImage } from "@/components/sections/HeroCarousel";
 import { site } from "@/lib/site";
+
+const heroCarouselImages: HeroCarouselImage[] = [
+  {
+    src: "/assets/images/hero-bg-silver-optimized.avif",
+    alt: "Mercedes-Benz at SilberArrows Service Centre.",
+  },
+  {
+    src: "/assets/images/hero/01-exterior.jpg",
+    alt: "Exterior of the SilberArrows Mercedes-Benz service centre in Al Quoz, Dubai, with G-Class models parked outside.",
+  },
+  {
+    src: "/assets/images/hero/02-lounge.jpg",
+    alt: "SilberArrows customer lounge and service reception with seating and advisor desks.",
+  },
+  {
+    src: "/assets/images/hero/03-workshop.jpg",
+    alt: "Inside the SilberArrows Mercedes-Benz workshop with multiple cars on scissor lifts.",
+  },
+  {
+    src: "/assets/images/hero/05-mechanic-underbody.jpg",
+    alt: "SilberArrows technician inspecting the underbody of a Mercedes-Benz with a torch.",
+  },
+  {
+    src: "/assets/images/hero/06-mechanic-engine.jpg",
+    alt: "SilberArrows technician working on a Mercedes-Benz engine bay.",
+  },
+];
 
 type HeroProps = {
   tagline?: string;
@@ -167,16 +194,8 @@ export function Hero({
               {/* chrome top hairline */}
               <div className="absolute inset-x-6 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
 
-              {/* Image */}
-              <Image
-                src="/assets/images/hero-bg-silver-optimized.avif"
-                alt="Mercedes-Benz at SilberArrows Service Centre"
-                fill
-                priority
-                fetchPriority="high"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover object-center"
-              />
+              {/* Auto-rotating exterior-to-interior carousel */}
+              <HeroCarousel images={heroCarouselImages} />
 
               {/* Gradient overlays for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
