@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { pingIndexNow } from "@/lib/indexnow";
+import { site } from "@/lib/site";
 
 const SECRET_HEADER = "x-revalidate-secret";
 
@@ -76,10 +78,22 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // IndexNow: tell Bing/Yandex/Seznam/Naver the URLs changed. The sitemap
+  // itself is not a useful submission target, so we skip it; the home page
+  // is included because post publishes change the LatestPosts strip.
+  const indexNowUrls = Array.from(paths)
+    .filter((p) => p !== "/sitemap.xml")
+    .map((p) => `${site.url}${p.startsWith("/") ? p : `/${p}`}`);
+  if (body.slug && body.type === "post") {
+    indexNowUrls.push(site.url + "/"); // home page LatestPosts strip changes
+  }
+  const indexNow = await pingIndexNow(indexNowUrls);
+
   return NextResponse.json({
     ok: true,
     flushedTags,
     flushedPaths,
+    indexNow,
     revalidatedAt: new Date().toISOString(),
   });
 }
