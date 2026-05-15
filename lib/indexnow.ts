@@ -40,9 +40,10 @@ export async function pingIndexNow(urls: string[]): Promise<PingResult> {
 
   if (urlList.length === 0) return { ok: false, reason: "no-urls" };
 
-  // IndexNow protocol requires the key location URL to end with `.txt`;
-  // our route handler accepts `${key}.txt` and 404s any other path.
-  const keyLocation = `${site.url}/indexnow/${key}.txt`;
+  // Spec Option 1: key file lives at the root with the exact filename
+  // `<KEY>.txt` (served as a static asset from /public). The matching
+  // file must be deployed to /public/<KEY>.txt when INDEXNOW_KEY changes.
+  const keyLocation = `${site.url}/${key}.txt`;
 
   try {
     const res = await fetch(ENDPOINT, {
