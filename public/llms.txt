@@ -1,57 +1,94 @@
 # SilberArrows
 
-> Independent Mercedes-Benz service centre in Al Quoz, Dubai. Established 2011. Specialists in Mercedes-Benz maintenance, repair, diagnostics, performance tuning (authorised RENNtech distributor), and classic Mercedes-Benz models. Genuine parts, factory schedules and XENTRY Diagnosis. 12-month warranty on parts and labour. Free collection and delivery across Dubai.
+> Independent Mercedes-Benz service centre in Al Quoz, Dubai. Established 2011. Specialists in Mercedes-Benz maintenance, repair, diagnostics, performance tuning (sole authorised RENNtech distributor in Dubai), and classic Mercedes-Benz models. Genuine parts only, factory service schedules, XENTRY Diagnosis. 12-month warranty on parts and labour. Free collection and delivery across Dubai.
 
 ## Business facts
 
 - Name: SilberArrows
-- Location: Al Manara Street, Al Quoz, Dubai, United Arab Emirates
+- Legal name: SilberArrows 1934 Auto Repairing LLC
+- Location: Al Manara Street, Al Quoz 1, Dubai, United Arab Emirates
+- Facility: 28,000 sq ft workshop with air-conditioned reception
 - Phone: +971 4 380 5515
 - WhatsApp: https://wa.me/97143805515
-- Hours: Monday to Saturday, 08:00 to 18:00 (closed Sunday)
-- Founded: 2011
+- Email: info@silberarrows.com
+- 24-hour roadside assistance: +971 56 603 7461
+- Hours: Monday to Saturday, 08:00 to 18:00 (closed Sunday and UAE public holidays)
+- Founded: 2011 (14+ years of Mercedes-Benz specialisation)
+- Vehicles serviced: 10,000+
 - Specialisation: Mercedes-Benz only (no other marques)
-- Reviews: 4.7 out of 5 from 509 Google reviews
-- Labour rate: AED 375 per hour (excludes Classic, Maybach, McLaren SLR)
+- Reviews: 4.9 out of 5 from 617 Google reviews
+- Labour rate: AED 375 per hour (excludes Classic, Maybach and McLaren SLR)
 - Warranty: 12 months on all parts and labour
+- Payment accepted: Cash, credit card, debit card, bank transfer
+- Currencies: AED only
 
 ## Core pages
 
-- [Homepage](https://mercedes-benz.silberarrows.com/): Overview of SilberArrows, services, team, pricing, and contracts.
+- [Homepage](https://mercedes-benz.silberarrows.com/): Overview of SilberArrows, services, team, pricing and contracts.
 - [All Services](https://mercedes-benz.silberarrows.com/services): Index of every Mercedes-Benz service offered.
-- [Service Pricing](https://mercedes-benz.silberarrows.com/service-pricing): Transparent Minor and Major service pricing per Mercedes-Benz model, including EQ.
+- [Service Pricing](https://mercedes-benz.silberarrows.com/service-pricing): Transparent Minor (Service A) and Major (Service B) service pricing per Mercedes-Benz model, including EQ electric range.
 - [Service Contracts](https://mercedes-benz.silberarrows.com/service-contracts): Standard (AED 2,700, 2 years / 30,000 km) and Premium (AED 5,800, 4 years / 60,000 km) maintenance plans.
-- [Contact](https://mercedes-benz.silberarrows.com/contact): Workshop address, phone, and contact form.
+- [Blog – The Journal](https://mercedes-benz.silberarrows.com/blog): Service guides, technical deep-dives and ownership advice from the workshop.
+- [Contact](https://mercedes-benz.silberarrows.com/contact): Workshop address, phone, contact form.
 
 ## Mercedes-Benz services
 
-- [Scheduled Maintenance — Service A & B](https://mercedes-benz.silberarrows.com/services/scheduled-maintenance): Official Mercedes-Benz Service A (Minor) and Service B (Major) maintenance with genuine parts and XENTRY Diagnosis.
-- [Brake Service & Repair](https://mercedes-benz.silberarrows.com/services/brake-service): Brake pad/disc replacement, fluid flush, calliper inspection, EPB recalibration with XENTRY.
-- [Air Conditioning Service & Repair](https://mercedes-benz.silberarrows.com/services/air-conditioning): R134a and R1234yf refrigerant service, cabin filter replacement, leak detection.
-- [Electrical & Computer Diagnostics](https://mercedes-benz.silberarrows.com/services/diagnostics): XENTRY Diagnosis fault scanning, ECU coding, sensor and wiring repairs.
-- [Engine Repair & Overhaul](https://mercedes-benz.silberarrows.com/services/engine-repair): Timing chain, gasket, turbocharger and full engine rebuilds for M271, M272, M276, M278, OM651 and others.
-- [Suspension & Steering Repair](https://mercedes-benz.silberarrows.com/services/suspension-repair): Conventional, AIRMATIC and ABC (Active Body Control) suspension repair.
-- [Battery Testing & Replacement](https://mercedes-benz.silberarrows.com/services/battery-service): Genuine Mercedes-Benz battery installation with ECU registration.
-- [Tyre Replacement & Balancing](https://mercedes-benz.silberarrows.com/services/tyre-replacement): Mercedes-Benz-approved tyres including run-flats and AMG sizes, with TPMS calibration.
-- [Wheel Alignment](https://mercedes-benz.silberarrows.com/services/wheel-alignment): Hunter 3D laser four-wheel alignment, approved for AMG and 4MATIC variants.
-- [Interior & Exterior Detailing](https://mercedes-benz.silberarrows.com/services/detailing): Paint correction, ceramic coating (Gtechniq), interior shampoo and leather care.
+- [Scheduled Maintenance — Service A & B](https://mercedes-benz.silberarrows.com/services/scheduled-maintenance): Official Mercedes-Benz Service A (Minor, oil and filter, fluids, diagnostics) and Service B (Major, adds cabin filter, A/C treatment, wheel rotation, transmission service). Every 12 months or 15,000 km per ASSYST PLUS, follows factory schedule via XENTRY Diagnosis. Service A from AED 972 (SLK/SLC) to AED 3,120 (Maybach). Service B from AED 1,620 to AED 7,080.
+- [Brake Service & Repair](https://mercedes-benz.silberarrows.com/services/brake-service): Brake pad and disc replacement, brake fluid flush, calliper inspection, electronic parking brake (EPB) reset and recalibration via XENTRY. Genuine Mercedes-Benz pads, discs and brake fluid only.
+- [Air Conditioning Service & Repair](https://mercedes-benz.silberarrows.com/services/air-conditioning): R134a and R1234yf refrigerant service, leak detection (UV dye and electronic), cabin/combination filter replacement, evaporator cleaning, A/C compressor diagnostics.
+- [Electrical & Computer Diagnostics](https://mercedes-benz.silberarrows.com/services/diagnostics): Official XENTRY Diagnosis fault scanning, ECU coding, SCN coding, software updates, guided faults, component activations, sensor and wiring repairs.
+- [Engine Repair & Overhaul](https://mercedes-benz.silberarrows.com/services/engine-repair): Timing chain replacement (M271, M272, M276, M278, OM651), head gasket work, turbocharger diagnosis and rebuild, full engine reconditioning, oil leak diagnostics, sensor replacement.
+- [Suspension & Steering Repair](https://mercedes-benz.silberarrows.com/services/suspension-repair): Conventional, AIRMATIC (air suspension) and Active Body Control (ABC) suspension repair — air struts, compressors, valve blocks, ride-height sensors, ABC pumps and pulsation dampers.
+- [Battery Testing & Replacement](https://mercedes-benz.silberarrows.com/services/battery-service): Genuine Mercedes-Benz battery installation with ECU registration via XENTRY (required for Intelligent Battery Sensor and energy-management ECU). Load testing and cranking-amp capacity checks at every service.
+- [Tyre Replacement & Balancing](https://mercedes-benz.silberarrows.com/services/tyre-replacement): Mercedes-Benz-approved tyres including run-flats (MOE/MOExtended) and AMG sizes, with TPMS sensor relearn and programming.
+- [Wheel Alignment](https://mercedes-benz.silberarrows.com/services/wheel-alignment): Hunter 3D laser four-wheel alignment, approved for AMG and 4MATIC variants, adjusted to model-specific Mercedes-Benz factory specifications.
+- [Interior & Exterior Detailing](https://mercedes-benz.silberarrows.com/services/detailing): Single- and multi-stage machine paint correction, ceramic coating (Gtechniq and similar) typically lasting 3-5 years in Dubai, interior shampoo, leather conditioning, engine bay detailing.
 
 ## Speciality areas
 
-- Mercedes-Benz AMG performance models
-- Mercedes-Benz Maybach
-- Mercedes EQ electric range
-- Classic Mercedes-Benz models
+- Mercedes-Benz AMG performance models (full range including AMG GT)
+- Mercedes-Benz Maybach (including S-Class Maybach and Maybach GLS)
+- Mercedes EQ electric range (EQA, EQB, EQC, EQE, EQS, EQV, EQG)
+- Classic Mercedes-Benz models (mechanical rebuilds, parts sourcing, originality preservation)
+- McLaren SLR (one of very few Dubai workshops still maintaining this model)
 - Performance tuning — sole authorised RENNtech distributor in Dubai
+
+## Service contracts
+
+- Standard: AED 2,700, 2 years / 30,000 km. Includes 1× Service A, 1× Service B, 1× brake fluid replacement, 1× full vehicle inspection.
+- Premium: AED 5,800, 4 years / 60,000 km. Includes 2× Service A, 2× Service B, 2× brake fluid replacement, 1× spark plug replacement, 1× coolant replacement, 1× transmission oil + filter change, 1× full vehicle inspection.
+
+## Pricing summary (Service A / Service B, AED)
+
+- A-Class / C-Class / CLA / CLE: 1,188 / 1,620
+- E-Class / CLS: 1,188 / 1,800
+- S-Class / CL: 1,296 / 1,944
+- G-Class: 1,680 / 2,640
+- GLA / GLB / GLK / GLC: 1,188 / 1,620
+- ML / GLE / GL / GLS: 1,296 / 1,944
+- V-Class: 1,800 / 2,340
+- SLK / SLC: 972 / 1,920
+- SL: 1,296 / 2,400
+- SLS / AMG GT: 2,640 / 3,360
+- McLaren SLR: n/a / 7,080
+- Maybach: 3,120 / 3,600
+- EQ A/B/C: 1,188 / 1,620
+- EQ E/S/V/G: 1,440 / 1,800
+- Prices exclude 5% VAT. Hourly labour rate AED 375 (excludes Classic, Maybach, SLR).
 
 ## Frequently asked questions
 
-- We are an independent specialist, not a franchised Mercedes-Benz dealer.
-- Independent servicing can void or limit the manufacturer factory warranty under typical Mercedes-Benz warranty terms; customers still under factory warranty should confirm with their dealer before booking. SilberArrows backs all its own work with a 12-month warranty on parts and labour.
-- Customers typically save 30 to 40 percent on Service A, Service B and major repairs compared with Mercedes-Benz main-dealer pricing.
-- Free collection and delivery across Dubai is included with every service.
+- Is SilberArrows an authorised Mercedes-Benz dealer? No — SilberArrows is an independent Mercedes-Benz specialist, not a franchised dealer. We use genuine Mercedes-Benz parts, the official XENTRY Diagnosis platform and factory service schedules so your Mercedes-Benz keeps full service-history integrity.
+- Will independent servicing void my Mercedes-Benz factory warranty? Independent servicing and repairs can void or limit your Mercedes-Benz manufacturer warranty under typical warranty terms. If your vehicle is still under factory warranty, confirm your position with Mercedes-Benz or your selling dealer before booking. All work performed at SilberArrows is covered by our own 12-month warranty on parts and labour.
+- How much do customers save compared with a Mercedes-Benz main dealer? Customers typically save 30 to 40 percent on Service A, Service B and major repairs versus main-dealer pricing, with the same genuine parts and factory schedule.
+- Is collection and delivery included? Yes — free collection and delivery across Dubai is included with every service and major repair.
+- Do you service AMG, Maybach and Mercedes EQ models? Yes — we service all Mercedes-Benz models including AMG performance cars, Maybach, McLaren SLR, classic Mercedes-Benz and the entire Mercedes EQ electric range.
+- Do you offer performance tuning? Yes — SilberArrows is the only authorised RENNtech distributor in Dubai. Genuine RENNtech hardware and software with proper installation and support.
+- How often does a Mercedes-Benz need service? Most modern Mercedes-Benz models prompt for service every 12 months or 15,000 km via the ASSYST PLUS maintenance counter. Service A and Service B alternate.
+- How much does an XENTRY diagnostic scan cost? Competitive flat-rate XENTRY scan with a written fault-code report and repair recommendations. Call +971 4 380 5515 for current pricing.
 
 ## Optional
 
+- [Full content for AI](https://mercedes-benz.silberarrows.com/llms-full.txt): Comprehensive long-form reference with every service description, all 34 FAQs, complete pricing table, team profiles and technical glossary.
 - [Sitemap](https://mercedes-benz.silberarrows.com/sitemap.xml): Full machine-readable list of indexable pages.
-- [Robots](https://mercedes-benz.silberarrows.com/robots.txt): Crawler permissions.
+- [Robots](https://mercedes-benz.silberarrows.com/robots.txt): Crawler permissions (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Applebot-Extended, Google-Extended, OAI-SearchBot, MistralAI-User, and more — all allowed).

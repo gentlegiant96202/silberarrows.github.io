@@ -235,7 +235,7 @@ export function LocalBusinessSchema() {
       "Mercedes EQ Service",
     ],
     sameAs: [
-      "https://www.google.com/maps?cid=0",
+      "https://share.google/QqVCFdQ8NUxRIylfa",
       "https://wa.me/97143805515",
       site.reviews.url,
     ],
