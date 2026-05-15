@@ -35,19 +35,13 @@ export const metadata: Metadata = {
   },
 };
 
-type BlogPageProps = {
-  searchParams: Promise<{ page?: string }>;
-};
-
-export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
-  const { page: rawPage } = await searchParams;
-  const page = Math.max(1, parseInt(rawPage ?? "1", 10) || 1);
+export default async function BlogIndexPage() {
   const [{ posts, pagination }, categories] = await Promise.all([
-    getPosts(page, POSTS_PER_PAGE),
+    getPosts(1, POSTS_PER_PAGE),
     getCategories(),
   ]);
 
-  const showFeature = page === 1 && posts.length >= FEATURE_THRESHOLD;
+  const showFeature = posts.length >= FEATURE_THRESHOLD;
   const featured = showFeature ? posts[0] : null;
   const gridPosts = showFeature ? posts.slice(1) : posts;
 
@@ -122,7 +116,7 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
               ) : null}
 
               <Pagination
-                page={pagination.page}
+                page={1}
                 totalPages={pagination.totalPages}
                 basePath="/blog"
               />

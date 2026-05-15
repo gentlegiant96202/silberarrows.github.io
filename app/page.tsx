@@ -5,6 +5,7 @@ import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Services } from "@/components/sections/Services";
 import { Team } from "@/components/sections/Team";
 import { Contracts } from "@/components/sections/Contracts";
+import { LatestPosts } from "@/components/sections/LatestPosts";
 import { Contact } from "@/components/sections/Contact";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
@@ -43,6 +44,7 @@ export default function HomePage() {
       <Services />
       <Team />
       <Contracts />
+      <LatestPosts />
 
       <section className="pb-16 md:pb-24" aria-labelledby="home-faqs">
         <div className="container-page">

@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/services";
-import { getAllPublishedSlugs, getCategories, getPosts } from "@/lib/blog/queries";
+import {
+  getAllPublishedSlugs,
+  getCategories,
+  getPosts,
+  POSTS_PER_PAGE,
+} from "@/lib/blog/queries";
 import { site } from "@/lib/site";
 
 const baseUrl = site.url;
@@ -60,9 +65,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let blogPages: MetadataRoute.Sitemap = [];
   let categoryPages: MetadataRoute.Sitemap = [];
+  let paginationPages: MetadataRoute.Sitemap = [];
 
   try {
-    const [{ posts }, slugs, categories] = await Promise.all([
+    const [{ posts, pagination }, slugs, categories] = await Promise.all([
       getPosts(1, 1000),
       getAllPublishedSlugs(),
       getCategories(),
@@ -92,9 +98,54 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.5,
     }));
+
+    // Paginated hub pages (/blog/page/2, /3, ...). totalPages here reflects
+    // the full result set because we requested 1000 posts above; for
+    // pagination URLs we divide that across POSTS_PER_PAGE buckets.
+    const hubTotalPages = Math.max(
+      1,
+      Math.ceil(pagination.total / POSTS_PER_PAGE)
+    );
+    for (let p = 2; p <= hubTotalPages; p++) {
+      paginationPages.push({
+        url: `${baseUrl}/blog/page/${p}`,
+        lastModified,
+        changeFrequency: "weekly",
+        priority: 0.4,
+      });
+    }
+
+    // Paginated category pages. One Supabase call per category to learn its
+    // post count — only emitted for categories with > POSTS_PER_PAGE posts.
+    const categoryCounts = await Promise.all(
+      categories.map(async (c) => {
+        const { pagination: catPagination } = await getPosts(
+          1,
+          POSTS_PER_PAGE,
+          c.slug
+        );
+        return { slug: c.slug, totalPages: catPagination.totalPages };
+      })
+    );
+    for (const { slug, totalPages } of categoryCounts) {
+      for (let p = 2; p <= totalPages; p++) {
+        paginationPages.push({
+          url: `${baseUrl}/blog/category/${slug}/page/${p}`,
+          lastModified,
+          changeFrequency: "weekly",
+          priority: 0.3,
+        });
+      }
+    }
   } catch (err) {
     console.error("[sitemap] blog query failed:", err);
   }
 
-  return [...corePages, ...servicePages, ...categoryPages, ...blogPages];
+  return [
+    ...corePages,
+    ...servicePages,
+    ...categoryPages,
+    ...blogPages,
+    ...paginationPages,
+  ];
 }

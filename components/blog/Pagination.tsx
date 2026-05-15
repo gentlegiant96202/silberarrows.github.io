@@ -5,13 +5,17 @@ import { cn } from "@/lib/utils";
 type PaginationProps = {
   page: number;
   totalPages: number;
+  /**
+   * Canonical base path for page 1 — e.g. "/blog" or
+   * "/blog/category/eq-electric". Pages 2..N append "/page/N".
+   */
   basePath: string;
 };
 
 function buildHref(basePath: string, page: number): string {
-  if (page <= 1) return basePath;
-  const sep = basePath.includes("?") ? "&" : "?";
-  return `${basePath}${sep}page=${page}`;
+  const clean = basePath.replace(/\/$/, "");
+  if (page <= 1) return clean || "/";
+  return `${clean}/page/${page}`;
 }
 
 export function Pagination({ page, totalPages, basePath }: PaginationProps) {
