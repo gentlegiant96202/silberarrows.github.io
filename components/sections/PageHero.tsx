@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, preserveBrandWrap } from "@/lib/utils";
 
 export type Crumb = { label: string; href?: string };
 
@@ -73,11 +73,11 @@ export function PageHero({
 
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.01em] text-silver-shine leading-[0.95] uppercase">
-            {title}
+            {preserveBrandWrap(title)}
           </h1>
           {intro && (
             <p className="mt-6 text-base md:text-lg text-[color:var(--color-silver-300)] leading-relaxed">
-              {intro}
+              {preserveBrandWrap(intro)}
             </p>
           )}
         </div>

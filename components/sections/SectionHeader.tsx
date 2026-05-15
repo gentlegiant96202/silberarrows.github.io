@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, preserveBrandWrap } from "@/lib/utils";
 
 export function SectionHeader({
   eyebrow,
@@ -36,11 +36,11 @@ export function SectionHeader({
         </div>
       )}
       <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-silver-shine uppercase">
-        {title}
+        {preserveBrandWrap(title)}
       </h2>
       {intro && (
         <p className="mt-5 text-base md:text-lg leading-relaxed text-[color:var(--color-silver-300)]">
-          {intro}
+          {preserveBrandWrap(intro)}
         </p>
       )}
     </div>
