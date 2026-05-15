@@ -40,7 +40,9 @@ export async function pingIndexNow(urls: string[]): Promise<PingResult> {
 
   if (urlList.length === 0) return { ok: false, reason: "no-urls" };
 
-  const keyLocation = `${site.url}/indexnow/${key}`;
+  // IndexNow protocol requires the key location URL to end with `.txt`;
+  // our route handler accepts `${key}.txt` and 404s any other path.
+  const keyLocation = `${site.url}/indexnow/${key}.txt`;
 
   try {
     const res = await fetch(ENDPOINT, {
