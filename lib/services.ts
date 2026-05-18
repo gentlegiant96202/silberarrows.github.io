@@ -46,26 +46,14 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question:
-          "How often should I replace the brake pads on my Mercedes-Benz?",
+        question: "How do I know if my brakes need attention?",
         answer:
-          "Most Mercedes-Benz brake pads last 30,000 to 60,000 km depending on driving style and traffic conditions. We inspect pad thickness, disc wear and brake fluid at every service so you only replace what's actually worn.",
+          "Common signs include vibration, squealing, longer stopping distances, warning messages or brake pedal changes. We recommend having the braking system inspected as soon as any symptoms appear.",
       },
       {
-        question: "Do you use genuine Mercedes-Benz brake parts?",
+        question: "Do you work on AMG braking systems?",
         answer:
-          "Yes. We only fit genuine Mercedes-Benz pads, discs and brake fluid that meet factory friction and heat-tolerance specs, preserving pedal feel and your service history.",
-      },
-      {
-        question:
-          "How much does a Mercedes-Benz brake service cost in Dubai?",
-        answer:
-          "Brake pad and disc pricing depends on your model and which axle is being serviced. We provide a no-obligation written quote after inspection, with parts and labour itemised before any work begins.",
-      },
-      {
-        question: "Can you reset the electronic parking brake (EPB)?",
-        answer:
-          "Yes. We use XENTRY Diagnosis to retract and recalibrate the EPB callipers for safe pad replacement on all C-Class, E-Class, S-Class, GLC, GLE and other electronic-park-brake models.",
+          "Yes. We work on standard and AMG braking systems including large-performance brake packages and electronic braking systems.",
       },
     ],
   },
@@ -134,26 +122,19 @@ export const services: Service[] = [
     },
     faqs: [
       {
-        question:
-          "What's the difference between Service A and Service B on a Mercedes-Benz?",
+        question: "How often should a Mercedes-Benz be serviced?",
         answer:
-          "Service A (Minor) covers oil and filter replacement, fluid top-ups, brake inspection and full diagnostics. Service B (Major) adds cabin filter, A/C treatment, wheel rotation, transmission oil change and a full vehicle inspection. Service A and B alternate roughly every 12 months or 15,000 km.",
+          "Most Mercedes-Benz models require servicing every 12 months or 15,000 km, depending on usage and driving conditions.",
       },
       {
-        question: "How often does my Mercedes-Benz need a service?",
+        question: "What is the difference between Service A and Service B?",
         answer:
-          "Most modern Mercedes-Benz models prompt for service every 12 months or 15,000 km via the ASSYST PLUS maintenance counter. We follow the factory schedule using XENTRY Diagnosis so your service history stays intact.",
+          "Service A is the smaller routine maintenance interval, while Service B includes additional maintenance items and inspections. The exact requirements vary depending on model, age and mileage.",
       },
       {
-        question:
-          "Will servicing at SilberArrows affect my Mercedes-Benz warranty?",
+        question: "Do you follow Mercedes-Benz service schedules?",
         answer:
-          "Servicing outside an authorised Mercedes-Benz dealer can void or limit your manufacturer warranty, depending on your vehicle contract and remaining coverage. If your car is still under factory warranty, please confirm your position with Mercedes-Benz or your selling dealer before booking. We use genuine parts and factory schedules, and every job is covered by our own 12-month warranty on parts and labour.",
-      },
-      {
-        question: "How much do I save vs the Mercedes-Benz main dealer?",
-        answer:
-          "Customers typically save 30 to 40 percent on Service A and Service B compared with dealer pricing, with the same genuine parts and factory schedule. Free collection and delivery across Dubai is included.",
+          "Yes. We follow manufacturer maintenance schedules and service procedures specific to your model.",
       },
     ],
   },
@@ -184,14 +165,9 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Do you fit run-flat tyres for Mercedes-Benz?",
+        question: "Do you fit run-flat and AMG tyres?",
         answer:
-          "Yes. We fit Mercedes-Benz-approved run-flat (MOE/MOExtended) tyres for all models that require them, as well as AMG performance and standard tyres on request.",
-      },
-      {
-        question: "Can you reset the TPMS sensors after a tyre change?",
-        answer:
-          "Yes. We use XENTRY Diagnosis to relearn and program OEM TPMS sensors so the tyre-pressure warning clears and reads accurately on the instrument cluster.",
+          "Yes. We supply and fit standard, run-flat and AMG performance tyres depending on your vehicle requirements.",
       },
     ],
   },
@@ -222,14 +198,9 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "How often should I align the wheels on my Mercedes-Benz?",
+        question: "How often should wheel alignment be checked?",
         answer:
-          "We recommend a 4-wheel alignment every 15,000 to 20,000 km, after a kerb impact, or any time you fit new tyres or suspension components to protect tyre life and steering feel.",
-      },
-      {
-        question: "Do you do AMG and 4MATIC alignment?",
-        answer:
-          "Yes. Our Hunter 3D alignment equipment is approved for AMG and 4MATIC variants and we adjust to model-specific Mercedes-Benz factory specs.",
+          "We recommend checking alignment after tyre replacement, suspension work, pothole impacts or whenever uneven tyre wear or steering pull is noticed.",
       },
     ],
   },
@@ -260,14 +231,15 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Why does a new Mercedes battery need to be registered?",
+        question:
+          "How long do Mercedes-Benz batteries typically last in Dubai?",
         answer:
-          "Modern Mercedes-Benz cars use an Intelligent Battery Sensor and energy-management ECU that tracks charge cycles. A new battery must be coded to the car via XENTRY Diagnosis so the alternator charges it correctly and start-stop and comfort features work.",
+          "Due to high temperatures, most batteries typically last around 3\u20134 years depending on usage and driving habits.",
       },
       {
-        question: "How long does a Mercedes-Benz battery last in Dubai?",
+        question: "Does a new battery need programming?",
         answer:
-          "Dubai heat is hard on batteries. Most original Mercedes-Benz batteries last 3 to 4 years here. We test charge capacity and cranking amps at every service so you can replace before a no-start.",
+          "Many modern Mercedes-Benz models require battery registration or coding after replacement so the charging and energy-management systems operate correctly.",
       },
     ],
   },
@@ -299,19 +271,14 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "My Mercedes A/C isn't cold, what's the most common cause?",
+        question: "Why is my air conditioning not cold enough?",
         answer:
-          "Low refrigerant from a slow leak is the most common cause in Dubai. We pressure-test the system, locate the leak with UV dye or electronic detection and refill to the correct R134a or R1234yf spec for your model.",
+          "Common causes include low refrigerant, leaks, blocked filters or failing components. In Dubai's climate, regular air-conditioning maintenance is especially important.",
       },
       {
         question: "How often should the cabin filter be replaced?",
         answer:
-          "We recommend replacing the combination (cabin) filter every 12 months in Dubai's dust. It's included in Service B and improves airflow, smell and HEPA filtration.",
-      },
-      {
-        question: "Do you service R1234yf systems?",
-        answer:
-          "Yes. We have the equipment and certified refrigerant for newer Mercedes-Benz models that use R1234yf as well as legacy R134a systems.",
+          "We typically recommend replacing the cabin filter every 12 months due to dust and environmental conditions in the UAE.",
       },
     ],
   },
@@ -343,19 +310,14 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Do you replace timing chains on M271, M272 and M276 engines?",
+        question: "Do you repair common Mercedes-Benz engine issues?",
         answer:
-          "Yes. Timing chain, guides and tensioner replacement is one of our common engine repairs across M271, M272, M276, M278 and OM651 engines using genuine Mercedes-Benz parts.",
+          "Yes. We regularly diagnose and repair oil leaks, cooling-system faults, timing-chain issues, turbocharger faults and other engine-related problems across a wide range of Mercedes-Benz engines.",
       },
       {
-        question: "Can you rebuild a Mercedes turbocharger?",
+        question: "How long do major repairs usually take?",
         answer:
-          "We diagnose, repair or replace turbochargers on Mercedes-Benz petrol and diesel engines. Where rebuild is appropriate we use OE-quality CHRA cartridges; otherwise we fit a genuine Mercedes-Benz unit.",
-      },
-      {
-        question: "How long does a Mercedes engine repair take?",
-        answer:
-          "Small repairs (oil leaks, gaskets, sensors) usually take 1-3 working days. Larger jobs like timing chain or head gasket replacement typically take 4-7 working days. We provide a written timeline before work begins.",
+          "Repair times vary depending on the fault, parts availability and complexity of the work. We provide estimated timelines and updates throughout the process.",
       },
     ],
   },
@@ -387,14 +349,14 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Do you repair AIRMATIC and Active Body Control (ABC)?",
+        question: "Do you repair AIRMATIC suspension systems?",
         answer:
-          "Yes. We diagnose and repair AIRMATIC air struts, compressors, valve blocks and ride-height sensors as well as ABC pumps, valves and pulsation dampers using genuine Mercedes-Benz parts.",
+          "Yes. We diagnose and repair AIRMATIC systems including compressors, air struts, valve blocks and ride-height related faults.",
       },
       {
-        question: "Why is my Mercedes sitting low on one corner?",
+        question: "Why is my Mercedes-Benz sitting low overnight?",
         answer:
-          "This is typically a leaking air strut, faulty compressor or ride-height sensor on AIRMATIC cars. We pressure-test the system and replace the failed component with a genuine Mercedes-Benz unit, then recalibrate ride height.",
+          "This is commonly caused by an air suspension leak or a fault within the suspension control system. We carry out pressure testing and diagnostics to identify the fault correctly.",
       },
     ],
   },
@@ -425,14 +387,14 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Do you use the official XENTRY Diagnosis system?",
+        question: "Can you diagnose warning lights and electrical faults?",
         answer:
-          "Yes. We use XENTRY Diagnosis, the official Mercedes-Benz factory tool, to read ECUs, run guided tests, perform SCN coding, software updates and component activations.",
+          "Yes. We diagnose engine, transmission, suspension, electrical and electronic faults using Mercedes-Benz diagnostic systems and guided testing procedures.",
       },
       {
-        question: "How much does a Mercedes diagnostic scan cost?",
+        question: "Do you carry out software programming and coding?",
         answer:
-          "We offer a competitive flat-rate XENTRY scan with a written fault-code report and repair recommendations. Call +971 4 380 5515 for current pricing.",
+          "Yes. We carry out coding, programming and software-related functions where required, depending on the model and system involved.",
       },
     ],
   },
@@ -464,15 +426,14 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question:
-          "How long does Mercedes ceramic coating last in Dubai's climate?",
+        question: "Do you offer ceramic coating and paint protection?",
         answer:
-          "A correctly prepped and applied ceramic coating typically lasts 3 to 5 years in Dubai when paired with proper maintenance washes. Gtechniq and similar professional coatings shrug off sun, dust and harsh wash chemicals.",
+          "Yes. We offer professional detailing, paint correction and ceramic coating services to help protect and preserve your vehicle's finish.",
       },
       {
-        question: "Do you do paint correction on Mercedes-Benz cars?",
+        question: "Can you remove swirl marks and light scratches?",
         answer:
-          "Yes. We perform single- and multi-stage machine polishing to remove swirl marks, light scratches and oxidation, then seal the finish with a ceramic coating or sealant of your choice.",
+          "Yes. Paint correction and machine polishing can significantly improve gloss, clarity and surface finish depending on the condition of the paintwork.",
       },
     ],
   },
@@ -480,44 +441,49 @@ export const services: Service[] = [
 
 export const homeFaqs: FAQ[] = [
   {
-    question: "Are you an authorised Mercedes-Benz service center?",
+    question: "What makes SilberArrows different?",
     answer:
-      "We are an independent Mercedes-Benz specialist in Al Quoz, Dubai, not a franchised dealer. We use genuine Mercedes-Benz parts, the official XENTRY Diagnosis platform and factory service schedules so your Mercedes-Benz keeps full service-history integrity.",
+      "SilberArrows is an independent Mercedes-Benz specialist based in Dubai, focused exclusively on Mercedes-Benz passenger vehicles. Our workshop combines dealer-level diagnostics and technical expertise with a more personal, transparent and enthusiast-driven approach.",
   },
   {
-    question: "Will using SilberArrows void my Mercedes-Benz warranty?",
+    question: "What types of Mercedes-Benz vehicles do you work on?",
     answer:
-      "Yes. Independent servicing and repairs can void your Mercedes-Benz manufacturer warranty under typical warranty terms. If your vehicle is still in factory warranty, speak with your authorised dealer or Mercedes-Benz before choosing us. Many of our customers are post-warranty or have accepted that trade-off for specialist care and value; all work we perform is covered by our own 12-month warranty on parts and labour.",
+      "We work on the full Mercedes-Benz range, from everyday models through to AMG, Maybach, Mercedes-EQ and specialist vehicles.",
   },
   {
-    question: "How much do you save vs a Mercedes-Benz main dealer?",
+    question: "Do you service and maintain the Mercedes-Benz SLR McLaren?",
     answer:
-      "Customers typically save 30 to 40 percent on Service A, Service B and major repairs vs main-dealer pricing, with the same genuine parts and factory schedule. Our hourly labour rate is AED 375.",
+      "Yes. SilberArrows is widely recognised as one of the region's leading specialists for the Mercedes-Benz SLR McLaren, with many of the GCC's cars maintained by our team over the years.\n\nOur experience with the SLR dates back to when the model was originally introduced, including team members who were factory-trained on the platform during its early production years.\n\nFrom routine maintenance and diagnostics to complex mechanical, hydraulic and electronic repairs, we have extensive hands-on knowledge of the SLR and its unique systems.",
   },
   {
-    question: "Do you offer collection and delivery in Dubai?",
+    question: "Do you work on classic Mercedes-Benz vehicles?",
     answer:
-      "Yes. Free collection and delivery across Dubai is included with every service and major repair. Just call +971 4 380 5515 or WhatsApp us to arrange a time.",
+      "Yes. Classic Mercedes-Benz vehicles are a major part of what we do. From maintenance and mechanical restoration to sourcing hard-to-find parts and preserving originality, we support both collectors and enthusiasts.",
   },
   {
-    question: "Where are you located?",
+    question: "Do you use Mercedes-Benz diagnostic systems?",
     answer:
-      "Our workshop is on Al Manara Street in Al Quoz, Dubai. We're open Monday to Saturday, 8:00 AM to 6:00 PM.",
+      "Yes. We use XENTRY diagnostics for fault diagnosis, coding, software functions and guided troubleshooting across Mercedes-Benz models.",
   },
   {
-    question: "Do you service AMG, Maybach and Mercedes EQ models?",
+    question: "Do you use genuine Mercedes-Benz parts?",
     answer:
-      "Yes. We service all Mercedes-Benz models including AMG performance cars, Maybach, and the entire Mercedes EQ electric range.",
+      "Yes. We use genuine Mercedes-Benz parts and approved fluids to maintain reliability, performance and long-term vehicle integrity.",
   },
   {
-    question: "Do you work on classic Mercedes-Benz models?",
+    question: "Do you offer collection and delivery?",
     answer:
-      "Yes. We specialise in classic Mercedes-Benz cars as well as modern models, from routine maintenance and mechanical rebuilds to sourcing correct parts and preserving originality where it matters.",
+      "Yes. We offer complimentary collection and delivery across Dubai for servicing and repair work.",
   },
   {
-    question: "Do you offer performance tuning and RENNtech products?",
+    question: "Do you offer performance upgrades and tuning?",
     answer:
-      "Yes. We offer performance tuning and upgrades, and we are the only authorised RENNtech distributor in Dubai. You can buy and fit genuine RENNtech hardware and software through us with proper installation and support.",
+      "Yes. We supply and install performance upgrades including genuine RENNtech and PowerAi products and software.",
+  },
+  {
+    question: "Do you offer service and extended warranty plans?",
+    answer:
+      "Yes. We offer ServiceCare maintenance plans and our SilberArrows Extended Warranty Program for eligible Mercedes-Benz vehicles, helping customers manage servicing and ownership costs with added peace of mind.",
   },
 ];
 

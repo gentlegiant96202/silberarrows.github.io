@@ -11,9 +11,9 @@ This document contains every FAQ that currently appears on silberarrows.com, cop
 
 ## Inventory
 
-- **8** site-wide FAQs (homepage)
-- **26** service-specific FAQs across **10** service pages
-- **34** FAQs total
+- **9** site-wide (Company) FAQs (homepage)
+- **19** service-specific FAQs across **10** service pages
+- **28** FAQs total
 
 Order below matches the order in the source file so corrections can be applied 1:1.
 
@@ -27,51 +27,61 @@ Order below matches the order in the source file so corrections can be applied 1
 
 ### Q1.1
 
-**Q:** Are you an authorised Mercedes-Benz service center?
+**Q:** What makes SilberArrows different?
 
-**A:** We are an independent Mercedes-Benz specialist in Al Quoz, Dubai, not a franchised dealer. We use genuine Mercedes-Benz parts, the official XENTRY Diagnosis platform and factory service schedules so your Mercedes-Benz keeps full service-history integrity.
+**A:** SilberArrows is an independent Mercedes-Benz specialist based in Dubai, focused exclusively on Mercedes-Benz passenger vehicles. Our workshop combines dealer-level diagnostics and technical expertise with a more personal, transparent and enthusiast-driven approach.
 
 ### Q1.2
 
-**Q:** Will using SilberArrows void my Mercedes-Benz warranty?
+**Q:** What types of Mercedes-Benz vehicles do you work on?
 
-**A:** Yes. Independent servicing and repairs can void your Mercedes-Benz manufacturer warranty under typical warranty terms. If your vehicle is still in factory warranty, speak with your authorised dealer or Mercedes-Benz before choosing us. Many of our customers are post-warranty or have accepted that trade-off for specialist care and value; all work we perform is covered by our own 12-month warranty on parts and labour.
+**A:** We work on the full Mercedes-Benz range, from everyday models through to AMG, Maybach, Mercedes-EQ and specialist vehicles.
 
 ### Q1.3
 
-**Q:** How much do you save vs a Mercedes-Benz main dealer?
+**Q:** Do you service and maintain the Mercedes-Benz SLR McLaren?
 
-**A:** Customers typically save 30 to 40 percent on Service A, Service B and major repairs vs main-dealer pricing, with the same genuine parts and factory schedule. Our hourly labour rate is AED 375.
+**A:** Yes. SilberArrows is widely recognised as one of the region's leading specialists for the Mercedes-Benz SLR McLaren, with many of the GCC's cars maintained by our team over the years.
+
+Our experience with the SLR dates back to when the model was originally introduced, including team members who were factory-trained on the platform during its early production years.
+
+From routine maintenance and diagnostics to complex mechanical, hydraulic and electronic repairs, we have extensive hands-on knowledge of the SLR and its unique systems.
 
 ### Q1.4
 
-**Q:** Do you offer collection and delivery in Dubai?
+**Q:** Do you work on classic Mercedes-Benz vehicles?
 
-**A:** Yes. Free collection and delivery across Dubai is included with every service and major repair. Just call +971 4 380 5515 or WhatsApp us to arrange a time.
+**A:** Yes. Classic Mercedes-Benz vehicles are a major part of what we do. From maintenance and mechanical restoration to sourcing hard-to-find parts and preserving originality, we support both collectors and enthusiasts.
 
 ### Q1.5
 
-**Q:** Where are you located?
+**Q:** Do you use Mercedes-Benz diagnostic systems?
 
-**A:** Our workshop is on Al Manara Street in Al Quoz, Dubai. We're open Monday to Saturday, 8:00 AM to 6:00 PM.
+**A:** Yes. We use XENTRY diagnostics for fault diagnosis, coding, software functions and guided troubleshooting across Mercedes-Benz models.
 
 ### Q1.6
 
-**Q:** Do you service AMG, Maybach and Mercedes EQ models?
+**Q:** Do you use genuine Mercedes-Benz parts?
 
-**A:** Yes. We service all Mercedes-Benz models including AMG performance cars, Maybach, and the entire Mercedes EQ electric range.
+**A:** Yes. We use genuine Mercedes-Benz parts and approved fluids to maintain reliability, performance and long-term vehicle integrity.
 
 ### Q1.7
 
-**Q:** Do you work on classic Mercedes-Benz models?
+**Q:** Do you offer collection and delivery?
 
-**A:** Yes. We specialise in classic Mercedes-Benz cars as well as modern models, from routine maintenance and mechanical rebuilds to sourcing correct parts and preserving originality where it matters.
+**A:** Yes. We offer complimentary collection and delivery across Dubai for servicing and repair work.
 
 ### Q1.8
 
-**Q:** Do you offer performance tuning and RENNtech products?
+**Q:** Do you offer performance upgrades and tuning?
 
-**A:** Yes. We offer performance tuning and upgrades, and we are the only authorised RENNtech distributor in Dubai. You can buy and fit genuine RENNtech hardware and software through us with proper installation and support.
+**A:** Yes. We supply and install performance upgrades including genuine RENNtech and PowerAi products and software.
+
+### Q1.9
+
+**Q:** Do you offer service and extended warranty plans?
+
+**A:** Yes. We offer ServiceCare maintenance plans and our SilberArrows Extended Warranty Program for eligible Mercedes-Benz vehicles, helping customers manage servicing and ownership costs with added peace of mind.
 
 ---
 
@@ -83,31 +93,19 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 **Page:** `https://silberarrows.com/services/brake-service`
 **Section heading on page:** *Brake Service FAQs*
-**Source:** `services[slug="brake-service"].faqs` (4 FAQs)
+**Source:** `services[slug="brake-service"].faqs` (2 FAQs)
 
 #### Q2.1.1
 
-**Q:** How often should I replace the brake pads on my Mercedes-Benz?
+**Q:** How do I know if my brakes need attention?
 
-**A:** Most Mercedes-Benz brake pads last 30,000 to 60,000 km depending on driving style and traffic conditions. We inspect pad thickness, disc wear and brake fluid at every service so you only replace what's actually worn.
+**A:** Common signs include vibration, squealing, longer stopping distances, warning messages or brake pedal changes. We recommend having the braking system inspected as soon as any symptoms appear.
 
 #### Q2.1.2
 
-**Q:** Do you use genuine Mercedes-Benz brake parts?
+**Q:** Do you work on AMG braking systems?
 
-**A:** Yes. We only fit genuine Mercedes-Benz pads, discs and brake fluid that meet factory friction and heat-tolerance specs, preserving pedal feel and your service history.
-
-#### Q2.1.3
-
-**Q:** How much does a Mercedes-Benz brake service cost in Dubai?
-
-**A:** Brake pad and disc pricing depends on your model and which axle is being serviced. We provide a no-obligation written quote after inspection, with parts and labour itemised before any work begins.
-
-#### Q2.1.4
-
-**Q:** Can you reset the electronic parking brake (EPB)?
-
-**A:** Yes. We use XENTRY Diagnosis to retract and recalibrate the EPB callipers for safe pad replacement on all C-Class, E-Class, S-Class, GLC, GLE and other electronic-park-brake models.
+**A:** Yes. We work on standard and AMG braking systems including large-performance brake packages and electronic braking systems.
 
 ---
 
@@ -115,31 +113,25 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 **Page:** `https://silberarrows.com/services/scheduled-maintenance`
 **Section heading on page:** *Scheduled Maintenance FAQs*
-**Source:** `services[slug="scheduled-maintenance"].faqs` (4 FAQs)
+**Source:** `services[slug="scheduled-maintenance"].faqs` (3 FAQs)
 
 #### Q2.2.1
 
-**Q:** What's the difference between Service A and Service B on a Mercedes-Benz?
+**Q:** How often should a Mercedes-Benz be serviced?
 
-**A:** Service A (Minor) covers oil and filter replacement, fluid top-ups, brake inspection and full diagnostics. Service B (Major) adds cabin filter, A/C treatment, wheel rotation, transmission oil change and a full vehicle inspection. Service A and B alternate roughly every 12 months or 15,000 km.
+**A:** Most Mercedes-Benz models require servicing every 12 months or 15,000 km, depending on usage and driving conditions.
 
 #### Q2.2.2
 
-**Q:** How often does my Mercedes-Benz need a service?
+**Q:** What is the difference between Service A and Service B?
 
-**A:** Most modern Mercedes-Benz models prompt for service every 12 months or 15,000 km via the ASSYST PLUS maintenance counter. We follow the factory schedule using XENTRY Diagnosis so your service history stays intact.
+**A:** Service A is the smaller routine maintenance interval, while Service B includes additional maintenance items and inspections. The exact requirements vary depending on model, age and mileage.
 
 #### Q2.2.3
 
-**Q:** Will servicing at SilberArrows affect my Mercedes-Benz warranty?
+**Q:** Do you follow Mercedes-Benz service schedules?
 
-**A:** Servicing outside an authorised Mercedes-Benz dealer can void or limit your manufacturer warranty, depending on your vehicle contract and remaining coverage. If your car is still under factory warranty, please confirm your position with Mercedes-Benz or your selling dealer before booking. We use genuine parts and factory schedules, and every job is covered by our own 12-month warranty on parts and labour.
-
-#### Q2.2.4
-
-**Q:** How much do I save vs the Mercedes-Benz main dealer?
-
-**A:** Customers typically save 30 to 40 percent on Service A and Service B compared with dealer pricing, with the same genuine parts and factory schedule. Free collection and delivery across Dubai is included.
+**A:** Yes. We follow manufacturer maintenance schedules and service procedures specific to your model.
 
 ---
 
@@ -147,19 +139,13 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 **Page:** `https://silberarrows.com/services/tyre-replacement`
 **Section heading on page:** *Tyre Replacement FAQs*
-**Source:** `services[slug="tyre-replacement"].faqs` (2 FAQs)
+**Source:** `services[slug="tyre-replacement"].faqs` (1 FAQ)
 
 #### Q2.3.1
 
-**Q:** Do you fit run-flat tyres for Mercedes-Benz?
+**Q:** Do you fit run-flat and AMG tyres?
 
-**A:** Yes. We fit Mercedes-Benz-approved run-flat (MOE/MOExtended) tyres for all models that require them, as well as AMG performance and standard tyres on request.
-
-#### Q2.3.2
-
-**Q:** Can you reset the TPMS sensors after a tyre change?
-
-**A:** Yes. We use XENTRY Diagnosis to relearn and program OEM TPMS sensors so the tyre-pressure warning clears and reads accurately on the instrument cluster.
+**A:** Yes. We supply and fit standard, run-flat and AMG performance tyres depending on your vehicle requirements.
 
 ---
 
@@ -167,19 +153,13 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 **Page:** `https://silberarrows.com/services/wheel-alignment`
 **Section heading on page:** *Wheel Alignment FAQs*
-**Source:** `services[slug="wheel-alignment"].faqs` (2 FAQs)
+**Source:** `services[slug="wheel-alignment"].faqs` (1 FAQ)
 
 #### Q2.4.1
 
-**Q:** How often should I align the wheels on my Mercedes-Benz?
+**Q:** How often should wheel alignment be checked?
 
-**A:** We recommend a 4-wheel alignment every 15,000 to 20,000 km, after a kerb impact, or any time you fit new tyres or suspension components to protect tyre life and steering feel.
-
-#### Q2.4.2
-
-**Q:** Do you do AMG and 4MATIC alignment?
-
-**A:** Yes. Our Hunter 3D alignment equipment is approved for AMG and 4MATIC variants and we adjust to model-specific Mercedes-Benz factory specs.
+**A:** We recommend checking alignment after tyre replacement, suspension work, pothole impacts or whenever uneven tyre wear or steering pull is noticed.
 
 ---
 
@@ -191,15 +171,15 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 #### Q2.5.1
 
-**Q:** Why does a new Mercedes battery need to be registered?
+**Q:** How long do Mercedes-Benz batteries typically last in Dubai?
 
-**A:** Modern Mercedes-Benz cars use an Intelligent Battery Sensor and energy-management ECU that tracks charge cycles. A new battery must be coded to the car via XENTRY Diagnosis so the alternator charges it correctly and start-stop and comfort features work.
+**A:** Due to high temperatures, most batteries typically last around 3–4 years depending on usage and driving habits.
 
 #### Q2.5.2
 
-**Q:** How long does a Mercedes-Benz battery last in Dubai?
+**Q:** Does a new battery need programming?
 
-**A:** Dubai heat is hard on batteries. Most original Mercedes-Benz batteries last 3 to 4 years here. We test charge capacity and cranking amps at every service so you can replace before a no-start.
+**A:** Many modern Mercedes-Benz models require battery registration or coding after replacement so the charging and energy-management systems operate correctly.
 
 ---
 
@@ -207,25 +187,19 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 **Page:** `https://silberarrows.com/services/air-conditioning`
 **Section heading on page:** *Air Conditioning FAQs*
-**Source:** `services[slug="air-conditioning"].faqs` (3 FAQs)
+**Source:** `services[slug="air-conditioning"].faqs` (2 FAQs)
 
 #### Q2.6.1
 
-**Q:** My Mercedes A/C isn't cold, what's the most common cause?
+**Q:** Why is my air conditioning not cold enough?
 
-**A:** Low refrigerant from a slow leak is the most common cause in Dubai. We pressure-test the system, locate the leak with UV dye or electronic detection and refill to the correct R134a or R1234yf spec for your model.
+**A:** Common causes include low refrigerant, leaks, blocked filters or failing components. In Dubai's climate, regular air-conditioning maintenance is especially important.
 
 #### Q2.6.2
 
 **Q:** How often should the cabin filter be replaced?
 
-**A:** We recommend replacing the combination (cabin) filter every 12 months in Dubai's dust. It's included in Service B and improves airflow, smell and HEPA filtration.
-
-#### Q2.6.3
-
-**Q:** Do you service R1234yf systems?
-
-**A:** Yes. We have the equipment and certified refrigerant for newer Mercedes-Benz models that use R1234yf as well as legacy R134a systems.
+**A:** We typically recommend replacing the cabin filter every 12 months due to dust and environmental conditions in the UAE.
 
 ---
 
@@ -233,25 +207,19 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 **Page:** `https://silberarrows.com/services/engine-repair`
 **Section heading on page:** *Engine Repair FAQs*
-**Source:** `services[slug="engine-repair"].faqs` (3 FAQs)
+**Source:** `services[slug="engine-repair"].faqs` (2 FAQs)
 
 #### Q2.7.1
 
-**Q:** Do you replace timing chains on M271, M272 and M276 engines?
+**Q:** Do you repair common Mercedes-Benz engine issues?
 
-**A:** Yes. Timing chain, guides and tensioner replacement is one of our common engine repairs across M271, M272, M276, M278 and OM651 engines using genuine Mercedes-Benz parts.
+**A:** Yes. We regularly diagnose and repair oil leaks, cooling-system faults, timing-chain issues, turbocharger faults and other engine-related problems across a wide range of Mercedes-Benz engines.
 
 #### Q2.7.2
 
-**Q:** Can you rebuild a Mercedes turbocharger?
+**Q:** How long do major repairs usually take?
 
-**A:** We diagnose, repair or replace turbochargers on Mercedes-Benz petrol and diesel engines. Where rebuild is appropriate we use OE-quality CHRA cartridges; otherwise we fit a genuine Mercedes-Benz unit.
-
-#### Q2.7.3
-
-**Q:** How long does a Mercedes engine repair take?
-
-**A:** Small repairs (oil leaks, gaskets, sensors) usually take 1-3 working days. Larger jobs like timing chain or head gasket replacement typically take 4-7 working days. We provide a written timeline before work begins.
+**A:** Repair times vary depending on the fault, parts availability and complexity of the work. We provide estimated timelines and updates throughout the process.
 
 ---
 
@@ -263,15 +231,15 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 #### Q2.8.1
 
-**Q:** Do you repair AIRMATIC and Active Body Control (ABC)?
+**Q:** Do you repair AIRMATIC suspension systems?
 
-**A:** Yes. We diagnose and repair AIRMATIC air struts, compressors, valve blocks and ride-height sensors as well as ABC pumps, valves and pulsation dampers using genuine Mercedes-Benz parts.
+**A:** Yes. We diagnose and repair AIRMATIC systems including compressors, air struts, valve blocks and ride-height related faults.
 
 #### Q2.8.2
 
-**Q:** Why is my Mercedes sitting low on one corner?
+**Q:** Why is my Mercedes-Benz sitting low overnight?
 
-**A:** This is typically a leaking air strut, faulty compressor or ride-height sensor on AIRMATIC cars. We pressure-test the system and replace the failed component with a genuine Mercedes-Benz unit, then recalibrate ride height.
+**A:** This is commonly caused by an air suspension leak or a fault within the suspension control system. We carry out pressure testing and diagnostics to identify the fault correctly.
 
 ---
 
@@ -283,15 +251,15 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 #### Q2.9.1
 
-**Q:** Do you use the official XENTRY Diagnosis system?
+**Q:** Can you diagnose warning lights and electrical faults?
 
-**A:** Yes. We use XENTRY Diagnosis, the official Mercedes-Benz factory tool, to read ECUs, run guided tests, perform SCN coding, software updates and component activations.
+**A:** Yes. We diagnose engine, transmission, suspension, electrical and electronic faults using Mercedes-Benz diagnostic systems and guided testing procedures.
 
 #### Q2.9.2
 
-**Q:** How much does a Mercedes diagnostic scan cost?
+**Q:** Do you carry out software programming and coding?
 
-**A:** We offer a competitive flat-rate XENTRY scan with a written fault-code report and repair recommendations. Call +971 4 380 5515 for current pricing.
+**A:** Yes. We carry out coding, programming and software-related functions where required, depending on the model and system involved.
 
 ---
 
@@ -303,15 +271,15 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 #### Q2.10.1
 
-**Q:** How long does Mercedes ceramic coating last in Dubai's climate?
+**Q:** Do you offer ceramic coating and paint protection?
 
-**A:** A correctly prepped and applied ceramic coating typically lasts 3 to 5 years in Dubai when paired with proper maintenance washes. Gtechniq and similar professional coatings shrug off sun, dust and harsh wash chemicals.
+**A:** Yes. We offer professional detailing, paint correction and ceramic coating services to help protect and preserve your vehicle's finish.
 
 #### Q2.10.2
 
-**Q:** Do you do paint correction on Mercedes-Benz cars?
+**Q:** Can you remove swirl marks and light scratches?
 
-**A:** Yes. We perform single- and multi-stage machine polishing to remove swirl marks, light scratches and oxidation, then seal the finish with a ceramic coating or sealant of your choice.
+**A:** Yes. Paint correction and machine polishing can significantly improve gloss, clarity and surface finish depending on the condition of the paintwork.
 
 ---
 
@@ -319,12 +287,10 @@ Each subsection below corresponds to one `/services/<slug>` page.
 
 A few stylistic patterns are repeated across the copy. Calling these out so the proofreader can decide whether to standardise:
 
-- **Numerals.** Ranges use the word "to" with comma-grouped thousands ("30 to 40 percent", "30,000 to 60,000 km", "1-3 working days"). The diagnostics scan and engine-repair durations switch to a hyphenated form ("1-3", "4-7"). Otherwise consistent.
-- **Spelling.** British/AE conventions are used throughout: *callipers*, *tyres*, *kerb*, *labour*, *specialise*, *authorised*. American forms ("center") appear only inside the question wording at Q1.1 ("Mercedes-Benz service center?"). Decide whether to align that with the British style used everywhere else.
-- **Acronyms used without expansion** (intentional for SEO, but worth a review): *XENTRY Diagnosis*, *ASSYST PLUS*, *AIRMATIC*, *ABC* (expanded once as "Active Body Control"), *EPB* (expanded once), *TPMS*, *MOE/MOExtended*, *4MATIC*, *AMG*, *SCN coding*, *R134a / R1234yf*, *CHRA*, *HEPA*, *Gtechniq*.
-- **Phone number formatting** is consistent: `+971 4 380 5515` (appears in Q1.4 and Q2.9.2).
-- **Currency / labour rate** appears once: "AED 375" (Q1.3).
-- **Warranty wording** appears twice with slightly different framing (Q1.2 and Q2.2.3). Worth a side-by-side review to make sure they don't contradict.
-- **Savings claim** appears twice (Q1.3 and Q2.2.4). The home version cites the overall range across "Service A, Service B and major repairs"; the service-page version applies only to "Service A and Service B".
+- **Spelling.** British/AE conventions are used throughout: *tyres*, *recognised*, *specialise*, *authorised*, *labour*. No American spellings remain in the question wording.
+- **Multi-paragraph answers.** Q1.3 (SLR McLaren) is the only multi-paragraph FAQ. Paragraphs are stored in `lib/services.ts` separated by `\n\n` and rendered as visible breaks via the `whitespace-pre-line` class on the answer `<p>`. JSON-LD passes the same string verbatim.
+- **Acronyms used without expansion** (intentional for SEO): *XENTRY*, *AMG*, *AIRMATIC*, *Mercedes-EQ*, *4MATIC*, *RENNtech*, *PowerAi*, *ServiceCare*, *GCC*.
+- **Numerical ranges.** En-dash form ("3–4 years") is used in Q2.5.1; otherwise no numerical ranges appear in the new copy.
+- **Brand mentions.** *RENNtech*, *PowerAi*, *ServiceCare* and *SilberArrows Extended Warranty Program* appear in homepage FAQs (Q1.8, Q1.9). Confirm these are how they should be capitalised on the site.
 
 Once edits are agreed, the corrections should be applied back into `lib/services.ts` (the `homeFaqs` array and the `faqs` field of each entry in the `services` array). The on-page accordion text and the JSON-LD `FAQPage` schema both render directly from those strings, so a single edit propagates to both surfaces and to Google's structured-data understanding.

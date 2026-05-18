@@ -86,9 +86,18 @@
 - Do you offer performance tuning? Yes — SilberArrows is the only authorised RENNtech distributor in Dubai. Genuine RENNtech hardware and software with proper installation and support.
 - How often does a Mercedes-Benz need service? Most modern Mercedes-Benz models prompt for service every 12 months or 15,000 km via the ASSYST PLUS maintenance counter. Service A and Service B alternate.
 - How much does an XENTRY diagnostic scan cost? Competitive flat-rate XENTRY scan with a written fault-code report and repair recommendations. Call +971 4 380 5515 for current pricing.
+- What makes SilberArrows different? SilberArrows is an independent Mercedes-Benz specialist based in Dubai, focused exclusively on Mercedes-Benz passenger vehicles. Our workshop combines dealer-level diagnostics and technical expertise with a more personal, transparent and enthusiast-driven approach.
+- What types of Mercedes-Benz vehicles do you work on? We work on the full Mercedes-Benz range, from everyday models through to AMG, Maybach, Mercedes-EQ and specialist vehicles.
+- Do you service and maintain the Mercedes-Benz SLR McLaren? Yes — SilberArrows is widely recognised as one of the region's leading specialists for the Mercedes-Benz SLR McLaren, with many of the GCC's cars maintained by our team over the years. Our experience with the SLR dates back to when the model was originally introduced, including team members who were factory-trained on the platform during its early production years. From routine maintenance and diagnostics to complex mechanical, hydraulic and electronic repairs, we have extensive hands-on knowledge of the SLR and its unique systems.
+- Do you work on classic Mercedes-Benz vehicles? Yes — classic Mercedes-Benz vehicles are a major part of what we do. From maintenance and mechanical restoration to sourcing hard-to-find parts and preserving originality, we support both collectors and enthusiasts.
+- Do you use Mercedes-Benz diagnostic systems? Yes — we use XENTRY diagnostics for fault diagnosis, coding, software functions and guided troubleshooting across Mercedes-Benz models.
+- Do you use genuine Mercedes-Benz parts? Yes — we use genuine Mercedes-Benz parts and approved fluids to maintain reliability, performance and long-term vehicle integrity.
+- Do you offer collection and delivery? Yes — complimentary collection and delivery across Dubai is included for servicing and repair work.
+- Do you offer performance upgrades and tuning? Yes — we supply and install performance upgrades including genuine RENNtech and PowerAi products and software.
+- Do you offer service and extended warranty plans? Yes — we offer ServiceCare maintenance plans and our SilberArrows Extended Warranty Program for eligible Mercedes-Benz vehicles, helping customers manage servicing and ownership costs with added peace of mind.
 
 ## Optional
 
-- [Full content for AI](https://mercedes-benz.silberarrows.com/llms-full.txt): Comprehensive long-form reference with every service description, all 34 FAQs, complete pricing table, team profiles and technical glossary.
+- [Full content for AI](https://mercedes-benz.silberarrows.com/llms-full.txt): Comprehensive long-form reference with every service description, all 28 FAQs, complete pricing table, team profiles and technical glossary.
 - [Sitemap](https://mercedes-benz.silberarrows.com/sitemap.xml): Full machine-readable list of indexable pages.
 - [Robots](https://mercedes-benz.silberarrows.com/robots.txt): Crawler permissions (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Applebot-Extended, Google-Extended, OAI-SearchBot, MistralAI-User, and more — all allowed).

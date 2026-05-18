@@ -70,7 +70,7 @@ export default function HomePage() {
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-300)]">
+                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-[color:var(--color-silver-300)]">
                     {faq.answer}
                   </p>
                 </details>
