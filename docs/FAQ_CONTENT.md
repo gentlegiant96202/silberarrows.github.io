@@ -11,9 +11,9 @@ This document contains every FAQ that currently appears on silberarrows.com, cop
 
 ## Inventory
 
-- **9** site-wide (Company) FAQs (homepage)
+- **10** site-wide (Company) FAQs (homepage)
 - **19** service-specific FAQs across **10** service pages
-- **28** FAQs total
+- **29** FAQs total
 
 Order below matches the order in the source file so corrections can be applied 1:1.
 
@@ -78,6 +78,12 @@ From routine maintenance and diagnostics to complex mechanical, hydraulic and el
 **A:** Yes. We supply and install performance upgrades including genuine RENNtech and PowerAi products and software.
 
 ### Q1.9
+
+**Q:** Do you provide a warranty on repairs and servicing?
+
+**A:** Yes. All servicing, maintenance and repair work carried out by SilberArrows is backed by a 12-month parts and labour warranty for added peace of mind. Terms and conditions apply.
+
+### Q1.10
 
 **Q:** Do you offer service and extended warranty plans?
 

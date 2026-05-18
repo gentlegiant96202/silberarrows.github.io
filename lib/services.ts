@@ -481,6 +481,11 @@ export const homeFaqs: FAQ[] = [
       "Yes. We supply and install performance upgrades including genuine RENNtech and PowerAi products and software.",
   },
   {
+    question: "Do you provide a warranty on repairs and servicing?",
+    answer:
+      "Yes. All servicing, maintenance and repair work carried out by SilberArrows is backed by a 12-month parts and labour warranty for added peace of mind. Terms and conditions apply.",
+  },
+  {
     question: "Do you offer service and extended warranty plans?",
     answer:
       "Yes. We offer ServiceCare maintenance plans and our SilberArrows Extended Warranty Program for eligible Mercedes-Benz vehicles, helping customers manage servicing and ownership costs with added peace of mind.",

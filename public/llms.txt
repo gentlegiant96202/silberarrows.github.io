@@ -94,10 +94,11 @@
 - Do you use genuine Mercedes-Benz parts? Yes — we use genuine Mercedes-Benz parts and approved fluids to maintain reliability, performance and long-term vehicle integrity.
 - Do you offer collection and delivery? Yes — complimentary collection and delivery across Dubai is included for servicing and repair work.
 - Do you offer performance upgrades and tuning? Yes — we supply and install performance upgrades including genuine RENNtech and PowerAi products and software.
+- Do you provide a warranty on repairs and servicing? Yes — all servicing, maintenance and repair work carried out by SilberArrows is backed by a 12-month parts and labour warranty for added peace of mind. Terms and conditions apply.
 - Do you offer service and extended warranty plans? Yes — we offer ServiceCare maintenance plans and our SilberArrows Extended Warranty Program for eligible Mercedes-Benz vehicles, helping customers manage servicing and ownership costs with added peace of mind.
 
 ## Optional
 
-- [Full content for AI](https://mercedes-benz.silberarrows.com/llms-full.txt): Comprehensive long-form reference with every service description, all 28 FAQs, complete pricing table, team profiles and technical glossary.
+- [Full content for AI](https://mercedes-benz.silberarrows.com/llms-full.txt): Comprehensive long-form reference with every service description, all 29 FAQs, complete pricing table, team profiles and technical glossary.
 - [Sitemap](https://mercedes-benz.silberarrows.com/sitemap.xml): Full machine-readable list of indexable pages.
 - [Robots](https://mercedes-benz.silberarrows.com/robots.txt): Crawler permissions (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Applebot-Extended, Google-Extended, OAI-SearchBot, MistralAI-User, and more — all allowed).
