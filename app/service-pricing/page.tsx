@@ -55,7 +55,12 @@ export default function ServicePricingPage() {
           </div>
 
           <div className="mt-12 overflow-hidden rounded-2xl glass-card ring-silver">
-            <table className="w-full text-sm">
+            <table className="w-full table-fixed text-sm">
+              <colgroup>
+                <col className="w-1/2" />
+                <col className="w-1/4" />
+                <col className="w-1/4" />
+              </colgroup>
               <thead className="bg-white/[0.04]">
                 <tr className="text-left text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-silver-300)]">
                   <th className="px-5 py-4 font-semibold">Model</th>
@@ -75,7 +80,7 @@ export default function ServicePricingPage() {
                     <td className="px-5 py-4 font-medium text-white">
                       {r.model}
                     </td>
-                    <td className="px-5 py-4 text-[color:var(--color-silver-300)]">
+                    <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
                       {r.minor === "n/a" ? (
                         <span className="text-[color:var(--color-silver-600)]">
                           n/a
@@ -89,7 +94,7 @@ export default function ServicePricingPage() {
                         </>
                       )}
                     </td>
-                    <td className="px-5 py-4 text-[color:var(--color-silver-300)]">
+                    <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
                       <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
                         from
                       </span>{" "}
@@ -106,7 +111,12 @@ export default function ServicePricingPage() {
               Mercedes EQ
             </h3>
             <div className="mt-4 overflow-hidden rounded-2xl glass-card ring-silver">
-              <table className="w-full text-sm">
+              <table className="w-full table-fixed text-sm">
+                <colgroup>
+                  <col className="w-1/2" />
+                  <col className="w-1/4" />
+                  <col className="w-1/4" />
+                </colgroup>
                 <thead className="bg-white/[0.04]">
                   <tr className="text-left text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-silver-300)]">
                     <th className="px-5 py-4 font-semibold">Model</th>
@@ -123,13 +133,13 @@ export default function ServicePricingPage() {
                       <td className="px-5 py-4 font-medium text-white">
                         {r.model}
                       </td>
-                      <td className="px-5 py-4 text-[color:var(--color-silver-300)]">
+                      <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
                         <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
                           from
                         </span>{" "}
                         <span className="text-white">{r.minor}</span>
                       </td>
-                      <td className="px-5 py-4 text-[color:var(--color-silver-300)]">
+                      <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
                         <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
                           from
                         </span>{" "}
