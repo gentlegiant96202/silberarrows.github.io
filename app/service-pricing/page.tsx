@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTAButton } from "@/components/CTAButton";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { PricingTable } from "@/components/PricingTable";
 import { pricing } from "@/lib/content";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -54,102 +55,13 @@ export default function ServicePricingPage() {
             </p>
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-2xl glass-card ring-silver">
-            <table className="w-full table-fixed text-sm">
-              <colgroup>
-                <col className="w-1/2" />
-                <col className="w-1/4" />
-                <col className="w-1/4" />
-              </colgroup>
-              <thead className="bg-white/[0.04]">
-                <tr className="text-left text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-silver-300)]">
-                  <th className="px-5 py-4 font-semibold">Model</th>
-                  <th className="px-5 py-4 font-semibold">Minor Service</th>
-                  <th className="px-5 py-4 font-semibold">Major Service</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pricing.rows.map((r, i) => (
-                  <tr
-                    key={r.model}
-                    className={
-                      "border-t border-white/5 hover:bg-white/[0.03] transition" +
-                      (i % 2 === 0 ? " bg-white/[0.01]" : "")
-                    }
-                  >
-                    <td className="px-5 py-4 font-medium text-white">
-                      {r.model}
-                    </td>
-                    <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
-                      {r.minor === "n/a" ? (
-                        <span className="text-[color:var(--color-silver-600)]">
-                          n/a
-                        </span>
-                      ) : (
-                        <>
-                          <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
-                            from
-                          </span>{" "}
-                          <span className="text-white">{r.minor}</span>
-                        </>
-                      )}
-                    </td>
-                    <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
-                      <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
-                        from
-                      </span>{" "}
-                      <span className="text-white">{r.major}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PricingTable className="mt-12" rows={pricing.rows} striped />
 
           <div className="mt-10">
             <h3 className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-silver-300)]">
               Mercedes EQ
             </h3>
-            <div className="mt-4 overflow-hidden rounded-2xl glass-card ring-silver">
-              <table className="w-full table-fixed text-sm">
-                <colgroup>
-                  <col className="w-1/2" />
-                  <col className="w-1/4" />
-                  <col className="w-1/4" />
-                </colgroup>
-                <thead className="bg-white/[0.04]">
-                  <tr className="text-left text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-silver-300)]">
-                    <th className="px-5 py-4 font-semibold">Model</th>
-                    <th className="px-5 py-4 font-semibold">Minor Service</th>
-                    <th className="px-5 py-4 font-semibold">Major Service</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pricing.eq.map((r) => (
-                    <tr
-                      key={r.model}
-                      className="border-t border-white/5 hover:bg-white/[0.03] transition"
-                    >
-                      <td className="px-5 py-4 font-medium text-white">
-                        {r.model}
-                      </td>
-                      <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
-                        <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
-                          from
-                        </span>{" "}
-                        <span className="text-white">{r.minor}</span>
-                      </td>
-                      <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
-                        <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
-                          from
-                        </span>{" "}
-                        <span className="text-white">{r.major}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <PricingTable className="mt-4" rows={pricing.eq} />
           </div>
 
           <ul className="mt-10 space-y-2 text-xs text-[color:var(--color-silver-500)]">
