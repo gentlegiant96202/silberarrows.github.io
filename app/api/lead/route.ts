@@ -106,7 +106,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Legacy Google Ads API offline conversion upload. DEPRECATED: Google blocks
+    // these uploads on 2026-06-15 (migrating to the Data Manager API), and the
+    // web-form lead is now tracked client-side via gtag. Disabled by default;
+    // only runs when GOOGLE_ADS_OFFLINE_UPLOAD_ENABLED is explicitly "true".
     if (
+      process.env.GOOGLE_ADS_OFFLINE_UPLOAD_ENABLED === "true" &&
       process.env.GOOGLE_ADS_CUSTOMER_ID &&
       process.env.GOOGLE_ADS_DEVELOPER_TOKEN
     ) {

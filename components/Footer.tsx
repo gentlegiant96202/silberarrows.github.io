@@ -5,6 +5,7 @@ import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { nav, site } from "@/lib/site";
 import { useContactModal } from "@/components/ContactModalProvider";
+import { ContactLink } from "@/components/ContactLink";
 
 export function Footer() {
   const { openModal } = useContactModal();
@@ -63,20 +64,21 @@ export function Footer() {
               </li>
               <li className="flex gap-3">
                 <Phone size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
-                <a href={site.phoneTel} className="hover:text-white">
+                <ContactLink kind="phone" href={site.phoneTel} className="hover:text-white">
                   {site.phone}
-                </a>
+                </ContactLink>
               </li>
               <li className="flex gap-3">
                 <MessageCircle size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
-                <a
+                <ContactLink
+                  kind="whatsapp"
                   href={site.whatsapp}
                   className="hover:text-white"
                   target="_blank"
                   rel="noreferrer"
                 >
                   WhatsApp Us
-                </a>
+                </ContactLink>
               </li>
               <li className="flex gap-3">
                 <Clock size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />

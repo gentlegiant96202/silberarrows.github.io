@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { X, Phone, MessageCircle } from "lucide-react";
 import { site } from "@/lib/site";
+import { ContactLink } from "@/components/ContactLink";
 
 const WHATSAPP_DIRECT =
   "https://wa.me/97143805515?text=" +
@@ -209,20 +210,22 @@ export function ContactModal({
         </div>
 
         <div className="mt-4 grid grid-cols-2 gap-3">
-          <a
+          <ContactLink
+            kind="whatsapp"
             href={WHATSAPP_DIRECT}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-500/20 transition"
           >
             <MessageCircle size={16} /> WhatsApp
-          </a>
-          <a
+          </ContactLink>
+          <ContactLink
+            kind="phone"
             href={site.phoneTel}
             className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
           >
             <Phone size={16} /> Call Us
-          </a>
+          </ContactLink>
         </div>
       </div>
     </div>

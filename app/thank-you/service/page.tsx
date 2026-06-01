@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Phone, MessageCircle, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { MetaPixelContactEvent } from "@/components/MetaPixelContactEvent";
+import { GoogleAdsLeadConversion } from "@/components/GoogleAdsLeadConversion";
+import { ContactLink } from "@/components/ContactLink";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,6 +20,7 @@ export default function ThankYouPage() {
       <Suspense fallback={null}>
         <MetaPixelContactEvent />
       </Suspense>
+      <GoogleAdsLeadConversion />
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <div
         className="pointer-events-none absolute -top-32 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full opacity-40"
@@ -50,20 +53,22 @@ export default function ThankYouPage() {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-3 w-full max-w-md">
-            <a
+            <ContactLink
+              kind="phone"
               href={site.phoneTel}
               className="btn-ghost flex-1 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] flex items-center justify-center gap-2"
             >
               <Phone size={14} /> Call {site.phone}
-            </a>
-            <a
+            </ContactLink>
+            <ContactLink
+              kind="whatsapp"
               href={site.whatsapp}
               target="_blank"
               rel="noreferrer"
               className="btn-silver flex-1 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] flex items-center justify-center gap-2"
             >
               <MessageCircle size={14} /> WhatsApp Us Now
-            </a>
+            </ContactLink>
           </div>
 
           <Link

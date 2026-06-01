@@ -81,6 +81,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+
   return (
     <html lang="en-AE">
       <head>
@@ -152,6 +154,7 @@ export default function RootLayout({
               gtag('config', 'G-GK0X6327FK', {
                 send_page_view: true
               });
+              ${googleAdsId ? `gtag('config', '${googleAdsId}');` : ""}
             `,
           }}
         />

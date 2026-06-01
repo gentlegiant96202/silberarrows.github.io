@@ -4,6 +4,7 @@ import { MapPin, MessageCircle, Phone, Clock, Navigation } from "lucide-react";
 import { site } from "@/lib/site";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { useContactModal } from "@/components/ContactModalProvider";
+import { ContactLink } from "@/components/ContactLink";
 import { cn } from "@/lib/utils";
 
 export function Contact({
@@ -56,12 +57,13 @@ export function Contact({
               >
                 <MessageCircle size={16} /> Call or WhatsApp Us
               </button>
-              <a
+              <ContactLink
+                kind="phone"
                 href={site.phoneTel}
                 className="btn-ghost rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] flex items-center justify-center gap-2"
               >
                 <Phone size={14} /> {site.phone}
-              </a>
+              </ContactLink>
             </div>
 
             <div className="mt-8 space-y-3 text-sm text-[color:var(--color-silver-400)]">
