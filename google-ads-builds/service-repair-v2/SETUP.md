@@ -91,13 +91,21 @@ If Google nudges you toward Display, Search Partners, or Performance Max — **d
    Negatives" → paste `negative-keywords.csv` → apply to the campaign.
 4. Review → **Post**.
 
-### Structure
-- **Service & Maintenance** — service intent (value ≈ AED 2k/job)
-- **Repair & Diagnostics** — repair intent (value ≈ AED 20k/job — the one to fund)
-- **Mercedes Specialist Al Quoz** — local/specialist terms (historically your cheapest leads)
-- **Arabic – Service & Repair** — Arabic service/workshop terms (real Arabic traffic converted in the
-  audit but had no keywords). Ideally pair with an **Arabic RSA** for relevance — English ads will
-  still serve, but Arabic copy lifts quality score.
+### Structure & Final URLs (keyword-matched landing pages)
+Each ad group points to a landing page whose H1/title matches the keyword intent (better message
+match → higher Quality Score, lower CPC). URLs are set per ad group in `keywords.csv` and
+`responsive-search-ads.csv`.
+
+| Ad group | Intent / value | Final URL |
+|---|---|---|
+| **Service & Maintenance** | service (≈ AED 2k/job) | `/lp/mercedes-service` |
+| **Repair & Diagnostics** | repair (≈ AED 20k/job — the one to fund) | `/lp/mercedes-repair` |
+| **Mercedes Specialist Al Quoz** | local/specialist (historically cheapest leads) | `/lp/mercedes-service-center` |
+| **Arabic – Service & Repair** | Arabic service/workshop terms | `/` (homepage — no Arabic LP yet) |
+
+(Full domain: `https://mercedes-benz.silberarrows.com` + path above. The `/lp/*` pages are noindex,
+ad-only landing pages with matching titles.) Pair the Arabic group with the Arabic RSA for relevance;
+build a dedicated Arabic LP later if that group gets volume.
 
 All **Phrase + Exact** — no Broad at launch (Broad fed the old wasted spend). Test Broad later, only
 in the Specialist ad group, once bidding is stable.

@@ -114,7 +114,7 @@ export function Hero({
                 {titleParts.map((p, i) => (
                   <span
                     key={i}
-                    className="block text-[2.5rem] leading-[0.88] max-md:whitespace-normal md:text-[3.25rem] md:leading-[0.85] md:whitespace-nowrap lg:text-[3.75rem] xl:text-[4rem]"
+                    className="block text-[2.5rem] leading-[0.98] max-md:whitespace-normal md:text-[3.25rem] md:leading-[0.85] md:whitespace-nowrap lg:text-[3.75rem] xl:text-[4rem]"
                     style={
                       { animationDelay: `${0.05 * i}s` } as React.CSSProperties
                     }
@@ -217,12 +217,12 @@ export function Hero({
                 </a>
               </div>
 
-              {/* Quantified trust strip */}
-              <div className="anim-rise mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[color:var(--color-silver-400)]">
+              {/* Quantified trust strip — single line on mobile at all sizes */}
+              <div className="anim-rise mt-6 flex flex-nowrap items-center justify-between gap-x-2 whitespace-nowrap text-[10px] text-[color:var(--color-silver-400)] sm:flex-wrap sm:justify-start sm:gap-x-5 sm:gap-y-2 sm:text-xs">
                 {site.stats.map((s, i) => (
-                  <span key={i} className="inline-flex items-center gap-2">
+                  <span key={i} className="inline-flex items-center gap-1.5 sm:gap-2">
                     {i > 0 && (
-                      <span className="h-3 w-px bg-white/15" aria-hidden />
+                      <span className="h-3 w-px shrink-0 bg-white/15" aria-hidden />
                     )}
                     <span>
                       <strong className="font-semibold text-white">

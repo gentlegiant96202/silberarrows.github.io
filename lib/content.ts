@@ -143,7 +143,7 @@ export const landingPages: Record<
       { line: "in Dubai" },
     ],
     subtitle:
-      "Service A & B packages with genuine parts. Save 30 to 40% vs the dealer. AED 375/hr labour rate. Book your appointment today.",
+      "Service A & B packages with genuine parts. Save 30 to 40% vs the dealer. AED 375/hr labour rate.",
     badges: [
       "12 Month Warranty on Parts & Labour",
       "Free Collection & Delivery",
@@ -164,7 +164,7 @@ export const landingPages: Record<
       { line: "in Dubai" },
     ],
     subtitle:
-      "Full-service Mercedes-Benz center in Al Quoz. Factory-trained technicians, XENTRY diagnostics and genuine parts. Open Mon\u2013Sat.",
+      "Full-service Mercedes-Benz center in Al Quoz. Factory-trained technicians, XENTRY diagnostics and genuine parts.",
     badges: [
       "12 Month Warranty on Parts & Labour",
       "Free Collection & Delivery",
