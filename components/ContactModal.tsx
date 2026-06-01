@@ -1,9 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, Phone, MessageCircle } from "lucide-react";
+import { X, Phone, MessageCircle, Loader2 } from "lucide-react";
+import {
+  getCountryCallingCode,
+  isValidPhoneNumber,
+} from "libphonenumber-js";
+import type { CountryCode } from "libphonenumber-js";
 import { site } from "@/lib/site";
 import { ContactLink } from "@/components/ContactLink";
+import { DEFAULT_COUNTRY } from "@/lib/countries";
+import { CountrySelect } from "@/components/CountrySelect";
 
 const WHATSAPP_DIRECT =
   "https://wa.me/97143805515?text=" +
@@ -23,10 +30,16 @@ export function ContactModal({
   onClose: () => void;
 }) {
   const [name, setName] = useState("");
-  const [countryCode, setCountryCode] = useState("+971");
+  const [country, setCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errorPulse, setErrorPulse] = useState(0);
+
+  function showError(message: string) {
+    setError(message);
+    setErrorPulse((n) => n + 1);
+  }
 
   useEffect(() => {
     if (!open) {
@@ -47,18 +60,20 @@ export function ContactModal({
     e.preventDefault();
     setError(null);
     if (!name.trim()) {
-      setError("Please enter your name");
+      showError("Please enter your name");
       return;
     }
     const digits = phone.replace(/\D/g, "");
     if (!digits) {
-      setError("Please enter your phone number");
+      showError("Please enter your WhatsApp number");
       return;
     }
-    if (digits.length < 7 || digits.length > 15) {
-      setError("Please enter a valid phone number (digits only)");
+    if (!isValidPhoneNumber(digits, country)) {
+      showError("Please enter a valid WhatsApp number for the selected country");
       return;
     }
+
+    const countryCode = `+${getCountryCallingCode(country)}`;
 
     setSubmitting(true);
 
@@ -80,7 +95,7 @@ export function ContactModal({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
-          countryCode: countryCode.trim() || "+971",
+          countryCode,
           phone: digits,
           source: window.location.pathname,
           eventId,
@@ -99,7 +114,7 @@ export function ContactModal({
         "/thank-you/service?eid=" + encodeURIComponent(eventId)
       );
     } catch {
-      setError("Something went wrong. Please try again or call us directly.");
+      showError("Something went wrong. Please try again or call us directly.");
       setSubmitting(false);
     }
   }
@@ -111,7 +126,7 @@ export function ContactModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-title"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4"
     >
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-md"
@@ -153,21 +168,19 @@ export function ContactModal({
               onChange={(e) => setName(e.target.value)}
               placeholder="Your name"
               disabled={submitting}
-              className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
+              className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-base text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
             />
           </div>
 
           <div>
             <label className="block text-xs uppercase tracking-[0.18em] text-[color:var(--color-silver-400)] mb-1.5">
-              Phone Number
+              WhatsApp Number
             </label>
             <div className="flex gap-2">
-              <input
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
+              <CountrySelect
+                value={country}
+                onChange={setCountry}
                 disabled={submitting}
-                aria-label="Country code"
-                className="w-[5.5rem] shrink-0 rounded-lg bg-black/40 border border-white/10 px-3 py-3 text-sm text-white outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
               />
               <input
                 value={phone}
@@ -176,14 +189,19 @@ export function ContactModal({
                 }
                 placeholder="50 123 4567"
                 inputMode="tel"
+                autoComplete="tel-national"
                 disabled={submitting}
-                className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
+                className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-base text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
               />
             </div>
           </div>
 
           {error && (
-            <p className="rounded-lg border border-red-400/20 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+            <p
+              key={errorPulse}
+              role="alert"
+              className="anim-shake rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200"
+            >
               {error}
             </p>
           )}
@@ -191,8 +209,9 @@ export function ContactModal({
           <button
             type="submit"
             disabled={submitting}
-            className="btn-silver w-full rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] disabled:opacity-70"
+            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] disabled:opacity-70"
           >
+            {submitting && <Loader2 size={16} className="animate-spin" />}
             {submitting ? "Sending..." : "Submit request"}
           </button>
 
@@ -211,6 +230,13 @@ export function ContactModal({
 
         <div className="mt-4 grid grid-cols-2 gap-3">
           <ContactLink
+            kind="phone"
+            href={site.phoneTel}
+            className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+          >
+            <Phone size={16} /> Call Us
+          </ContactLink>
+          <ContactLink
             kind="whatsapp"
             href={WHATSAPP_DIRECT}
             target="_blank"
@@ -218,13 +244,6 @@ export function ContactModal({
             className="flex items-center justify-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-500/20 transition"
           >
             <MessageCircle size={16} /> WhatsApp
-          </ContactLink>
-          <ContactLink
-            kind="phone"
-            href={site.phoneTel}
-            className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
-          >
-            <Phone size={16} /> Call Us
           </ContactLink>
         </div>
       </div>

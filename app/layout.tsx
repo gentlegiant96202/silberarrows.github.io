@@ -1,6 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+// Inter across the project — body + headings (variable weight range via CSS).
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileContactBar } from "@/components/MobileContactBar";
@@ -84,7 +92,7 @@ export default function RootLayout({
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
   return (
-    <html lang="en-AE">
+    <html lang="en-AE" className={inter.variable}>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />

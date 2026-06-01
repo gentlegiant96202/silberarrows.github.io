@@ -82,9 +82,9 @@ export function Header() {
         <button
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
-          className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md border border-white/10 bg-white/5 text-white"
+          className="lg:hidden inline-flex items-center justify-center h-12 w-12 rounded-lg border border-white/10 bg-white/5 text-white"
         >
-          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 

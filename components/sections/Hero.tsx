@@ -65,6 +65,15 @@ export function Hero({
     <section className="relative overflow-hidden">
       {/* Ambient backdrop */}
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+      {/* Mobile: silver glow seated directly behind the heading so the text
+          area reads with depth instead of flat black */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-16 h-[460px] w-[560px] -translate-x-1/2 opacity-70 md:hidden"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(212,212,216,0.22), rgba(174,174,179,0.10) 38%, transparent 70%)",
+        }}
+      />
       <div
         className="pointer-events-none absolute -top-32 left-0 h-[600px] w-[800px] opacity-40"
         style={{
@@ -100,11 +109,11 @@ export function Hero({
                 </span>
               </div>
 
-              <h1 className="anim-rise mt-6 font-semibold uppercase tracking-[-0.02em]">
+              <h1 className="anim-rise mt-6 font-display font-bold tracking-[-0.02em]">
                 {titleParts.map((p, i) => (
                   <span
                     key={i}
-                    className="block text-[2.25rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] xl:text-[4rem] leading-[0.85] whitespace-nowrap"
+                    className="block text-[3.25rem] sm:text-[3.5rem] md:text-[3.25rem] lg:text-[3.75rem] xl:text-[4rem] leading-[0.85] whitespace-nowrap"
                     style={
                       { animationDelay: `${0.05 * i}s` } as React.CSSProperties
                     }
@@ -193,9 +202,10 @@ export function Hero({
               {/* Auto-rotating exterior-to-interior carousel */}
               <HeroCarousel images={heroCarouselImages} />
 
-              {/* Gradient overlays for depth */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+              {/* Gradient overlays for depth — lighter on mobile so the image
+                  doesn't read as a dark block, stronger on desktop for legibility */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent md:from-black/85 md:via-black/30" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/20 to-transparent md:from-black/40" />
 
               {/* Top-left badge: established */}
               <div className="pointer-events-none silver-chip absolute left-5 top-5 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md">
