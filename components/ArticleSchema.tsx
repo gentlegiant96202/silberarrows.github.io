@@ -70,7 +70,7 @@ export function ArticleSchema({
       name: "SilberArrows",
       logo: {
         "@type": "ImageObject",
-        url: `${baseUrl}/icon.svg`,
+        url: `${baseUrl}/assets/icons/silberarrows-logo-square.png`,
         width: 512,
         height: 512,
       },

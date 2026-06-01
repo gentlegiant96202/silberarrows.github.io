@@ -22,7 +22,7 @@ export function LocalBusinessSchema() {
       "Dubai's trusted independent Mercedes-Benz specialists since 2011. Expert maintenance, repair and diagnostics at Al Quoz with genuine parts and factory standards.",
     slogan: "Exclusive Automotive Excellence",
     url: baseUrl,
-    logo: `${baseUrl}/icon.svg`,
+    logo: `${baseUrl}/assets/icons/silberarrows-logo-square.png`,
     image: [
       `${baseUrl}/assets/images/al-manara-location.webp`,
       `${baseUrl}/assets/images/hero-bg-silver-optimized.webp`,
