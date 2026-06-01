@@ -72,7 +72,7 @@ export function PageHero({
         )}
 
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.01em] text-silver-shine leading-[0.95] uppercase">
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.01em] text-silver-shine leading-[0.95]">
             {preserveBrandWrap(title)}
           </h1>
           {intro && (

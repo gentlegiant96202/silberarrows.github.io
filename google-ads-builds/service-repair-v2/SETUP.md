@@ -1,192 +1,170 @@
-# SilberArrows | Service & Repair v2 — Build & Launch Guide
+# SilberArrows | Service & Repair v2 — Build & Launch Guide (FINAL)
 
-Account: **612-539-2209** · Landing page: **https://mercedes-benz.silberarrows.com/** (your server-side tracked page)
+Account: **612-539-2209** · Landing page: **https://mercedes-benz.silberarrows.com/**
 
-This folder contains everything to launch a cleaned-up Search campaign built on the learnings from
-auditing your two previous campaigns. Do **Step 1 (conversion cleanup) first** — the new campaign
-should learn on a clean signal.
+A cleaned-up Search campaign built on the learnings from auditing your previous campaigns, with
+**brand-new conversion tracking** wired into the site. Work top to bottom.
 
-Files:
-- `keywords.csv` — ad groups + keywords + match types (Google Ads Editor import)
-- `negative-keywords.csv` — campaign negative list
-- `responsive-search-ads.csv` — 3 RSAs (one per ad group), Editor import
-
----
-
-## STEP 1 — Clean up conversions (do this first, ~10 min)
-
-Go to **Tools → Measurement → Conversions → Summary**.
-
-> ## ⚠️ CRITICAL: your server-side upload is broken AND being deprecated
-> The API diagnostics show **`Google Ads API Submit Lead Form` = NEEDS_ATTENTION, 0% success rate,
-> 100% error, last upload 2026-05-19**. On top of that, **Google blocks Google Ads API offline
-> conversion uploads on June 15, 2026** (migrating to the Data Manager API). So this action is NOT a
-> reliable primary conversion right now. Do **not** build the campaign on it. See "Conversion fix"
-> below.
-
-### Keep as PRIMARY (the one that actually fires)
-| Conversion action | Why |
-|---|---|
-| **Submit lead form (mercedes-benz.silberarrows.com/) (1)** | The website (client-side) form-submit action that IS currently recording (~200 in last 90 days). Not affected by the June 15 API-upload block. |
-
-> Phone calls and WhatsApp aren't tracked on this landing page, so the web form is your only lead
-> signal. Use the **working website action** above as primary — NOT the broken server-side upload.
-
-### Conversion fix (do before/with launch)
-- **Short term:** make the working **website form-submit** action your primary lead conversion (above). This keeps the new campaign optimizing on a live signal.
-- **Server-side action:** it's failing (0% success) and the API upload path is deprecated June 15. Either retire it, or — if you want server-side reliability — re-implement it as a **standard website conversion via the Google tag / GTM** (fires on the form thank-you page, ideally with **Enhanced Conversions for leads**). A website form-submit does **not** need offline conversion import at all.
-- **Reserve offline import (Data Manager API) for later** — only when you start sending *real job value* back (a closed repair/service invoice). That's the genuinely-offline use case and powers the value-based bidding in Step 5.
-
-### Set to SECONDARY (tracked but NOT used for bidding)
-- `Phone_Call_Mercedes-Benz` and `Whatsapp_click_Mercedes-Benz` (legacy actions — not tracked on this landing page, so keep them out of bidding)
-- `Local actions - Other engagements`, `Local actions - Directions`, `Local actions - Website visits`, `Local actions - Menu views` (these are Google Business Profile / Maps — noise for lead-gen)
-- `Store visits`
-- `Conversation started`
-- All `SilberArrows 2023 (web) ...` GA4 micro-events (page_view, session_start, first_visit, service_callheader, whatsapp_header_cta, etc.)
-- `Mercedes-Benz.silberarrows.com (web) prize_claim`
-
-### PAUSE / REMOVE
-- `Google Ads API Submit Lead Form` — broken (0% success) and deprecated June 15. Retire it once the website conversion is confirmed primary (don't leave a dead action as a goal).
-- Older duplicate `Submit lead form (mercedes-benz.silberarrows.com/)` (already Removed) — leave removed.
-- Any duplicate GA4 form/phone/whatsapp actions that overlap the ones you keep — keep ONE source per action type to avoid double-counting.
-
-**Result:** one clean count per lead, bidding optimizes toward real enquiries, and your reported
-conversions stop being inflated.
-
-> I can verify this afterward via the (read-only) MCP — just tell me when you've done it and I'll
-> re-pull the conversion-action breakdown to confirm there's no more double-counting.
+Files in this folder:
+- `keywords.csv` — 3 ad groups + keywords (Phrase + Exact)
+- `negative-keywords.csv` — campaign negative list (incl. brand terms)
+- `responsive-search-ads.csv` — 3 RSAs (one per ad group)
 
 ---
 
-## STEP 1B — In-code Google Ads conversion tracking (IMPLEMENTED)
+## Where conversion tracking stands now
 
-The site now fires Google Ads conversions client-side via `gtag` (durable; not affected by the
-June 15 API-upload block). You just need to create the conversion actions in Google Ads and paste
-the IDs into env vars.
+The old setup was broken: the **server-side "Google Ads API Submit Lead Form"** upload was failing
+(0% success, NEEDS_ATTENTION) **and** Google blocks that API upload path on **2026-06-15**. So we
+replaced it with durable **client-side `gtag` conversions** built into the site.
 
-**What was added to the codebase:**
-- `lib/gtag.ts` — fires `gtag('event','conversion', {send_to: 'AW-…/label'})`; reads IDs from env; waits for `gtag` to load before firing the lead conversion.
-- `components/GoogleAdsLeadConversion.tsx` — fires the **lead** conversion once on the thank-you page.
-- `components/ContactLink.tsx` — `<a>` wrapper that fires a **WhatsApp** or **phone** conversion on click.
-- `app/layout.tsx` — adds `gtag('config', 'AW-…')` alongside the existing GA4 config.
-- Lead fires on **`/thank-you/service`** (after a real submit). WhatsApp/phone fire on click in the **Contact modal** and the **thank-you page**.
+**Three website conversion actions now fire from the site (LIVE):**
 
-### Create 3 conversion actions in Google Ads
-**Tools → Conversions → + New → Website** (NOT "Import"). Create:
+| Conversion action | Fires when | Role |
+|---|---|---|
+| **Web Form Lead (gtag)** | form submit → `/thank-you/service` | **PRIMARY** (drives bidding) |
+| **Contact WhatsApp** | WhatsApp button click (site-wide) | Secondary |
+| **Contact Call** | phone button click (site-wide) | Secondary |
 
-| Name | Category | Count | Notes |
-|---|---|---|---|
-| **Lead Form Submit** | Submit lead form | One | This is your **Primary** (replaces the broken server-side action) |
-| **WhatsApp Click** | Contact | One | Secondary |
-| **Phone Click** | Contact | One | Secondary |
-
-When Google shows the tag, you only need the **`send_to`** value, e.g. `AW-123456789/AbC-D_efGh12`.
-The `AW-123456789` part is the same for all three (your account's Ads ID); the part **after the slash**
-is each action's unique **label**.
-
-### Set these env vars (Vercel / `.env`) — LIVE VALUES
-```
-NEXT_PUBLIC_GOOGLE_ADS_ID=AW-949637091
-NEXT_PUBLIC_GADS_LEAD_LABEL=9TwqCOjkjrccEOOf6cQD       # Web Form Lead (gtag)
-NEXT_PUBLIC_GADS_WHATSAPP_LABEL=FfF-CO3vjrccEOOf6cQD    # Contact Whatsapp
-NEXT_PUBLIC_GADS_PHONE_LABEL=CG1HCOrvjrccEOOf6cQD       # Contact Call
-```
-Already set in `.env.local`. **Also add all four to Vercel → Settings → Environment Variables** for
-production. If these are unset, the tracking safely no-ops (nothing breaks). After deploying, use the
-**Google Tag Assistant** / **Google Ads "Diagnostics"** to confirm each conversion fires.
-
-### Retire the legacy server-side upload
-`/api/lead` still calls `uploadClickConversion` (the deprecated offline import) when
-`GOOGLE_ADS_CUSTOMER_ID` + `GOOGLE_ADS_DEVELOPER_TOKEN` are set. Once the website **Lead Form Submit**
-conversion is confirmed working, **unset those two env vars** so you don't double-count or depend on the
-soon-blocked API path. Keep the Google Ads API creds only when you later wire **Data Manager API** for
-real job-value uploads (Step 5).
+Conversion ID `AW-949637091`. These are wired in code via env vars (see below).
 
 ---
 
-## STEP 2 — Create the campaign shell (in Google Ads UI)
+## STEP 1 — Deploy & verify the tracking
 
-New campaign → Objective: **Leads** → **Search**.
+1. **Deploy** the site (the gtag tracking is committed). Add these to **Vercel → Settings → Environment
+   Variables** (production), then redeploy:
+   ```
+   NEXT_PUBLIC_GOOGLE_ADS_ID=AW-949637091
+   NEXT_PUBLIC_GADS_LEAD_LABEL=9TwqCOjkjrccEOOf6cQD        # Web Form Lead (gtag)
+   NEXT_PUBLIC_GADS_WHATSAPP_LABEL=FfF-CO3vjrccEOOf6cQD     # Contact WhatsApp
+   NEXT_PUBLIC_GADS_PHONE_LABEL=CG1HCOrvjrccEOOf6cQD        # Contact Call
+   ```
+   (Already in `.env.local` for local dev. If unset, tracking safely no-ops.)
+2. **Verify** with Chrome's **Google Tag Assistant**: submit a test form (lands on thank-you → the
+   `AW-949637091` Lead conversion fires **exactly once**), then click WhatsApp + Call (those fire).
+3. Conversions show as "Recording" in Google Ads within a few hours.
+
+---
+
+## STEP 2 — Set primary / secondary in Google Ads
+
+**Tools → Conversions → Summary**, then:
+
+- **PRIMARY:** `Web Form Lead (gtag)` — the only action that optimizes bidding.
+- **SECONDARY:** `Contact WhatsApp`, `Contact Call` (tracked, not used for bidding yet).
+- **PAUSE / REMOVE / DEMOTE (kill duplicates & dead actions):**
+  - `Google Ads API Submit Lead Form` — broken + deprecated; retire it.
+  - Old codeless `Submit lead form (mercedes-benz.silberarrows.com/) (1)` — demote to Secondary or
+    remove so it doesn't double-count the new gtag lead.
+  - All `SilberArrows 2023 (web) …` and Maps/`Local actions …` micro-events — Secondary (noise).
+
+> Once the legacy upload is confirmed off (Step 6) and the new Lead conversion is recording, you have
+> **one clean count per lead**. Tell me when done and I'll re-pull the breakdown via the MCP to confirm.
+
+---
+
+## STEP 3 — Create the campaign shell
+
+New campaign → Objective **Leads** → type **Search**.
 
 | Setting | Value |
 |---|---|
 | Campaign name | `SilberArrows \| Service & Repair v2` |
-| Networks | **Search only** — UNCHECK Search Partners AND Display Network |
-| Locations | **Dubai** (target *Presence: people in your locations*, not "interest") |
+| Networks | **Search only** — UNCHECK Search Partners AND Display |
+| Locations | **Dubai** (Presence: people in your locations) |
 | Languages | English + Arabic |
-| Budget | **AED 500/day** (start here; scale to 800 once efficient) |
-| Bidding | **Maximize Conversions** (add Target CPA in Step 4) |
-| Conversion goals | Set to the single PRIMARY action from Step 1 (form submit only) |
+| Budget | **AED 500/day floor, AED 700/day preferred.** Hold it steady for the whole learning month — don't start/stop. Scale only after bidding is stable. |
+| Bidding | **Maximize Conversions** — **NO Target CPA yet** (see Step 5) |
+| Conversion goal | `Web Form Lead (gtag)` only |
 | Ad rotation | Optimize (default) |
 
----
-
-## STEP 3 — Import keywords, negatives & ads (Google Ads Editor)
-
-1. Download **Google Ads Editor** (free) and sign in → download account `612-539-2209`.
-2. Create the campaign shell from Step 2 first (or let import create it).
-3. **Account → Import → From file** → import `keywords.csv`, then `responsive-search-ads.csv`.
-   Editor maps columns by header name.
-4. **Negatives:** Tools → Shared library → **Negative keyword lists** → create "SilberArrows Service – Negatives" → paste the terms from `negative-keywords.csv` → apply the list to the campaign.
-5. Review everything in Editor, then **Post**. Campaign will go live (or set status Paused first if you want a final check).
-
-### Structure being created
-- **Ad group: Service & Maintenance** — service/maintenance intent (value ≈ AED 2k/job)
-- **Ad group: Repair & Diagnostics** — repair intent (value ≈ AED 20k/job — fund this)
-- **Ad group: Mercedes Specialist Al Quoz** — local/specialist terms (your historically *cheapest* leads, ~AED 130/lead)
-
-All keywords are **Phrase + Exact** (no Broad at launch — Broad is what fed the wasted spend before).
-Once Target CPA is stable you can test Broad in the Specialist ad group only, where it worked well historically.
+If Google nudges you toward Display, Search Partners, or Performance Max — **decline.**
 
 ---
 
-## STEP 4 — Bidding guardrail (avoid the CPC runaway)
+## STEP 4 — Import keywords, negatives & ads (Google Ads Editor)
 
-Your previous campaigns died because **Maximize Conversions had no cap** and CPC ran from ~AED 18 to
-AED 50–124. Don't repeat it:
+1. Download **Google Ads Editor**, sign in, download account `612-539-2209`.
+2. **Account → Import → From file** → import `keywords.csv`, then `responsive-search-ads.csv`.
+3. **Negatives:** Shared library → **Negative keyword lists** → create "SilberArrows Service –
+   Negatives" → paste `negative-keywords.csv` → apply to the campaign.
+4. Review → **Post**.
 
-**Important — form-only economics:** because the *only* conversion is the web form (calls/WhatsApp
-aren't tracked here), your true cost-per-lead is high (~AED 700+ historically) and volume is modest
-(~20–25 leads/month). Set targets against that reality — a tCPA of AED 250–400 would starve the
-campaign and stall learning.
+### Structure
+- **Service & Maintenance** — service intent (value ≈ AED 2k/job)
+- **Repair & Diagnostics** — repair intent (value ≈ AED 20k/job — the one to fund)
+- **Mercedes Specialist Al Quoz** — local/specialist terms (historically your cheapest leads)
+- **Arabic – Service & Repair** — Arabic service/workshop terms (real Arabic traffic converted in the
+  audit but had no keywords). Ideally pair with an **Arabic RSA** for relevance — English ads will
+  still serve, but Arabic copy lifts quality score.
 
-1. **Days 1–21:** run Maximize Conversions (NO tCPA). Let it gather ~15–30 form leads so Smart
-   Bidding has data. With one low-volume conversion action, give it longer than usual.
-2. **Then add a Target CPA** starting around **AED 650–700** (a loose guardrail near your historical
-   form CPA — not a stretch goal).
-3. **Tighten** by ~10% every 2–3 weeks toward **AED 450–550** only as long as lead volume holds.
-4. Watch **Avg CPC weekly** — if it jumps >50% with flat conversions, tighten tCPA immediately.
-5. If volume is too thin for stable bidding, either raise budget slightly, broaden to Phrase-only,
-   or (better) start tracking calls/WhatsApp so the algorithm has more signal.
+All **Phrase + Exact** — no Broad at launch (Broad fed the old wasted spend). Test Broad later, only
+in the Specialist ad group, once bidding is stable.
 
 ---
 
-## STEP 5 — The value upgrade (the real win, once tracking is clean)
+## STEP 5 — Bidding: let the clean campaign set its own target (fresh start)
 
-You can't tell repair vs service at the moment a lead comes in, so for now keep simple lead counting.
-The high-leverage move, when you're ready:
+**Do NOT inherit the old ~AED 700 CPL** — that number came from broken tracking, no bid cap, and
+broad-match waste. The fresh-start way:
 
-- Use your **server-side API** (already working) to **send the real job value back** to Google when a
-  lead becomes a paying job (offline conversion import with value).
-- Then switch bidding to **Maximize Conversion Value → Target ROAS**. Google will automatically bid
-  more for repair clicks because they're worth ~10× a service — solving the "repair looks expensive"
-  problem for good.
+1. **Weeks 1–3:** run **Maximize Conversions, no tCPA.** Don't touch budget or bidding — changes reset
+   learning. Let it gather ~15–30 leads on the clean tracking.
+2. **Read the *achieved* CPA** the campaign actually produces. That — not history — is your baseline.
+3. **Then** set Target CPA ~10–15% above that achieved CPA as a guardrail.
+4. **Steer it toward an affordability ceiling from your own economics**, not the old campaign:
+   ```
+   Max CPL = avg job value (≈ AED 5,000) × gross margin % × lead→job close rate
+   ```
+   (Confirm your margin % and close rate and we'll set the real ceiling.)
+5. Tighten **≤10–15% every 2–3 weeks**; never cut >15% at once (Google throttles delivery).
+6. Watch **Avg CPC weekly** — if it jumps >50% with flat conversions, tighten immediately.
+
+**Volume lever:** form-only volume is what makes tCPA risky. You now track **WhatsApp + phone clicks**
+too — at the 2–3 week mark, if volume is thin, promote them to bidding signals (or go value-based,
+Step 6). That 2–3× the signal → faster learning and a more stable target.
+
+---
+
+## STEP 6 — Turn off the legacy upload, then plan the value upgrade
+
+- **Now:** the legacy server-side offline upload in `/api/lead` is **off by default** (gated behind
+  `GOOGLE_ADS_OFFLINE_UPLOAD_ENABLED`, which is unset). Nothing to do unless you previously forced it on.
+- **The real win (later):** when a lead becomes a paying job, send the **real invoice value** back to
+  Google and switch to **Maximize Conversion Value → Target ROAS**. Google then bids up for the
+  searches that produce AED 20k repairs vs AED 2k services.
+  - This uses the **Data Manager API** (the legacy Google Ads API offline import is blocked 2026-06-15).
+  - **Prerequisite:** persist the **`gclid`** with each lead (the form captures it, but the DB insert
+    currently stores only name + phone). Tell me when you want this and I'll wire it.
 
 ---
 
 ## Claims to VERIFY before publishing the ads
 
-The RSAs use a few claims — confirm these are true or edit `responsive-search-ads.csv`:
+Confirm these RSA claims are true or edit `responsive-search-ads.csv`:
 - "Factory-Trained Techs" / "Genuine Parts" / "Warranty Protected"
-- "Free Diagnostic Check" (Repair ad group) — only if you actually offer it
-- "Same-Day Diagnostics"
+- "Free Diagnostic Check" / "Same-Day Diagnostics" (only if you offer them)
 - "Save vs Main Dealer" / "Dealer Quality, Less Cost"
 
-Also consider adding (strong performers for a workshop): **call extension**, **location extension**
-(Al Quoz), **sitelinks** (Book a Service, Repairs, Contact), and a **lead form extension**.
+Also add assets: **call**, **location** (Al Quoz), **sitelinks** (Book a Service, Repairs, Contact),
+and a **lead form** extension.
 
 ---
 
-## Brand note
-Add `silber arrows` / `silver arrows` as **negatives** here (so generic budget isn't spent on brand),
-and run a separate small **Brand campaign** if you want to defend your name cheaply.
+## Brand campaign
+Your name is handled by a **separate** campaign — see `../brand-silberarrows/SETUP.md`. Brand terms
+(`silberarrows`, `silber arrows`, `silver arrows`, `silberarrow`) are already negatives here so the two
+don't compete. Keep budgets separate; don't judge this campaign by Brand's cheaper numbers.
+
+---
+
+## Account hygiene (not blocking launch — clean up later)
+From the tag audit:
+- A **second, dormant Ads account `3306238944`** (PMax + Leasing, both paused) piggy-backs on this site
+  via a shared Google tag (`AW-16841523916`) and a shared GA4 link → historically double-counted.
+  Remove that destination / GA4 link when convenient.
+- **One GA4 property (`G-GK0X6327FK`) is installed across multiple sites** (.com, .co.uk, and a
+  **staging site** `augustus.inventivecloud.co.uk`). Get the tag off staging so test traffic stops
+  polluting data; consider per-site GA4 later.
+- None of this affects the new campaign's conversions, which fire only from this site's code.

@@ -29,8 +29,26 @@ export function HeroCarousel({
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  // Only the first slide loads eagerly (it's the LCP candidate); others load
+  // as they're needed so they don't contend for bandwidth on initial paint.
+  const [loaded, setLoaded] = useState<Set<number>>(
+    () => new Set(images.length > 1 ? [0, 1] : [0])
+  );
   const touchStartXRef = useRef<number | null>(null);
   const touchStartYRef = useRef<number | null>(null);
+
+  // Ensure the active slide and the one after it are loaded ahead of time.
+  useEffect(() => {
+    setLoaded((prev) => {
+      if (prev.has(active) && prev.has((active + 1) % images.length)) {
+        return prev;
+      }
+      const next = new Set(prev);
+      next.add(active);
+      next.add((active + 1) % images.length);
+      return next;
+    });
+  }, [active, images.length]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -102,16 +120,19 @@ export function HeroCarousel({
           )}
           style={{ transitionProperty: "opacity", transitionDuration: `${transitionMs}ms` }}
         >
-          <Image
-            src={img.src}
-            alt={img.alt}
-            fill
-            priority={i === 0}
-            fetchPriority={i === 0 ? "high" : "auto"}
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover object-center"
-            draggable={false}
-          />
+          {loaded.has(i) && (
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              priority={i === 0}
+              fetchPriority={i === 0 ? "high" : "auto"}
+              loading={i === 0 ? "eager" : "lazy"}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-center"
+              draggable={false}
+            />
+          )}
         </div>
       ))}
     </div>

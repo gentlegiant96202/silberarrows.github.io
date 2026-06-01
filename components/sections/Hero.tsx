@@ -1,7 +1,8 @@
-import { Star, ShieldCheck, Truck, Award } from "lucide-react";
+import { Star, ShieldCheck, Truck, Award, BadgePercent } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
 import { HeroCarousel, type HeroCarouselImage } from "@/components/sections/HeroCarousel";
 import { site } from "@/lib/site";
+import { preserveBrandWrap } from "@/lib/utils";
 
 const heroCarouselImages: HeroCarouselImage[] = [
   {
@@ -89,7 +90,7 @@ export function Hero({
         }}
       />
 
-      <div className="container-page relative z-10 pt-10 pb-20 md:pt-16 md:pb-20">
+      <div className="container-page relative z-10 pt-8 pb-16 md:pt-8 md:pb-14">
         <div
           className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
           aria-hidden
@@ -113,7 +114,7 @@ export function Hero({
                 {titleParts.map((p, i) => (
                   <span
                     key={i}
-                    className="block text-[3.25rem] sm:text-[3.5rem] md:text-[3.25rem] lg:text-[3.75rem] xl:text-[4rem] leading-[0.85] whitespace-nowrap"
+                    className="block text-[2.5rem] leading-[0.88] max-md:whitespace-normal md:text-[3.25rem] md:leading-[0.85] md:whitespace-nowrap lg:text-[3.75rem] xl:text-[4rem]"
                     style={
                       { animationDelay: `${0.05 * i}s` } as React.CSSProperties
                     }
@@ -127,10 +128,32 @@ export function Hero({
                 ))}
               </h1>
 
+              {/* Offer hook — primary conversion driver */}
+              <div className="anim-rise mt-5">
+                <div className="inline-flex items-center gap-2.5 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-2.5 backdrop-blur-md">
+                  <BadgePercent
+                    size={18}
+                    className="shrink-0 text-emerald-300"
+                  />
+                  <p className="text-sm font-semibold text-white sm:text-[15px]">
+                    <span className="text-emerald-300">20% OFF</span> your first
+                    Minor or Major Service
+                  </p>
+                </div>
+                <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-silver-500)]">
+                  <span className="inline-flex items-center gap-1 font-medium text-[color:var(--color-silver-300)]">
+                    <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
+                    Limited slots this month
+                  </span>
+                  <span aria-hidden>·</span>
+                  <span>New customers only. T&amp;Cs apply.</span>
+                </p>
+              </div>
+
               <div className="anim-rise mt-5 flex max-w-xl flex-col gap-2 text-base leading-snug text-[color:var(--color-silver-300)] md:gap-2 md:text-lg md:leading-snug">
                 {subtitleParagraphs(subtitle).map((sentence, i) => (
                   <p key={i} className="m-0 leading-snug">
-                    {sentence}
+                    {preserveBrandWrap(sentence)}
                   </p>
                 ))}
               </div>
@@ -160,13 +183,16 @@ export function Hero({
                 ))}
               </div>
 
-              <div className="anim-rise mt-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
+              {/* Primary CTA — WhatsApp lives in the sticky footer */}
+              <div className="anim-rise mt-5">
                 <CTAButton label="Get a Free Quote" size="lg" />
+              </div>
+
+              {/* Proof — real Google rating */}
+              <div className="anim-rise mt-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
                 <a
-                  href={site.reviews.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-center gap-3 transition hover:opacity-90"
+                  href="#reviews"
+                  className="group inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 transition hover:bg-white/10"
                 >
                   <span className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
@@ -189,6 +215,23 @@ export function Hero({
                     </span>
                   </span>
                 </a>
+              </div>
+
+              {/* Quantified trust strip */}
+              <div className="anim-rise mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[color:var(--color-silver-400)]">
+                {site.stats.map((s, i) => (
+                  <span key={i} className="inline-flex items-center gap-2">
+                    {i > 0 && (
+                      <span className="h-3 w-px bg-white/15" aria-hidden />
+                    )}
+                    <span>
+                      <strong className="font-semibold text-white">
+                        {s.value}
+                      </strong>{" "}
+                      {s.label}
+                    </span>
+                  </span>
+                ))}
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { team } from "@/lib/content";
 import { SectionHeader } from "@/components/sections/SectionHeader";
+import { cn, preserveBrandWrap } from "@/lib/utils";
 
 const DEFAULT_FOCUS = "center 12%";
 
@@ -14,13 +15,20 @@ export function Team() {
           intro="Experienced professionals dedicated to keeping your Mercedes-Benz in perfect condition."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5">
-          {team.map((m) => {
+        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5">
+          {team.map((m, i) => {
             const focus = m.imageFocus ?? DEFAULT_FOCUS;
+            // With an odd number of members the final card would orphan in the
+            // 2-col mobile layout — span it and centre it to fill the gap.
+            const orphan = team.length % 2 === 1 && i === team.length - 1;
             return (
               <div
                 key={m.name}
-                className="group relative block overflow-hidden rounded-2xl ring-chrome silver-glow transition hover:-translate-y-0.5"
+                className={cn(
+                  "group relative block overflow-hidden rounded-2xl ring-chrome silver-glow transition hover:-translate-y-0.5",
+                  orphan &&
+                    "col-span-2 mx-auto w-[calc(50%-0.375rem)] md:col-span-1 md:mx-0 md:w-auto"
+                )}
               >
                 <div className="absolute inset-x-4 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent opacity-70" />
 
@@ -56,24 +64,27 @@ export function Team() {
                         />
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25" />
-                      <div className="relative z-10 p-3.5 backdrop-blur-md sm:p-4">
-                        <div className="flex items-center gap-2">
-                          <span className="silver-bar" />
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-silver-shine">
+                      <div className="relative z-10 p-3 text-center backdrop-blur-md sm:p-4 sm:text-left">
+                        <h3 className="text-base font-semibold leading-snug text-white sm:text-[17px]">
+                          {m.name}
+                        </h3>
+
+                        {/* Mobile: centred divider under the name */}
+                        <span className="silver-bar mx-auto mt-2 block sm:hidden" />
+
+                        <div className="mt-1.5 flex items-center justify-center gap-2 sm:justify-start">
+                          <span className="silver-bar hidden shrink-0 sm:block" />
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-silver-shine">
                             {m.role}
                           </p>
                         </div>
 
-                        <h3 className="mt-1.5 text-base font-semibold leading-snug text-white sm:text-[17px]">
-                          {m.name}
-                        </h3>
-
-                        <p className="mt-1.5 text-[9px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)] sm:text-[10px]">
-                          {m.cert}
+                        <p className="mt-2 hidden text-[9px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)] sm:block sm:text-[10px]">
+                          {preserveBrandWrap(m.cert)}
                         </p>
 
-                        <p className="mt-1.5 line-clamp-2 text-[11px] leading-snug text-[color:var(--color-silver-200)] sm:line-clamp-3 sm:text-[12px]">
-                          {m.bio}
+                        <p className="mt-1.5 hidden line-clamp-3 text-[12px] leading-snug text-[color:var(--color-silver-200)] sm:block">
+                          {preserveBrandWrap(m.bio)}
                         </p>
                       </div>
                     </div>

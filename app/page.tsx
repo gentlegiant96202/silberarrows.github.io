@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/sections/Hero";
+import { Reviews } from "@/components/sections/Reviews";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Services } from "@/components/sections/Services";
 import { Team } from "@/components/sections/Team";
@@ -40,6 +41,7 @@ export default function HomePage() {
       <FAQSchema items={homeFaqs} />
       <PersonSchema people={team} />
       <Hero />
+      <Reviews />
       <WhyChooseUs />
       <Services />
       <Team />

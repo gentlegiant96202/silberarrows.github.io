@@ -35,7 +35,7 @@ export function SectionHeader({
           <span className="silver-bar" />
         </div>
       )}
-      <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-silver-shine uppercase leading-[0.85]">
+      <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-silver-shine leading-[0.95]">
         {preserveBrandWrap(title)}
       </h2>
       {intro && (

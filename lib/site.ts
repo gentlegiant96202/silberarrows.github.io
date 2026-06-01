@@ -22,7 +22,7 @@ export const site = {
   },
   geo: { lat: 25.1459942, lng: 55.2304157 },
   stats: [
-    { value: "14+", label: "Years Experience" },
+    { value: "15+", label: "Years Experience" },
     { value: "10,000+", label: "Vehicles Serviced" },
     { value: "100%", label: "Genuine Parts" },
   ],

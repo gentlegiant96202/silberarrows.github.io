@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { services } from "@/lib/services";
 import { SectionHeader } from "@/components/sections/SectionHeader";
-import { cn } from "@/lib/utils";
+import { cn, preserveBrandWrap } from "@/lib/utils";
 
 export function Services({ className }: { className?: string }) {
   return (
@@ -20,7 +20,7 @@ export function Services({ className }: { className?: string }) {
           intro="Delivered with precision, premium parts and expertise tailored to one marque."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
           {services.map((service) => (
             <Link
               key={service.slug}
@@ -35,6 +35,7 @@ export function Services({ className }: { className?: string }) {
                   src={service.hero}
                   alt={service.shortTitle}
                   fill
+                  quality={90}
                   sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition duration-500 group-hover:scale-105 grayscale-[0.15] group-hover:grayscale-0"
                 />
@@ -51,11 +52,11 @@ export function Services({ className }: { className?: string }) {
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
 
                     <h3 className="text-[13px] font-semibold leading-snug text-white sm:text-[15px]">
-                      {service.shortTitle}
+                      {preserveBrandWrap(service.shortTitle)}
                     </h3>
 
                     <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-[color:var(--color-silver-300)] sm:text-[12px]">
-                      {service.blurb}
+                      {preserveBrandWrap(service.blurb)}
                     </p>
 
                     <div className="mt-3 flex items-center gap-2 sm:mt-4">
