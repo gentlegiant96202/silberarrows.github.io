@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { X, Phone, MessageCircle } from "lucide-react";
+import { site } from "@/lib/site";
+
+const WHATSAPP_DIRECT =
+  "https://wa.me/97143805515?text=" +
+  encodeURIComponent("Hi Team SilberArrows!");
 
 function getCookie(name: string): string | null {
   if (typeof document === "undefined") return null;
@@ -194,6 +199,31 @@ export function ContactModal({
             We typically respond within minutes on WhatsApp or by phone.
           </p>
         </form>
+
+        <div className="mt-6 flex items-center gap-3">
+          <span className="h-px flex-1 bg-white/10" />
+          <span className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
+            Or reach us directly
+          </span>
+          <span className="h-px flex-1 bg-white/10" />
+        </div>
+
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          <a
+            href={WHATSAPP_DIRECT}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-500/20 transition"
+          >
+            <MessageCircle size={16} /> WhatsApp
+          </a>
+          <a
+            href={site.phoneTel}
+            className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+          >
+            <Phone size={16} /> Call Us
+          </a>
+        </div>
       </div>
     </div>
   );
