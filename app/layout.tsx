@@ -13,6 +13,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import { ContactModalProvider } from "@/components/ContactModalProvider";
+import { ChromeGate } from "@/components/ChromeGate";
 import { site } from "@/lib/site";
 import { defaultOgImage } from "@/lib/seo";
 
@@ -141,10 +142,14 @@ export default function RootLayout({
         </noscript>
 
         <ContactModalProvider>
-          <Header />
+          <ChromeGate>
+            <Header />
+          </ChromeGate>
           <main>{children}</main>
-          <Footer />
-          <MobileContactBar />
+          <ChromeGate>
+            <Footer />
+            <MobileContactBar />
+          </ChromeGate>
         </ContactModalProvider>
 
         <Script

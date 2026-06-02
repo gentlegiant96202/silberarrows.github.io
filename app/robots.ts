@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 const STANDARD_DISALLOW = [
   "/api/",
   "/admin/",
+  "/ads",
   "/_next/",
   "/private/",
   "/*.json$",

@@ -76,10 +76,19 @@ New campaign → Objective **Leads** → type **Search**.
 | Languages | English + Arabic |
 | Budget | **AED 500/day floor, AED 700/day preferred.** Hold it steady for the whole learning month — don't start/stop. Scale only after bidding is stable. |
 | Bidding | **Maximize Conversions** — **NO Target CPA yet** (see Step 5) |
-| Conversion goal | `Web Form Lead (gtag)` only |
+| Conversion goal | **Custom goal** containing ONLY `Web Form Lead (gtag)` (see note below) |
 | Ad rotation | Optimize (default) |
 
 If Google nudges you toward Display, Search Partners, or Performance Max — **decline.**
+
+> **Conversion-goals screen (after choosing "Leads"):** do NOT bundle all three actions.
+> Whatever you attach here is what Smart Bidding optimizes toward.
+> 1. Choose **"Use a custom goal"** → create `SilberArrows – Web Form Lead`.
+> 2. Put **ONLY** `Web Form Lead (gtag)` in it. Select that goal for the campaign.
+> 3. Leave **Contact WhatsApp + Contact Call as Secondary** (account level) — recorded for
+>    reporting, but they don't drive bidding.
+> 4. At the 2–3 week checkpoint, if form volume is too thin, add WhatsApp/Call into the goal to
+>    give Smart Bidding more signal.
 
 ---
 
