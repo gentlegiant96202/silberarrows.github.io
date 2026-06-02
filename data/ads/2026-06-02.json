@@ -1,10 +1,10 @@
 {
   "snapshot_date": "2026-06-02",
-  "range_label": "First pull · last 7 days",
-  "pulled_at": "2026-06-02T09:25:00+04:00",
+  "range_label": "Since launch · through today (Jun 2)",
+  "pulled_at": "2026-06-02T09:27:00+04:00",
   "data": {
     "account": { "customerId": "6125392209", "currency": "AED" },
-    "range": { "label": "First pull · last 7 days" },
+    "range": { "label": "Since launch · through today (Jun 2)" },
     "campaigns": [
       {
         "id": "23894399001",
@@ -12,7 +12,7 @@
         "type": "SEARCH",
         "status": "ENABLED",
         "cost": 0,
-        "impressions": 2,
+        "impressions": 15,
         "clicks": 0,
         "ctr": 0,
         "avgCpc": 0,
@@ -137,6 +137,6 @@
       "Verify RSA claims (Free Diagnostic / Same-Day / Save vs Main Dealer) are true before they serve widely.",
       "Goal: accumulate ~15–30 leads on the clean tracking before setting a Target CPA."
     ],
-    "notes": "First real API pull (2026-06-02, last 7 days). Campaigns are live but have barely served — Service: 2 impressions, 0 clicks, AED 0 spend, 0 conversions; Brand: no impressions yet. One relevant search term so far ('mercedes service in dubai'), no clicks. Nothing to optimise yet — this is the day-zero reference. Re-pull in ~1 week once spend and clicks accrue; deltas, daily trend, conversions-by-action and asset grades become meaningful then."
+    "notes": "First real API pull, range through today (Jun 2). Service: 15 impressions (13 today + 2 on Jun 1), 0 clicks, AED 0 spend, 0 conversions; Brand: no impressions yet. One relevant search term so far ('mercedes service in dubai'), no clicks. Nothing to optimise yet — this is the day-zero reference. NOTE: always pull with a today-inclusive date range — the API's LAST_7_DAYS/LAST_30_DAYS exclude today, which undercounts a freshly launched campaign. Re-pull in ~1 week once clicks/spend accrue."
   }
 }

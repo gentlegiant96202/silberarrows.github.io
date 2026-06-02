@@ -23,6 +23,10 @@ from the Supabase `ads_snapshots` table.
 1. Ask the agent: **“pull the latest ads numbers.”** It queries the MCP and writes
    a new `data/ads/<YYYY-MM-DD>.json` (same shape as `2026-06-02.json`), including
    a fresh `actions` checklist.
+   - **Date ranges must include today.** The Ads API's `LAST_7_DAYS` /
+     `LAST_30_DAYS` presets *exclude* today, which undercounts impressions on a
+     freshly launched campaign. Use `segments.date BETWEEN '<start>' AND '<today>'`
+     (or add `DURING TODAY` to the range) so the numbers match the Google UI.
 2. Push it to Supabase:
    ```
    node scripts/ads-snapshot.mjs data/ads/<YYYY-MM-DD>.json
