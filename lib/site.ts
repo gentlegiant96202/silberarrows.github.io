@@ -16,8 +16,8 @@ export const site = {
     "https://wa.me/97143805515?text=Hi%20Team%20SilberArrows%2C%20I%27d%20like%20to%20book%20a%20service.",
   hours: "Monday to Saturday: 8:00 AM - 6:00 PM",
   reviews: {
-    rating: "4.7",
-    count: "509",
+    rating: "4.8",
+    count: "520",
     url: "https://www.google.com/search?q=silberarrows+dubai+reviews",
   },
   geo: { lat: 25.1459942, lng: 55.2304157 },

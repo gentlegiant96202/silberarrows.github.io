@@ -6,6 +6,8 @@ import { Services } from "@/components/sections/Services";
 import { Team } from "@/components/sections/Team";
 import { Contracts } from "@/components/sections/Contracts";
 import { Contact } from "@/components/sections/Contact";
+import { Reviews } from "@/components/sections/Reviews";
+import { LandingServiceDetails } from "@/components/sections/LandingServiceDetails";
 import { landingPages } from "@/lib/content";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -47,18 +49,59 @@ export default async function LandingPage({
   const lp = landingPages[slug];
   if (!lp) return notFound();
 
+  const isLocation =
+    slug === "mercedes-service-center" || slug === "mercedes-service-near-me";
+  const isRepair = slug === "mercedes-repair";
+
+  const hero = (
+    <Hero
+      tagline={lp.tagline}
+      titleParts={lp.titleParts}
+      subtitle={lp.subtitle}
+      badges={lp.badges}
+    />
+  );
+
+  // Location-intent pages lead with the workshop location (map, Al Quoz
+  // address, opening hours, directions) to read as a real local business.
+  if (isLocation) {
+    return (
+      <>
+        {hero}
+        <Contact />
+        <WhyChooseUs />
+        <Services />
+        <Reviews />
+        <Team />
+      </>
+    );
+  }
+
+  // Repair-intent page surfaces the concrete repair capabilities and process
+  // (engine, suspension, diagnostics, A/C) from our real service catalogue.
+  if (isRepair) {
+    return (
+      <>
+        {hero}
+        {lp.relatedServices?.length ? (
+          <LandingServiceDetails slugs={lp.relatedServices} />
+        ) : null}
+        <WhyChooseUs />
+        <Reviews />
+        <Contracts />
+        <Contact />
+      </>
+    );
+  }
+
+  // Service / package-intent pages keep the maintenance + pricing focus.
   return (
     <>
-      <Hero
-        tagline={lp.tagline}
-        titleParts={lp.titleParts}
-        subtitle={lp.subtitle}
-        badges={lp.badges}
-      />
+      {hero}
       <WhyChooseUs />
       <Services />
-      <Team />
       <Contracts />
+      <Reviews />
       <Contact />
     </>
   );

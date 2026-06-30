@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { MapPin, MessageCircle, Phone, Clock, Navigation } from "lucide-react";
 import { site } from "@/lib/site";
 import { SectionHeader } from "@/components/sections/SectionHeader";
@@ -15,6 +17,7 @@ export function Contact({
   className?: string;
 }) {
   const { openModal } = useContactModal();
+  const [mapOpen, setMapOpen] = useState(false);
   const mapLink = `https://www.google.com/maps/search/?api=1&query=${site.geo.lat},${site.geo.lng}`;
 
   return (
@@ -84,14 +87,40 @@ export function Contact({
 
           <div className="relative overflow-hidden rounded-2xl glass-card ring-chrome min-h-[380px] flex flex-col">
             <div className="absolute inset-0">
-              <iframe
-                title="SilberArrows location"
-                aria-label="Map showing SilberArrows location"
-                className="absolute inset-0 h-full w-full grayscale-[0.6] contrast-[1.1] brightness-[0.6] saturate-50"
-                src={`https://www.google.com/maps?q=${site.geo.lat},${site.geo.lng}&z=15&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              {mapOpen ? (
+                <iframe
+                  title="SilberArrows location"
+                  aria-label="Map showing SilberArrows location"
+                  className="absolute inset-0 h-full w-full grayscale-[0.6] contrast-[1.1] brightness-[0.6] saturate-50"
+                  src={`https://www.google.com/maps?q=${site.geo.lat},${site.geo.lng}&z=15&output=embed`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setMapOpen(true)}
+                  aria-label="Load interactive map of the SilberArrows workshop"
+                  className="group absolute inset-0 h-full w-full"
+                >
+                  <Image
+                    src="/assets/images/al-manara-location.webp"
+                    alt="SilberArrows Mercedes-Benz workshop in Al Quoz, Dubai"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover grayscale-[0.4] brightness-[0.55] saturate-50 transition duration-300 group-hover:brightness-[0.7]"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <span className="inline-flex items-center gap-2 rounded-full glass-card ring-silver px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition duration-300 group-hover:scale-105">
+                      <MapPin
+                        size={14}
+                        className="text-[color:var(--color-platinum)]"
+                      />
+                      View Map
+                    </span>
+                  </span>
+                </button>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
             </div>
 

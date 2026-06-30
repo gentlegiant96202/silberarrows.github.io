@@ -127,6 +127,7 @@ export const landingPages: Record<
     titleParts: { line: string; highlight?: boolean }[];
     subtitle: string;
     badges: string[];
+    relatedServices?: string[];
   }
 > = {
   "mercedes-service": {
@@ -207,6 +208,12 @@ export const landingPages: Record<
     badges: [
       "12 Month Warranty on Parts & Labour",
       "Free Collection & Delivery",
+    ],
+    relatedServices: [
+      "engine-repair",
+      "suspension-repair",
+      "diagnostics",
+      "air-conditioning",
     ],
   },
   "service-packages": {
