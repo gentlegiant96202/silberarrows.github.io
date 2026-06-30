@@ -113,10 +113,6 @@ export const services: Service[] = [
           label: "Wheel rotation and spare wheel or TIREFIT sealant check",
           values: ["\u2014", "\u2713"],
         },
-        {
-          label: "Transmission Oil Change + Filter Replacement",
-          values: ["\u2014", "\u2713"],
-        },
         { label: "Full Vehicle Inspection", values: ["\u2713", "\u2713"] },
       ],
     },
