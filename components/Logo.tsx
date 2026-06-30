@@ -2,10 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 
 const sizeMap = {
-  sm: { wrap: "h-9", mark: 40, text: "text-xs" },
-  md: { wrap: "h-12", mark: 56, text: "text-sm" },
-  lg: { wrap: "h-16", mark: 72, text: "text-base" },
-  xl: { wrap: "h-24", mark: 112, text: "text-lg" },
+  sm: { wrap: "h-9", mark: 40, markClass: "h-9 w-auto", text: "text-xs" },
+  md: { wrap: "h-12", mark: 56, markClass: "h-12 w-auto", text: "text-sm" },
+  lg: { wrap: "h-16", mark: 72, markClass: "h-16 w-auto", text: "text-base" },
+  xl: { wrap: "h-24", mark: 112, markClass: "h-24 w-auto", text: "text-lg" },
+  // Grows with the (taller) header bar on larger screens; rendered at high
+  // res so it stays sharp on retina at the desktop size. Height-driven with
+  // w-auto so the square source never gets distorted by a flex container.
+  responsive: {
+    wrap: "h-16 md:h-[88px]",
+    mark: 112,
+    markClass: "h-16 w-auto md:h-[88px]",
+    text: "text-base",
+  },
 } as const;
 
 export function Logo({
@@ -27,7 +36,7 @@ export function Logo({
         width={cls.mark}
         height={cls.mark}
         priority
-        className="select-none drop-shadow-[0_2px_10px_rgba(229,228,226,0.25)]"
+        className={`shrink-0 select-none drop-shadow-[0_2px_10px_rgba(229,228,226,0.25)] ${cls.markClass}`}
       />
       {showWordmark && (
         <span className={`font-semibold tracking-[0.04em] ${cls.text}`}>

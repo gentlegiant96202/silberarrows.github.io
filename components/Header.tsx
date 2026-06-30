@@ -38,7 +38,7 @@ export function Header() {
       )}
     >
       <div className="container-page flex h-24 items-center justify-between gap-4 md:h-28">
-        <Logo size="lg" showWordmark={false} />
+        <Logo size="responsive" showWordmark={false} />
 
         <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
           {nav.map((item) => {
@@ -67,10 +67,6 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex shrink-0 items-center gap-4">
-          <span className="hidden xl:flex items-center gap-1.5 text-xs text-[color:var(--color-silver-400)]">
-            <MapPin size={12} />
-            {site.address.short}
-          </span>
           <button
             onClick={openModal}
             className="btn-silver rounded-lg px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em]"
