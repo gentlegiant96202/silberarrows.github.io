@@ -37,10 +37,10 @@ export function Header() {
           : "bg-transparent border-b border-transparent"
       )}
     >
-      <div className="container-page flex h-24 items-center justify-between md:h-28">
+      <div className="container-page flex h-24 items-center justify-between gap-4 md:h-28">
         <Logo size="lg" showWordmark={false} />
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -51,7 +51,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative px-3.5 py-2 text-sm font-medium uppercase tracking-[0.14em] transition rounded-md",
+                  "relative whitespace-nowrap px-2.5 py-2 text-[13px] xl:text-sm xl:px-3.5 font-medium uppercase tracking-[0.12em] xl:tracking-[0.14em] transition rounded-md",
                   active
                     ? "text-silver-shine"
                     : "text-[color:var(--color-silver-400)] hover:text-white"
@@ -59,14 +59,14 @@ export function Header() {
               >
                 {item.label}
                 {active && (
-                  <span className="absolute -bottom-0.5 left-3.5 right-3.5 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
+                  <span className="absolute -bottom-0.5 left-2.5 right-2.5 xl:left-3.5 xl:right-3.5 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
                 )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex shrink-0 items-center gap-4">
           <span className="hidden xl:flex items-center gap-1.5 text-xs text-[color:var(--color-silver-400)]">
             <MapPin size={12} />
             {site.address.short}
