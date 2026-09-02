@@ -12,6 +12,14 @@ function getClientIp(request: NextRequest): string | null {
   return request.headers.get("x-real-ip") || null;
 }
 
+/** Trim + cap a free-text attribution value; returns null when empty. */
+function cleanAttr(value: unknown, max = 256): string | null {
+  if (typeof value !== "string") return null;
+  const v = value.trim();
+  if (!v) return null;
+  return v.length > max ? v.slice(0, max) : v;
+}
+
 export async function POST(request: NextRequest) {
   const eventTime = Math.floor(Date.now() / 1000);
 
@@ -26,6 +34,9 @@ export async function POST(request: NextRequest) {
       fbc,
       eventSourceUrl,
       gclid,
+      gbraid,
+      wbraid,
+      source,
     } = body;
 
     if (!name || !phone) {
@@ -36,6 +47,18 @@ export async function POST(request: NextRequest) {
     }
 
     const fullPhone = `${countryCode || "+971"}${phone}`;
+
+    // Attribution persisted with the lead so WhatsApp/Call/form conversions
+    // can be reconciled against real conversations, and so a future
+    // value-based (Data Manager API) upload has the click id it needs.
+    const attribution = {
+      source: cleanAttr(source),
+      gclid: cleanAttr(gclid),
+      gbraid: cleanAttr(gbraid),
+      wbraid: cleanAttr(wbraid),
+      event_id: cleanAttr(eventId, 128),
+      landing_url: cleanAttr(eventSourceUrl, 2048),
+    };
 
     const promises: Promise<void>[] = [
       fetch(WEBHOOK_URL, {
@@ -55,10 +78,28 @@ export async function POST(request: NextRequest) {
         (async () => {
           const { error } = await supabase
             .from("leads")
-            .insert({ name, phone: fullPhone });
-          if (error) {
-            console.error("Supabase insert error:", error.message);
+            .insert({ name, phone: fullPhone, ...attribution });
+          if (!error) return;
+
+          // If the attribution columns don't exist yet (migration
+          // 0002_leads_attribution.sql not run), never lose the lead — fall
+          // back to the original minimal insert.
+          const missingColumn =
+            error.code === "PGRST204" || /column/i.test(error.message);
+          if (missingColumn) {
+            console.error(
+              "Supabase insert: attribution columns missing, run supabase/migrations/0002_leads_attribution.sql. Falling back.",
+              error.message
+            );
+            const { error: fallbackError } = await supabase
+              .from("leads")
+              .insert({ name, phone: fullPhone });
+            if (fallbackError) {
+              console.error("Supabase insert error:", fallbackError.message);
+            }
+            return;
           }
+          console.error("Supabase insert error:", error.message);
         })()
       );
     }

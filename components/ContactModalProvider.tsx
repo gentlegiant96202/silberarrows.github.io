@@ -8,7 +8,8 @@ import {
   useMemo,
   useState,
 } from "react";
-import { ContactModal } from "@/components/ContactModal";
+import { usePathname } from "next/navigation";
+import { ContactModal, type ContactLocale } from "@/components/ContactModal";
 
 type Ctx = {
   open: boolean;
@@ -30,6 +31,12 @@ export function ContactModalProvider({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // The provider lives in the root layout, so it derives the locale from the
+  // route: everything under /ar gets the Arabic (RTL) form and thank-you page.
+  const locale: ContactLocale =
+    pathname === "/ar" || pathname?.startsWith("/ar/") ? "ar" : "en";
 
   const openModal = useCallback(() => setOpen(true), []);
   const closeModal = useCallback(() => setOpen(false), []);
@@ -51,7 +58,7 @@ export function ContactModalProvider({
   return (
     <ContactModalContext.Provider value={value}>
       {children}
-      <ContactModal open={open} onClose={closeModal} />
+      <ContactModal open={open} onClose={closeModal} locale={locale} />
     </ContactModalContext.Provider>
   );
 }

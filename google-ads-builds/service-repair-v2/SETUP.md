@@ -28,6 +28,19 @@ replaced it with durable **client-side `gtag` conversions** built into the site.
 
 Conversion ID `AW-949637091`. These are wired in code via env vars (see below).
 
+**Plus one ad-level action (added Sep 2026, no code involved):**
+
+| Conversion action | Fires when | Role |
+|---|---|---|
+| **Call from ad (click) – Mercedes-Benz** (id `7744698687`, type *Calls from ads*) | tap on the **call asset** on the ad itself (never reaches the site) | Secondary — promote into the MERCEDES-BENZ custom goal once it shows "Recording" |
+
+Google forwarding numbers aren't offered for UAE numbers, so this counts the **click** (min duration
+0s) rather than a connected call. The call asset `416581194855` (04 380 5515) on the Service + Brand
+campaigns has *call conversion reporting* → this action; the old untracked asset `49909104884` was
+detached. Ad-level **Message (WhatsApp)** clicks have no API-creatable action — check
+**Goals → Conversions → + New → Messages** in the UI; if the option isn't offered for the account,
+those 33 clicks/quarter stay untracked (the site WhatsApp button is tracked).
+
 ---
 
 ## STEP 1 — Deploy & verify the tracking
@@ -110,11 +123,19 @@ match → higher Quality Score, lower CPC). URLs are set per ad group in `keywor
 | **Service & Maintenance** | service (≈ AED 2k/job) | `/lp/mercedes-service` |
 | **Repair & Diagnostics** | repair (≈ AED 20k/job — the one to fund) | `/lp/mercedes-repair` |
 | **Mercedes Specialist Al Quoz** | local/specialist (historically cheapest leads) | `/lp/mercedes-service-center` |
-| **Arabic – Service & Repair** | Arabic service/workshop terms | `/` (homepage — no Arabic LP yet) |
+| **Arabic – Service & Repair** | Arabic service/workshop terms | `/ar/lp/mercedes-service` (RTL Arabic LP, live Sep 2026) |
 
-(Full domain: `https://mercedes-benz.silberarrows.com` + path above. The `/lp/*` pages are noindex,
-ad-only landing pages with matching titles.) Pair the Arabic group with the Arabic RSA for relevance;
-build a dedicated Arabic LP later if that group gets volume.
+(Full domain: `https://mercedes-benz.silberarrows.com` + path above. The `/lp/*` and `/ar/lp/*` pages
+are noindex, ad-only landing pages with matching titles.) The Arabic LP (`app/ar/`, copy in
+`lib/content-ar.ts`) mirrors the English service LP section-for-section; its contact modal and
+thank-you page (`/ar/thank-you/service`) fire the same Web Form Lead / WhatsApp / Call conversions.
+
+**Match-type tightening (Sep 2026):** exact-match twins were added for every converting phrase
+keyword; campaign negatives added via API for the recurring waste (`jetour`, `szr`, `sheikh zayed road`,
+`gargash`, `al fahim`, `mussafah`, `design district`, `locations`, `mycar`, `careers`, `jobs`,
+`for sale`), plus `al quoz` as an ad-group negative on *Service & Maintenance* so Al Quoz queries route
+to the Al Quoz ad group. Review phrase keywords vs their exact twins after 2–3 weeks and pause the
+phrase versions whose cost/conv is >1.5× the exact one.
 
 All **Phrase + Exact** — no Broad at launch (Broad fed the old wasted spend). Test Broad later, only
 in the Specialist ad group, once bidding is stable.
@@ -152,8 +173,9 @@ Step 6). That 2–3× the signal → faster learning and a more stable target.
   Google and switch to **Maximize Conversion Value → Target ROAS**. Google then bids up for the
   searches that produce AED 20k repairs vs AED 2k services.
   - This uses the **Data Manager API** (the legacy Google Ads API offline import is blocked 2026-06-15).
-  - **Prerequisite:** persist the **`gclid`** with each lead (the form captures it, but the DB insert
-    currently stores only name + phone). Tell me when you want this and I'll wire it.
+  - **Prerequisite — DONE (Sep 2026):** each lead now stores `gclid` / `gbraid` / `wbraid`, landing
+    `source`, `landing_url` and the shared `event_id` in Supabase `leads`. Run
+    `supabase/migrations/0002_leads_attribution.sql` once in the LEADS project's SQL editor.
 
 ---
 

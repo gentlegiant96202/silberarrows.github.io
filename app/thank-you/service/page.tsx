@@ -19,8 +19,8 @@ export default function ThankYouPage() {
     <section className="relative min-h-[80vh] overflow-hidden flex items-center">
       <Suspense fallback={null}>
         <MetaPixelContactEvent />
+        <GoogleAdsLeadConversion />
       </Suspense>
-      <GoogleAdsLeadConversion />
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       {/* Vibrant emerald/teal wash for a celebratory success feel */}
       <div

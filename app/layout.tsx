@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import "./globals.css";
 
 // Inter across the project — body + headings (variable weight range via CSS).
@@ -8,6 +8,18 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+});
+
+// Arabic face for the /ar routes. Registered here (on <html>) so the
+// `--font-arabic` theme token resolves at :root; `preload: false` means
+// English pages only ship the @font-face rule — the files download on first
+// use, i.e. only when an /ar page actually renders Arabic text.
+const ibmPlexArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-arabic",
+  display: "swap",
+  preload: false,
 });
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -93,7 +105,7 @@ export default function RootLayout({
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
   return (
-    <html lang="en-AE" className={inter.variable}>
+    <html lang="en-AE" className={`${inter.variable} ${ibmPlexArabic.variable}`}>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -114,6 +126,39 @@ export default function RootLayout({
                     keys.forEach(function(k){ caches.delete(k); });
                   }).catch(function(){});
                 }
+              })();
+            `,
+          }}
+        />
+        {/*
+          gtag stub + config, defined BEFORE hydration. The gtag.js library
+          itself still loads lazily (below), but window.gtag exists from the
+          first paint, so conversion events fired by early clicks (e.g. the
+          sticky mobile Call/WhatsApp bar) queue in dataLayer instead of being
+          dropped, and are flushed when the library arrives. Config commands
+          are queued first so events that follow have a configured send_to.
+          Also captures Google click IDs (gclid / gbraid / wbraid) into
+          first-party cookies for lead attribution.
+        */}
+        <Script
+          id="gtag-stub"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', 'G-GK0X6327FK', { send_page_view: true });
+              ${googleAdsId ? `gtag('config', '${googleAdsId}');` : ""}
+              (function(){
+                try {
+                  var q = window.location.search;
+                  ['gclid','gbraid','wbraid'].forEach(function(k){
+                    var m = q.match(new RegExp('[?&]' + k + '=([^&]+)'));
+                    if (m) document.cookie = '_' + k + '=' + m[1] + ';max-age=7776000;path=/;SameSite=Lax';
+                  });
+                } catch (e) {}
               })();
             `,
           }}
@@ -152,24 +197,10 @@ export default function RootLayout({
           </ChromeGate>
         </ContactModalProvider>
 
+        {/* gtag.js library — config + stub are queued in <head> (gtag-stub). */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-GK0X6327FK"
           strategy="lazyOnload"
-        />
-        <Script
-          id="ga4-config"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-GK0X6327FK', {
-                send_page_view: true
-              });
-              ${googleAdsId ? `gtag('config', '${googleAdsId}');` : ""}
-            `,
-          }}
         />
         <Script
           id="meta-pixel"
@@ -199,18 +230,6 @@ export default function RootLayout({
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-WCW6K7CB');
-            `,
-          }}
-        />
-        <Script
-          id="gclid-capture"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(){
-                var m=window.location.search.match(/[?&]gclid=([^&]+)/);
-                if(m)document.cookie='_gclid='+m[1]+';max-age=7776000;path=/;SameSite=Lax';
-              })();
             `,
           }}
         />

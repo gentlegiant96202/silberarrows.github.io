@@ -6,6 +6,10 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     sans-serif;
+  /* Arabic (/ar routes) — IBM Plex Sans Arabic via next/font, set on the
+     /ar layout wrapper as --font-ibm-arabic. Exposed as the `font-arabic`
+     utility. Latin glyphs (numbers, brand names) render from the same face. */
+  --font-arabic: var(--font-ibm-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
 
   /* Base palette */
   --color-ink-950: #050505;
@@ -790,5 +794,40 @@
       transparent
     );
     margin: 2.5em 0;
+  }
+}
+
+/* ============================================================
+   Arabic / RTL (/ar routes)
+   Unlayered on purpose so these beat the utilities layer without !important.
+   ============================================================ */
+
+/* Arabic script must never be letter-spaced: joined letterforms break apart
+   and the negative display tracking crushes diacritics/ascenders. */
+[dir="rtl"] .text-display {
+  letter-spacing: 0;
+  line-height: 1.12;
+}
+[dir="rtl"] [class*="tracking-"] {
+  letter-spacing: 0;
+}
+
+/* Desktop hero scrim: copy sits on the right in RTL, so darken from the right. */
+@media (min-width: 1024px) {
+  [dir="rtl"] .hero-scrim {
+    background:
+      linear-gradient(
+        to left,
+        rgba(5, 5, 5, 0.97) 0%,
+        rgba(5, 5, 5, 0.9) 36%,
+        rgba(5, 5, 5, 0.5) 66%,
+        rgba(5, 5, 5, 0.28) 100%
+      ),
+      linear-gradient(
+        to top,
+        rgba(5, 5, 5, 0.96) 0%,
+        rgba(5, 5, 5, 0.25) 32%,
+        rgba(5, 5, 5, 0.12) 100%
+      );
   }
 }
