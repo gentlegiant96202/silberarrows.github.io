@@ -15,6 +15,11 @@ type HeroCarouselProps = {
   intervalMs?: number;
   /** Cross-fade duration in ms. Default 1000. */
   transitionMs?: number;
+  /** `sizes` attribute forwarded to next/image. Default suits a half-width frame. */
+  sizes?: string;
+  /** Slow cinematic zoom on the active slide (disabled for reduced motion). */
+  kenBurns?: boolean;
+  className?: string;
 };
 
 // Minimum horizontal travel in pixels for a touch to count as a swipe.
@@ -25,6 +30,9 @@ export function HeroCarousel({
   images,
   intervalMs = 4000,
   transitionMs = 1000,
+  sizes = "(min-width: 1024px) 50vw, 100vw",
+  kenBurns = false,
+  className,
 }: HeroCarouselProps) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -99,42 +107,51 @@ export function HeroCarousel({
     else goPrev();
   }
 
+  const zoom = kenBurns && !reducedMotion;
+
   return (
     <div
       role="region"
       aria-roledescription="carousel"
       aria-label="SilberArrows facility and team"
-      className="absolute inset-0 touch-pan-y select-none"
+      className={cn("absolute inset-0 touch-pan-y select-none", className)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {images.map((img, i) => (
-        <div
-          key={img.src}
-          aria-hidden={i !== active}
-          className={cn(
-            "absolute inset-0 ease-out",
-            i === active ? "opacity-100" : "opacity-0"
-          )}
-          style={{ transitionProperty: "opacity", transitionDuration: `${transitionMs}ms` }}
-        >
-          {loaded.has(i) && (
-            <Image
-              src={img.src}
-              alt={img.alt}
-              fill
-              priority={i === 0}
-              fetchPriority={i === 0 ? "high" : "auto"}
-              loading={i === 0 ? "eager" : "lazy"}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover object-center"
-              draggable={false}
-            />
-          )}
-        </div>
-      ))}
+      {images.map((img, i) => {
+        const isActive = i === active;
+        return (
+          <div
+            key={img.src}
+            aria-hidden={!isActive}
+            className={cn(
+              "absolute inset-0 ease-out",
+              isActive ? "opacity-100" : "opacity-0",
+              isActive && zoom && "anim-kenburns"
+            )}
+            style={{
+              transitionProperty: "opacity",
+              transitionDuration: `${transitionMs}ms`,
+            }}
+          >
+            {loaded.has(i) && (
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                priority={i === 0}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                loading={i === 0 ? "eager" : "lazy"}
+                sizes={sizes}
+                className="object-cover object-center"
+                draggable={false}
+              />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

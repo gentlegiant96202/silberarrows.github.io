@@ -1,6 +1,17 @@
-import { Star, ShieldCheck, Truck, Award, BadgePercent } from "lucide-react";
+import {
+  Star,
+  ShieldCheck,
+  Truck,
+  Award,
+  BadgePercent,
+  MapPin,
+  Clock,
+} from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
-import { HeroCarousel, type HeroCarouselImage } from "@/components/sections/HeroCarousel";
+import {
+  HeroCarousel,
+  type HeroCarouselImage,
+} from "@/components/sections/HeroCarousel";
 import { site } from "@/lib/site";
 import { preserveBrandWrap } from "@/lib/utils";
 
@@ -63,248 +74,199 @@ export function Hero({
   badges = site.badges,
 }: HeroProps) {
   return (
-    <section className="relative overflow-hidden">
-      {/* Ambient backdrop */}
-      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
-      {/* Mobile: silver glow seated directly behind the heading so the text
-          area reads with depth instead of flat black */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-16 h-[460px] w-[560px] -translate-x-1/2 opacity-70 md:hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(212,212,216,0.22), rgba(174,174,179,0.10) 38%, transparent 70%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute -top-32 left-0 h-[600px] w-[800px] opacity-40"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(212,212,216,0.18), transparent 60%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-32 right-0 h-[500px] w-[800px] opacity-30"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(174,174,179,0.14), transparent 60%)",
-        }}
-      />
+    <section className="relative isolate overflow-clip">
+      {/* ── Full-bleed cinematic backdrop ─────────────────────────────── */}
+      <div className="absolute inset-0 -z-10">
+        <HeroCarousel images={heroCarouselImages} sizes="100vw" kenBurns />
+        <div className="hero-scrim pointer-events-none absolute inset-0" />
+        <div className="bg-grid pointer-events-none absolute inset-0 opacity-[0.12]" />
+        {/* Blend out of the (black) header and into the next section */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[color:var(--color-ink-950)] to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[color:var(--color-ink-950)]" />
+      </div>
 
-      <div className="container-page relative z-10 pt-8 pb-16 md:pt-8 md:pb-14">
-        <div
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-          aria-hidden
-        >
-          <div className="absolute inset-0 hero-geo-depth opacity-90 md:opacity-100" />
-          <div className="absolute inset-0 hero-rim-glow" />
-        </div>
-
-        <div className="relative grid items-stretch gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-          {/* LEFT — copy; lg pt/pb matches frame insets (top-5 / bottom-5) */}
-          <div className="relative flex min-h-0 flex-col lg:h-full lg:pt-5 lg:pb-5">
-            <div>
-              <div className="anim-fade silver-chip inline-flex items-center gap-2 rounded-full px-3 py-1 backdrop-blur-md">
-                <span className="silver-dot inline-flex h-2 w-2 rounded-full" />
-                <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-silver-shine">
-                  {tagline}
-                </span>
-              </div>
-
-              <h1 className="anim-rise mt-6 font-display font-bold tracking-[-0.02em]">
-                {titleParts.map((p, i) => (
-                  <span
-                    key={i}
-                    className="block text-[2.5rem] leading-[0.98] max-md:whitespace-normal md:text-[3.25rem] md:leading-[0.85] md:whitespace-nowrap lg:text-[3.75rem] xl:text-[4rem]"
-                    style={
-                      { animationDelay: `${0.05 * i}s` } as React.CSSProperties
-                    }
-                  >
-                    {p.highlight ? (
-                      <span className="text-silver-shine">{p.line}</span>
-                    ) : (
-                      <span className="text-white/95">{p.line}</span>
-                    )}
-                  </span>
-                ))}
-              </h1>
-
-              {/* Offer hook — primary conversion driver */}
-              <div className="anim-rise mt-5">
-                <div className="inline-flex items-center gap-2.5 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-2.5 backdrop-blur-md">
-                  <BadgePercent
-                    size={18}
-                    className="shrink-0 text-emerald-300"
-                  />
-                  <p className="text-sm font-semibold text-white sm:text-[15px]">
-                    <span className="text-emerald-300">20% OFF</span> your first
-                    Minor or Major Service
-                  </p>
-                </div>
-                <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-silver-500)]">
-                  <span className="inline-flex items-center gap-1 font-medium text-[color:var(--color-silver-300)]">
-                    <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
-                    Limited slots this month
-                  </span>
-                  <span aria-hidden>·</span>
-                  <span>New customers only. T&amp;Cs apply.</span>
-                </p>
-              </div>
-
-              <div className="anim-rise mt-5 flex max-w-xl flex-col gap-2 text-base leading-snug text-[color:var(--color-silver-300)] md:gap-2 md:text-lg md:leading-snug">
-                {subtitleParagraphs(subtitle).map((sentence, i) => (
-                  <p key={i} className="m-0 leading-snug">
-                    {preserveBrandWrap(sentence)}
-                  </p>
-                ))}
-              </div>
+      <div className="container-page relative z-10 flex flex-col pt-8 pb-12 md:pt-12 md:pb-14 lg:min-h-[min(calc(100svh-7rem),54rem)]">
+        <div className="grid flex-1 gap-10 lg:grid-cols-12 lg:gap-8">
+          {/* ── LEFT — copy ──────────────────────────────────────────── */}
+          <div className="flex flex-col justify-center lg:col-span-7">
+            <div className="anim-fade silver-chip inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 backdrop-blur-md">
+              <span className="silver-dot inline-flex h-2 w-2 rounded-full" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-silver-shine">
+                {tagline}
+              </span>
             </div>
 
-            {/* BOTTOM GROUP — lg:pb-5 on parent + mt-auto lines up with glass card (bottom-5) */}
-            <div className="mt-8 lg:mt-auto">
-              <div className="anim-rise flex flex-wrap gap-2.5">
-                {badges.map((b, i) => (
-                  <span
-                    key={i}
-                    className="silver-chip inline-flex items-center gap-2 rounded-full backdrop-blur-md px-4 py-1.5 text-xs"
-                  >
-                    {i === 0 ? (
-                      <ShieldCheck
-                        size={12}
-                        className="text-[color:var(--color-platinum)]"
-                      />
-                    ) : (
-                      <Truck
-                        size={12}
-                        className="text-[color:var(--color-platinum)]"
-                      />
-                    )}
-                    {b}
-                  </span>
-                ))}
-              </div>
-
-              {/* Primary CTA — WhatsApp lives in the sticky footer */}
-              <div className="anim-rise mt-5">
-                <CTAButton label="Get a Free Quote" size="lg" />
-              </div>
-
-              {/* Proof — real Google rating */}
-              <div className="anim-rise mt-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
-                <a
-                  href="#reviews"
-                  className="group inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 transition hover:bg-white/10"
+            <h1 className="anim-rise text-display mt-6 font-display font-bold">
+              {titleParts.map((p, i) => (
+                <span
+                  key={i}
+                  className="block text-[2.5rem] sm:text-[3.25rem] md:text-[4rem] lg:text-[3.75rem] xl:text-[4.25rem] 2xl:text-[4.75rem]"
+                  style={
+                    { animationDelay: `${0.05 * i}s` } as React.CSSProperties
+                  }
                 >
-                  <span className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={14}
-                        className="fill-[color:var(--color-platinum)] text-[color:var(--color-platinum)]"
-                      />
-                    ))}
-                  </span>
-                  <span className="text-left leading-tight">
-                    <span className="block text-sm font-semibold text-white">
-                      {site.reviews.rating}{" "}
-                      <span className="text-[color:var(--color-silver-500)] font-normal">
-                        / 5
-                      </span>
-                    </span>
-                    <span className="block text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
-                      {site.reviews.count} Google Reviews
-                    </span>
-                  </span>
-                </a>
-              </div>
+                  {p.highlight ? (
+                    <span className="text-silver-shine">{p.line}</span>
+                  ) : (
+                    <span className="text-white/95">{p.line}</span>
+                  )}
+                </span>
+              ))}
+            </h1>
 
-              {/* Quantified trust strip — single line on mobile at all sizes */}
-              <div className="anim-rise mt-6 flex flex-nowrap items-center justify-between gap-x-2 whitespace-nowrap text-[10px] text-[color:var(--color-silver-400)] sm:flex-wrap sm:justify-start sm:gap-x-5 sm:gap-y-2 sm:text-xs">
-                {site.stats.map((s, i) => (
-                  <span key={i} className="inline-flex items-center gap-1.5 sm:gap-2">
-                    {i > 0 && (
-                      <span className="h-3 w-px shrink-0 bg-white/15" aria-hidden />
-                    )}
-                    <span>
-                      <strong className="font-semibold text-white">
-                        {s.value}
-                      </strong>{" "}
-                      {s.label}
+            {/* Offer hook — primary conversion driver */}
+            <div className="anim-rise mt-6">
+              <div className="inline-flex items-center gap-2.5 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-2.5 backdrop-blur-md">
+                <BadgePercent
+                  size={18}
+                  className="shrink-0 text-emerald-300"
+                />
+                <p className="text-sm font-semibold text-white sm:text-[15px]">
+                  <span className="text-emerald-300">20% OFF</span> your first
+                  Minor or Major Service
+                </p>
+              </div>
+              <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-silver-500)]">
+                <span className="inline-flex items-center gap-1 font-medium text-[color:var(--color-silver-300)]">
+                  <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
+                  Limited slots this month
+                </span>
+                <span aria-hidden>·</span>
+                <span>New customers only. T&amp;Cs apply.</span>
+              </p>
+            </div>
+
+            <div className="anim-rise mt-6 flex max-w-xl flex-col gap-2 text-base leading-snug text-[color:var(--color-silver-300)] md:text-lg">
+              {subtitleParagraphs(subtitle).map((sentence, i) => (
+                <p key={i} className="m-0 leading-snug">
+                  {preserveBrandWrap(sentence)}
+                </p>
+              ))}
+            </div>
+
+            <div className="anim-rise mt-6 flex flex-wrap gap-2.5">
+              {badges.map((b, i) => (
+                <span
+                  key={i}
+                  className="silver-chip inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs backdrop-blur-md"
+                >
+                  {i === 0 ? (
+                    <ShieldCheck
+                      size={12}
+                      className="text-[color:var(--color-platinum)]"
+                    />
+                  ) : (
+                    <Truck
+                      size={12}
+                      className="text-[color:var(--color-platinum)]"
+                    />
+                  )}
+                  {b}
+                </span>
+              ))}
+            </div>
+
+            {/* Primary CTA + proof — WhatsApp lives in the sticky footer */}
+            <div className="anim-rise mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <CTAButton
+                label="Get a Free Quote"
+                size="lg"
+                className="w-full sm:w-auto"
+              />
+              <a
+                href="#reviews"
+                className="group inline-flex items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-md transition hover:border-white/20 hover:bg-white/10 sm:justify-start"
+              >
+                <span className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={14}
+                      className="fill-[color:var(--color-platinum)] text-[color:var(--color-platinum)]"
+                    />
+                  ))}
+                </span>
+                <span className="text-left leading-tight">
+                  <span className="block text-sm font-semibold text-white">
+                    {site.reviews.rating}{" "}
+                    <span className="font-normal text-[color:var(--color-silver-500)]">
+                      / 5
                     </span>
                   </span>
-                ))}
-              </div>
+                  <span className="block text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
+                    {site.reviews.count} Google Reviews
+                  </span>
+                </span>
+              </a>
             </div>
           </div>
 
-          {/* RIGHT — framed visual */}
-          <div className="relative anim-fade">
-            <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-square overflow-hidden rounded-3xl ring-chrome">
-              {/* chrome top hairline */}
-              <div className="pointer-events-none absolute inset-x-6 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
-
-              {/* Auto-rotating exterior-to-interior carousel */}
-              <HeroCarousel images={heroCarouselImages} />
-
-              {/* Gradient overlays for depth — lighter on mobile so the image
-                  doesn't read as a dark block, stronger on desktop for legibility */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent md:from-black/85 md:via-black/30" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/20 to-transparent md:from-black/40" />
-
-              {/* Top-left badge: established */}
-              <div className="pointer-events-none silver-chip absolute left-5 top-5 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md">
+          {/* ── RIGHT — establishment + location plates ──────────────── */}
+          <div className="anim-fade flex flex-col justify-between gap-6 lg:col-span-5 lg:items-end">
+            <div className="flex w-full items-center justify-between gap-3 lg:justify-end">
+              <span className="silver-chip inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md">
                 <Award
                   size={11}
                   className="text-[color:var(--color-platinum)]"
                 />
                 Est. {site.established}
-              </div>
+              </span>
 
-              {/* Bottom info plate */}
-              <div className="pointer-events-none absolute inset-x-5 bottom-5 z-10">
-                <div className="relative overflow-hidden rounded-2xl glass-card ring-silver p-5 backdrop-blur-xl">
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
-                  <div className="flex items-center gap-3">
-                    <span className="silver-bar" />
-                    <p className="text-[10px] uppercase tracking-[0.28em] font-semibold text-silver-shine">
-                      Dubai Service Centre
-                    </p>
-                  </div>
-                  <p className="mt-2 text-sm md:text-base text-white">
-                    Al Manara Street, Al Quoz
-                  </p>
-                  <p className="mt-1 text-xs text-[color:var(--color-silver-400)]">
-                    {site.hours}
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating stat plate top-right */}
-              <div className="pointer-events-none hidden md:block absolute right-5 top-5 z-10">
-                <div className="relative overflow-hidden rounded-xl glass-card ring-chrome px-4 py-3 backdrop-blur-xl">
-                  <p className="text-2xl font-semibold text-silver-shine leading-none">
-                    {site.stats[0].value}
-                  </p>
-                  <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-silver-300)]">
-                    {site.stats[0].label}
-                  </p>
-                </div>
+              {/* Desktop-only headline stat; the stats bar below carries it on mobile */}
+              <div className="surface hidden rounded-xl px-4 py-3 backdrop-blur-xl lg:block">
+                <p className="text-2xl font-semibold leading-none text-silver-shine">
+                  {site.stats[0].value}
+                </p>
+                <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-silver-300)]">
+                  {site.stats[0].label}
+                </p>
               </div>
             </div>
 
-            {/* Decorative outer glow */}
-            <div
-              className="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] opacity-40"
-              style={{
-                background:
-                  "radial-gradient(ellipse at center, rgba(229,228,226,0.18), transparent 65%)",
-              }}
-            />
+            <div className="surface relative w-full overflow-hidden rounded-2xl p-5 backdrop-blur-xl md:p-6 lg:max-w-sm">
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
+              <div className="flex items-center gap-3">
+                <span className="silver-bar" />
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-silver-shine">
+                  Dubai Service Centre
+                </p>
+              </div>
+              <div className="mt-4 flex items-start gap-3">
+                <MapPin
+                  size={16}
+                  className="mt-0.5 shrink-0 text-[color:var(--color-silver-300)]"
+                />
+                <p className="text-sm text-white md:text-base">
+                  Al Manara Street, Al Quoz
+                </p>
+              </div>
+              <div className="mt-2.5 flex items-start gap-3">
+                <Clock
+                  size={16}
+                  className="mt-0.5 shrink-0 text-[color:var(--color-silver-300)]"
+                />
+                <p className="text-xs text-[color:var(--color-silver-400)] md:text-sm">
+                  {site.hours}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom fade into next section */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[color:var(--color-ink-950)]" />
+        {/* ── Quantified trust — hairline stats bar ────────────────────── */}
+        <div className="anim-rise mt-10 grid grid-cols-3 gap-3 border-t border-white/10 pt-6 md:mt-14 md:gap-8 md:pt-8">
+          {site.stats.map((s, i) => (
+            <div key={i} className="min-w-0">
+              <p className="text-[1.35rem] font-semibold leading-none tracking-tight text-silver-shine sm:text-3xl md:text-4xl lg:text-5xl">
+                {s.value}
+              </p>
+              <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-400)] sm:text-[11px] md:tracking-[0.22em]">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

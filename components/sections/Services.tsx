@@ -9,62 +9,55 @@ export function Services({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        "relative py-20 md:py-28 border-t border-white/5",
+        "relative border-t border-white/[0.06] py-20 md:py-28",
         className
       )}
     >
       <div className="container-page">
-        <SectionHeader
-          eyebrow="Our Services"
-          title="Specialised Mercedes-Benz Solutions"
-          intro="Delivered with precision, premium parts and expertise tailored to one marque."
-        />
+        <div className="reveal">
+          <SectionHeader
+            variant="split"
+            eyebrow="Our Services"
+            title="Specialised Mercedes-Benz Solutions"
+            intro="Delivered with precision, premium parts and expertise tailored to one marque."
+          />
+        </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+        {/* 10 services → 2 columns on phones/tablets, 5 on desktop: no orphans */}
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-16 lg:grid-cols-5">
           {services.map((service) => (
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="group relative block overflow-hidden rounded-2xl ring-chrome silver-glow transition hover:-translate-y-0.5"
+              className="reveal surface group relative block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1"
             >
-              {/* chrome top hairline — matches hero image frame */}
-              <div className="absolute inset-x-4 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent opacity-70" />
-
-              <div className="relative aspect-[200/253] w-full lg:aspect-[250/253]">
+              <div className="relative aspect-[4/5] w-full md:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
                   src={service.hero}
                   alt={service.shortTitle}
                   fill
                   quality={90}
-                  sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition duration-500 group-hover:scale-105 grayscale-[0.15] group-hover:grayscale-0"
+                  sizes="(min-width: 1024px) 20vw, 50vw"
+                  className="object-cover grayscale-[0.3] transition duration-700 ease-out group-hover:scale-[1.06] group-hover:grayscale-0"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-ink-950)] via-[color:var(--color-ink-950)]/45 to-transparent" />
 
-                <span className="silver-tick absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full transition group-hover:scale-110 sm:right-4 sm:top-4">
+                <span className="silver-tick absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full transition duration-300 group-hover:rotate-45 group-hover:scale-110 sm:right-4 sm:top-4">
                   <ArrowUpRight size={14} />
                 </span>
 
-                {/* Glass info plate — same treatment as hero Dubai card */}
-                <div className="absolute inset-x-3 bottom-3 z-10 sm:inset-x-4 sm:bottom-4">
-                  <div className="relative overflow-hidden rounded-2xl glass-card ring-silver p-4 backdrop-blur-xl sm:p-5">
-                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
-
-                    <h3 className="text-[13px] font-semibold leading-snug text-white sm:text-[15px]">
-                      {preserveBrandWrap(service.shortTitle)}
-                    </h3>
-
-                    <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-[color:var(--color-silver-300)] sm:text-[12px]">
-                      {preserveBrandWrap(service.blurb)}
-                    </p>
-
-                    <div className="mt-3 flex items-center gap-2 sm:mt-4">
-                      <span className="silver-bar" />
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-silver-shine">
-                        Learn More
-                      </span>
-                    </div>
+                <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
+                  <h3 className="text-[15px] font-semibold leading-snug tracking-tight text-white sm:text-base">
+                    {preserveBrandWrap(service.shortTitle)}
+                  </h3>
+                  <p className="mt-1.5 line-clamp-2 text-[11.5px] leading-relaxed text-[color:var(--color-silver-300)] sm:text-xs">
+                    {preserveBrandWrap(service.blurb)}
+                  </p>
+                  <div className="mt-3 flex items-center gap-2">
+                    <span className="silver-bar transition-all duration-300 group-hover:w-10" />
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-silver-shine">
+                      Learn More
+                    </span>
                   </div>
                 </div>
               </div>

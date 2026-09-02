@@ -21,7 +21,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-white/5 pt-16 pb-16 md:pt-24 md:pb-24",
+        "relative overflow-clip border-b border-white/[0.06] pt-10 pb-12 md:pt-20 md:pb-20",
         className
       )}
     >
@@ -71,12 +71,12 @@ export function PageHero({
           </nav>
         )}
 
-        <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.01em] text-silver-shine leading-[0.95]">
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
+          <h1 className="text-display anim-rise text-[2.5rem] font-semibold text-silver-shine sm:text-5xl md:text-6xl lg:col-span-7 lg:text-[4.25rem]">
             {preserveBrandWrap(title)}
           </h1>
           {intro && (
-            <p className="mt-6 text-base md:text-lg text-[color:var(--color-silver-300)] leading-relaxed">
+            <p className="anim-rise max-w-xl text-base leading-relaxed text-[color:var(--color-silver-300)] md:text-lg lg:col-span-5 lg:justify-self-end lg:border-l lg:border-white/10 lg:pb-1.5 lg:pl-8">
               {preserveBrandWrap(intro)}
             </p>
           )}

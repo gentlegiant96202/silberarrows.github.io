@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Plus } from "lucide-react";
 import { Hero } from "@/components/sections/Hero";
 import { Reviews } from "@/components/sections/Reviews";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
@@ -16,6 +17,7 @@ import { services, homeFaqs } from "@/lib/services";
 import { team } from "@/lib/content";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { preserveBrandWrap } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "SilberArrows | Mercedes-Benz Service Center Dubai",
@@ -48,36 +50,54 @@ export default function HomePage() {
       <Contracts />
       <LatestPosts />
 
-      <section className="pb-16 md:pb-24" aria-labelledby="home-faqs">
-        <div className="container-page">
-          <div className="mx-auto max-w-3xl">
-            <p className="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-silver-400)]">
-              Frequently Asked Questions
-            </p>
-            <h2
-              id="home-faqs"
-              className="mt-3 text-3xl md:text-4xl font-semibold text-silver-shine"
-            >
-              Mercedes-Benz Service Dubai FAQs
-            </h2>
-            <div className="mt-8 divide-y divide-white/10 rounded-2xl glass-card ring-silver">
-              {homeFaqs.map((faq, i) => (
-                <details
-                  key={i}
-                  className="group px-6 py-5 open:bg-white/[0.02]"
-                >
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-medium text-white marker:hidden list-none">
-                    <span>{faq.question}</span>
-                    <span className="silver-tick inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs transition group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-[color:var(--color-silver-300)]">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
+      <section
+        className="relative border-t border-white/[0.06] py-20 md:py-28"
+        aria-labelledby="home-faqs"
+      >
+        <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-10">
+          {/* Sticky editorial header */}
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32">
+              <div className="flex items-center gap-3">
+                <span className="silver-bar" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-silver-shine">
+                  Frequently Asked Questions
+                </p>
+              </div>
+              <h2
+                id="home-faqs"
+                className="text-display mt-5 text-[2.25rem] font-semibold text-silver-shine sm:text-5xl lg:text-[2.5rem] xl:text-[3rem]"
+              >
+                {preserveBrandWrap("Mercedes-Benz Service Dubai FAQs")}
+              </h2>
             </div>
+          </div>
+
+          {/* Accordion — hairline rows */}
+          <div className="reveal divide-y divide-white/10 border-y border-white/10 lg:col-span-8">
+            {homeFaqs.map((faq, i) => (
+              <details key={i} className="group py-5 md:py-6">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-5 text-left marker:hidden [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-start gap-4">
+                    <span
+                      aria-hidden
+                      className="index-num mt-0.5 hidden text-lg sm:block"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-base font-medium leading-snug text-white transition-colors group-hover:text-[color:var(--color-platinum)] md:text-lg">
+                      {faq.question}
+                    </span>
+                  </span>
+                  <span className="silver-tick mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition duration-300 group-open:rotate-45">
+                    <Plus size={14} strokeWidth={2.5} />
+                  </span>
+                </summary>
+                <p className="mt-4 max-w-2xl whitespace-pre-line text-sm leading-relaxed text-[color:var(--color-silver-300)] sm:pl-12 md:text-[15px]">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

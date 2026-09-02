@@ -11,27 +11,35 @@ export async function LatestPosts() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="pb-16 md:pb-24" aria-labelledby="home-latest-posts">
+    <section
+      className="relative border-t border-white/[0.06] py-20 md:py-28"
+      aria-labelledby="home-latest-posts"
+    >
       <div className="container-page">
-        <SectionHeader
-          eyebrow="The Journal"
-          title="Latest from our Mercedes-Benz workshop"
-          intro="Service guides, technical deep-dives and ownership advice from Dubai's independent Mercedes-Benz specialists."
-        />
+        <div className="reveal">
+          <SectionHeader
+            variant="split"
+            eyebrow="The Journal"
+            title="Latest from our Mercedes-Benz workshop"
+            intro="Service guides, technical deep-dives and ownership advice from Dubai's independent Mercedes-Benz specialists."
+          />
+        </div>
 
         <div
           id="home-latest-posts"
-          className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-12 grid gap-5 md:mt-16 md:grid-cols-2 lg:grid-cols-3"
         >
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
+            <div key={post.id} className="reveal h-full">
+              <PostCard post={post} />
+            </div>
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex justify-center md:mt-12">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 rounded-full silver-chip px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-silver-shine transition hover:scale-[1.02]"
+            className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em]"
           >
             Read all articles
             <ArrowUpRight size={14} />

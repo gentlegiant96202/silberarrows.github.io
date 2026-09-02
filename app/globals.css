@@ -525,6 +525,130 @@
     }
   }
 
+  /* ============================================================
+     Facelift utilities — editorial type, flat surfaces, motion
+     ============================================================ */
+
+  /* Display headings: tight tracking, compact leading, balanced wrap */
+  .text-display {
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+
+  /* Flat, modern card surface. Quieter than .glass-card; brightens on hover */
+  .surface {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.035) 0%,
+      rgba(255, 255, 255, 0.012) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .surface:hover {
+    border-color: rgba(229, 228, 226, 0.28);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  }
+
+  /* Large faint index numerals (01, 02 …) */
+  .index-num {
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.1);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s ease;
+  }
+  .group:hover .index-num {
+    color: rgba(229, 228, 226, 0.32);
+  }
+
+  /* Horizontal snap scroller without a visible scrollbar */
+  .scroll-x {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scroll-x::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hero: directional scrim over the full-bleed carousel.
+     Mobile — dark from the bottom so stacked copy stays legible.
+     Desktop — dark from the left so the image breathes on the right. */
+  .hero-scrim {
+    background: linear-gradient(
+      to top,
+      rgba(5, 5, 5, 1) 0%,
+      rgba(5, 5, 5, 0.9) 40%,
+      rgba(5, 5, 5, 0.62) 100%
+    );
+  }
+  @media (min-width: 1024px) {
+    .hero-scrim {
+      background:
+        linear-gradient(
+          to right,
+          rgba(5, 5, 5, 0.97) 0%,
+          rgba(5, 5, 5, 0.9) 36%,
+          rgba(5, 5, 5, 0.5) 66%,
+          rgba(5, 5, 5, 0.28) 100%
+        ),
+        linear-gradient(
+          to top,
+          rgba(5, 5, 5, 0.96) 0%,
+          rgba(5, 5, 5, 0.25) 32%,
+          rgba(5, 5, 5, 0.12) 100%
+        );
+    }
+  }
+
+  /* Slow cinematic zoom on the active hero slide */
+  .anim-kenburns {
+    animation: kenburns 9s ease-out both;
+    will-change: transform;
+  }
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  /* Scroll-driven reveal. Pure CSS progressive enhancement: browsers without
+     animation-timeline (or users preferring reduced motion) simply see the
+     content. Note: only works inside sections that are NOT scroll containers,
+     so sections that clip use `overflow-clip`, not `overflow-hidden`. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: revealIn linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 14%;
+      }
+    }
+  }
+  @keyframes revealIn {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .prose-blog {
     color: var(--color-silver-200);
     font-size: 1rem;

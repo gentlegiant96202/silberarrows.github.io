@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { RotateCcw } from "lucide-react";
 import {
   getServiceCareModels,
   getServiceCareVariants,
@@ -15,10 +14,11 @@ import {
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { Select } from "@/components/sections/contracts/Select";
 import { TierCard } from "@/components/sections/contracts/TierCard";
+import { QuotePanel } from "@/components/sections/contracts/QuotePanel";
 import { cn } from "@/lib/utils";
 
 const STARTING = getServiceCareStartingPrices();
-const HINT = "Pick your model above for your exact price";
+const HINT = "Select your model above for exact pricing";
 
 function buildMessage(
   tier: "Standard" | "Premium",
@@ -83,64 +83,62 @@ export function ServiceCareCalculator({ className }: { className?: string }) {
     ? `${variant}${resolvedYear !== "N/A" ? ` · ${resolvedYear}` : ""}`
     : null;
 
+  const stepsTotal = hasYears ? 3 : 2;
+  const stepsDone = (model ? 1 : 0) + (variant ? 1 : 0) + (hasYears && year ? 1 : 0);
+
   return (
     <section
-      className={cn("relative py-20 md:py-28 border-t border-white/5", className)}
+      className={cn(
+        "relative border-t border-white/[0.06] py-20 md:py-28",
+        className
+      )}
     >
       <div className="container-page">
-        <SectionHeader
-          eyebrow="Service Contracts"
-          title="ServiceCare Maintenance Plans"
-          intro="Prepay your scheduled servicing at today's rates. Choose your model to see Standard and Premium pricing."
-        />
+        <div className="reveal">
+          <SectionHeader
+            variant="split"
+            eyebrow="Service Contracts"
+            title="ServiceCare Maintenance Plans"
+            intro="Prepay your scheduled servicing at today's rates. Choose your model to see Standard and Premium pricing."
+          />
+        </div>
 
-        <div className="anim-rise relative mt-12 w-full rounded-2xl ring-chrome silver-glow bg-gradient-to-b from-white/[0.08] to-white/[0.01] p-6 md:p-8 transition duration-300 hover:-translate-y-0.5">
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
-
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-2.5 w-2.5 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--color-platinum)] opacity-60" />
-                <span className="silver-tick relative inline-flex h-2.5 w-2.5 rounded-full" />
-              </span>
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] font-semibold text-silver-shine">
-                  Build your quote &mdash; interactive
-                </p>
-                <p className="mt-0.5 text-sm text-[color:var(--color-silver-300)]">
-                  {selectedSummary
-                    ? `Showing pricing for ${selectedSummary}`
-                    : "Choose your model and variant to reveal your exact price"}
-                </p>
-              </div>
-            </div>
-            {model && (
-              <button
-                type="button"
-                onClick={reset}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-silver-300)] transition hover:border-white/40 hover:text-white"
-              >
-                <RotateCcw size={13} /> Reset
-              </button>
-            )}
-          </div>
-
+        <QuotePanel
+          className="mt-10 md:mt-12"
+          title={<>Build your quote &mdash; interactive</>}
+          status={
+            selectedSummary
+              ? `Showing pricing for ${selectedSummary}`
+              : "Select your model and variant to view your exact pricing"
+          }
+          stepsDone={stepsDone}
+          stepsTotal={stepsTotal}
+          canReset={!!model}
+          onReset={reset}
+          note={
+            model && variant && hasYears && !year ? (
+              <p className="mt-4 text-sm text-[color:var(--color-silver-300)]">
+                Select your model year to view pricing.
+              </p>
+            ) : null
+          }
+        >
           <div
             className={cn(
-              "mt-20 grid gap-4",
-              hasYears ? "md:grid-cols-3" : "md:grid-cols-2"
+              "grid gap-4",
+              hasYears ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
             )}
           >
-            <div className="relative">
-              <Select
-                label="Start here: Choose your model"
-                value={model}
-                onChange={onModelChange}
-                options={models}
-                placeholder="Select model"
-              />
-            </div>
             <Select
+              step={1}
+              label="Start here: Choose your model"
+              value={model}
+              onChange={onModelChange}
+              options={models}
+              placeholder="Select model"
+            />
+            <Select
+              step={2}
               label="Variant"
               value={variant}
               onChange={onVariantChange}
@@ -150,22 +148,19 @@ export function ServiceCareCalculator({ className }: { className?: string }) {
             />
             {hasYears && (
               <Select
+                step={3}
                 label="Year"
                 value={year}
                 onChange={setYear}
                 options={years}
                 placeholder="Select year"
+                className="sm:col-span-2 lg:col-span-1"
               />
             )}
           </div>
-          {model && variant && hasYears && !year && (
-            <p className="mt-4 text-center text-sm text-[color:var(--color-silver-300)]">
-              Select your model year to reveal pricing.
-            </p>
-          )}
-        </div>
+        </QuotePanel>
 
-        <div className="anim-fade mt-10 grid gap-5 lg:grid-cols-2">
+        <div className="mt-6 grid gap-5 lg:grid-cols-2 lg:gap-6">
           <TierCard
             tierName="Standard"
             coverageLabel={SERVICECARE_TERMS.standard.label}

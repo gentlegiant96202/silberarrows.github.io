@@ -15,48 +15,59 @@ const icons = [Sparkles, Star, Wrench, ClipboardCheck, ShieldCheck, Truck];
 
 export function WhyChooseUs() {
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
+    <section className="relative overflow-clip border-t border-white/[0.06] py-20 md:py-28">
       <div className="absolute inset-0 -z-10">
         <Image
           src="/assets/images/why-choose-us-bg-optimized.webp"
           alt=""
           fill
           sizes="100vw"
-          className="hidden md:block object-cover object-center opacity-[0.18]"
+          className="hidden object-cover object-center opacity-[0.14] md:block"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.95)_0%,rgba(5,5,5,0.85)_50%,rgba(5,5,5,0.95)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.97)_0%,rgba(5,5,5,0.86)_50%,rgba(5,5,5,0.97)_100%)]" />
       </div>
 
       <div className="container-page relative">
-        <SectionHeader
-          eyebrow="Why Choose Us"
-          title="Built For One Marque. Mercedes-Benz Specialists."
-          intro="With over a decade of dedicated experience, we provide unparalleled expertise and premium service exclusively for Mercedes-Benz owners in Dubai."
-        />
+        <div className="reveal">
+          <SectionHeader
+            variant="split"
+            eyebrow="Why Choose Us"
+            title="Built For One Marque. Mercedes-Benz Specialists."
+            intro="With over a decade of dedicated experience, we provide unparalleled expertise and premium service exclusively for Mercedes-Benz owners in Dubai."
+          />
+        </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+        {/* Hairline grid — one cell per reason, indexed 01–06 */}
+        <div className="mt-12 grid border-l border-t border-white/10 sm:grid-cols-2 md:mt-16 lg:grid-cols-3">
           {whyChooseUs.map((item, i) => {
             const Icon = icons[i % icons.length];
             return (
               <div
                 key={item.title}
-                className="group relative overflow-hidden rounded-2xl glass-card ring-silver silver-glow p-4 sm:p-6 transition"
+                className="reveal group relative border-b border-r border-white/10 p-6 transition-colors duration-300 hover:bg-white/[0.03] md:p-8"
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent opacity-60 transition group-hover:opacity-100" />
-                <div className="relative flex h-11 w-11 items-center justify-center rounded-lg ring-chrome bg-gradient-to-b from-white/[0.12] to-white/[0.02]">
-                  <Icon
-                    size={20}
-                    className="text-[color:var(--color-platinum)]"
-                    strokeWidth={1.6}
-                  />
+                <div className="flex items-start justify-between gap-4">
+                  <div className="ring-chrome relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-b from-white/[0.1] to-white/[0.02]">
+                    <Icon
+                      size={20}
+                      strokeWidth={1.6}
+                      className="text-[color:var(--color-platinum)]"
+                    />
+                  </div>
+                  <span
+                    aria-hidden
+                    className="index-num text-4xl md:text-5xl"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-white">
+                <h3 className="mt-8 text-lg font-semibold tracking-tight text-white md:mt-10 md:text-xl">
                   {preserveBrandWrap(item.title)}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-silver-400)]">
+                <p className="mt-2.5 text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[15px]">
                   {preserveBrandWrap(item.body)}
                 </p>
-                <span className="absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(229,228,226,0.18),transparent_70%)] blur-2xl opacity-0 transition group-hover:opacity-100" />
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-70" />
               </div>
             );
           })}
