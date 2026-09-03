@@ -37,14 +37,14 @@ export function PostCard({ post }: PostCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-400)]">
+        <div className="flex items-center gap-2 text-[0.625rem] uppercase tracking-[0.18em] text-[color:var(--color-silver-400)]">
           {post.category?.name ? (
-            <span className="silver-chip rounded-full px-2.5 py-1 text-[9px] font-semibold text-silver-shine">
+            <span className="silver-chip rounded-full px-2.5 py-1 text-[0.5625rem] font-semibold text-silver-shine">
               {post.category.name}
             </span>
           ) : null}
           {post.reading_time_minutes ? (
-            <span className="ml-auto inline-flex items-center gap-1 text-[10px] text-[color:var(--color-silver-500)]">
+            <span className="ml-auto inline-flex items-center gap-1 text-[0.625rem] text-[color:var(--color-silver-500)]">
               <Clock size={11} />
               {post.reading_time_minutes} min read
             </span>

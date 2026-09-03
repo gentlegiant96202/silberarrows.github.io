@@ -61,6 +61,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    /* Fluid root size. Fixed at the browser default (16px) up to 1280px, then
+       scales linearly so the whole rem-based composition grows into wide
+       viewports instead of leaving dead margins or stretching line lengths:
+       1280px → 16px · 1920px → 19px · 2560px+ → 22px (cap).
+       The rem units here resolve against the browser's initial font-size, so
+       user font-size preferences are respected. Tailwind's breakpoints are
+       also rem-in-media-query (initial value), so no breakpoint shifts. */
+    font-size: clamp(1rem, 0.625rem + 0.46875vw, 1.375rem);
   }
 
   body {
@@ -228,7 +236,7 @@
   /* Silver hairline accent — short chrome strip used above eyebrows */
   .silver-bar {
     height: 2px;
-    width: 28px;
+    width: 1.75rem;
     background: linear-gradient(
       90deg,
       transparent,
@@ -378,8 +386,13 @@
     );
   }
 
+  /* Page container. Full-width at every viewport: no fixed max-width cap.
+     Phones keep an exact 1.25rem gutter (edge-bleed scrollers rely on it via
+     -mx-5 / px-5). From md up the gutter is fluid: never below 2rem, then a
+     steady 4% of the viewport so the margin stays proportional on large and
+     ultra-wide screens (768px → 32px · 1280px → 51px · 1920px → 77px). */
   .container-page {
-    max-width: 1280px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1.25rem;
@@ -387,8 +400,8 @@
   }
   @media (min-width: 768px) {
     .container-page {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding-left: max(2rem, 4vw);
+      padding-right: max(2rem, 4vw);
     }
   }
 

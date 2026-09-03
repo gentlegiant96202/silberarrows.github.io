@@ -31,7 +31,7 @@ function Eyebrow({
       )}
     >
       <span className="silver-bar" />
-      <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-silver-shine">
+      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
         {text}
       </p>
       {justify === "center" && <span className="silver-bar" />}

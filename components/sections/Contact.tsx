@@ -50,14 +50,14 @@ export function Contact({
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
             <div className="flex items-center gap-3">
               <span className="silver-bar" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-silver-shine">
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.28em] text-silver-shine">
                 Get in Touch
               </p>
             </div>
             <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white md:text-3xl">
               Speak with a specialist
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[15px]">
+            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[0.9375rem]">
               Speak directly with our Mercedes-Benz specialists for expert
               advice and service booking.
             </p>
@@ -101,7 +101,7 @@ export function Contact({
           </div>
 
           {/* ── Workshop map ──────────────────────────────────────────── */}
-          <div className="reveal ring-chrome relative flex min-h-[380px] flex-col overflow-hidden rounded-3xl lg:col-span-7 lg:min-h-[460px]">
+          <div className="reveal ring-chrome relative flex min-h-[23.75rem] flex-col overflow-hidden rounded-3xl lg:col-span-7 lg:min-h-[28.75rem]">
             <div className="absolute inset-0">
               {mapOpen ? (
                 <iframe
@@ -142,7 +142,7 @@ export function Contact({
 
             <div className="pointer-events-none relative mt-auto p-6 sm:p-8">
               <div className="pointer-events-auto max-w-md">
-                <p className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-silver-300)]">
+                <p className="text-[0.6875rem] uppercase tracking-[0.22em] text-[color:var(--color-silver-300)]">
                   Visit Our Workshop
                 </p>
                 <h3 className="mt-2 text-xl font-semibold tracking-tight text-white md:text-2xl">

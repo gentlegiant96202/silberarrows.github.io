@@ -278,7 +278,7 @@ export function ContactModal({
           <span className="h-px flex-1 bg-white/10" />
           <span
             className={cn(
-              "text-[11px] text-[color:var(--color-silver-500)]",
+              "text-[0.6875rem] text-[color:var(--color-silver-500)]",
               !rtl && "uppercase tracking-[0.18em]"
             )}
           >

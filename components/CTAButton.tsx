@@ -40,7 +40,7 @@ export function CTAButton({
         {sub && (
           <span
             className={cn(
-              "mt-0.5 text-[10px] font-normal normal-case tracking-normal whitespace-nowrap",
+              "mt-0.5 text-[0.625rem] font-normal normal-case tracking-normal whitespace-nowrap",
               variant === "silver" ? "text-black/60" : "text-[color:var(--color-silver-400)]"
             )}
           >

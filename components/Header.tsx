@@ -51,7 +51,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative whitespace-nowrap px-2.5 py-2 text-[13px] xl:text-sm xl:px-3.5 font-medium uppercase tracking-[0.12em] xl:tracking-[0.14em] transition rounded-md",
+                  "relative whitespace-nowrap px-2.5 py-2 text-[0.8125rem] xl:text-sm xl:px-3.5 font-medium uppercase tracking-[0.12em] xl:tracking-[0.14em] transition rounded-md",
                   active
                     ? "text-silver-shine"
                     : "text-[color:var(--color-silver-400)] hover:text-white"

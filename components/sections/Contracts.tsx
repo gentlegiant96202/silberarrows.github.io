@@ -52,7 +52,7 @@ export function Contracts({ className }: { className?: string }) {
                       {plan.name}
                     </h3>
                     {plan.featured && (
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-silver-400)]">
+                      <span className="text-[0.625rem] uppercase tracking-[0.2em] text-[color:var(--color-silver-400)]">
                         Plan
                       </span>
                     )}
@@ -62,7 +62,7 @@ export function Contracts({ className }: { className?: string }) {
                   </p>
                 </div>
                 {plan.featured && (
-                  <span className="silver-chip inline-flex items-center rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em]">
+                  <span className="silver-chip inline-flex items-center rounded-full px-3 py-1 text-[0.625rem] font-semibold uppercase tracking-[0.22em]">
                     Most Popular
                   </span>
                 )}
@@ -100,7 +100,7 @@ export function Contracts({ className }: { className?: string }) {
                       <span className="flex min-w-0 items-center gap-3">
                         <span
                           className={cn(
-                            "inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px]",
+                            "inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.625rem]",
                             included
                               ? "silver-tick"
                               : "border border-white/10 bg-transparent text-[color:var(--color-silver-700)]"

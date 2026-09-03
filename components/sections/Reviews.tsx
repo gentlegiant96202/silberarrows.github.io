@@ -37,7 +37,7 @@ export function Reviews() {
           <div className="lg:sticky lg:top-32">
             <div className="flex items-center gap-3">
               <span className="silver-bar" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-silver-shine">
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
                 Customer Reviews
               </p>
             </div>
@@ -92,7 +92,7 @@ export function Reviews() {
                 className="pointer-events-none absolute -right-2 -top-2 text-white/[0.06]"
               />
               <Stars rating={r.rating} />
-              <blockquote className="mt-4 text-[15px] leading-relaxed text-[color:var(--color-silver-200)]">
+              <blockquote className="mt-4 text-[0.9375rem] leading-relaxed text-[color:var(--color-silver-200)]">
                 “{r.text}”
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3 border-t border-white/[0.06] pt-4">
@@ -103,7 +103,7 @@ export function Reviews() {
                   <span className="text-sm font-semibold text-white">
                     {r.name}
                   </span>
-                  <span className="text-[11px] text-[color:var(--color-silver-500)]">
+                  <span className="text-[0.6875rem] text-[color:var(--color-silver-500)]">
                     Google review · {relativeWhen(r.daysAgo)}
                   </span>
                 </span>

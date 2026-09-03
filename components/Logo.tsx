@@ -10,9 +10,9 @@ const sizeMap = {
   // res so it stays sharp on retina at the desktop size. Height-driven with
   // w-auto so the square source never gets distorted by a flex container.
   responsive: {
-    wrap: "h-16 md:h-[88px]",
-    mark: 112,
-    markClass: "h-16 w-auto md:h-[88px]",
+    wrap: "h-16 md:h-[5.5rem]",
+    mark: 128,
+    markClass: "h-16 w-auto md:h-[5.5rem]",
     text: "text-base",
   },
 } as const;

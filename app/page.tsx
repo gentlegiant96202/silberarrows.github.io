@@ -60,7 +60,7 @@ export default function HomePage() {
             <div className="lg:sticky lg:top-32">
               <div className="flex items-center gap-3">
                 <span className="silver-bar" />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-silver-shine">
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
                   Frequently Asked Questions
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default function HomePage() {
                     <Plus size={14} strokeWidth={2.5} />
                   </span>
                 </summary>
-                <p className="mt-4 max-w-2xl whitespace-pre-line text-sm leading-relaxed text-[color:var(--color-silver-300)] sm:pl-12 md:text-[15px]">
+                <p className="mt-4 max-w-2xl whitespace-pre-line text-sm leading-relaxed text-[color:var(--color-silver-300)] sm:pl-12 md:text-[0.9375rem]">
                   {faq.answer}
                 </p>
               </details>

@@ -64,7 +64,7 @@ export function WhyChooseUs() {
                 <h3 className="mt-8 text-lg font-semibold tracking-tight text-white md:mt-10 md:text-xl">
                   {preserveBrandWrap(item.title)}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[15px]">
+                <p className="mt-2.5 text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[0.9375rem]">
                   {preserveBrandWrap(item.body)}
                 </p>
                 <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-70" />

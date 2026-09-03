@@ -47,15 +47,15 @@ export function Services({ className }: { className?: string }) {
                 </span>
 
                 <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
-                  <h3 className="text-[15px] font-semibold leading-snug tracking-tight text-white sm:text-base">
+                  <h3 className="text-[0.9375rem] font-semibold leading-snug tracking-tight text-white sm:text-base">
                     {preserveBrandWrap(service.shortTitle)}
                   </h3>
-                  <p className="mt-1.5 line-clamp-2 text-[11.5px] leading-relaxed text-[color:var(--color-silver-300)] sm:text-xs">
+                  <p className="mt-1.5 line-clamp-2 text-[0.71875rem] leading-relaxed text-[color:var(--color-silver-300)] sm:text-xs">
                     {preserveBrandWrap(service.blurb)}
                   </p>
                   <div className="mt-3 flex items-center gap-2">
                     <span className="silver-bar transition-all duration-300 group-hover:w-10" />
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-silver-shine">
+                    <span className="text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-silver-shine">
                       Learn More
                     </span>
                   </div>

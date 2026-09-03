@@ -91,7 +91,7 @@ export function Hero({
           <div className="flex flex-col justify-center lg:col-span-7">
             <div className="anim-fade silver-chip inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 backdrop-blur-md">
               <span className="silver-dot inline-flex h-2 w-2 rounded-full" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-silver-shine">
+              <span className="text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-silver-shine">
                 {tagline}
               </span>
             </div>
@@ -121,12 +121,12 @@ export function Hero({
                   size={18}
                   className="shrink-0 text-emerald-300"
                 />
-                <p className="text-sm font-semibold text-white sm:text-[15px]">
+                <p className="text-sm font-semibold text-white sm:text-[0.9375rem]">
                   <span className="text-emerald-300">20% OFF</span> your first
                   Minor or Major Service
                 </p>
               </div>
-              <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-silver-500)]">
+              <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.6875rem] text-[color:var(--color-silver-500)]">
                 <span className="inline-flex items-center gap-1 font-medium text-[color:var(--color-silver-300)]">
                   <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
                   Limited slots this month
@@ -193,7 +193,7 @@ export function Hero({
                       / 5
                     </span>
                   </span>
-                  <span className="block text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
+                  <span className="block text-[0.625rem] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
                     {site.reviews.count} Google Reviews
                   </span>
                 </span>
@@ -204,7 +204,7 @@ export function Hero({
           {/* ── RIGHT — establishment + location plates ──────────────── */}
           <div className="anim-fade flex flex-col justify-between gap-6 lg:col-span-5 lg:items-end">
             <div className="flex w-full items-center justify-between gap-3 lg:justify-end">
-              <span className="silver-chip inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur-md">
+              <span className="silver-chip inline-flex items-center gap-2 rounded-full px-3 py-1 text-[0.625rem] font-semibold uppercase tracking-[0.2em] backdrop-blur-md">
                 <Award
                   size={11}
                   className="text-[color:var(--color-platinum)]"
@@ -217,7 +217,7 @@ export function Hero({
                 <p className="text-2xl font-semibold leading-none text-silver-shine">
                   {site.stats[0].value}
                 </p>
-                <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-silver-300)]">
+                <p className="mt-1 text-[0.5625rem] uppercase tracking-[0.2em] text-[color:var(--color-silver-300)]">
                   {site.stats[0].label}
                 </p>
               </div>
@@ -227,7 +227,7 @@ export function Hero({
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
               <div className="flex items-center gap-3">
                 <span className="silver-bar" />
-                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-silver-shine">
+                <p className="text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-silver-shine">
                   Dubai Service Centre
                 </p>
               </div>
@@ -260,7 +260,7 @@ export function Hero({
               <p className="text-[1.35rem] font-semibold leading-none tracking-tight text-silver-shine sm:text-3xl md:text-4xl lg:text-5xl">
                 {s.value}
               </p>
-              <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-400)] sm:text-[11px] md:tracking-[0.22em]">
+              <p className="mt-2 text-[0.625rem] uppercase tracking-[0.18em] text-[color:var(--color-silver-400)] sm:text-[0.6875rem] md:tracking-[0.22em]">
                 {s.label}
               </p>
             </div>

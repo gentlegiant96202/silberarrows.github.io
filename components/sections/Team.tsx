@@ -28,7 +28,7 @@ export function Team() {
             return (
               <article
                 key={m.name}
-                className="ring-chrome group relative w-[78vw] max-w-[360px] shrink-0 snap-center overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1 md:w-auto md:max-w-none"
+                className="ring-chrome group relative w-[78vw] max-w-[22.5rem] shrink-0 snap-center overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1 md:w-auto md:max-w-none"
               >
                 <div className="absolute inset-x-4 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent opacity-70" />
 
@@ -50,14 +50,14 @@ export function Team() {
                     </h3>
                     <div className="mt-2 flex items-center gap-2">
                       <span className="silver-bar shrink-0" />
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-silver-shine">
+                      <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-silver-shine">
                         {m.role}
                       </p>
                     </div>
-                    <p className="mt-2.5 text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
+                    <p className="mt-2.5 text-[0.625rem] uppercase tracking-[0.16em] text-[color:var(--color-silver-400)]">
                       {preserveBrandWrap(m.cert)}
                     </p>
-                    <p className="mt-2 line-clamp-3 text-[12.5px] leading-snug text-[color:var(--color-silver-200)]">
+                    <p className="mt-2 line-clamp-3 text-[0.78125rem] leading-snug text-[color:var(--color-silver-200)]">
                       {preserveBrandWrap(m.bio)}
                     </p>
                   </div>
