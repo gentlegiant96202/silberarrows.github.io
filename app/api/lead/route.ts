@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
-import { buildLeadUserData, buildLeadPayload } from "@/lib/meta-capi";
+import {
+  buildLeadUserData,
+  buildLeadPayload,
+  getClientIp,
+  isMetaCapiConfigured,
+  sendMetaEvent,
+} from "@/lib/meta-capi";
 import { uploadClickConversion } from "@/lib/google-ads-capi";
 
 const WEBHOOK_URL =
   "https://bothook.io/v1/public/triggers/webhooks/c59aa2c4-f68c-414a-88fe-d601d92b01c3";
-
-function getClientIp(request: NextRequest): string | null {
-  const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return request.headers.get("x-real-ip") || null;
-}
 
 /** Trim + cap a free-text attribution value; returns null when empty. */
 function cleanAttr(value: unknown, max = 256): string | null {
@@ -106,18 +106,15 @@ export async function POST(request: NextRequest) {
 
     await Promise.all(promises);
 
-    const pixelId = process.env.META_PIXEL_ID;
-    const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
-    if (pixelId && accessToken) {
-      const clientIp = getClientIp(request);
-      const clientUserAgent = request.headers.get("user-agent") || null;
-
+    // Meta Conversions API `Lead`, deduplicated against the browser Pixel
+    // `Lead` fired on the thank-you page via the shared eventId.
+    if (isMetaCapiConfigured()) {
       const userData = buildLeadUserData({
         name,
         fullPhone,
         countryCode: countryCode || "+971",
-        clientIp,
-        clientUserAgent,
+        clientIp: getClientIp(request.headers),
+        clientUserAgent: request.headers.get("user-agent") || null,
         fbp: fbp || null,
         fbc: fbc || null,
       });
@@ -131,20 +128,7 @@ export async function POST(request: NextRequest) {
         userData,
       });
 
-      try {
-        const capiUrl = `https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${encodeURIComponent(accessToken)}`;
-        const capiRes = await fetch(capiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!capiRes.ok) {
-          const errText = await capiRes.text();
-          console.error("[CAPI] Meta error:", capiRes.status, errText);
-        }
-      } catch (capiErr) {
-        console.error("[CAPI] Request failed:", capiErr);
-      }
+      await sendMetaEvent(payload);
     }
 
     // Legacy Google Ads API offline conversion upload. DEPRECATED: Google blocks
