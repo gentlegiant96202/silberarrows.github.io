@@ -50,6 +50,7 @@ export function OfferCard({
           fill
           sizes={featured ? "(min-width: 1024px) 42vw, 100vw" : "(min-width: 640px) 30vw, 100vw"}
           className="object-cover grayscale-[0.3] transition duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+          style={{ objectPosition: image.position ?? "center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-ink-950)]/80 via-[color:var(--color-ink-950)]/20 to-transparent lg:bg-gradient-to-r" />
 
@@ -71,7 +72,7 @@ export function OfferCard({
       {/* ── Copy ──────────────────────────────────────────────────────── */}
       <div
         className={cn(
-          "flex flex-col p-6 sm:p-8",
+          "flex min-w-0 flex-col p-6 sm:p-8",
           featured ? "lg:col-span-7 md:p-10 lg:p-12" : "sm:col-span-7"
         )}
       >
@@ -86,7 +87,11 @@ export function OfferCard({
               : "text-2xl sm:text-3xl"
           )}
         >
-          <BrandText text={offer.title} />
+          {(offer.titleLines ?? [offer.title]).map((line) => (
+            <span key={line} className="block">
+              <BrandText text={line} />
+            </span>
+          ))}
         </h2>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-[color:var(--color-silver-300)] md:text-[0.9375rem]">
           {preserveBrandWrap(offer.summary)}

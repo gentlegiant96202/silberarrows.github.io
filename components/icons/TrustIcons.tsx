@@ -160,6 +160,19 @@ export function ContractIcon(props: TrustIconProps) {
   );
 }
 
+/** Open-ended wrench — specialist Mercedes-Benz tooling. */
+export function ToolingIcon(props: TrustIconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M9.2 17.2c-1.9-4.6.3-9.8 4.9-11.7 4.6-1.9 9.8.3 11.7 4.9.8 1.8.9 3.8.4 5.6" />
+      <path d="M9.2 17.2c1.2 2.8 3.6 4.8 6.5 5.5" />
+      <path d="M16.2 9.4l4.4 3.4M13.6 19.8l4.8-3.8" />
+      <path d="M22.8 21.2 L37.4 41.6" />
+      <path d="M35.4 43.8c2.7 1.9 6.5 1.3 8.4-1.4 1.9-2.7 1.3-6.5-1.4-8.4" />
+    </IconBase>
+  );
+}
+
 /** Enclosed (closed-box) recovery truck — collection & delivery. */
 export function RecoveryTruckIcon(props: TrustIconProps) {
   return (

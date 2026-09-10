@@ -7,12 +7,13 @@ import {
   POSTS_PER_PAGE,
 } from "@/lib/blog/queries";
 import { getActiveOffers, OFFERS_PATH, offerPath } from "@/lib/offers";
+import { evergreenDates } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 const baseUrl = site.url;
 
 const lastModified = new Date(
-  process.env.VERCEL_GIT_COMMIT_SHA ? Date.now() : "2026-05-14T00:00:00.000Z"
+  process.env.VERCEL_GIT_COMMIT_SHA ? Date.now() : evergreenDates.modified
 );
 
 export const revalidate = 600;
@@ -45,6 +46,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/service-contracts`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/extended-warranty`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,

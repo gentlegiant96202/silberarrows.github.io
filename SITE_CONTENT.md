@@ -14,9 +14,12 @@ Image asset path is `/assets/images/...` (full URL = `https://mercedes-benz.silb
 
 ### Desktop Navigation Links
 - Home — `/`
-- Services — `/services/`
-- Service Pricing — `/service-pricing/`
-- Service Contracts — `/service-contracts/`
+- Services — `/services/` (dropdown)
+  - Service Pricing — `/service-pricing/`
+  - Service Contracts — `/service-contracts/`
+  - Extended Warranty — `/extended-warranty/`
+- Offers — `/offers/`
+- Blog — `/blog/`
 - Contact — `/contact/`
 
 ### Header Address

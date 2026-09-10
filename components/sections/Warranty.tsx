@@ -11,7 +11,7 @@ import { SectionHeader } from "@/components/sections/SectionHeader";
 import { cn } from "@/lib/utils";
 
 const STARTING = getWarrantyStartingPrices();
-const PRICING_HREF = "/service-contracts#warranty";
+const PRICING_HREF = "/extended-warranty";
 
 /** Human label for a comparison-table cell, or null for a bare tick. */
 function cellLabel(value: string): string | null {
@@ -25,7 +25,7 @@ function cellLabel(value: string): string | null {
  * Homepage teaser for the Extended Warranty programme — the sibling of
  * `Contracts`: same split header, same two-card layout, same tier styling.
  * Prices are the lowest across all models and link through to the
- * per-model calculator on the contracts page for an exact figure.
+ * per-model calculator on the Extended Warranty page for an exact figure.
  */
 export function Warranty({ className }: { className?: string }) {
   return (
@@ -179,7 +179,7 @@ export function Warranty({ className }: { className?: string }) {
         </div>
 
         <p className="mt-6 text-xs text-[color:var(--color-silver-500)]">
-          Lowest price across the range. Select your model on the contracts
+          Lowest price across the range. Select your model on the warranty
           page for exact Standard and Premium pricing, including AMG variants.
         </p>
       </div>

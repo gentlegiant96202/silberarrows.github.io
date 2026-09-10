@@ -6,6 +6,16 @@ export function absoluteUrl(path: string): string {
   return `${site.url}${p}`;
 }
 
+/**
+ * Editorial dates for evergreen (non-blog) pages. Structured data must not
+ * emit a fresh `dateModified` on every render — Google treats churning dates
+ * as a spam signal — so bump `modified` deliberately when page copy changes.
+ */
+export const evergreenDates = {
+  published: "2024-01-15T00:00:00.000Z",
+  modified: "2026-05-14T00:00:00.000Z",
+} as const;
+
 export const defaultOgImage = {
   url: absoluteUrl("/og-image.jpg"),
   width: 1200,

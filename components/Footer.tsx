@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { nav, site } from "@/lib/site";
+import { flattenNav, site } from "@/lib/site";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
 
@@ -36,7 +36,7 @@ export function Footer() {
               Navigate
             </h4>
             <ul className="mt-4 space-y-2.5">
-              {nav.map((item) => (
+              {flattenNav().map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}

@@ -7,14 +7,24 @@ import type {
   BlogPostListItem,
 } from "@/lib/blog/types";
 
-const POST_LIST_FIELDS = `
+/**
+ * Column list for post rows. `innerCategory` switches the category embed to
+ * an inner join: PostgREST only lets a filter on an embedded column
+ * (`category.slug`) restrict the *parent* rows when the embed is `!inner`;
+ * otherwise every post comes back with a null category for non-matches.
+ */
+function postListFields(innerCategory = false): string {
+  const categoryJoin = innerCategory ? "categories!inner" : "categories";
+  return `
   id, slug, title, excerpt, hero_image, hero_image_alt,
   reading_time_minutes, seo_title, seo_description, og_image,
   published, published_at, created_at, updated_at,
   author:authors ( id, slug, name, role, bio, avatar_url ),
-  category:categories ( id, slug, name, description )
+  category:${categoryJoin} ( id, slug, name, description )
 `;
+}
 
+const POST_LIST_FIELDS = postListFields();
 const POST_FULL_FIELDS = `${POST_LIST_FIELDS}, body`;
 
 export const POSTS_PER_PAGE = 9;
@@ -58,7 +68,7 @@ async function loadPosts(options: {
 
   let query = supabase
     .from("posts")
-    .select(POST_LIST_FIELDS, { count: "exact" })
+    .select(postListFields(!!categorySlug), { count: "exact" })
     .eq("published", true)
     .order("published_at", { ascending: false })
     .range(from, to);
@@ -77,7 +87,7 @@ async function loadPosts(options: {
   }
 
   const posts: BlogPostListItem[] = (data ?? []).map((row) =>
-    normalizePost(row as RawPost) as unknown as BlogPostListItem
+    normalizePost(row as unknown as RawPost) as unknown as BlogPostListItem
   );
   const total = count ?? posts.length;
   const totalPages = Math.max(1, Math.ceil(total / perPage));
@@ -101,7 +111,7 @@ async function loadPostBySlug(slug: string): Promise<BlogPost | null> {
     return null;
   }
   if (!data) return null;
-  return normalizePost(data as RawPost) as unknown as BlogPost;
+  return normalizePost(data as unknown as RawPost) as unknown as BlogPost;
 }
 
 async function loadAllPublishedSlugs(): Promise<
@@ -173,7 +183,7 @@ async function loadRelatedPosts(
     return [];
   }
   return ((data ?? []).map((row) =>
-    normalizePost(row as RawPost) as unknown as BlogPostListItem
+    normalizePost(row as unknown as RawPost) as unknown as BlogPostListItem
   ));
 }
 

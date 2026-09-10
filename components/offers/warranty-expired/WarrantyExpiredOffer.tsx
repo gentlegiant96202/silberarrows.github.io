@@ -92,7 +92,7 @@ export function WarrantyExpiredOffer({ offer }: { offer: Offer }) {
         title="ServiceCare Plans"
         intro="Prepaid servicing for your Mercedes-Benz. Lock in today's rates and let us take care of the schedule."
         context={offerLeadContext(offer)}
-        pricingHref="/service-contracts#servicecare"
+        pricingHref="/service-contracts"
         vatNote={SERVICECARE_TERMS.vatNote}
         footnote="Service interval: 15,000 km / 12 months · Excl. 5% VAT"
         tiers={[
@@ -128,7 +128,7 @@ export function WarrantyExpiredOffer({ offer }: { offer: Offer }) {
         title="Certified Warranty"
         intro="Continued protection for your Mercedes-Benz after manufacturer cover ends. Transferable, UAE-wide, labour and materials included."
         context={offerLeadContext(offer)}
-        pricingHref="/service-contracts#warranty"
+        pricingHref="/extended-warranty"
         vatNote={WARRANTY_TERMS.vatNote}
         footnote={`Warranty term: ${WARRANTY_TERMS.coverageMonths} months / ${WARRANTY_TERMS.additionalKm.toLocaleString()} km · Excl. 5% VAT`}
         tiers={[

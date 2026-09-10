@@ -3,7 +3,9 @@ import type { ComponentType } from "react";
 import { notFound } from "next/navigation";
 import { Contact } from "@/components/sections/Contact";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { OfferSchema } from "@/components/OfferSchema";
 import { OfferViewTracker } from "@/components/offers/OfferViewTracker";
+import { TenPlusOffer } from "@/components/offers/ten-plus/TenPlusOffer";
 import { WarrantyExpiredOffer } from "@/components/offers/warranty-expired/WarrantyExpiredOffer";
 import {
   getActiveOffers,
@@ -23,6 +25,7 @@ import { site } from "@/lib/site";
  * /lp/[slug] branches on intent.
  */
 const OFFER_BODIES: Record<string, ComponentType<{ offer: Offer }>> = {
+  "mercedes-benz-over-10-years-old-service-dubai": TenPlusOffer,
   "mercedes-benz-warranty-expired-service-contract-dubai": WarrantyExpiredOffer,
 };
 
@@ -80,6 +83,7 @@ export default async function OfferPage({
           { name: offer.shortTitle, href: offerPath(offer) },
         ]}
       />
+      <OfferSchema offer={offer} />
       <OfferViewTracker context={offerLeadContext(offer)} />
       <Body offer={offer} />
       <Contact />

@@ -12,6 +12,7 @@
  */
 
 import type { LeadContext } from "@/lib/analytics";
+import { getServiceCareStartingPrices } from "@/lib/serviceWarrantyPricing";
 
 export const OFFERS_PATH = "/offers";
 
@@ -37,6 +38,11 @@ export type Offer = {
   shortTitle: string;
   /** Page H1. */
   title: string;
+  /**
+   * Optional H1 / card title as stacked lines (matches a two-line creative).
+   * Falls back to wrapping `title` when omitted.
+   */
+  titleLines?: string[];
   /** Eyebrow above the H1. */
   tagline: string;
   /** One-line hook under the H1. */
@@ -54,11 +60,49 @@ export type Offer = {
   metaTitle: string;
   metaDescription: string;
   keywords: string;
+  /**
+   * Structured-data hints for the `Offer` JSON-LD on the offer page. Either
+   * a lowest "from" price in AED or a percentage discount; both optional.
+   */
+  schema?: {
+    priceFrom?: number;
+    discountPercent?: number;
+  };
   /** Inactive offers 404 and drop out of the index + sitemap. */
   active: boolean;
 };
 
 export const offers: Offer[] = [
+  {
+    slug: "mercedes-benz-over-10-years-old-service-dubai",
+    shortTitle: "10+ Preferential Pricing",
+    title: "Is your Mercedes-Benz over 10 years old?",
+    titleLines: ["Is your Mercedes-Benz", "over 10 years old?"],
+    tagline: "Independent Mercedes-Benz Specialists",
+    intro: "Because age should never mean compromising on care.",
+    summary:
+      "Preferential 10+ pricing on specialist Mercedes-Benz care. 25% off labour and 25% off GenuineParts for vehicles aged 10 years and over — the same specialist standard, without compromising as the car gets older.",
+    highlights: [
+      "25% off labour",
+      "25% off Mercedes-Benz GenuineParts",
+      "Factory-trained technicians & XENTRY",
+      "Preferential 10+ pricing",
+    ],
+    badge: "New",
+    image: {
+      src: "/assets/images/offers/ten-plus.jpg",
+      alt: "White Mercedes-Benz with its bonnet open on an open expanse, a SilberArrows technician standing beside it with a diagnostic tablet.",
+      position: "center 52%",
+    },
+    metaTitle:
+      "Mercedes-Benz Over 10 Years Old? 25% Off Labour & Parts Dubai | SilberArrows",
+    metaDescription:
+      "Is your Mercedes-Benz over 10 years old? SilberArrows offers 25% off labour and 25% off Mercedes-Benz GenuineParts for vehicles aged 10+ in Al Quoz, Dubai. Book a 10+ inspection.",
+    keywords:
+      "Mercedes 10 years old Dubai, Mercedes 10+ service Dubai, Mercedes labour discount Dubai, Mercedes GenuineParts discount, older Mercedes specialist Dubai, Mercedes 10 year service Al Quoz, SilberArrows 10 plus offer",
+    schema: { discountPercent: 25 },
+    active: true,
+  },
   {
     slug: "mercedes-benz-warranty-expired-service-contract-dubai",
     shortTitle: "Warranty & Service Contract Expired",
@@ -74,7 +118,6 @@ export const offers: Offer[] = [
       "XENTRY Diagnostics & Mercedes-Benz GenuineParts",
       "Factory-trained technicians",
     ],
-    badge: "New",
     image: {
       src: "/assets/images/offers/warranty-expired.jpg",
       alt: "Black Mercedes-Benz in a darkened workshop with two SilberArrows technicians at a diagnostics station behind it.",
@@ -87,6 +130,7 @@ export const offers: Offer[] = [
       "Mercedes-Benz warranty or service contract expired in Dubai? ServiceCare plans from AED 2,700 and Certified Warranty from AED 3,959 from independent Mercedes-Benz specialists in Al Quoz.",
     keywords:
       "Mercedes warranty expired Dubai, Mercedes-Benz extended warranty Dubai, Mercedes service contract expired, Mercedes ServiceCare plan Dubai, certified warranty Mercedes Dubai, Mercedes out of warranty service Dubai, independent Mercedes specialist Al Quoz",
+    schema: { priceFrom: getServiceCareStartingPrices().standard },
     active: true,
   },
 ];

@@ -50,8 +50,11 @@ export function HeroTrustStrip({
   return (
     <div
       className={cn(
-        // Bleed to the phone gutter so the marquee runs edge to edge.
-        "hero-strip -mx-5 overflow-hidden motion-reduce:overflow-x-auto md:mx-0 xl:overflow-visible",
+        // Bleed to the phone gutter so the marquee runs edge to edge. While
+        // animating the strip is purely decorative: it takes no pointer/touch
+        // input and can't be selected, so a tap never pauses or drags it.
+        // Reduced motion keeps pointer events for the plain scroller.
+        "hero-strip -mx-5 select-none overflow-hidden motion-safe:pointer-events-none motion-reduce:overflow-x-auto md:mx-0 xl:overflow-visible",
         className
       )}
     >

@@ -1,6 +1,14 @@
 import { site } from "@/lib/site";
+import {
+  getServiceCareStartingPrices,
+  getWarrantyStartingPrices,
+  SERVICECARE_TERMS,
+  WARRANTY_TERMS,
+} from "@/lib/serviceWarrantyPricing";
 
 const baseUrl = site.url;
+const SERVICECARE_FROM = getServiceCareStartingPrices();
+const WARRANTY_FROM = getWarrantyStartingPrices();
 
 export function LocalBusinessSchema() {
   const businessSchema = {
@@ -39,7 +47,6 @@ export function LocalBusinessSchema() {
       streetAddress: "Al Manara Street",
       addressLocality: "Al Quoz",
       addressRegion: "Dubai",
-      postalCode: "00000",
       addressCountry: "AE",
     },
     geo: {
@@ -205,20 +212,34 @@ export function LocalBusinessSchema() {
       {
         "@type": "Offer",
         name: "Standard Service Contract",
-        description:
-          "2 Year / 30,000 km Mercedes-Benz maintenance contract including Service A, Service B and brake fluid replacement.",
-        price: "2700",
+        description: `${SERVICECARE_TERMS.standard.label} Mercedes-Benz maintenance contract including Service A, Service B and brake fluid replacement.`,
+        price: String(SERVICECARE_FROM.standard),
         priceCurrency: "AED",
         url: `${baseUrl}/service-contracts`,
       },
       {
         "@type": "Offer",
         name: "Premium Service Contract",
-        description:
-          "4 Year / 60,000 km comprehensive Mercedes-Benz maintenance contract including transmission, coolant and spark plug service.",
-        price: "5800",
+        description: `${SERVICECARE_TERMS.premium.label} comprehensive Mercedes-Benz maintenance contract including transmission, coolant and spark plug service.`,
+        price: String(SERVICECARE_FROM.premium),
         priceCurrency: "AED",
         url: `${baseUrl}/service-contracts`,
+      },
+      {
+        "@type": "Offer",
+        name: "Standard Extended Warranty",
+        description: `${WARRANTY_TERMS.coverageMonths} month / ${WARRANTY_TERMS.additionalKm.toLocaleString()} km Mercedes-Benz extended warranty covering the drivetrain, transferable and valid UAE-wide.`,
+        price: String(WARRANTY_FROM.standard),
+        priceCurrency: "AED",
+        url: `${baseUrl}/extended-warranty`,
+      },
+      {
+        "@type": "Offer",
+        name: "Premium Extended Warranty",
+        description: `${WARRANTY_TERMS.coverageMonths} month / ${WARRANTY_TERMS.additionalKm.toLocaleString()} km comprehensive Mercedes-Benz extended warranty, labour and materials included, transferable and valid UAE-wide.`,
+        price: String(WARRANTY_FROM.premium),
+        priceCurrency: "AED",
+        url: `${baseUrl}/extended-warranty`,
       },
     ],
     brand: { "@type": "Brand", name: "Mercedes-Benz" },

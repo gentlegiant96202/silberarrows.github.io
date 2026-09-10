@@ -76,17 +76,13 @@ function headlineFit(lines: HeroTitleLine[]): string {
 }
 
 /**
- * "15+" + "Years Experience" → ["**15+** Years", "Experience"]: the bold
- * value shares the first line with the label's first word.
+ * "15+" + "Years Experience" → ["15+ Years", "Experience"]: the value shares
+ * the first line with the label's first word, in the same weight as the rest
+ * of the strip.
  */
 function statLines(value: string, label: string): HeroTrustItem["lines"] {
   const [first, ...rest] = label.trim().split(/\s+/);
-  return [
-    <>
-      <b className="font-bold text-cream">{value}</b> {first}
-    </>,
-    rest.join(" "),
-  ];
+  return [`${value} ${first}`, rest.join(" ")];
 }
 
 /**

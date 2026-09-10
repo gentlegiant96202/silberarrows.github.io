@@ -29,7 +29,8 @@ The dev server runs at [http://localhost:3001](http://localhost:3001).
 | `/services`                        | Services index                                       |
 | `/services/[slug]`                 | 10 service detail pages (statically generated)       |
 | `/service-pricing`                 | Transparent pricing tables                           |
-| `/service-contracts`               | Standard / Premium service contracts                 |
+| `/service-contracts`               | ServiceCare Standard / Premium maintenance plans     |
+| `/extended-warranty`               | Extended Warranty Standard / Premium cover           |
 | `/offers`                          | Offers index (data in `lib/offers.ts`)               |
 | `/offers/[slug]`                   | Offer pages; bodies in `components/offers/<offer>/`  |
 | `/contact`                         | Contact + workshop map                               |
@@ -39,7 +40,7 @@ The dev server runs at [http://localhost:3001](http://localhost:3001).
 ## Design System
 
 - **Theme**: black foundation (`#050505 → #1c1c20`) with **silver** accents (`#e5e4e2 → #6c6c72`).
-- **Type**: Inter, with display headings using a vertical silver gradient (`text-silver-shine`).
+- **Type**: Corporate S body with Corporate A serif display headings (`font-display`), silver gradient on hero titles (`text-silver-shine` / `text-hero-gradient`).
 - **UI primitives**: `glass-card`, `ring-silver`, `btn-silver`, `btn-ghost`, `divider-chrome` defined in `app/globals.css`.
 - **Motion**: subtle rise / fade animations, hover lifts, shimmer on key surfaces.
 
@@ -58,6 +59,7 @@ silberarrows-nextjs/
 │   │   └── [slug]/page.tsx
 │   ├── service-pricing/page.tsx
 │   ├── service-contracts/page.tsx
+│   ├── extended-warranty/page.tsx
 │   ├── contact/page.tsx
 │   ├── thank-you/service/page.tsx
 │   └── lp/[slug]/page.tsx

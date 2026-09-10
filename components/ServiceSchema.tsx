@@ -39,7 +39,6 @@ export function ServiceSchema({
         streetAddress: "Al Manara Street",
         addressLocality: "Al Quoz",
         addressRegion: "Dubai",
-        postalCode: "00000",
         addressCountry: "AE",
       },
       geo: {

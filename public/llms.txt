@@ -16,7 +16,7 @@
 - Founded: 2011 (14+ years of Mercedes-Benz specialisation)
 - Vehicles serviced: 10,000+
 - Specialisation: Mercedes-Benz only (no other marques)
-- Reviews: 4.9 out of 5 from 617 Google reviews
+- Reviews: 4.8 out of 5 from 520+ Google reviews
 - Labour rate: AED 375 per hour (excludes Classic, Maybach and McLaren SLR)
 - Warranty: 12 months on all parts and labour
 - Payment accepted: Cash, credit card, debit card, bank transfer
@@ -27,7 +27,8 @@
 - [Homepage](https://mercedes-benz.silberarrows.com/): Overview of SilberArrows, services, team, pricing and contracts.
 - [All Services](https://mercedes-benz.silberarrows.com/services): Index of every Mercedes-Benz service offered.
 - [Service Pricing](https://mercedes-benz.silberarrows.com/service-pricing): Transparent Minor (Service A) and Major (Service B) service pricing per Mercedes-Benz model, including EQ electric range.
-- [Service Contracts](https://mercedes-benz.silberarrows.com/service-contracts): Standard (AED 2,700, 2 years / 30,000 km) and Premium (AED 5,800, 4 years / 60,000 km) maintenance plans.
+- [Service Contracts](https://mercedes-benz.silberarrows.com/service-contracts): ServiceCare prepaid maintenance plans — Standard (from AED 2,700, 2 years / 30,000 km) and Premium (from AED 5,800, 4 years / 60,000 km), with per-model pricing.
+- [Extended Warranty](https://mercedes-benz.silberarrows.com/extended-warranty): Mercedes-Benz extended warranty after manufacturer cover ends — Standard drivetrain cover from AED 3,959 and Premium comprehensive cover from AED 6,599; 12 months / 20,000 km, transferable, UAE-wide, with per-model and AMG pricing.
 - [Offers](https://mercedes-benz.silberarrows.com/offers): Current offers for Mercedes-Benz owners in Dubai.
 - [Warranty & Service Contract Expired](https://mercedes-benz.silberarrows.com/offers/mercedes-benz-warranty-expired-service-contract-dubai): For Mercedes-Benz owners whose manufacturer warranty or service contract has ended — ServiceCare plans from AED 2,700 and Certified Warranty from AED 3,959 (Standard drivetrain cover; Premium comprehensive from AED 6,599; 12 months / 20,000 km, UAE only, transferable).
 - [Blog – The Journal](https://mercedes-benz.silberarrows.com/blog): Service guides, technical deep-dives and ownership advice from the workshop.
@@ -101,6 +102,5 @@
 
 ## Optional
 
-- [Full content for AI](https://mercedes-benz.silberarrows.com/llms-full.txt): Comprehensive long-form reference with every service description, all 29 FAQs, complete pricing table, team profiles and technical glossary.
 - [Sitemap](https://mercedes-benz.silberarrows.com/sitemap.xml): Full machine-readable list of indexable pages.
 - [Robots](https://mercedes-benz.silberarrows.com/robots.txt): Crawler permissions (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Applebot-Extended, Google-Extended, OAI-SearchBot, MistralAI-User, and more — all allowed).

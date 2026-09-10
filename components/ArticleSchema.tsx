@@ -1,3 +1,4 @@
+import { evergreenDates } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 const baseUrl = site.url;
@@ -44,8 +45,8 @@ export function ArticleSchema({
   description,
   url,
   image,
-  datePublished = "2024-01-15T00:00:00.000Z",
-  dateModified,
+  datePublished = evergreenDates.published,
+  dateModified = evergreenDates.modified,
   author,
   reviewer,
   articleSection = "Mercedes-Benz Service",
@@ -61,7 +62,7 @@ export function ArticleSchema({
     url: fullUrl,
     image: image ? `${baseUrl}${image}` : undefined,
     datePublished,
-    dateModified: dateModified ?? new Date().toISOString(),
+    dateModified,
     author: personRef(author),
     reviewedBy: reviewer ? personRef(reviewer) : undefined,
     publisher: {

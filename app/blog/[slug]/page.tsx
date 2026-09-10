@@ -17,6 +17,24 @@ import { site } from "@/lib/site";
 
 export const revalidate = 300;
 
+const PLAN_LINKS = [
+  {
+    href: "/service-pricing",
+    label: "Service Pricing",
+    sub: "Minor and Major service prices by model",
+  },
+  {
+    href: "/service-contracts",
+    label: "Service Contracts",
+    sub: "Prepaid ServiceCare plans at today's rates",
+  },
+  {
+    href: "/extended-warranty",
+    label: "Extended Warranty",
+    sub: "Cover after the manufacturer warranty ends",
+  },
+] as const;
+
 export async function generateStaticParams() {
   const slugs = await getAllPublishedSlugs();
   return slugs.map(({ slug }) => ({ slug }));
@@ -90,6 +108,15 @@ export default async function BlogPostPage({
   const canonical = `${site.url}/blog/${slug}`;
   const ogImage = post.og_image ?? post.hero_image ?? blogOgImage.url;
 
+  // Surface a visible "Updated" date only when the post was revised at least
+  // a day after publishing, so the label always reflects a real change.
+  const publishedMs = post.published_at ? Date.parse(post.published_at) : NaN;
+  const updatedMs = Date.parse(post.updated_at);
+  const showUpdated =
+    Number.isFinite(publishedMs) &&
+    Number.isFinite(updatedMs) &&
+    updatedMs - publishedMs > 24 * 60 * 60 * 1000;
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -108,6 +135,7 @@ export default async function BlogPostPage({
           "@type": "Person",
           name: post.author.name,
           jobTitle: post.author.role ?? undefined,
+          description: post.author.bio ?? undefined,
           image: post.author.avatar_url ?? undefined,
           worksFor: { "@id": `${site.url}/#business` },
         }
@@ -207,6 +235,14 @@ export default async function BlogPostPage({
                   {formatPublishedDate(post.published_at)}
                 </time>
               ) : null}
+              {showUpdated ? (
+                <span className="text-[color:var(--color-silver-500)]">
+                  Updated{" "}
+                  <time dateTime={post.updated_at}>
+                    {formatPublishedDate(post.updated_at)}
+                  </time>
+                </span>
+              ) : null}
               {post.reading_time_minutes ? (
                 <span className="inline-flex items-center gap-1 text-[color:var(--color-silver-500)]">
                   <Clock size={11} />
@@ -226,7 +262,7 @@ export default async function BlogPostPage({
             ) : null}
 
             {post.author ? (
-              <div className="mt-7 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
+              <div className="mt-7 flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
                 {post.author.avatar_url ? (
                   <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/15">
                     <Image
@@ -238,7 +274,7 @@ export default async function BlogPostPage({
                     />
                   </span>
                 ) : null}
-                <div>
+                <div className="min-w-0">
                   <p className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
                     Written by
                   </p>
@@ -250,6 +286,11 @@ export default async function BlogPostPage({
                       </span>
                     ) : null}
                   </p>
+                  {post.author.bio ? (
+                    <p className="mt-1.5 text-xs leading-relaxed text-[color:var(--color-silver-400)]">
+                      {post.author.bio}
+                    </p>
+                  ) : null}
                 </div>
               </div>
             ) : null}
@@ -280,6 +321,40 @@ export default async function BlogPostPage({
                   <ArrowRight size={13} />
                 </Link>
               </div>
+
+              {/* Contextual links into the commercial pages: every post feeds
+                  the service / contracts / warranty cluster. */}
+              <nav
+                aria-label="Plan your Mercedes-Benz ownership"
+                className="rounded-2xl glass-card ring-silver p-6"
+              >
+                <p className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-silver-400)]">
+                  Plan ahead
+                </p>
+                <ul className="mt-4 divide-y divide-white/[0.06]">
+                  {PLAN_LINKS.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        className="group flex items-center justify-between gap-3 py-3 text-sm text-[color:var(--color-silver-300)] transition hover:text-white"
+                      >
+                        <span>
+                          <span className="block font-medium text-white">
+                            {l.label}
+                          </span>
+                          <span className="block text-xs text-[color:var(--color-silver-500)]">
+                            {l.sub}
+                          </span>
+                        </span>
+                        <ArrowRight
+                          size={14}
+                          className="shrink-0 text-[color:var(--color-silver-500)] transition-transform group-hover:translate-x-1 group-hover:text-white"
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </aside>
           </div>
 

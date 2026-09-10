@@ -32,19 +32,41 @@ export const site = {
   ],
 };
 
-export type NavItem = {
+export type NavLink = {
   href: string;
   label: string;
+};
+
+export type NavItem = NavLink & {
   /** Draws a small pulsing silver dot after the label (promotional entries). */
   highlight?: boolean;
+  /**
+   * Second-level links. On desktop they open in a dropdown under the parent
+   * (the parent itself stays a link); on mobile they render nested beneath it.
+   */
+  children?: NavLink[];
 };
 
 export const nav: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/service-pricing", label: "Service Pricing" },
-  { href: "/service-contracts", label: "Contracts & Warranty" },
+  {
+    href: "/services",
+    label: "Services",
+    children: [
+      { href: "/service-pricing", label: "Service Pricing" },
+      { href: "/service-contracts", label: "Service Contracts" },
+      { href: "/extended-warranty", label: "Extended Warranty" },
+    ],
+  },
   { href: "/offers", label: "Offers", highlight: true },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
+
+/** Every nav link in reading order, children directly after their parent. */
+export function flattenNav(items: NavItem[] = nav): NavLink[] {
+  return items.flatMap(({ href, label, children }) => [
+    { href, label },
+    ...(children ?? []),
+  ]);
+}
