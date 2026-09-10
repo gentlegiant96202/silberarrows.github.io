@@ -29,7 +29,6 @@ export function ContactAr() {
           <div className="reveal surface relative flex flex-col overflow-hidden rounded-3xl p-6 sm:p-8 md:p-10 lg:col-span-5">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
             <div className="flex items-center gap-3">
-              <span className="silver-bar" />
               <p className="text-[12px] font-semibold text-silver-shine">
                 {contactAr.cardEyebrow}
               </p>

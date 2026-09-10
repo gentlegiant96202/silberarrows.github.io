@@ -88,6 +88,27 @@ export const contracts = {
   ],
 };
 
+/**
+ * Homepage teaser for the Extended Warranty programme. Prices are not stored
+ * here — the section derives its "Starting from" figures from
+ * `lib/serviceWarrantyPricing` so they can never drift from the calculator.
+ */
+export const warranty = {
+  heading: "Extended Warranty For Your Mercedes-Benz",
+  sub: "Protection Beyond the Factory Warranty",
+  plans: [
+    {
+      name: "Standard",
+      description: "Drivetrain only",
+    },
+    {
+      name: "Premium",
+      description: "Comprehensive coverage",
+      featured: true,
+    },
+  ],
+};
+
 export const pricing = {
   intro:
     "Part of our customer charter is to ensure that we are transparent \u2013 we charge you an hourly labour rate of AED 375 (excluding Classic, Maybach and the McLaren SLR), which is significantly lower than some of the alternatives.",
@@ -117,6 +138,14 @@ export const pricing = {
   ],
 };
 
+/**
+ * Hero headline model. Each line is a list of segments rendered inline and
+ * separated by a single space; a segment can be highlighted (silver gradient).
+ * Segments without spaces (e.g. "Mercedes-Benz") never break internally.
+ */
+export type HeroTitleSegment = { text: string; highlight?: boolean };
+export type HeroTitleLine = HeroTitleSegment[];
+
 export const landingPages: Record<
   string,
   {
@@ -124,7 +153,7 @@ export const landingPages: Record<
     metaDescription: string;
     metaKeywords: string;
     tagline: string;
-    titleParts: { line: string; highlight?: boolean }[];
+    titleParts: HeroTitleLine[];
     subtitle: string;
     badges: string[];
     relatedServices?: string[];
@@ -139,9 +168,9 @@ export const landingPages: Record<
       "mercedes service, mercedes benz service, benz service, mercedes car service, mercedes benz car service, mercedes service dubai, mercedes service al quoz, mercedes service appointment, mercedes benz appointment, mb service",
     tagline: "Expert Mercedes-Benz Service Specialist in Dubai",
     titleParts: [
-      { line: "Mercedes-Benz", highlight: true },
-      { line: "Service" },
-      { line: "in Dubai" },
+      [{ text: "Mercedes-Benz", highlight: true }],
+      [{ text: "Service" }],
+      [{ text: "in Dubai" }],
     ],
     subtitle:
       "Service A & B packages with genuine parts. Save 30 to 40% vs the dealer. AED 375/hr labour rate.",
@@ -160,9 +189,9 @@ export const landingPages: Record<
       "mercedes service center, mercedes benz service center, benz service center, mercedes service center dubai, mercedes service center al quoz, mercedes benz service center near me, benz service center near me",
     tagline: "Trusted Mercedes-Benz Service Center in Dubai",
     titleParts: [
-      { line: "Mercedes-Benz", highlight: true },
-      { line: "Service Center" },
-      { line: "in Dubai" },
+      [{ text: "Mercedes-Benz", highlight: true }],
+      [{ text: "Service Center" }],
+      [{ text: "in Dubai" }],
     ],
     subtitle:
       "Full-service Mercedes-Benz center in Al Quoz. Factory-trained technicians, XENTRY diagnostics and genuine parts.",
@@ -180,9 +209,9 @@ export const landingPages: Record<
       "mercedes service near me, mercedes benz service near me, mercedes service center near me, mercedes benz service center near me, mercedes garage near me, mercedes maintenance near me, mercedes benz near me, benz service center near me, service mercedes benz near me, mercedes benz near me service",
     tagline: "Your Nearest Mercedes-Benz Specialist in Dubai",
     titleParts: [
-      { line: "Mercedes-Benz", highlight: true },
-      { line: "Service" },
-      { line: "Near You" },
+      [{ text: "Mercedes-Benz", highlight: true }],
+      [{ text: "Service" }],
+      [{ text: "Near You" }],
     ],
     subtitle:
       "Independent Mercedes specialist in Al Quoz, Dubai. Free collection and delivery across Dubai. Book your service or walk in today.",
@@ -199,9 +228,9 @@ export const landingPages: Record<
       "mercedes repair, mercedes benz repair, benz repair, mercedes auto repair, mercedes car repair, mercedes repair near me, mercedes benz repair near me, mercedes repair shop near me, mercedes mechanic near me, mercedes auto shop near me, mercedes repair dubai, mercedes repair al quoz",
     tagline: "Expert Mercedes-Benz Repair Specialists in Dubai",
     titleParts: [
-      { line: "Mercedes-Benz", highlight: true },
-      { line: "Repair Specialists" },
-      { line: "in Dubai" },
+      [{ text: "Mercedes-Benz", highlight: true }],
+      [{ text: "Repair Specialists" }],
+      [{ text: "in Dubai" }],
     ],
     subtitle:
       "Engine, gearbox, AC, electrical and suspension repair. XENTRY diagnostics, genuine parts and 12 month warranty on all repairs.",
@@ -225,9 +254,9 @@ export const landingPages: Record<
       "mercedes service a, service a mercedes benz, mb service a, benz service a, service a1 mercedes, mercedes service a cost, mercedes benz service a cost, benz service a cost, mercedes service b, service b mercedes benz, mb service b, benz service b, mercedes a and b service, mercedes benz service a and b, service a service b mercedes, mercedes service b cost, mercedes benz service b cost, mercedes b1 service, mercedes benz b1 service, mercedes b1 service cost, mercedes b3 service, mercedes benz b3 service, service b5 mercedes, mercedes benz service b7, b7 service mercedes, service a7 mercedes cost, service a5 mercedes cost, service b3 mercedes cost, w212 service b, w204 service a, service b mercedes c class",
     tagline: "Mercedes-Benz Scheduled Maintenance Packages",
     titleParts: [
-      { line: "Mercedes-Benz", highlight: true },
-      { line: "Service Packages" },
-      { line: "in Dubai" },
+      [{ text: "Mercedes-Benz", highlight: true }],
+      [{ text: "Service Packages" }],
+      [{ text: "in Dubai" }],
     ],
     subtitle:
       "Service A, Service B & B1\u2013B7 maintenance packages. Genuine parts, competitive pricing and expert Mercedes technicians.",

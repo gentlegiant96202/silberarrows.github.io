@@ -7,6 +7,7 @@ import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Services } from "@/components/sections/Services";
 import { Team } from "@/components/sections/Team";
 import { Contracts } from "@/components/sections/Contracts";
+import { Warranty } from "@/components/sections/Warranty";
 import { LatestPosts } from "@/components/sections/LatestPosts";
 import { Contact } from "@/components/sections/Contact";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
@@ -48,6 +49,7 @@ export default function HomePage() {
       <Services />
       <Team />
       <Contracts />
+      <Warranty />
       <LatestPosts />
 
       <section
@@ -59,7 +61,6 @@ export default function HomePage() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <div className="flex items-center gap-3">
-                <span className="silver-bar" />
                 <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
                   Frequently Asked Questions
                 </p>

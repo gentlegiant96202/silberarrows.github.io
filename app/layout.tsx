@@ -1,12 +1,34 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
+import localFont from "next/font/local";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { MobileContactBar } from "@/components/MobileContactBar";
+import { ContactModalProvider } from "@/components/ContactModalProvider";
+import { ChromeGate } from "@/components/ChromeGate";
+import { site } from "@/lib/site";
+import { defaultOgImage } from "@/lib/seo";
 import "./globals.css";
 
-// Inter across the project — body + headings (variable weight range via CSS).
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+// Mercedes-Benz Corporate S — body, UI, mid-size headings.
+// Regular (400) + Bold (700); CSS 500 maps down to Regular, 600 up to Bold.
+const corpoS = localFont({
+  src: [
+    { path: "./fonts/CorpoS-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/CorpoS-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-corpo-s",
+  display: "swap",
+});
+
+// Mercedes-Benz Corporate A — display headlines (hero, section titles).
+const corpoA = localFont({
+  src: [
+    { path: "./fonts/CorpoA-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/CorpoA-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-corpo-a",
   display: "swap",
 });
 
@@ -21,13 +43,6 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   display: "swap",
   preload: false,
 });
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { MobileContactBar } from "@/components/MobileContactBar";
-import { ContactModalProvider } from "@/components/ContactModalProvider";
-import { ChromeGate } from "@/components/ChromeGate";
-import { site } from "@/lib/site";
-import { defaultOgImage } from "@/lib/seo";
 
 const siteUrl = site.url;
 
@@ -105,7 +120,7 @@ export default function RootLayout({
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
   return (
-    <html lang="en-AE" className={`${inter.variable} ${ibmPlexArabic.variable}`}>
+    <html lang="en-AE" className={`${corpoS.variable} ${corpoA.variable} ${ibmPlexArabic.variable}`}>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />

@@ -62,8 +62,10 @@ export function WarrantyCalculator({ className }: { className?: string }) {
 
   return (
     <section
+      id="warranty"
       className={cn(
-        "relative border-t border-white/[0.06] py-20 md:py-28",
+        // scroll-mt clears the sticky header when deep-linked from the home page
+        "relative scroll-mt-24 border-t border-white/[0.06] py-20 md:scroll-mt-28 md:py-28",
         className
       )}
     >

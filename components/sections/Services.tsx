@@ -54,7 +54,6 @@ export function Services({ className }: { className?: string }) {
                     {preserveBrandWrap(service.blurb)}
                   </p>
                   <div className="mt-3 flex items-center gap-2">
-                    <span className="silver-bar transition-all duration-300 group-hover:w-10" />
                     <span className="text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-silver-shine">
                       Learn More
                     </span>

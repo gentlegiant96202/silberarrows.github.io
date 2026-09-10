@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  /* Inter everywhere — body + headings */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+  /* Mercedes-Benz Corporate S — body, UI, mid-size type */
+  --font-sans: var(--font-corpo-s), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    sans-serif;
+  /* Mercedes-Benz Corporate A — display headlines */
+  --font-display: var(--font-corpo-a), ui-serif, Georgia, "Times New Roman",
+    serif;
   /* Arabic (/ar routes) — IBM Plex Sans Arabic via next/font, set on the
      /ar layout wrapper as --font-ibm-arabic. Exposed as the `font-arabic`
      utility. Latin glyphs (numbers, brand names) render from the same face. */
@@ -33,6 +34,10 @@
   /* Mercury silver highlight */
   --color-mercury: #d4d4d8;
   --color-platinum: #e5e4e2;
+
+  /* Warm off-white used for hero copy, buttons and icons */
+  --color-cream: #fbf8f3;
+  --color-whatsapp: #60d669;
 
   /* Semantics */
   --color-bg: var(--color-ink-950);
@@ -76,6 +81,11 @@
     background-color: var(--color-ink-950);
     color: var(--color-silver-100);
     min-height: 100dvh;
+  }
+
+  /* Page titles use Corporate A. Smaller h2/h3 stay on Corporate S. */
+  h1 {
+    font-family: var(--font-display);
   }
 
   ::selection {
@@ -231,21 +241,6 @@
     box-shadow:
       0 0 12px rgba(229, 228, 226, 0.6),
       inset 0 0 1px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Silver hairline accent — short chrome strip used above eyebrows */
-  .silver-bar {
-    height: 2px;
-    width: 1.75rem;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      #e5e4e2 30%,
-      #ffffff 50%,
-      #aeaeb3 70%,
-      transparent
-    );
-    border-radius: 2px;
   }
 
   /* Glow halo for hover on interactive cards */
@@ -452,6 +447,161 @@
       0 8px 24px -8px rgba(229, 228, 226, 0.35);
   }
 
+  /* ============================================================
+     Hero — headline gradient, square buttons, trust strip
+     ============================================================ */
+
+  /* Horizontal cream → silver headline gradient */
+  .text-hero-gradient {
+    background: linear-gradient(
+      91deg,
+      #fbf8f3 18.96%,
+      #95999c 47.05%,
+      #b6b6b6 67.65%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Primary: light gradient, black text. On hover a dark gradient layer
+     fades in behind the label and the label turns white. */
+  .btn-gradient {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(
+      91deg,
+      #fbf8f3 18.96%,
+      #95999c 33.47%,
+      #ffffff 60.86%
+    );
+    color: #000000;
+    transition: color 0.5s ease;
+  }
+  .btn-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      91deg,
+      #161515 18.96%,
+      #252323 33.47%,
+      #161515 60.86%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .btn-gradient:hover,
+  .btn-gradient:focus-visible {
+    color: #ffffff;
+  }
+  .btn-gradient:hover::before,
+  .btn-gradient:focus-visible::before {
+    opacity: 1;
+  }
+
+  /* Secondary: transparent with a half-strength cream hairline. Hover turns
+     the border and icon WhatsApp green and spins the icon once. */
+  .btn-outline-cream {
+    background: transparent;
+    border: 1px solid rgba(251, 248, 243, 0.5);
+    color: var(--color-cream);
+    transition: border-color 0.3s ease;
+  }
+  .btn-outline-cream .btn-icon {
+    transition: transform 1s ease, color 0.3s ease;
+  }
+  .btn-outline-cream:hover,
+  .btn-outline-cream:focus-visible {
+    border-color: var(--color-whatsapp);
+  }
+  .btn-outline-cream:hover .btn-icon,
+  .btn-outline-cream:focus-visible .btn-icon {
+    color: var(--color-whatsapp);
+    transform: rotateY(360deg);
+  }
+
+  /* Hero photo: pulled into a dark tonal range so cream copy reads on top,
+     with a slow perpetual zoom instead of the carousel's one-shot push-in. */
+  .hero-photo {
+    filter: brightness(0.6) saturate(0.85);
+  }
+  .hero-photo .anim-kenburns {
+    /* 18% push-in with a slight drift over 16s, then back — slow enough to
+       feel cinematic, fast enough to register. */
+    animation: hero-kenburns 16s ease-in-out infinite alternate;
+    transform-origin: 60% 45%;
+  }
+  @keyframes hero-kenburns {
+    from {
+      transform: scale(1.02) translate(0, 0);
+    }
+    to {
+      transform: scale(1.18) translate(-1.5%, -1%);
+    }
+  }
+
+  /* Directional scrim for the hero copy. Phones: darkest at the bottom where
+     the copy and strip sit, opening up towards the top. Desktop: darkest on
+     the left under the copy block, thinning to the right so the room shows. */
+  .hero-scrim-copy {
+    background: linear-gradient(
+      to top,
+      rgba(12, 11, 11, 0.92) 0%,
+      rgba(12, 11, 11, 0.84) 50%,
+      rgba(12, 11, 11, 0.5) 80%,
+      rgba(12, 11, 11, 0.3) 100%
+    );
+  }
+  @media (min-width: 64rem) {
+    .hero-scrim-copy {
+      background:
+        linear-gradient(
+          to right,
+          rgba(12, 11, 11, 0.88) 0%,
+          rgba(12, 11, 11, 0.8) 38%,
+          rgba(12, 11, 11, 0.45) 68%,
+          rgba(12, 11, 11, 0.28) 100%
+        ),
+        linear-gradient(
+          to top,
+          rgba(12, 11, 11, 0.9) 0%,
+          rgba(12, 11, 11, 0.35) 32%,
+          rgba(12, 11, 11, 0.12) 100%
+        );
+    }
+  }
+
+  /* Trust strip: static row from xl up, continuous marquee below. Items are
+     rendered twice and the track slides by exactly half its width. */
+  .hero-strip-track {
+    animation: hero-marquee 28s linear infinite;
+    will-change: transform;
+  }
+  .hero-strip:hover .hero-strip-track {
+    animation-play-state: paused;
+  }
+  @keyframes hero-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (min-width: 80rem) {
+    .hero-strip-track {
+      animation: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-strip-track {
+      animation: none;
+    }
+  }
+
   .anim-rise {
     animation: rise 0.8s ease both;
   }
@@ -546,9 +696,10 @@
      Facelift utilities — editorial type, flat surfaces, motion
      ============================================================ */
 
-  /* Display headings: tight tracking, compact leading, balanced wrap */
+  /* Display headings: Corporate A, tight tracking, compact leading */
   .text-display {
-    letter-spacing: -0.035em;
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
     line-height: 0.92;
     text-wrap: balance;
   }
@@ -818,8 +969,12 @@
 /* Arabic script must never be letter-spaced: joined letterforms break apart
    and the negative display tracking crushes diacritics/ascenders. */
 [dir="rtl"] .text-display {
+  font-family: inherit;
   letter-spacing: 0;
   line-height: 1.12;
+}
+[dir="rtl"] h1 {
+  font-family: inherit;
 }
 [dir="rtl"] [class*="tracking-"] {
   letter-spacing: 0;

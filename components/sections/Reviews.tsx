@@ -36,7 +36,6 @@ export function Reviews() {
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-32">
             <div className="flex items-center gap-3">
-              <span className="silver-bar" />
               <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
                 Customer Reviews
               </p>

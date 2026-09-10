@@ -179,7 +179,6 @@ export function HeroAr() {
             <div className="surface relative w-full overflow-hidden rounded-2xl p-5 backdrop-blur-xl md:p-6 lg:max-w-sm">
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
               <div className="flex items-center gap-3">
-                <span className="silver-bar" />
                 <p className="text-[11px] font-semibold text-silver-shine">
                   {heroAr.plateEyebrow}
                 </p>

@@ -49,7 +49,6 @@ export function Contact({
           <div className="reveal surface relative flex flex-col overflow-hidden rounded-3xl p-6 sm:p-8 md:p-10 lg:col-span-5">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
             <div className="flex items-center gap-3">
-              <span className="silver-bar" />
               <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.28em] text-silver-shine">
                 Get in Touch
               </p>

@@ -16,26 +16,11 @@ type SectionHeaderProps = {
   className?: string;
 };
 
-function Eyebrow({
-  text,
-  justify,
-}: {
-  text: string;
-  justify: "center" | "start";
-}) {
+function Eyebrow({ text }: { text: string }) {
   return (
-    <div
-      className={cn(
-        "flex items-center gap-3",
-        justify === "center" ? "justify-center" : "justify-start"
-      )}
-    >
-      <span className="silver-bar" />
-      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
-        {text}
-      </p>
-      {justify === "center" && <span className="silver-bar" />}
-    </div>
+    <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
+      {text}
+    </p>
   );
 }
 
@@ -56,7 +41,7 @@ export function SectionHeader({
         )}
       >
         <div className="lg:col-span-7">
-          {eyebrow && <Eyebrow text={eyebrow} justify="start" />}
+          {eyebrow && <Eyebrow text={eyebrow} />}
           <h2 className="text-display mt-5 text-[2.25rem] font-semibold text-silver-shine sm:text-5xl lg:text-[3.5rem] xl:text-6xl">
             {preserveBrandWrap(title)}
           </h2>
@@ -78,9 +63,7 @@ export function SectionHeader({
         className
       )}
     >
-      {eyebrow && (
-        <Eyebrow text={eyebrow} justify={align === "center" ? "center" : "start"} />
-      )}
+      {eyebrow && <Eyebrow text={eyebrow} />}
       <h2 className="text-display mt-5 text-[2.25rem] font-semibold text-silver-shine sm:text-5xl lg:text-[3.5rem]">
         {preserveBrandWrap(title)}
       </h2>

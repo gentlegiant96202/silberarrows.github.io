@@ -260,12 +260,9 @@ export function ContactModal({
           <button
             type="submit"
             disabled={submitting}
-            className={cn(
-              "btn-silver inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold disabled:opacity-70",
-              !rtl && "uppercase tracking-[0.16em]"
-            )}
+            className="btn-gradient inline-flex h-14 w-full items-center justify-center gap-2.5 px-9 text-base disabled:opacity-70"
           >
-            {submitting && <Loader2 size={16} className="animate-spin" />}
+            {submitting && <Loader2 size={18} className="animate-spin" />}
             {submitting ? t.sending : t.submit}
           </button>
 
@@ -287,22 +284,30 @@ export function ContactModal({
           <span className="h-px flex-1 bg-white/10" />
         </div>
 
+        {/* Same pair as the hero / mobile bar: gradient primary + outlined WhatsApp */}
         <div className="mt-4 grid grid-cols-2 gap-3">
           <ContactLink
             kind="phone"
             href={site.phoneTel}
-            className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+            className="btn-gradient inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"
           >
-            <Phone size={16} /> {t.call}
+            <Phone size={20} strokeWidth={1.75} className="shrink-0" aria-hidden />
+            {t.call}
           </ContactLink>
           <ContactLink
             kind="whatsapp"
             href={t.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-500/20 transition"
+            className="btn-outline-cream inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"
           >
-            <MessageCircle size={16} /> {t.whatsapp}
+            <MessageCircle
+              size={20}
+              strokeWidth={1.75}
+              className="btn-icon shrink-0"
+              aria-hidden
+            />
+            {t.whatsapp}
           </ContactLink>
         </div>
       </div>

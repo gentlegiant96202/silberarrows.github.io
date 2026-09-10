@@ -109,7 +109,7 @@ export function Header() {
             })}
             <button
               onClick={openModal}
-              className="btn-silver mt-3 rounded-lg px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em]"
+              className="btn-gradient mt-3 inline-flex h-14 w-full items-center justify-center px-9 text-base"
             >
               Contact Us
             </button>

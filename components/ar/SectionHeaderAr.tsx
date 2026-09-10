@@ -26,7 +26,6 @@ export function SectionHeaderAr({
       <div className="lg:col-span-7">
         {eyebrow && (
           <div className="flex items-center gap-3">
-            <span className="silver-bar" />
             <p className="text-[12px] font-semibold text-silver-shine">
               {eyebrow}
             </p>

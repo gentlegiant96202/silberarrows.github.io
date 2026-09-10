@@ -44,7 +44,6 @@ export function ServicesAr() {
                   <p className="mt-1.5 line-clamp-2 text-[11.5px] leading-relaxed text-[color:var(--color-silver-300)] sm:text-xs">
                     {service.blurb}
                   </p>
-                  <span className="silver-bar mt-3 block transition-all duration-300 group-hover:w-10" />
                 </div>
               </div>
             </div>

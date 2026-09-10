@@ -48,8 +48,7 @@ export function Team() {
                     <h3 className="text-lg font-semibold leading-snug tracking-tight text-white sm:text-xl">
                       {m.name}
                     </h3>
-                    <div className="mt-2 flex items-center gap-2">
-                      <span className="silver-bar shrink-0" />
+                    <div className="mt-2">
                       <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-silver-shine">
                         {m.role}
                       </p>

@@ -6,13 +6,14 @@ const sizeMap = {
   md: { wrap: "h-12", mark: 56, markClass: "h-12 w-auto", text: "text-sm" },
   lg: { wrap: "h-16", mark: 72, markClass: "h-16 w-auto", text: "text-base" },
   xl: { wrap: "h-24", mark: 112, markClass: "h-24 w-auto", text: "text-lg" },
-  // Grows with the (taller) header bar on larger screens; rendered at high
-  // res so it stays sharp on retina at the desktop size. Height-driven with
-  // w-auto so the square source never gets distorted by a flex container.
+  // Header mark: 72px in the 96px phone bar, 96px in the 112px desktop bar.
+  // Served at the source's native 180px so it stays sharp on retina.
+  // Height-driven with w-auto so the square source never gets distorted by
+  // a flex container.
   responsive: {
-    wrap: "h-16 md:h-[5.5rem]",
-    mark: 128,
-    markClass: "h-16 w-auto md:h-[5.5rem]",
+    wrap: "h-[4.5rem] md:h-24",
+    mark: 180,
+    markClass: "h-[4.5rem] w-auto md:h-24",
     text: "text-base",
   },
 } as const;
