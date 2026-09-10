@@ -12,6 +12,8 @@ import { modalAr, siteAr } from "@/lib/content-ar";
 import { ContactLink } from "@/components/ContactLink";
 import { DEFAULT_COUNTRY } from "@/lib/countries";
 import { CountrySelect } from "@/components/CountrySelect";
+import type { LeadContext } from "@/lib/analytics";
+import { offerWhatsAppHref } from "@/lib/offers";
 import { cn } from "@/lib/utils";
 
 export type ContactLocale = "en" | "ar";
@@ -57,10 +59,18 @@ export function ContactModal({
   open,
   onClose,
   locale = "en",
+  context = null,
 }: {
   open: boolean;
   onClose: () => void;
   locale?: ContactLocale;
+  /**
+   * Offer the form was opened from (see ContactModalProvider.openModalWith).
+   * Not shown in the UI and not stored separately — the lead goes into the
+   * same table as any other, with `source` = the offer page path. The context
+   * only rides along on the Meta / GA events and the WhatsApp message.
+   */
+  context?: LeadContext | null;
 }) {
   const t = STRINGS[locale];
   const rtl = locale === "ar";
@@ -146,6 +156,12 @@ export function ContactModal({
           ...(gclid && { gclid }),
           ...(gbraid && { gbraid }),
           ...(wbraid && { wbraid }),
+          // Meta CAPI attribution only — not persisted.
+          ...(context && {
+            offer: context.offer,
+            offerName: context.offerName,
+            ...(context.intent && { intent: context.intent }),
+          }),
           eventSourceUrl,
         }),
       });
@@ -154,9 +170,9 @@ export function ContactModal({
         throw new Error("Failed to submit");
       }
 
-      window.location.assign(
-        t.thankYouPath + "?eid=" + encodeURIComponent(eventId)
-      );
+      const params = new URLSearchParams({ eid: eventId });
+      if (context) params.set("offer", context.offer);
+      window.location.assign(`${t.thankYouPath}?${params.toString()}`);
     } catch {
       showError(t.errGeneric);
       setSubmitting(false);
@@ -164,6 +180,9 @@ export function ContactModal({
   }
 
   if (!open) return null;
+
+  const whatsappHref =
+    context && !rtl ? offerWhatsAppHref(context) : t.whatsappHref;
 
   return (
     <div
@@ -289,6 +308,7 @@ export function ContactModal({
           <ContactLink
             kind="phone"
             href={site.phoneTel}
+            context={context ?? undefined}
             className="btn-gradient inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"
           >
             <Phone size={20} strokeWidth={1.75} className="shrink-0" aria-hidden />
@@ -296,7 +316,8 @@ export function ContactModal({
           </ContactLink>
           <ContactLink
             kind="whatsapp"
-            href={t.whatsappHref}
+            href={whatsappHref}
+            context={context ?? undefined}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline-cream inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"

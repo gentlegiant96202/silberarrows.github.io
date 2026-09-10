@@ -139,13 +139,14 @@ export function Hero({
 
       {/* Phones/tablets: compact stack from the top so headline, offer,
           buttons and the trust strip all land inside the first screen.
-          Desktop (lg+): fill the viewport below the 7rem header and anchor
-          everything to the bottom edge, capped for ultra-tall screens. */}
+          Desktop (lg+): fill the viewport below the 7rem header, keep the
+          trust strip on the base, and vertically centre the copy in the
+          leftover space so the headline isn't parked in the bottom third. */}
       <div className="container-page relative z-10 flex flex-col justify-end pt-10 pb-8 md:pt-12 md:pb-10 lg:min-h-[min(calc(100svh-7rem),54rem)] lg:pb-[5vw]">
         {/* ── Copy block ─────────────────────────────────────────────── */}
         {/* `@container` lets the headline size itself against this block
             (cqi units) rather than the viewport. */}
-        <div className="@container max-w-4xl">
+        <div className="@container max-w-4xl lg:flex lg:flex-1 lg:flex-col lg:justify-center">
           {tagline && (
             <p className="anim-fade mb-4 text-[0.6875rem] uppercase tracking-[0.3em] text-cream/60">
               {tagline}
@@ -153,7 +154,7 @@ export function Hero({
           )}
 
           <h1
-            className="anim-rise text-display text-hero-gradient font-display font-normal text-[length:min(2.5rem,var(--hero-title-fit))] sm:text-[length:min(3.25rem,var(--hero-title-fit))] md:text-[length:min(4rem,var(--hero-title-fit))] lg:text-[length:min(3.75rem,var(--hero-title-fit))] xl:text-[length:min(4.25rem,var(--hero-title-fit))] 2xl:text-[length:min(4.75rem,var(--hero-title-fit))]"
+            className="anim-rise text-display text-hero-gradient font-display font-normal text-[length:min(2.5rem,var(--hero-title-fit))] sm:text-[length:min(3.25rem,var(--hero-title-fit))] md:text-[length:min(4rem,var(--hero-title-fit))] lg:text-[length:min(3.75rem,var(--hero-title-fit))] lg:leading-[1.08] xl:text-[length:min(4.25rem,var(--hero-title-fit))] 2xl:text-[length:min(4.75rem,var(--hero-title-fit))]"
             style={
               {
                 "--hero-title-fit": headlineFit(titleParts),
@@ -186,12 +187,12 @@ export function Hero({
             ))}
           </h1>
 
-          <p className="anim-rise mt-4 max-w-2xl text-base leading-relaxed text-cream/90 md:mt-5 md:text-lg">
+          <p className="anim-rise mt-4 max-w-2xl text-base leading-relaxed text-cream/90 md:mt-5 md:text-lg lg:mt-8">
             {preserveBrandWrap(subtitle)}
           </p>
 
           {/* Offer hook — primary conversion driver */}
-          <p className="anim-rise mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-cream/85">
+          <p className="anim-rise mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-cream/85 lg:mt-6">
             <BadgePercent
               size={16}
               className="shrink-0 text-whatsapp"
@@ -215,7 +216,7 @@ export function Hero({
         {/* ── Trust strip ────────────────────────────────────────────── */}
         <HeroTrustStrip
           items={trustItems(badges)}
-          className="anim-rise mt-8 md:mt-12 lg:mt-16"
+          className="anim-rise mt-8 md:mt-12 lg:mt-10"
         />
       </div>
     </section>

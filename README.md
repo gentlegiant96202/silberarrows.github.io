@@ -30,6 +30,8 @@ The dev server runs at [http://localhost:3001](http://localhost:3001).
 | `/services/[slug]`                 | 10 service detail pages (statically generated)       |
 | `/service-pricing`                 | Transparent pricing tables                           |
 | `/service-contracts`               | Standard / Premium service contracts                 |
+| `/offers`                          | Offers index (data in `lib/offers.ts`)               |
+| `/offers/[slug]`                   | Offer pages; bodies in `components/offers/<offer>/`  |
 | `/contact`                         | Contact + workshop map                               |
 | `/thank-you/service`               | Post-submit thank you (noindex)                      |
 | `/lp/[slug]`                       | 5 PPC landing pages (noindex, follow)                |

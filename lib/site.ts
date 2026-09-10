@@ -32,11 +32,19 @@ export const site = {
   ],
 };
 
-export const nav = [
+export type NavItem = {
+  href: string;
+  label: string;
+  /** Draws a small pulsing silver dot after the label (promotional entries). */
+  highlight?: boolean;
+};
+
+export const nav: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/service-pricing", label: "Service Pricing" },
   { href: "/service-contracts", label: "Contracts & Warranty" },
+  { href: "/offers", label: "Offers", highlight: true },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];

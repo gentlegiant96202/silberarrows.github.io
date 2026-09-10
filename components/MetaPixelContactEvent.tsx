@@ -11,6 +11,10 @@ import "@/lib/meta-pixel"; // window.fbq typing
  * Meta deduplicates the Pixel `Lead` against the server `Lead`. Without an
  * eid (direct visit / stripped params) fall back to a softer `Contact`.
  *
+ * `?offer=` (set by the modal when the lead came from an offer) is attached
+ * as `content_ids` so the Pixel Lead is attributable to that offer, matching
+ * the custom_data the server sent.
+ *
  * Must be rendered inside <Suspense> (uses useSearchParams).
  */
 export function MetaPixelContactEvent() {
@@ -23,11 +27,16 @@ export function MetaPixelContactEvent() {
 
     firedRef.current = true;
     const eid = searchParams.get("eid");
+    const offer = searchParams.get("offer");
+
+    const customData = offer
+      ? { content_ids: [offer], content_category: "offer", offer }
+      : {};
 
     if (eid) {
-      window.fbq("track", "Lead", {}, { eventID: eid });
+      window.fbq("track", "Lead", customData, { eventID: eid });
     } else {
-      window.fbq("track", "Contact");
+      window.fbq("track", "Contact", customData);
     }
   }, [searchParams]);
 

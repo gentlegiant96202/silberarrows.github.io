@@ -88,8 +88,10 @@ export function ServiceCareCalculator({ className }: { className?: string }) {
 
   return (
     <section
+      id="servicecare"
       className={cn(
-        "relative border-t border-white/[0.06] py-20 md:py-28",
+        // scroll-mt clears the sticky header when deep-linked from offer pages
+        "relative scroll-mt-24 border-t border-white/[0.06] py-20 md:scroll-mt-28 md:py-28",
         className
       )}
     >

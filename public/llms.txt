@@ -28,6 +28,8 @@
 - [All Services](https://mercedes-benz.silberarrows.com/services): Index of every Mercedes-Benz service offered.
 - [Service Pricing](https://mercedes-benz.silberarrows.com/service-pricing): Transparent Minor (Service A) and Major (Service B) service pricing per Mercedes-Benz model, including EQ electric range.
 - [Service Contracts](https://mercedes-benz.silberarrows.com/service-contracts): Standard (AED 2,700, 2 years / 30,000 km) and Premium (AED 5,800, 4 years / 60,000 km) maintenance plans.
+- [Offers](https://mercedes-benz.silberarrows.com/offers): Current offers for Mercedes-Benz owners in Dubai.
+- [Warranty & Service Contract Expired](https://mercedes-benz.silberarrows.com/offers/mercedes-benz-warranty-expired-service-contract-dubai): For Mercedes-Benz owners whose manufacturer warranty or service contract has ended — ServiceCare plans from AED 2,700 and Certified Warranty from AED 3,959 (Standard drivetrain cover; Premium comprehensive from AED 6,599; 12 months / 20,000 km, UAE only, transferable).
 - [Blog – The Journal](https://mercedes-benz.silberarrows.com/blog): Service guides, technical deep-dives and ownership advice from the workshop.
 - [Contact](https://mercedes-benz.silberarrows.com/contact): Workshop address, phone, contact form.
 

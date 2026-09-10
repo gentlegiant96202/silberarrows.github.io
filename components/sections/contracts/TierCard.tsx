@@ -63,6 +63,9 @@ export function TierCard({
   ctaMessage,
   isTeaser = false,
   hint,
+  topLabel,
+  footer,
+  className,
 }: {
   tierName: string;
   /** Optional small label next to the tier name (e.g. variant "AMG"). */
@@ -81,13 +84,20 @@ export function TierCard({
   isTeaser?: boolean;
   /** Hint line rendered in teaser mode in place of the CTA. */
   hint?: string;
+  /** Overrides the small label above the price (default: Price / Starting from). */
+  topLabel?: string;
+  /**
+   * Custom footer. When provided it replaces both the teaser hint and the
+   * default WhatsApp / Call CTA — used by offer pages that route the CTA
+   * through the offer-aware contact modal.
+   */
+  footer?: React.ReactNode;
+  className?: string;
 }) {
   const available = price !== null && price !== 0;
-  const topLabel = isTeaser
-    ? "Starting from"
-    : available
-      ? "Price"
-      : "Availability";
+  const resolvedTopLabel =
+    topLabel ??
+    (isTeaser ? "Starting from" : available ? "Price" : "Availability");
   const subPriceText = !available
     ? "Not offered for this model"
     : description
@@ -100,7 +110,8 @@ export function TierCard({
         "surface group relative overflow-hidden rounded-3xl p-6 transition duration-500 sm:p-8 md:p-9",
         featured && "ring-chrome",
         // "Locked" until a model is chosen — the exact price unlocks the card
-        isTeaser && "opacity-[0.82] hover:opacity-100"
+        isTeaser && !footer && "opacity-[0.82] hover:opacity-100",
+        className
       )}
     >
       {featured && (
@@ -143,13 +154,13 @@ export function TierCard({
       {/* Price */}
       <div className="relative mt-7 border-t border-white/10 pt-6">
         <span className="text-xs uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
-          {topLabel}
+          {resolvedTopLabel}
         </span>
         <p
           key={`${isTeaser ? "teaser" : "price"}-${price ?? "na"}`}
           className={cn(
             "anim-rise mt-2 text-[2.5rem] font-semibold leading-none tracking-[-0.03em] sm:text-5xl md:text-6xl",
-            isTeaser ? "text-silver-soft" : "text-silver-shine"
+            isTeaser && !footer ? "text-silver-soft" : "text-silver-shine"
           )}
         >
           {formatPrice(price)}
@@ -166,9 +177,11 @@ export function TierCard({
         ))}
       </ul>
 
-      {/* Footer: unlock hint or live CTA */}
+      {/* Footer: custom footer, unlock hint or live CTA */}
       <div className="relative mt-7">
-        {isTeaser ? (
+        {footer ? (
+          footer
+        ) : isTeaser ? (
           hint && (
             <p className="flex items-center justify-center gap-2.5 rounded-xl border border-dashed border-[color:var(--color-platinum)]/30 bg-white/[0.03] px-4 py-3.5 text-center text-xs font-semibold uppercase tracking-[0.14em] text-[color:var(--color-silver-200)]">
               <ArrowUp

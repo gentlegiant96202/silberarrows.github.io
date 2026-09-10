@@ -148,6 +148,18 @@ export function ShieldCheckIcon(props: TrustIconProps) {
   );
 }
 
+/** Document with a folded corner, text lines and a tick — service contract / plan. */
+export function ContractIcon(props: TrustIconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M11 4h18l8 8v32H11z" />
+      <path d="M29 4v8h8" />
+      <path d="M17 20h14M17 26h10" />
+      <path d="M17 35.5l3.5 3.5 8 -8" />
+    </IconBase>
+  );
+}
+
 /** Enclosed (closed-box) recovery truck — collection & delivery. */
 export function RecoveryTruckIcon(props: TrustIconProps) {
   return (

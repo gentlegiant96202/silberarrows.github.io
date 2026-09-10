@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   buildBrowserUserData,
   buildEventPayload,
+  buildOfferCustomData,
   getClientIp,
   isMetaCapiConfigured,
   sendMetaEvent,
@@ -15,6 +16,10 @@ import {
  * Conversions API so Meta deduplicates the pair and still counts the click
  * when the Pixel was blocked or hadn't loaded. Mirrors how /api/lead sends
  * the form `Lead`.
+ *
+ * When the click happened on an offer, the browser also sends `offer`,
+ * `offerName` and `intent`; those are attached as `content_ids` / custom
+ * properties so the click is attributable to the offer in Events Manager.
  */
 
 const KINDS = new Set(["phone", "whatsapp"]);
@@ -80,6 +85,11 @@ export async function POST(request: NextRequest) {
     customData: {
       content_name: kind === "whatsapp" ? "WhatsApp" : "Phone",
       content_category: "contact_click",
+      ...buildOfferCustomData({
+        offer: cleanStr(body.offer, 128),
+        offerName: cleanStr(body.offerName, 256),
+        intent: cleanStr(body.intent, 64),
+      }),
     },
   });
 

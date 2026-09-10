@@ -6,6 +6,7 @@ import {
   getPosts,
   POSTS_PER_PAGE,
 } from "@/lib/blog/queries";
+import { getActiveOffers, OFFERS_PATH, offerPath } from "@/lib/offers";
 import { site } from "@/lib/site";
 
 const baseUrl = site.url;
@@ -49,6 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}${OFFERS_PATH}`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/blog`,
       lastModified,
       changeFrequency: "daily",
@@ -61,6 +68,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.7,
+  }));
+
+  const offerPages: MetadataRoute.Sitemap = getActiveOffers().map((o) => ({
+    url: `${baseUrl}${offerPath(o)}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
   }));
 
   let blogPages: MetadataRoute.Sitemap = [];
@@ -144,6 +158,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...corePages,
     ...servicePages,
+    ...offerPages,
     ...categoryPages,
     ...blogPages,
     ...paginationPages,

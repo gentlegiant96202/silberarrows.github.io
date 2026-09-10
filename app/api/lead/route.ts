@@ -3,6 +3,7 @@ import { getSupabase } from "@/lib/supabase";
 import {
   buildLeadUserData,
   buildLeadPayload,
+  buildOfferCustomData,
   getClientIp,
   isMetaCapiConfigured,
   sendMetaEvent,
@@ -37,6 +38,9 @@ export async function POST(request: NextRequest) {
       gbraid,
       wbraid,
       source,
+      offer,
+      offerName,
+      intent,
     } = body;
 
     if (!name || !phone) {
@@ -51,6 +55,8 @@ export async function POST(request: NextRequest) {
     // Attribution persisted with the lead so WhatsApp/Call/form conversions
     // can be reconciled against real conversations, and so a future
     // value-based (Data Manager API) upload has the click id it needs.
+    // Offer leads are stored exactly like any other lead — `source` (the page
+    // path, e.g. /offers/<slug>) is all that identifies them.
     const attribution = {
       source: cleanAttr(source),
       gclid: cleanAttr(gclid),
@@ -107,7 +113,9 @@ export async function POST(request: NextRequest) {
     await Promise.all(promises);
 
     // Meta Conversions API `Lead`, deduplicated against the browser Pixel
-    // `Lead` fired on the thank-you page via the shared eventId.
+    // `Lead` fired on the thank-you page via the shared eventId. When the
+    // form was opened from an offer page the event carries `content_ids` so
+    // Meta can attribute the lead to that offer.
     if (isMetaCapiConfigured()) {
       const userData = buildLeadUserData({
         name,
@@ -119,6 +127,14 @@ export async function POST(request: NextRequest) {
         fbc: fbc || null,
       });
 
+      const offerSlug = cleanAttr(offer, 128);
+      const offerTitle = cleanAttr(offerName, 256);
+      const offerData = buildOfferCustomData({
+        offer: offerSlug,
+        offerName: offerTitle,
+        intent: cleanAttr(intent, 64),
+      });
+
       const payload = buildLeadPayload({
         eventId:
           eventId ||
@@ -126,6 +142,13 @@ export async function POST(request: NextRequest) {
         eventTime,
         eventSourceUrl: eventSourceUrl || null,
         userData,
+        ...(offerSlug && {
+          customData: {
+            content_name: offerTitle ?? offerSlug,
+            content_category: "offer",
+            ...offerData,
+          },
+        }),
       });
 
       await sendMetaEvent(payload);

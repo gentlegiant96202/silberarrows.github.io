@@ -15,7 +15,7 @@ export function HeroActions({ label = "Get a Free Quote" }: { label?: string }) 
   const { openModal } = useContactModal();
 
   return (
-    <div className="anim-rise mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
+    <div className="anim-rise mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5 lg:mt-10">
       <button
         type="button"
         onClick={openModal}

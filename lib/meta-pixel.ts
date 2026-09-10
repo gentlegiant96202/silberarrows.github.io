@@ -6,6 +6,8 @@
  * Conversions API, sharing one `eventID` so Meta deduplicates them.
  */
 
+import { offerCustomData, type LeadContext } from "@/lib/analytics";
+
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
@@ -85,15 +87,22 @@ function postSurvivingNavigation(url: string, body: string): void {
  *  2. Server: beacon to /api/contact-click, which sends the same event
  *     (same event_id) through the Conversions API with IP / UA / fbp / fbc.
  *
+ * When an offer `context` is given, both halves carry `content_ids` and the
+ * offer slug so the click can be attributed to that offer in Events Manager.
+ *
  * Returns the event id so callers can correlate if needed.
  */
-export function trackMetaContact(kind: ContactKind): string | null {
+export function trackMetaContact(
+  kind: ContactKind,
+  context?: LeadContext | null
+): string | null {
   if (typeof window === "undefined") return null;
 
   const eventId = newEventId("contact");
   const customData = {
     content_name: kind === "whatsapp" ? "WhatsApp" : "Phone",
     content_category: "contact_click",
+    ...offerCustomData(context),
   };
 
   if (typeof window.fbq === "function") {
@@ -114,6 +123,11 @@ export function trackMetaContact(kind: ContactKind): string | null {
       eventId,
       ...(fbp && { fbp }),
       ...(fbc && { fbc }),
+      ...(context && {
+        offer: context.offer,
+        offerName: context.offerName,
+        ...(context.intent && { intent: context.intent }),
+      }),
       eventSourceUrl: window.location.href,
       source: window.location.pathname,
     })

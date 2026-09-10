@@ -127,13 +127,35 @@ export function buildLeadUserData(
 
 /* ── payload builders ───────────────────────────────────────────────── */
 
+/** Meta `custom_data`. `content_ids` is an array; everything else scalar. */
+export type MetaCustomData = Record<string, string | number | string[]>;
+
 export interface BuildEventPayloadOptions {
   eventName: MetaEventName;
   eventId: string;
   eventTime: number;
   eventSourceUrl: string | null;
   userData: Record<string, string>;
-  customData?: Record<string, string | number>;
+  customData?: MetaCustomData;
+}
+
+/**
+ * Offer attribution fragment for `custom_data`, mirroring the browser-side
+ * `offerCustomData()` in lib/analytics.ts so Pixel and CAPI halves match.
+ */
+export function buildOfferCustomData(input: {
+  offer: string | null;
+  offerName: string | null;
+  intent: string | null;
+}): MetaCustomData {
+  if (!input.offer) return {};
+  const data: MetaCustomData = {
+    content_ids: [input.offer],
+    offer: input.offer,
+  };
+  if (input.offerName) data.offer_name = input.offerName;
+  if (input.intent) data.offer_intent = input.intent;
+  return data;
 }
 
 export function buildEventPayload(

@@ -9,6 +9,19 @@ import { nav, site } from "@/lib/site";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { cn } from "@/lib/utils";
 
+/** Small pulsing silver dot that flags promotional nav entries (e.g. Offers). */
+function HighlightDot({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "silver-dot inline-block h-1.5 w-1.5 shrink-0 rounded-full animate-pulse",
+        className
+      )}
+    />
+  );
+}
+
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -51,13 +64,14 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative whitespace-nowrap px-2.5 py-2 text-[0.8125rem] xl:text-sm xl:px-3.5 font-medium uppercase tracking-[0.12em] xl:tracking-[0.14em] transition rounded-md",
+                  "relative inline-flex items-center whitespace-nowrap px-2.5 py-2 text-[0.8125rem] xl:text-sm xl:px-3.5 font-medium uppercase tracking-[0.12em] xl:tracking-[0.14em] transition rounded-md",
                   active
                     ? "text-silver-shine"
                     : "text-[color:var(--color-silver-400)] hover:text-white"
                 )}
               >
                 {item.label}
+                {item.highlight && !active && <HighlightDot className="ml-1.5" />}
                 {active && (
                   <span className="absolute -bottom-0.5 left-2.5 right-2.5 xl:left-3.5 xl:right-3.5 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
                 )}
@@ -68,8 +82,9 @@ export function Header() {
 
         <div className="hidden lg:flex shrink-0 items-center gap-4">
           <button
+            type="button"
             onClick={openModal}
-            className="btn-silver rounded-lg px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em]"
+            className="btn-gradient inline-flex h-10 items-center justify-center px-6 text-sm"
           >
             Contact Us
           </button>
@@ -97,13 +112,14 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "rounded-lg px-3 py-3 text-sm font-medium uppercase tracking-[0.14em] transition",
+                    "flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium uppercase tracking-[0.14em] transition",
                     active
                       ? "bg-white/10 text-white"
                       : "text-[color:var(--color-silver-300)] hover:bg-white/5 hover:text-white"
                   )}
                 >
                   {item.label}
+                  {item.highlight && !active && <HighlightDot />}
                 </Link>
               );
             })}
