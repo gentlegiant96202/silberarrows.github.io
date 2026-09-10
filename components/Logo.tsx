@@ -31,14 +31,24 @@ export function Logo({
 
   const inner = (
     <span className={`inline-flex items-center gap-2.5 ${cls.wrap}`}>
+      {/*
+        `unoptimized`: the source is an 8 KB 180px PNG already at its display
+        size. Routing it through /_next/image adds a cold-cache transform on
+        every new deployment, which is why the logo used to be the last thing
+        to paint. Served as a static, immutable asset instead; `priority`
+        still emits the <link rel="preload"> so it's requested with the HTML.
+      */}
       <Image
         src="/assets/icons/silberarrows-logo.png"
         alt="SilberArrows"
         width={cls.mark}
         height={cls.mark}
         priority
+        unoptimized
+        fetchPriority="high"
         className={`shrink-0 select-none drop-shadow-[0_2px_10px_rgba(229,228,226,0.25)] ${cls.markClass}`}
       />
+
       {showWordmark && (
         <span className={`font-semibold tracking-[0.04em] ${cls.text}`}>
           <span className="text-silver-shine">Silber</span>

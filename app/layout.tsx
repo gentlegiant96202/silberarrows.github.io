@@ -13,23 +13,28 @@ import "./globals.css";
 
 // Mercedes-Benz Corporate S — body, UI, mid-size headings.
 // Regular (400) + Bold (700); CSS 500 maps down to Regular, 600 up to Bold.
+// WOFF2 (full glyph set) — roughly half the bytes of the TTF sources, which
+// matters because next/font preloads every file here at high priority and
+// they compete with the logo and hero image on first paint.
 const corpoS = localFont({
   src: [
-    { path: "./fonts/CorpoS-Regular.ttf", weight: "400", style: "normal" },
-    { path: "./fonts/CorpoS-Bold.ttf", weight: "700", style: "normal" },
+    { path: "./fonts/CorpoS-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/CorpoS-Bold.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-corpo-s",
   display: "swap",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
 // Mercedes-Benz Corporate A — display headlines (hero, section titles).
 const corpoA = localFont({
   src: [
-    { path: "./fonts/CorpoA-Regular.ttf", weight: "400", style: "normal" },
-    { path: "./fonts/CorpoA-Bold.ttf", weight: "700", style: "normal" },
+    { path: "./fonts/CorpoA-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/CorpoA-Bold.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-corpo-a",
   display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 // Arabic face for the /ar routes. Registered here (on <html>) so the
@@ -122,6 +127,17 @@ export default function RootLayout({
   return (
     <html lang="en-AE" className={`${corpoS.variable} ${corpoA.variable} ${ibmPlexArabic.variable}`}>
       <head>
+        {/*
+          Header logo: next/image skips the automatic preload for
+          `unoptimized` sources, so request the 8 KB PNG explicitly alongside
+          the HTML. It's static and immutable, so this is one cached hit.
+        */}
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/icons/silberarrows-logo.png"
+          fetchPriority="high"
+        />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />

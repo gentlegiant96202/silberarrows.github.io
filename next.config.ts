@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
+    // Explicit list (required from Next 16): 60 for the scrimmed homepage
+    // hero, the default 75, and 90 for detail photography.
+    qualities: [60, 75, 90],
     remotePatterns: [
       {
         protocol: "https",

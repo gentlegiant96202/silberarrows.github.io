@@ -17,6 +17,12 @@ type HeroCarouselProps = {
   transitionMs?: number;
   /** `sizes` attribute forwarded to next/image. Default suits a half-width frame. */
   sizes?: string;
+  /**
+   * next/image quality. The hero sits under a dark scrim and brightness
+   * filter, so a lower setting is visually free; must be listed in
+   * `images.qualities` in next.config.ts.
+   */
+  quality?: number;
   /** Slow cinematic zoom on the active slide (disabled for reduced motion). */
   kenBurns?: boolean;
   className?: string;
@@ -31,6 +37,7 @@ export function HeroCarousel({
   intervalMs = 4000,
   transitionMs = 1000,
   sizes = "(min-width: 1024px) 50vw, 100vw",
+  quality,
   kenBurns = false,
   className,
 }: HeroCarouselProps) {
@@ -145,6 +152,7 @@ export function HeroCarousel({
                 fetchPriority={i === 0 ? "high" : "auto"}
                 loading={i === 0 ? "eager" : "lazy"}
                 sizes={sizes}
+                quality={quality}
                 className="object-cover object-center"
                 draggable={false}
               />

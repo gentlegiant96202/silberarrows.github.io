@@ -123,6 +123,7 @@ export function Hero({
         <HeroCarousel
           images={heroCarouselImages}
           sizes="100vw"
+          quality={60}
           kenBurns
           className="hero-photo"
         />
