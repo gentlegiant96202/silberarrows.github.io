@@ -56,6 +56,37 @@ from the Supabase `ads_snapshots` table.
 }
 ```
 
+## Paid-visit log (`/ads/visits`) — click quality & fraud
+
+Independent of the snapshots. Every page request that arrives with a Google
+click id is logged **live** to the Supabase `ad_visits` table, and the browser
+reports engagement back. Nothing here calls Google.
+
+- **Setup:** run `supabase/migrations/0003_ad_visits.sql` once in the SQL editor.
+  Uses the same `SUPABASE_SERVICE_ROLE_KEY` as above — no new env vars.
+- **Request half** — `middleware.ts` (edge): IP, /24 prefix, user agent (+ bot
+  flag), Vercel geo city, landing path, referrer, gclid/gbraid/wbraid, and the
+  ValueTrack fields from the account-level **final URL suffix** set in Google Ads:
+  ```
+  utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_term={keyword}
+  &sa_ag={adgroupid}&sa_mt={matchtype}&sa_dev={device}&sa_net={network}
+  &sa_cr={creative}&sa_tgt={targetid}&sa_loc={loc_physical_ms}&sa_li={loc_interest_ms}
+  ```
+  Sets a `_sa_visit` cookie (12 h). Insert runs in `waitUntil` — zero latency.
+- **Engagement half** — `components/AdVisitTracker.tsx` beacons active time
+  (tab visible only), max scroll, pages, clicks, Call / WhatsApp taps and form
+  leads to `/api/ad-visit`, which merges via the `ad_visit_ping()` SQL function
+  (greatest-wins, so beacon order never matters).
+- **Definitions:** *engaged* = ≥10 s active or ≥2 pages or a contact (GA4 rule);
+  *bounce* = not engaged; *no JS* = never pinged (bot, blocker, or left in <1 s).
+  Bot UAs (incl. AdsBot-Google) are excluded from all engagement numbers.
+- **Suspicious IP** = score ≥ 4 with ≥ 3 visits; the page renders a ready-to-paste
+  list for Google Ads → Campaign settings → IP exclusions (max 500 / campaign).
+  Many distinct UAs on one IP *with* real contacts is a carrier NAT, and the
+  score discounts it.
+- **Retention:** IPs are stored in the clear on purpose. Purge monthly:
+  `delete from public.ad_visits where created_at < now() - interval '90 days';`
+
 Account: `612-539-2209` (customer id `6125392209`). Live campaigns:
 `SilberArrows | Service Department MCP` and `Branded | SilberArrows | MCP`.
 Brand and Service are always reported separately — never blended.

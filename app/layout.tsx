@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import { ContactModalProvider } from "@/components/ContactModalProvider";
 import { ChromeGate } from "@/components/ChromeGate";
+import { AdVisitTracker } from "@/components/AdVisitTracker";
 import { site } from "@/lib/site";
 import { defaultOgImage } from "@/lib/seo";
 import "./globals.css";
@@ -227,6 +228,13 @@ export default function RootLayout({
             <MobileContactBar />
           </ChromeGate>
         </ContactModalProvider>
+
+        {/*
+          Paid-click engagement log (active time, scroll, pages, contact taps)
+          — only active when the edge middleware set the `_sa_visit` cookie,
+          i.e. the session started from a Google Ads click. Feeds /ads/visits.
+        */}
+        <AdVisitTracker />
 
         {/* gtag.js library — config + stub are queued in <head> (gtag-stub). */}
         <Script

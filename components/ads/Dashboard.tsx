@@ -195,15 +195,23 @@ export function Dashboard({
             {previous ? ` · vs ${previous.snapshot_date}` : ""}
           </p>
         </div>
-        <form action="/api/ads-auth" method="post">
-          <input type="hidden" name="action" value="logout" />
-          <button
-            type="submit"
+        <div className="flex items-center gap-2">
+          <a
+            href="/ads/visits"
             className="rounded-md border border-ink-500 px-3 py-1.5 text-xs text-silver-400 transition hover:border-silver-500 hover:text-silver-200"
           >
-            Sign out
-          </button>
-        </form>
+            Paid visits &amp; click quality →
+          </a>
+          <form action="/api/ads-auth" method="post">
+            <input type="hidden" name="action" value="logout" />
+            <button
+              type="submit"
+              className="rounded-md border border-ink-500 px-3 py-1.5 text-xs text-silver-400 transition hover:border-silver-500 hover:text-silver-200"
+            >
+              Sign out
+            </button>
+          </form>
+        </div>
       </div>
 
       {/* KPI summary */}
