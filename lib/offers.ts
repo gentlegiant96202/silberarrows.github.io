@@ -67,6 +67,8 @@ export type Offer = {
   schema?: {
     priceFrom?: number;
     discountPercent?: number;
+    /** Overrides the default "% off labour and parts" JSON-LD wording. */
+    discountDescription?: string;
   };
   /** Inactive offers 404 and drop out of the index + sitemap. */
   active: boolean;
@@ -88,7 +90,6 @@ export const offers: Offer[] = [
       "Factory-trained technicians & XENTRY",
       "Preferential 10+ pricing",
     ],
-    badge: "New",
     image: {
       src: "/assets/images/offers/ten-plus.jpg",
       alt: "White Mercedes-Benz with its bonnet open on an open expanse, a SilberArrows technician standing beside it with a diagnostic tablet.",
@@ -131,6 +132,41 @@ export const offers: Offer[] = [
     keywords:
       "Mercedes warranty expired Dubai, Mercedes-Benz extended warranty Dubai, Mercedes service contract expired, Mercedes ServiceCare plan Dubai, certified warranty Mercedes Dubai, Mercedes out of warranty service Dubai, independent Mercedes specialist Al Quoz",
     schema: { priceFrom: getServiceCareStartingPrices().standard },
+    active: true,
+  },
+  {
+    slug: "mercedes-benz-imported-welcome-programme-dubai",
+    shortTitle: "Imported Welcome Programme",
+    title: "Is your Mercedes-Benz an import?",
+    titleLines: ["Is your Mercedes-Benz", "an import?"],
+    tagline: "Imported Mercedes-Benz Welcome Programme",
+    intro: "Wherever it came from, it belongs in specialist hands.",
+    summary:
+      "Imported Mercedes-Benz vehicles receive a complimentary health check and 20% off Servicing, ServiceCare Plans and Certified Warranty on their first visit — the same SilberArrows standard, wherever its origin.",
+    highlights: [
+      "Complimentary health check",
+      "20% off Servicing",
+      "20% off ServiceCare Plans",
+      "20% off Certified Warranty",
+    ],
+    badge: "New",
+    image: {
+      src: "/assets/images/offers/import-welcome.jpg",
+      alt: "A dark Mercedes-Benz E-Class at night outside the SilberArrows workshop in Al Quoz, Dubai, cherry blossom overhead and path lights in the foreground.",
+      toned: true,
+      position: "center 46%",
+    },
+    metaTitle:
+      "Imported Mercedes-Benz? Complimentary Health Check & 20% Off Dubai | SilberArrows",
+    metaDescription:
+      "Is your Mercedes-Benz an import? SilberArrows welcomes imported Mercedes-Benz vehicles in Al Quoz, Dubai with a complimentary health check and 20% off Servicing, ServiceCare Plans and Certified Warranty on the first visit.",
+    keywords:
+      "imported Mercedes-Benz Dubai, parallel import Mercedes service Dubai, grey import Mercedes specialist Dubai, imported Mercedes health check, Mercedes import servicing Al Quoz, SilberArrows welcome programme, imported Mercedes warranty Dubai",
+    schema: {
+      discountPercent: 20,
+      discountDescription:
+        "Complimentary health check and 20% off Servicing, ServiceCare Plans and Certified Warranty on the first visit",
+    },
     active: true,
   },
 ];

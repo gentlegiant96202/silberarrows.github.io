@@ -5,6 +5,7 @@ import { Contact } from "@/components/sections/Contact";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { OfferSchema } from "@/components/OfferSchema";
 import { OfferViewTracker } from "@/components/offers/OfferViewTracker";
+import { ImportWelcomeOffer } from "@/components/offers/import-welcome/ImportWelcomeOffer";
 import { TenPlusOffer } from "@/components/offers/ten-plus/TenPlusOffer";
 import { WarrantyExpiredOffer } from "@/components/offers/warranty-expired/WarrantyExpiredOffer";
 import {
@@ -27,6 +28,7 @@ import { site } from "@/lib/site";
 const OFFER_BODIES: Record<string, ComponentType<{ offer: Offer }>> = {
   "mercedes-benz-over-10-years-old-service-dubai": TenPlusOffer,
   "mercedes-benz-warranty-expired-service-contract-dubai": WarrantyExpiredOffer,
+  "mercedes-benz-imported-welcome-programme-dubai": ImportWelcomeOffer,
 };
 
 export function generateStaticParams() {

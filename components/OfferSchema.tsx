@@ -44,7 +44,9 @@ function offerNode(offer: Offer) {
             priceSpecification: {
               "@type": "PriceSpecification",
               priceCurrency: "AED",
-              description: `${discountPercent}% off labour and Mercedes-Benz GenuineParts`,
+              description:
+                offer.schema?.discountDescription ??
+                `${discountPercent}% off labour and Mercedes-Benz GenuineParts`,
             },
           }
         : {}),
