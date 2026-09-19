@@ -44,11 +44,67 @@ export function countryCodeToIso(countryCode: string): string {
   return COUNTRY_CODE_MAP[digits] || "";
 }
 
-/** First hop of x-forwarded-for, else x-real-ip, else null. */
+/**
+ * Visitor IP for CAPI `client_ip_address`.
+ *
+ * Meta's Pixel sees the IP the browser used to reach Facebook (often IPv6).
+ * CAPI must send the IP the browser used to reach *us*. When both families
+ * appear on client-facing hops we prefer IPv6 — Meta's documented preference
+ * for IPv6-enabled users, and the fix for the Events Manager diagnostic
+ * "Update to IPv6 for Contact events". Later X-Forwarded-For hops are
+ * proxies (Vercel) and are never used.
+ */
 export function getClientIp(headers: Headers): string | null {
-  const forwarded = headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return headers.get("x-real-ip") || null;
+  const candidates: string[] = [];
+  for (const name of CLIENT_IP_HEADERS) {
+    const ip = leftmostIp(headers.get(name));
+    if (ip && !candidates.includes(ip)) candidates.push(ip);
+  }
+
+  const usable = candidates.filter((ip) => !isPrivateOrReservedIp(ip));
+  const pool = usable.length > 0 ? usable : candidates;
+  return pool.find(isPublicIPv6) ?? pool[0] ?? null;
+}
+
+const CLIENT_IP_HEADERS = [
+  "x-forwarded-for",
+  "x-vercel-forwarded-for",
+  "x-real-ip",
+  "cf-connecting-ip",
+  "true-client-ip",
+] as const;
+
+function leftmostIp(value: string | null): string | null {
+  if (!value) return null;
+  const first = value.split(",")[0].trim().replace(/^\[|\]$/g, "");
+  return first || null;
+}
+
+function isIPv4MappedIPv6(ip: string): boolean {
+  return /^::ffff:/i.test(ip);
+}
+
+function isPublicIPv6(ip: string): boolean {
+  return ip.includes(":") && !isIPv4MappedIPv6(ip);
+}
+
+function isPrivateOrReservedIp(ip: string): boolean {
+  if (isIPv4MappedIPv6(ip) || /^\d{1,3}(?:\.\d{1,3}){3}$/.test(ip)) {
+    const v4 = isIPv4MappedIPv6(ip) ? ip.replace(/^::ffff:/i, "") : ip;
+    const [a, b] = v4.split(".").map((n) => Number(n));
+    if (!Number.isFinite(a) || !Number.isFinite(b)) return false;
+    if (a === 10 || a === 127 || a === 0) return true;
+    if (a === 169 && b === 254) return true;
+    if (a === 172 && b >= 16 && b <= 31) return true;
+    if (a === 192 && b === 168) return true;
+    if (a === 100 && b >= 64 && b <= 127) return true;
+    return false;
+  }
+  const lower = ip.toLowerCase();
+  if (lower === "::1") return true;
+  if (lower.startsWith("fe80:")) return true;
+  if (lower.startsWith("fc") || lower.startsWith("fd")) return true;
+  return false;
 }
 
 export function isMetaCapiConfigured(): boolean {
