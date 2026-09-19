@@ -16,7 +16,7 @@ import { OFFERS_PATH, type Offer } from "@/lib/offers";
  */
 
 const FIGURES = [
-  { value: "Free", label: "Health Check" },
+  { value: "Complimentary", label: "Health Check", compact: true },
   { value: "20%", label: "First Visit" },
 ];
 
