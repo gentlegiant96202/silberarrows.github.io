@@ -7,7 +7,7 @@ const DEFAULT_FOCUS = "center 12%";
 
 export function Team() {
   return (
-    <section className="relative overflow-clip border-t border-white/[0.06] py-20 md:py-28">
+    <section className="section-band overflow-clip py-20 md:py-28">
       <div className="container-page">
         <div className="reveal">
           <SectionHeader

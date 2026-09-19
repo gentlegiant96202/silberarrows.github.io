@@ -20,11 +20,11 @@ export function ServicesAr() {
         </div>
 
         {/* 8 services → 2 columns on phones, 4 on desktop: no orphans */}
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-16 lg:grid-cols-4">
+        <div className="reveal mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-16 lg:grid-cols-4">
           {servicesAr.items.map((service) => (
             <div
               key={service.title}
-              className="reveal surface group relative block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1"
+              className="surface group relative block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1"
             >
               <div className="relative aspect-[4/5] w-full md:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
@@ -33,15 +33,15 @@ export function ServicesAr() {
                   fill
                   quality={90}
                   sizes="(min-width: 1024px) 25vw, 50vw"
-                  className="object-cover grayscale-[0.3] transition duration-700 ease-out group-hover:scale-[1.06] group-hover:grayscale-0"
+                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-ink-950)] via-[color:var(--color-ink-950)]/45 to-transparent" />
+                <div className="service-card-scrim pointer-events-none absolute inset-0" />
 
-                <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
-                  <h3 className="text-[15px] font-semibold leading-snug text-white sm:text-base">
+                <div className="absolute inset-x-0 bottom-0 z-10 px-3 pb-3 pt-2 sm:px-3.5 sm:pb-3.5">
+                  <h3 className="text-[0.8125rem] font-semibold leading-tight text-white sm:text-sm">
                     {service.title}
                   </h3>
-                  <p className="mt-1.5 line-clamp-2 text-[11.5px] leading-relaxed text-[color:var(--color-silver-300)] sm:text-xs">
+                  <p className="mt-0.5 line-clamp-2 text-[0.6875rem] leading-snug text-[color:var(--color-silver-300)]">
                     {service.blurb}
                   </p>
                 </div>

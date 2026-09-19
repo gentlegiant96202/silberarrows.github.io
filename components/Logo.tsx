@@ -64,7 +64,7 @@ export function Logo({
   return (
     <Link
       href={href}
-      className="inline-flex items-center"
+      className="inline-flex shrink-0 items-center"
       aria-label="SilberArrows home"
     >
       {inner}

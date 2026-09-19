@@ -54,10 +54,11 @@ const defaultSubtitle =
 
 /**
  * Corporate A Regular averages ~0.47em per character (measured from the
- * font's advance widths). 3% headroom absorbs kerning/tracking variance.
+ * font's advance widths). 14% headroom absorbs kerning, the page gutter
+ * when cqi falls back to the viewport, and optical overflow of the serifs.
  */
 const HEADLINE_EM_PER_CHAR = 0.47;
-const HEADLINE_FIT_HEADROOM = 1.03;
+const HEADLINE_FIT_HEADROOM = 1.14;
 
 function lineText(line: HeroTitleLine): string {
   return line.map((s) => s.text).join(" ");
@@ -143,7 +144,7 @@ export function Hero({
         {/* ── Copy block ─────────────────────────────────────────────── */}
         {/* `@container` lets the headline size itself against this block
             (cqi units) rather than the viewport. */}
-        <div className="@container max-w-4xl lg:flex lg:flex-1 lg:flex-col lg:justify-center">
+        <div className="@container min-w-0 w-full max-w-4xl lg:flex lg:flex-1 lg:flex-col lg:justify-center">
           {tagline && (
             <p className="anim-fade mb-4 text-[0.6875rem] uppercase tracking-[0.3em] text-cream/60">
               {tagline}
@@ -151,7 +152,7 @@ export function Hero({
           )}
 
           <h1
-            className="anim-rise text-display text-hero-gradient font-display font-normal text-[length:min(2.5rem,var(--hero-title-fit))] sm:text-[length:min(3.25rem,var(--hero-title-fit))] md:text-[length:min(4rem,var(--hero-title-fit))] lg:text-[length:min(3.75rem,var(--hero-title-fit))] lg:leading-[1.08] xl:text-[length:min(4.25rem,var(--hero-title-fit))] 2xl:text-[length:min(4.75rem,var(--hero-title-fit))]"
+            className="anim-rise text-display font-display font-normal text-cream leading-[1.08] text-[length:min(2.5rem,var(--hero-title-fit))] sm:text-[length:min(3.25rem,var(--hero-title-fit))] md:text-[length:min(4rem,var(--hero-title-fit))] lg:text-[length:min(3.75rem,var(--hero-title-fit))] xl:text-[length:min(4.25rem,var(--hero-title-fit))] 2xl:text-[length:min(4.75rem,var(--hero-title-fit))]"
             style={
               {
                 "--hero-title-fit": headlineFit(titleParts),
@@ -173,7 +174,8 @@ export function Hero({
                       className={cn(
                         // Single tokens (e.g. "Mercedes-Benz") must not
                         // break at the hyphen; Corporate A has no U+2011.
-                        !seg.text.includes(" ") && "whitespace-nowrap"
+                        !seg.text.includes(" ") && "whitespace-nowrap",
+                        seg.highlight && "text-hero-accent"
                       )}
                     >
                       {seg.text}
@@ -189,23 +191,22 @@ export function Hero({
           </p>
 
           {/* Offer hook — primary conversion driver */}
-          <p className="anim-rise mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-cream/85 lg:mt-6">
-            <BadgePercent
-              size={16}
-              className="shrink-0 text-whatsapp"
-              aria-hidden
-            />
-            <span>
-              <span className="font-bold text-whatsapp">20% OFF</span> your
-              first Minor or Major Service
-            </span>
-            <span aria-hidden className="text-cream/50">
-              ·
-            </span>
-            <span className="text-cream/75">
+          <div className="anim-rise mt-4 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 lg:mt-6">
+            <p className="hero-offer-chip inline-flex max-w-full items-center gap-2.5 rounded-full px-4 py-2 text-sm text-cream/90">
+              <BadgePercent
+                size={16}
+                className="shrink-0 text-whatsapp"
+                aria-hidden
+              />
+              <span>
+                <span className="font-bold text-whatsapp">20% OFF</span> your
+                first Minor or Major Service
+              </span>
+            </p>
+            <p className="text-xs text-cream/60 sm:text-sm">
               Limited slots this month · New customers only. T&amp;Cs apply.
-            </span>
-          </p>
+            </p>
+          </div>
 
           <HeroActions />
         </div>

@@ -12,7 +12,7 @@ export async function LatestPosts() {
 
   return (
     <section
-      className="relative border-t border-white/[0.06] py-20 md:py-28"
+      className="section-band py-20 md:py-28"
       aria-labelledby="home-latest-posts"
     >
       <div className="container-page">

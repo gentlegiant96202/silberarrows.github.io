@@ -93,8 +93,10 @@ function DesktopDropdown({
           )}
         >
           {item.label}
-          {item.highlight && !active && (
-            <HighlightDot className="ml-1.5" />
+          {item.highlight && (
+            <HighlightDot
+              className={cn("ml-1.5", active && "invisible")}
+            />
           )}
           {active && <ActiveUnderline />}
         </Link>
@@ -187,16 +189,16 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
+        "sticky top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300",
         scrolled
-          ? "bg-black/70 backdrop-blur-xl border-b border-white/10"
-          : "bg-transparent border-b border-transparent"
+          ? "border-white/10 bg-black/70 backdrop-blur-xl"
+          : "border-transparent bg-transparent"
       )}
     >
       <div className="container-page flex h-24 items-center justify-between gap-4 md:h-28">
         <Logo size="responsive" showWordmark={false} />
 
-        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+        <nav className="hidden lg:flex shrink-0 items-center gap-0.5 xl:gap-1">
           {nav.map((item) => {
             if (item.children?.length) {
               return (
@@ -227,7 +229,9 @@ export function Header() {
                 )}
               >
                 {item.label}
-                {item.highlight && !active && <HighlightDot className="ml-1.5" />}
+                {item.highlight && (
+                  <HighlightDot className={cn("ml-1.5", active && "invisible")} />
+                )}
                 {active && <ActiveUnderline />}
               </Link>
             );
@@ -245,11 +249,32 @@ export function Header() {
         </div>
 
         <button
+          type="button"
           onClick={() => setMobileOpen((v) => !v)}
-          aria-label="Toggle menu"
-          className="lg:hidden inline-flex items-center justify-center h-12 w-12 rounded-lg border border-white/10 bg-white/5 text-white"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          className="relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white lg:hidden"
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          <Menu
+            size={24}
+            aria-hidden
+            className={cn(
+              "absolute transition duration-200 ease-out",
+              mobileOpen
+                ? "scale-75 rotate-90 opacity-0"
+                : "scale-100 rotate-0 opacity-100"
+            )}
+          />
+          <X
+            size={24}
+            aria-hidden
+            className={cn(
+              "absolute transition duration-200 ease-out",
+              mobileOpen
+                ? "scale-100 rotate-0 opacity-100"
+                : "scale-75 -rotate-90 opacity-0"
+            )}
+          />
         </button>
       </div>
 
@@ -270,7 +295,9 @@ export function Header() {
                     )}
                   >
                     {item.label}
-                    {item.highlight && !active && <HighlightDot />}
+                    {item.highlight && (
+                      <HighlightDot className={cn(active && "invisible")} />
+                    )}
                   </Link>
 
                   {item.children?.length ? (

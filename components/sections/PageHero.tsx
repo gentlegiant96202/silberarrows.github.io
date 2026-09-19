@@ -71,14 +71,19 @@ export function PageHero({
           </nav>
         )}
 
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
+        {/* Title and intro centre on each other; the hairline rail stretches to the
+            taller of the two so the rule always spans the full header height and
+            lands at the same x on every page. */}
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-center lg:gap-10">
           <h1 className="text-display anim-rise text-[2.5rem] font-semibold text-silver-shine sm:text-5xl md:text-6xl lg:col-span-7 lg:text-[4.25rem]">
             {preserveBrandWrap(title)}
           </h1>
           {intro && (
-            <p className="anim-rise max-w-xl text-base leading-relaxed text-[color:var(--color-silver-300)] md:text-lg lg:col-span-5 lg:justify-self-end lg:border-l lg:border-white/10 lg:pb-1.5 lg:pl-8">
-              {preserveBrandWrap(intro)}
-            </p>
+            <div className="anim-rise lg:col-span-5 lg:flex lg:items-center lg:self-stretch lg:border-l lg:border-white/10 lg:pl-8">
+              <p className="max-w-md text-base leading-relaxed text-[color:var(--color-silver-300)] md:text-[1.0625rem]">
+                {preserveBrandWrap(intro)}
+              </p>
+            </div>
           )}
         </div>
       </div>

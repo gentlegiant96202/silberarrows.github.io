@@ -53,7 +53,7 @@ export default function HomePage() {
       <LatestPosts />
 
       <section
-        className="relative border-t border-white/[0.06] py-20 md:py-28"
+        className="section-band py-20 md:py-28"
         aria-labelledby="home-faqs"
       >
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-10">
@@ -67,7 +67,7 @@ export default function HomePage() {
               </div>
               <h2
                 id="home-faqs"
-                className="text-display mt-5 text-[2.25rem] font-semibold text-silver-shine sm:text-5xl lg:text-[2.5rem] xl:text-[3rem]"
+                className="text-display text-title mt-5 font-semibold text-silver-shine"
               >
                 {preserveBrandWrap("Mercedes-Benz Service Dubai FAQs")}
               </h2>

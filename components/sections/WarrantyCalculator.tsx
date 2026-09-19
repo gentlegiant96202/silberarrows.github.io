@@ -8,7 +8,6 @@ import {
   WARRANTY_TERMS,
   WARRANTY_COMPARISON_FEATURES,
 } from "@/lib/serviceWarrantyPricing";
-import { SectionHeader } from "@/components/sections/SectionHeader";
 import { Select, StepBadge } from "@/components/sections/contracts/Select";
 import { TierCard } from "@/components/sections/contracts/TierCard";
 import { QuotePanel } from "@/components/sections/contracts/QuotePanel";
@@ -70,15 +69,8 @@ export function WarrantyCalculator({ className }: { className?: string }) {
       )}
     >
       <div className="container-page">
-        <div className="reveal">
-          <SectionHeader
-            variant="split"
-            eyebrow="Extended Warranty"
-            title="Extended Warranty Coverage"
-            intro="Protect your Mercedes-Benz beyond the manufacturer warranty. Choose your model to see Standard and Premium pricing."
-          />
-        </div>
-
+        {/* No in-section header: this sits directly under the page hero, which
+            already carries the title and intro. */}
         <QuotePanel
           className="mt-10 md:mt-12"
           title={<>Build your quote &mdash; interactive</>}

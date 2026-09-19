@@ -10,6 +10,8 @@ export type Service = {
   bullets: { heading: string; items: string[] };
   process: string[];
   hero: string;
+  /** Optional 4:5 card crop. Homepage grid uses this; falls back to `hero`. */
+  card?: string;
   faqs?: FAQ[];
   comparison?: {
     headers: string[];

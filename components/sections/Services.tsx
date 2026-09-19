@@ -8,10 +8,7 @@ import { cn, preserveBrandWrap } from "@/lib/utils";
 export function Services({ className }: { className?: string }) {
   return (
     <section
-      className={cn(
-        "relative border-t border-white/[0.06] py-20 md:py-28",
-        className
-      )}
+      className={cn("section-band py-20 md:py-28", className)}
     >
       <div className="container-page">
         <div className="reveal">
@@ -24,40 +21,41 @@ export function Services({ className }: { className?: string }) {
         </div>
 
         {/* 10 services → 2 columns on phones/tablets, 5 on desktop: no orphans */}
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-16 lg:grid-cols-5">
+        <div className="reveal mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-16 lg:grid-cols-5">
           {services.map((service) => (
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="reveal surface group relative block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1"
+              className="surface group relative block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1"
             >
               <div className="relative aspect-[4/5] w-full md:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
-                  src={service.hero}
+                  src={service.card ?? service.hero}
                   alt={service.shortTitle}
                   fill
                   quality={90}
                   sizes="(min-width: 1024px) 20vw, 50vw"
-                  className="object-cover grayscale-[0.3] transition duration-700 ease-out group-hover:scale-[1.06] group-hover:grayscale-0"
+                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-ink-950)] via-[color:var(--color-ink-950)]/45 to-transparent" />
+                <div className="service-card-scrim pointer-events-none absolute inset-0" />
 
-                <span className="silver-tick absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full transition duration-300 group-hover:rotate-45 group-hover:scale-110 sm:right-4 sm:top-4">
-                  <ArrowUpRight size={14} />
+                <span className="silver-tick absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full sm:right-4 sm:top-4">
+                  <ArrowUpRight
+                    size={14}
+                    className="transition duration-300 group-hover:rotate-45"
+                  />
                 </span>
 
-                <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
-                  <h3 className="text-[0.9375rem] font-semibold leading-snug tracking-tight text-white sm:text-base">
+                <div className="service-card-copy absolute inset-x-0 bottom-0 z-10 px-3 pb-3 pt-2 sm:px-3.5 sm:pb-3.5">
+                  <h3 className="text-[0.8125rem] font-semibold leading-tight tracking-tight text-white sm:text-sm">
                     {preserveBrandWrap(service.shortTitle)}
                   </h3>
-                  <p className="mt-1.5 line-clamp-2 text-[0.71875rem] leading-relaxed text-[color:var(--color-silver-300)] sm:text-xs">
+                  <p className="mt-0.5 line-clamp-2 text-[0.6875rem] leading-snug text-[color:var(--color-silver-300)]">
                     {preserveBrandWrap(service.blurb)}
                   </p>
-                  <div className="mt-3 flex items-center gap-2">
-                    <span className="text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-silver-shine">
-                      Learn More
-                    </span>
-                  </div>
+                  <span className="mt-1.5 block text-[0.5625rem] font-semibold uppercase tracking-[0.18em] text-silver-shine">
+                    Learn More
+                  </span>
                 </div>
               </div>
             </Link>

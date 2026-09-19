@@ -8,7 +8,7 @@ export function Contracts({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        "relative overflow-clip border-t border-white/[0.06] py-20 md:py-28",
+        "section-band overflow-clip py-20 md:py-28",
         className
       )}
     >

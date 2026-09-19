@@ -23,7 +23,7 @@ export function Contact({
   return (
     <section
       className={cn(
-        "relative border-t border-white/[0.06] py-20 md:py-28",
+        "section-band py-20 md:py-28",
         className
       )}
     >

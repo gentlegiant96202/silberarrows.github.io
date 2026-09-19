@@ -11,7 +11,6 @@ import {
   SERVICECARE_TERMS,
   SERVICECARE_COMPARISON_FEATURES,
 } from "@/lib/serviceWarrantyPricing";
-import { SectionHeader } from "@/components/sections/SectionHeader";
 import { Select } from "@/components/sections/contracts/Select";
 import { TierCard } from "@/components/sections/contracts/TierCard";
 import { QuotePanel } from "@/components/sections/contracts/QuotePanel";
@@ -96,15 +95,8 @@ export function ServiceCareCalculator({ className }: { className?: string }) {
       )}
     >
       <div className="container-page">
-        <div className="reveal">
-          <SectionHeader
-            variant="split"
-            eyebrow="Service Contracts"
-            title="ServiceCare Maintenance Plans"
-            intro="Prepay your scheduled servicing at today's rates. Choose your model to see Standard and Premium pricing."
-          />
-        </div>
-
+        {/* No in-section header: this sits directly under the page hero, which
+            already carries the title and intro. */}
         <QuotePanel
           className="mt-10 md:mt-12"
           title={<>Build your quote &mdash; interactive</>}

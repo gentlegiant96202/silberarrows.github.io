@@ -15,7 +15,7 @@ const icons = [Sparkles, Star, Wrench, ClipboardCheck, ShieldCheck, Truck];
 
 export function WhyChooseUs() {
   return (
-    <section className="relative overflow-clip border-t border-white/[0.06] py-20 md:py-28">
+    <section className="section-band overflow-clip py-20 md:py-28">
       <div className="absolute inset-0 -z-10">
         <Image
           src="/assets/images/why-choose-us-bg-optimized.webp"

@@ -28,7 +28,7 @@ export function Reviews() {
   return (
     <section
       id="reviews"
-      className="relative scroll-mt-28 border-t border-white/[0.06] py-20 md:py-28"
+      className="section-band scroll-mt-28 py-20 md:py-28"
       aria-labelledby="reviews-title"
     >
       <div className="container-page grid gap-12 lg:grid-cols-12 lg:gap-10">
@@ -42,7 +42,7 @@ export function Reviews() {
             </div>
             <h2
               id="reviews-title"
-              className="text-display mt-5 text-[2.25rem] font-semibold text-silver-shine sm:text-5xl lg:text-[2.5rem] xl:text-[3rem]"
+              className="text-display text-title mt-5 font-semibold text-silver-shine"
             >
               {preserveBrandWrap("Loved by Mercedes-Benz Owners in Dubai")}
             </h2>

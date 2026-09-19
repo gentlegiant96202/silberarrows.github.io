@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { isTaglineIntro } from "@/components/sections/SectionHeader";
 
 /**
  * RTL counterpart of `sections/SectionHeader` (split variant): eyebrow + title
@@ -17,13 +18,8 @@ export function SectionHeaderAr({
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10",
-        className
-      )}
-    >
-      <div className="lg:col-span-7">
+    <div className={cn("grid gap-6 lg:grid-cols-12 lg:gap-10", className)}>
+      <div className="lg:col-span-7 lg:flex lg:flex-col lg:justify-end">
         {eyebrow && (
           <div className="flex items-center gap-3">
             <p className="text-[12px] font-semibold text-silver-shine">
@@ -31,14 +27,26 @@ export function SectionHeaderAr({
             </p>
           </div>
         )}
-        <h2 className="text-display mt-5 text-[2.1rem] font-semibold text-silver-shine sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem]">
+        <h2 className="text-display text-title mt-5 font-semibold text-silver-shine">
           {title}
         </h2>
       </div>
       {intro && (
-        <p className="max-w-xl text-base leading-relaxed text-[color:var(--color-silver-300)] md:text-lg lg:col-span-5 lg:justify-self-end lg:border-s lg:border-white/10 lg:pb-1.5 lg:ps-8">
-          {intro}
-        </p>
+        <div
+          className={cn(
+            "lg:col-span-5 lg:flex lg:border-s lg:border-white/10 lg:ps-8",
+            isTaglineIntro(intro) ? "lg:items-center" : "lg:items-end"
+          )}
+        >
+          <p
+            className={cn(
+              "max-w-md text-base leading-relaxed text-[color:var(--color-silver-300)] md:text-[1.0625rem]",
+              !isTaglineIntro(intro) && "lg:pb-1"
+            )}
+          >
+            {intro}
+          </p>
+        </div>
       )}
     </div>
   );
