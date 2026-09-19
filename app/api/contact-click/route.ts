@@ -7,19 +7,21 @@ import {
   isMetaCapiConfigured,
   sendMetaEvent,
 } from "@/lib/meta-capi";
+import { buildContactClickRow, insertContactClick } from "@/lib/contactClicks";
 
 /**
  * Server half of Call / WhatsApp click tracking.
  *
  * The browser fires `fbq('track', 'Contact', …, { eventID })` and beacons the
- * same `eventId` here; we forward a matching `Contact` event to the Meta
- * Conversions API so Meta deduplicates the pair and still counts the click
- * when the Pixel was blocked or hadn't loaded. Mirrors how /api/lead sends
- * the form `Lead`.
+ * same `eventId` here. We:
  *
- * When the click happened on an offer, the browser also sends `offer`,
- * `offerName` and `intent`; those are attached as `content_ids` / custom
- * properties so the click is attributable to the offer in Events Manager.
+ *   1. Persist every tap to `contact_clicks` (IP, UA, geo, env, click ids)
+ *      so /ads/contacts can review bots vs real people.
+ *   2. Forward a matching `Contact` event to the Meta Conversions API when
+ *      credentials are set, so Meta deduplicates the pair and still counts
+ *      the click when the Pixel was blocked.
+ *
+ * Logging is independent of CAPI — a missing token must not drop the row.
  */
 
 const KINDS = new Set(["phone", "whatsapp"]);
@@ -59,40 +61,50 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Nothing to do without CAPI credentials — still a successful no-op so the
-  // client never sees an error for tracking.
-  if (!isMetaCapiConfigured()) {
-    return NextResponse.json({ success: true, sent: false });
-  }
-
   const eventId =
     cleanStr(body.eventId, 128) ||
     `contact-${eventTime}-${Math.random().toString(36).slice(2)}`;
+  const eventSourceUrl = cleanUrl(body.eventSourceUrl);
 
-  const userData = buildBrowserUserData({
-    clientIp: getClientIp(request.headers),
-    clientUserAgent: request.headers.get("user-agent") || null,
-    fbp: cleanStr(body.fbp, 256),
-    fbc: cleanStr(body.fbc, 512),
-  });
+  let sent = false;
+  if (isMetaCapiConfigured()) {
+    const userData = buildBrowserUserData({
+      clientIp: getClientIp(request.headers),
+      clientUserAgent: request.headers.get("user-agent") || null,
+      fbp: cleanStr(body.fbp, 256),
+      fbc: cleanStr(body.fbc, 512),
+    });
 
-  const payload = buildEventPayload({
-    eventName: "Contact",
-    eventId,
-    eventTime,
-    eventSourceUrl: cleanUrl(body.eventSourceUrl),
-    userData,
-    customData: {
-      content_name: kind === "whatsapp" ? "WhatsApp" : "Phone",
-      content_category: "contact_click",
-      ...buildOfferCustomData({
-        offer: cleanStr(body.offer, 128),
-        offerName: cleanStr(body.offerName, 256),
-        intent: cleanStr(body.intent, 64),
-      }),
-    },
-  });
+    const payload = buildEventPayload({
+      eventName: "Contact",
+      eventId,
+      eventTime,
+      eventSourceUrl,
+      userData,
+      customData: {
+        content_name: kind === "whatsapp" ? "WhatsApp" : "Phone",
+        content_category: "contact_click",
+        ...buildOfferCustomData({
+          offer: cleanStr(body.offer, 128),
+          offerName: cleanStr(body.offerName, 256),
+          intent: cleanStr(body.intent, 64),
+        }),
+      },
+    });
 
-  const sent = await sendMetaEvent(payload);
+    sent = await sendMetaEvent(payload);
+  }
+
+  await insertContactClick(
+    buildContactClickRow({
+      eventId,
+      kind: kind as "phone" | "whatsapp",
+      headers: request.headers,
+      body,
+      pageUrl: eventSourceUrl,
+      capiSent: sent,
+    })
+  );
+
   return NextResponse.json({ success: true, sent });
 }

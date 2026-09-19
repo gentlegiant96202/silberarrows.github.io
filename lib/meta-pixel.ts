@@ -115,6 +115,7 @@ export function trackMetaContact(
 
   const fbp = getFbp();
   const fbc = getFbc();
+  const extra = collectContactContext();
 
   postSurvivingNavigation(
     CONTACT_CLICK_ENDPOINT,
@@ -130,10 +131,85 @@ export function trackMetaContact(
       }),
       eventSourceUrl: window.location.href,
       source: window.location.pathname,
+      ...extra,
     })
   );
 
   return eventId;
+}
+
+type NavigatorExtras = Navigator & {
+  deviceMemory?: number;
+  connection?: { effectiveType?: string };
+};
+
+/** First-party click ids, visit cookie, referrer, and bot-detection env. */
+function collectContactContext(): Record<string, unknown> {
+  const query = (() => {
+    try {
+      return new URLSearchParams(window.location.search);
+    } catch {
+      return null;
+    }
+  })();
+
+  const fromQueryOrCookie = (name: string): string | null => {
+    const fromQuery = query?.get(name);
+    if (fromQuery) return fromQuery;
+    return getCookie(`_${name}`);
+  };
+
+  const gclid = fromQueryOrCookie("gclid");
+  const gbraid = fromQueryOrCookie("gbraid");
+  const wbraid = fromQueryOrCookie("wbraid");
+  const fbclid =
+    query?.get("fbclid") ||
+    (() => {
+      const fbc = getFbc();
+      if (!fbc) return null;
+      const parts = fbc.split(".");
+      return parts.length >= 4 ? parts.slice(3).join(".") : null;
+    })();
+  const visitId = getCookie("_sa_visit");
+  const referrer = document.referrer || null;
+
+  const nav = navigator as NavigatorExtras;
+  let tz: string | null = null;
+  try {
+    tz = Intl.DateTimeFormat().resolvedOptions().timeZone ?? null;
+  } catch {
+    /* ignore */
+  }
+
+  return {
+    ...(referrer && { referrer }),
+    ...(visitId && { visitId }),
+    ...(gclid && { gclid }),
+    ...(gbraid && { gbraid }),
+    ...(wbraid && { wbraid }),
+    ...(fbclid && { fbclid }),
+    ...(query?.get("utm_source") && { utm_source: query.get("utm_source") }),
+    ...(query?.get("utm_medium") && { utm_medium: query.get("utm_medium") }),
+    ...(query?.get("utm_campaign") && { utm_campaign: query.get("utm_campaign") }),
+    env: {
+      vw: window.innerWidth,
+      vh: window.innerHeight,
+      sw: window.screen?.width ?? null,
+      sh: window.screen?.height ?? null,
+      dpr: window.devicePixelRatio ?? null,
+      lang: navigator.language ?? null,
+      langs: Array.isArray(navigator.languages) ? navigator.languages.slice(0, 4) : null,
+      tz,
+      tzOffset: new Date().getTimezoneOffset(),
+      touch: "ontouchstart" in window || (navigator.maxTouchPoints ?? 0) > 0,
+      webdriver: navigator.webdriver === true,
+      cores: navigator.hardwareConcurrency ?? null,
+      memory: nav.deviceMemory ?? null,
+      connection: nav.connection?.effectiveType ?? null,
+      cookies: navigator.cookieEnabled,
+      referrer,
+    },
+  };
 }
 
 export {};

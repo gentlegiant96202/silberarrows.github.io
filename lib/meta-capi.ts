@@ -55,6 +55,19 @@ export function countryCodeToIso(countryCode: string): string {
  * proxies (Vercel) and are never used.
  */
 export function getClientIp(headers: Headers): string | null {
+  return getClientIpFamilies(headers).preferred;
+}
+
+/**
+ * Same header scan as `getClientIp`, but keeps both families when Vercel
+ * (or a proxy) surfaces IPv4 on one hop and IPv6 on another. Used by the
+ * contact-click log so we can cluster bots that rotate a single family.
+ */
+export function getClientIpFamilies(headers: Headers): {
+  preferred: string | null;
+  v4: string | null;
+  v6: string | null;
+} {
   const candidates: string[] = [];
   for (const name of CLIENT_IP_HEADERS) {
     const ip = leftmostIp(headers.get(name));
@@ -63,7 +76,17 @@ export function getClientIp(headers: Headers): string | null {
 
   const usable = candidates.filter((ip) => !isPrivateOrReservedIp(ip));
   const pool = usable.length > 0 ? usable : candidates;
-  return pool.find(isPublicIPv6) ?? pool[0] ?? null;
+  const preferred = pool.find(isPublicIPv6) ?? pool[0] ?? null;
+
+  let v4: string | null = null;
+  let v6: string | null = null;
+  for (const ip of pool) {
+    const dotted = ipv4Form(ip);
+    if (dotted && !v4) v4 = dotted;
+    if (isPublicIPv6(ip) && !v6) v6 = ip;
+  }
+
+  return { preferred, v4, v6 };
 }
 
 const CLIENT_IP_HEADERS = [
@@ -82,6 +105,14 @@ function leftmostIp(value: string | null): string | null {
 
 function isIPv4MappedIPv6(ip: string): boolean {
   return /^::ffff:/i.test(ip);
+}
+
+function ipv4Form(ip: string): string | null {
+  if (isIPv4MappedIPv6(ip)) {
+    const v4 = ip.replace(/^::ffff:/i, "");
+    return /^\d{1,3}(?:\.\d{1,3}){3}$/.test(v4) ? v4 : null;
+  }
+  return /^\d{1,3}(?:\.\d{1,3}){3}$/.test(ip) ? ip : null;
 }
 
 function isPublicIPv6(ip: string): boolean {

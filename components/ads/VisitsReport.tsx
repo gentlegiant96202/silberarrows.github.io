@@ -190,8 +190,14 @@ export function VisitsReport({
             </a>
           ))}
           <a
-            href="/ads"
+            href="/ads/contacts"
             className="ml-2 rounded-md border border-ink-500 px-3 py-1.5 text-silver-400 transition hover:border-silver-500 hover:text-silver-200"
+          >
+            Contact taps →
+          </a>
+          <a
+            href="/ads"
+            className="rounded-md border border-ink-500 px-3 py-1.5 text-silver-400 transition hover:border-silver-500 hover:text-silver-200"
           >
             ← Dashboard
           </a>

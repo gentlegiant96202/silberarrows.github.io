@@ -202,6 +202,12 @@ export function Dashboard({
           >
             Paid visits &amp; click quality →
           </a>
+          <a
+            href="/ads/contacts"
+            className="rounded-md border border-ink-500 px-3 py-1.5 text-xs text-silver-400 transition hover:border-silver-500 hover:text-silver-200"
+          >
+            Contact taps →
+          </a>
           <form action="/api/ads-auth" method="post">
             <input type="hidden" name="action" value="logout" />
             <button
