@@ -1,8 +1,8 @@
 # SilberArrows v2
 
-A modern, black-themed website with silver accents for **SilberArrows** — Dubai's independent Mercedes-Benz service centre.
+Source for the live site: **[mercedes-benz.silberarrows.com](https://mercedes-benz.silberarrows.com)** — Dubai's independent Mercedes-Benz service centre.
 
-Built from scratch with **Next.js 15 (App Router)**, **React 19**, **TypeScript** and **Tailwind CSS v4**. All copy is sourced from `SITE_CONTENT.md` at the repo root.
+A modern, black-themed website with silver accents, built with **Next.js 15 (App Router)**, **React 19**, **TypeScript** and **Tailwind CSS v4**. All copy is sourced from `SITE_CONTENT.md` at the repo root.
 
 ## Stack
 
