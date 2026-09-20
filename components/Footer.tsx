@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { flattenNav, site } from "@/lib/site";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
+import { CodeHypeBadge } from "@/components/CodeHypeBadge";
 
 export function Footer() {
   const { openModal } = useContactModal();
+  const pathname = usePathname();
 
   return (
     <footer className="relative mt-24 border-t border-white/10">
@@ -91,10 +94,13 @@ export function Footer() {
         <div className="divider-chrome mt-12" />
 
         <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-xs text-[color:var(--color-silver-500)]">
-          <p>
-            &copy; {site.name} {new Date().getFullYear()}. All rights
-            reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <p>
+              &copy; {site.name} {new Date().getFullYear()}. All rights
+              reserved.
+            </p>
+            {pathname === "/" ? <CodeHypeBadge compact /> : null}
+          </div>
           <p className="flex items-center gap-2">
             <span className="text-[color:var(--color-silver-400)]">
               Independent Mercedes-Benz Specialists

@@ -2,7 +2,7 @@
  * CodeHype "Featured on" badge. The href and img src are kept exactly as
  * provided so their crawler can verify the backlink.
  */
-export function CodeHypeBadge() {
+export function CodeHypeBadge({ compact = false }: { compact?: boolean }) {
   return (
     <a
       href="https://codehype.ai/product/silberarrows?utm_source=codehype_badge"
@@ -10,6 +10,7 @@ export function CodeHypeBadge() {
       rel="noopener noreferrer"
       dir="ltr"
       aria-label="Featured on CodeHype"
+      className={compact ? "opacity-55 transition hover:opacity-90" : undefined}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- CodeHype verifies this exact remote src */}
       <img
@@ -19,7 +20,11 @@ export function CodeHypeBadge() {
         height={65}
         loading="lazy"
         decoding="async"
-        className="inline-block h-auto max-h-[65px] w-full max-w-[180px] border-0"
+        className={
+          compact
+            ? "inline-block h-auto max-h-[22px] w-[72px] border-0"
+            : "inline-block h-auto max-h-[65px] w-full max-w-[180px] border-0"
+        }
       />
     </a>
   );
