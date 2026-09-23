@@ -5,7 +5,6 @@ const STANDARD_DISALLOW = [
   "/api/",
   "/admin/",
   "/ads",
-  "/_next/",
   "/private/",
   "/*.json$",
   "/server.log",
@@ -15,7 +14,7 @@ function aiAllow(userAgent: string) {
   return {
     userAgent,
     allow: "/",
-    disallow: ["/api/", "/admin/", "/_next/", "/private/"],
+    disallow: ["/api/", "/admin/", "/private/"],
   };
 }
 
