@@ -66,6 +66,7 @@ export function TierCard({
   topLabel,
   footer,
   className,
+  headingLevel = "h3",
 }: {
   tierName: string;
   /** Optional small label next to the tier name (e.g. variant "AMG"). */
@@ -93,7 +94,10 @@ export function TierCard({
    */
   footer?: React.ReactNode;
   className?: string;
+  /** Use "h2" when the card sits directly under the page H1 with no section heading. */
+  headingLevel?: "h2" | "h3";
 }) {
+  const TierHeading = headingLevel;
   const available = price !== null && price !== 0;
   const resolvedTopLabel =
     topLabel ??
@@ -131,9 +135,9 @@ export function TierCard({
       <div className="relative flex flex-wrap items-start justify-between gap-3">
         <div>
           <div className="flex items-baseline gap-2">
-            <h3 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            <TierHeading className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
               {tierName}
-            </h3>
+            </TierHeading>
             {badge && (
               <span className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-silver-400)]">
                 {badge}

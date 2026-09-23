@@ -147,6 +147,7 @@ export function WarrantyCalculator({ className }: { className?: string }) {
         <div className="mt-6 grid gap-5 lg:grid-cols-2 lg:gap-6">
           <TierCard
             tierName="Standard"
+            headingLevel="h2"
             badge={amgApplied ? "AMG" : undefined}
             description="Drivetrain only"
             coverageLabel={WARRANTY_TERMS.periodLabel}
@@ -172,6 +173,7 @@ export function WarrantyCalculator({ className }: { className?: string }) {
           />
           <TierCard
             tierName="Premium"
+            headingLevel="h2"
             featured
             badge={amgApplied ? "AMG" : undefined}
             description="Comprehensive coverage"

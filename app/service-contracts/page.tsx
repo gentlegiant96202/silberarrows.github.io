@@ -18,12 +18,11 @@ const canonical = `${site.url}/service-contracts`;
 const STARTING = getServiceCareStartingPrices();
 const WARRANTY_FROM = formatPrice(getWarrantyStartingPrices().standard);
 
-const title = "Mercedes-Benz Service Contracts Dubai | ServiceCare Plans | SilberArrows";
+const title = "Mercedes-Benz Service Contracts Dubai | SilberArrows";
 const description =
-  `Mercedes-Benz service contracts in Dubai. Prepaid ServiceCare maintenance plans: ` +
-  `Standard ${SERVICECARE_TERMS.standard.label} from ${formatPrice(STARTING.standard)}, ` +
-  `Premium ${SERVICECARE_TERMS.premium.label} from ${formatPrice(STARTING.premium)}. ` +
-  `Pick your model for instant pricing.`;
+  `Prepaid Mercedes-Benz service contracts in Dubai: ServiceCare ` +
+  `Standard ${SERVICECARE_TERMS.standard.label} from ${formatPrice(STARTING.standard)} ` +
+  `or Premium ${SERVICECARE_TERMS.premium.label} from ${formatPrice(STARTING.premium)}.`;
 
 export const metadata: Metadata = {
   title,

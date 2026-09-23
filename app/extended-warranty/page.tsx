@@ -20,10 +20,9 @@ const SERVICECARE_FROM = formatPrice(getServiceCareStartingPrices().standard);
 
 const title = "Mercedes-Benz Extended Warranty Dubai | SilberArrows";
 const description =
-  `Mercedes-Benz extended warranty in Dubai. Standard drivetrain cover from ${formatPrice(STARTING.standard)} ` +
-  `and Premium comprehensive cover from ${formatPrice(STARTING.premium)}. ` +
-  `${WARRANTY_TERMS.coverageMonths} months / ${WARRANTY_TERMS.additionalKm.toLocaleString()} km, transferable, UAE-wide. ` +
-  `Pick your model for instant pricing.`;
+  `Mercedes-Benz extended warranty in Dubai: drivetrain cover from ${formatPrice(STARTING.standard)} ` +
+  `or comprehensive cover from ${formatPrice(STARTING.premium)}. ` +
+  `${WARRANTY_TERMS.coverageMonths} months / ${WARRANTY_TERMS.additionalKm.toLocaleString()} km, transferable, UAE-wide.`;
 
 export const metadata: Metadata = {
   title,

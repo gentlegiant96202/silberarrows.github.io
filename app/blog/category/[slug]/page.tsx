@@ -34,7 +34,7 @@ export async function generateMetadata({
     };
   }
   const canonical = `${site.url}/blog/category/${slug}`;
-  const title = `${category.name} | SilberArrows Mercedes-Benz Blog Dubai`;
+  const title = `${category.name} | SilberArrows Mercedes Blog`;
   const description =
     category.description ??
     `${category.name} articles from SilberArrows Mercedes-Benz Dubai.`;

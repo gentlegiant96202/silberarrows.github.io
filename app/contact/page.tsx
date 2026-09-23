@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 const canonical = `${site.url}/contact`;
 
 export const metadata: Metadata = {
-  title: "Contact SilberArrows | Mercedes-Benz Service Dubai | Al Manara Street",
+  title: "Contact SilberArrows | Mercedes-Benz Service Dubai",
   description:
     "Visit SilberArrows Mercedes-Benz service in Al Quoz, Dubai. Call +971 4 380 5515 or WhatsApp for expert service.",
   keywords:

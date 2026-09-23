@@ -18,6 +18,7 @@ export function Contact({
 }) {
   const { openModal } = useContactModal();
   const [mapOpen, setMapOpen] = useState(false);
+  const CardHeading = showHeader ? "h3" : "h2";
   const mapLink = `https://www.google.com/maps/search/?api=1&query=${site.geo.lat},${site.geo.lng}`;
 
   return (
@@ -53,9 +54,9 @@ export function Contact({
                 Get in Touch
               </p>
             </div>
-            <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            <CardHeading className="mt-4 text-2xl font-semibold tracking-tight text-white md:text-3xl">
               Speak with a specialist
-            </h3>
+            </CardHeading>
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[0.9375rem]">
               Speak directly with our Mercedes-Benz specialists for expert
               advice and service booking.
@@ -144,9 +145,9 @@ export function Contact({
                 <p className="text-[0.6875rem] uppercase tracking-[0.22em] text-[color:var(--color-silver-300)]">
                   Visit Our Workshop
                 </p>
-                <h3 className="mt-2 text-xl font-semibold tracking-tight text-white md:text-2xl">
+                <CardHeading className="mt-2 text-xl font-semibold tracking-tight text-white md:text-2xl">
                   {site.address.line1}
-                </h3>
+                </CardHeading>
                 <p className="mt-1 text-sm text-[color:var(--color-silver-400)]">
                   {site.address.line2}, {site.address.country}
                 </p>

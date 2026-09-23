@@ -29,9 +29,9 @@ export function ArabicFooter() {
           </div>
 
           <div className="md:col-span-5">
-            <h4 className="text-xs font-semibold text-white">
+            <p className="text-xs font-semibold text-white">
               {chromeAr.visitContact}
-            </h4>
+            </p>
             <ul className="mt-4 space-y-3 text-sm text-[color:var(--color-silver-400)]">
               <li className="flex gap-3">
                 <MapPin

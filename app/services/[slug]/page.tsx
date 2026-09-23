@@ -50,18 +50,14 @@ export async function generateMetadata({
     };
   }
   const canonical = `${site.url}/services/${slug}`;
-  const shortDesc =
-    service.overview.length > 80
-      ? `${service.overview.slice(0, 80).trim()}...`
-      : service.overview;
   return {
     title: `${service.title} | SilberArrows Dubai`,
-    description: `${service.title} for Mercedes-Benz in Dubai. ${shortDesc} Expert service at Al Quoz.`,
+    description: service.metaDescription,
     keywords: keywordsForServiceSlug(slug),
     alternates: { canonical },
     openGraph: {
       title: `${service.title} | SilberArrows Dubai`,
-      description: `Professional ${service.title.toLowerCase()} for Mercedes-Benz vehicles in Dubai.`,
+      description: service.metaDescription,
       url: canonical,
       images: [
         {
@@ -142,7 +138,7 @@ export default async function ServiceDetailPage({
                 Overview
               </p>
               <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-white">
-                {service.title}
+                {service.shortTitle} for Mercedes-Benz
               </h2>
               <p className="mt-4 text-[color:var(--color-silver-400)] leading-relaxed">
                 {service.overview}

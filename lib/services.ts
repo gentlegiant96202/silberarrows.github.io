@@ -6,6 +6,8 @@ export type Service = {
   shortTitle: string;
   mobileLabel: string;
   blurb: string;
+  /** Search-result snippet for /services/[slug]. Keep it 140–160 characters. */
+  metaDescription: string;
   overview: string;
   bullets: { heading: string; items: string[] };
   process: string[];
@@ -27,6 +29,8 @@ export const services: Service[] = [
     mobileLabel: "Brakes",
     blurb:
       "Comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts.",
+    metaDescription:
+      "Mercedes-Benz brake service in Dubai: pads, discs, fluid flush and calliper checks with genuine parts, including AMG brakes. Independent specialists in Al Quoz.",
     hero: "/assets/images/brake-service-640.webp",
     overview:
       "Your Mercedes-Benz braking system is critical to safety and performance. We conduct comprehensive brake inspections, servicing, and repairs using only genuine Mercedes-Benz parts. Whether it's routine pad replacement or complex hydraulic repairs, we ensure optimal braking performance and peace of mind, without compromising factory standards.",
@@ -66,6 +70,8 @@ export const services: Service[] = [
     mobileLabel: "Maintenance",
     blurb:
       "Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value.",
+    metaDescription:
+      "Mercedes-Benz Service A and B in Dubai to the factory schedule with genuine oil, parts and XENTRY diagnostics. Keep your service history intact in Al Quoz.",
     hero: "/assets/images/maintenance-640.webp",
     overview:
       "Regular servicing is essential to retain your vehicle's efficiency, safety, and long-term value. We follow official Mercedes-Benz service schedules using XENTRY Diagnosis and genuine parts to maintain optimal performance and full-service history integrity.",
@@ -143,6 +149,8 @@ export const services: Service[] = [
     mobileLabel: "Tyres",
     blurb:
       "We supply and fit Mercedes-Benz-approved tyres, including run-flats and AMG-specific sizes.",
+    metaDescription:
+      "Mercedes-Benz tyre replacement in Dubai: approved tyres including run-flat and AMG sizes, wheel balancing and TPMS calibration by specialists in Al Quoz.",
     hero: "/assets/images/tyres-640.webp",
     overview:
       "Proper tyres are crucial for safety, performance, and comfort. We supply and fit Mercedes-Benz-approved tyres, including run-flats and AMG-specific sizes, and calibrate TPMS sensors to factory standards.",
@@ -176,6 +184,8 @@ export const services: Service[] = [
     mobileLabel: "Alignment",
     blurb:
       "Precise wheel alignment for steering accuracy, even tyre wear, and overall vehicle stability.",
+    metaDescription:
+      "Mercedes-Benz wheel alignment in Dubai on a Hunter 3D laser system approved by Mercedes-Benz, for all models including AMG and 4MATIC. Book in Al Quoz.",
     hero: "/assets/images/wheel-alignment-640.webp",
     overview:
       "Precise wheel alignment is essential for steering accuracy, even tyre wear, and overall vehicle stability. We use Hunter 3D laser alignment systems, officially approved by Mercedes-Benz, to perform accurate adjustments on all models, including AMG and 4MATIC variants.",
@@ -209,6 +219,8 @@ export const services: Service[] = [
     mobileLabel: "Battery",
     blurb:
       "Our battery services ensure reliable starts and prevent electrical issues.",
+    metaDescription:
+      "Mercedes-Benz battery testing and replacement in Dubai: genuine batteries with ECU registration, plus alternator and charging checks. Specialists in Al Quoz.",
     hero: "/assets/images/battery-640.webp",
     overview:
       "Modern Mercedes-Benz models rely heavily on electrical systems. Our battery services ensure reliable starts and prevent electrical issues. We install original Mercedes-Benz batteries and perform full electronic registration with your vehicle's control units.",
@@ -248,6 +260,8 @@ export const services: Service[] = [
     mobileLabel: "A/C",
     blurb:
       "A properly functioning A/C system ensures cabin comfort and optimal air quality.",
+    metaDescription:
+      "Mercedes-Benz A/C service and repair in Dubai: R134a and R1234yf regas, leak detection, compressor checks and cabin filter replacement. Specialists in Al Quoz.",
     hero: "/assets/images/Air-conditioning-640.webp",
     overview:
       "A properly functioning A/C system ensures cabin comfort and air quality. We service all Mercedes-Benz refrigerant types (R134a & R1234yf), replacing filters, diagnosing leaks, and restoring performance.",
@@ -287,6 +301,8 @@ export const services: Service[] = [
     mobileLabel: "Engine",
     blurb:
       "From minor engine issues to complete overhauls using factory repair methods.",
+    metaDescription:
+      "Mercedes-Benz engine repair in Dubai: timing chains, gaskets, turbochargers and full rebuilds using factory methods and genuine parts. Specialists in Al Quoz.",
     hero: "/assets/images/ENGINE-640.webp",
     overview:
       "We handle everything from minor engine issues to complete overhauls using factory repair methods and genuine parts. Common services include timing component replacement, gasket and seal replacement, and turbocharger diagnosis and replacement, all performed to restore smooth performance, emissions compliance, and long-term reliability.",
@@ -326,6 +342,8 @@ export const services: Service[] = [
     mobileLabel: "Suspension",
     blurb:
       "Complete suspension system diagnostics and repair for smooth, comfortable driving.",
+    metaDescription:
+      "Mercedes-Benz suspension and steering repair in Dubai, including AIRMATIC and ABC systems, shocks, control arms and steering racks. Genuine parts, Al Quoz.",
     hero: "/assets/images/suspension-640.webp",
     overview:
       "Suspension comfort and steering precision are hallmarks of a Mercedes-Benz. We specialise in both conventional and advanced systems including AIRMATIC and ABC (Active Body Control), using genuine Mercedes-Benz parts for all repairs and replacements.",
@@ -365,6 +383,8 @@ export const services: Service[] = [
     mobileLabel: "Diagnostics",
     blurb:
       "We identify and resolve issues with ECUs, control modules, sensors, and wiring faults.",
+    metaDescription:
+      "Mercedes-Benz diagnostics in Dubai with XENTRY: warning lights, ECU faults, sensors, wiring, coding and software updates by independent specialists in Al Quoz.",
     hero: "/assets/images/diagnostics-640.webp",
     overview:
       "Mercedes-Benz vehicles feature advanced electronics across all systems. Using XENTRY Diagnosis, the official Mercedes-Benz diagnostic platform, we identify and resolve issues with ECUs, control modules, sensors, and wiring faults.",
@@ -403,6 +423,8 @@ export const services: Service[] = [
     mobileLabel: "Detailing",
     blurb:
       "Restore your Mercedes-Benz to showroom condition with our professional detailing services.",
+    metaDescription:
+      "Mercedes-Benz detailing in Dubai: paint correction, optional ceramic coating, leather care and interior shampoo with products safe for Mercedes-Benz finishes.",
     hero: "/assets/images/detailing-640.webp",
     overview:
       "Restore your Mercedes-Benz to showroom condition with our professional detailing services. We use premium, vehicle-safe products tailored to Mercedes-Benz interiors, leather, and paint systems. From multi-stage polishing to optional ceramic coatings, our detailing protects your investment and enhances resale value.",

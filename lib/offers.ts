@@ -96,9 +96,9 @@ export const offers: Offer[] = [
       position: "center 52%",
     },
     metaTitle:
-      "Mercedes-Benz Over 10 Years Old? 25% Off Labour & Parts Dubai | SilberArrows",
+      "Mercedes 10+ Years Old? 25% Off Dubai | SilberArrows",
     metaDescription:
-      "Is your Mercedes-Benz over 10 years old? SilberArrows offers 25% off labour and 25% off Mercedes-Benz GenuineParts for vehicles aged 10+ in Al Quoz, Dubai. Book a 10+ inspection.",
+      "Mercedes-Benz over 10 years old? Get 25% off labour and 25% off Mercedes-Benz GenuineParts at SilberArrows in Al Quoz, Dubai. Book your 10+ inspection.",
     keywords:
       "Mercedes 10 years old Dubai, Mercedes 10+ service Dubai, Mercedes labour discount Dubai, Mercedes GenuineParts discount, older Mercedes specialist Dubai, Mercedes 10 year service Al Quoz, SilberArrows 10 plus offer",
     schema: { discountPercent: 25 },
@@ -126,9 +126,9 @@ export const offers: Offer[] = [
       position: "center 45%",
     },
     metaTitle:
-      "Mercedes-Benz Warranty Expired? Service Contracts & Certified Warranty Dubai | SilberArrows",
+      "Mercedes Warranty Expired? Cover in Dubai | SilberArrows",
     metaDescription:
-      "Mercedes-Benz warranty or service contract expired in Dubai? ServiceCare plans from AED 2,700 and Certified Warranty from AED 3,959 from independent Mercedes-Benz specialists in Al Quoz.",
+      "Mercedes-Benz warranty expired? ServiceCare plans from AED 2,700 and Certified Warranty from AED 3,959 from independent specialists in Al Quoz, Dubai.",
     keywords:
       "Mercedes warranty expired Dubai, Mercedes-Benz extended warranty Dubai, Mercedes service contract expired, Mercedes ServiceCare plan Dubai, certified warranty Mercedes Dubai, Mercedes out of warranty service Dubai, independent Mercedes specialist Al Quoz",
     schema: { priceFrom: getServiceCareStartingPrices().standard },
@@ -157,9 +157,9 @@ export const offers: Offer[] = [
       position: "center 46%",
     },
     metaTitle:
-      "Imported Mercedes-Benz? Complimentary Health Check & 20% Off Dubai | SilberArrows",
+      "Imported Mercedes? Free Health Check Dubai | SilberArrows",
     metaDescription:
-      "Is your Mercedes-Benz an import? SilberArrows welcomes imported Mercedes-Benz vehicles in Al Quoz, Dubai with a complimentary health check and 20% off Servicing, ServiceCare Plans and Certified Warranty on the first visit.",
+      "Imported Mercedes-Benz? Get a complimentary health check and 20% off servicing, ServiceCare plans and Certified Warranty on your first visit in Al Quoz, Dubai.",
     keywords:
       "imported Mercedes-Benz Dubai, parallel import Mercedes service Dubai, grey import Mercedes specialist Dubai, imported Mercedes health check, Mercedes import servicing Al Quoz, SilberArrows welcome programme, imported Mercedes warranty Dubai",
     schema: {

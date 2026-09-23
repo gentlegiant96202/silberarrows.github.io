@@ -35,9 +35,9 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
               Navigate
-            </h4>
+            </p>
             <ul className="mt-4 space-y-2.5">
               {flattenNav().map((item) => (
                 <li key={item.href}>
@@ -53,9 +53,9 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
               Visit / Contact
-            </h4>
+            </p>
             <ul className="mt-4 space-y-3 text-sm text-[color:var(--color-silver-400)]">
               <li className="flex gap-3">
                 <MapPin size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />

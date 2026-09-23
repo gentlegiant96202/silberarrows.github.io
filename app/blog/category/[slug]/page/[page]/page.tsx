@@ -56,7 +56,7 @@ export async function generateMetadata({
     page > 1
       ? `${site.url}/blog/category/${slug}/page/${page}`
       : `${site.url}/blog/category/${slug}`;
-  const title = `${category.name} (Page ${page}) | SilberArrows Mercedes-Benz Blog Dubai`;
+  const title = `${category.name} (Page ${page}) | SilberArrows Mercedes Blog`;
   const description =
     category.description ??
     `${category.name} articles from SilberArrows Mercedes-Benz Dubai.`;

@@ -12,7 +12,6 @@ export function ChromeGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   if (!pathname) return <>{children}</>;
   if (pathname.startsWith("/ads")) return null;
-  if (pathname === "/partners" || pathname.startsWith("/partners/")) return null;
   if (pathname === "/ar" || pathname.startsWith("/ar/")) return null;
   return <>{children}</>;
 }

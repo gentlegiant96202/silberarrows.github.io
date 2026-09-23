@@ -157,6 +157,7 @@ export function ServiceCareCalculator({ className }: { className?: string }) {
         <div className="mt-6 grid gap-5 lg:grid-cols-2 lg:gap-6">
           <TierCard
             tierName="Standard"
+            headingLevel="h2"
             coverageLabel={SERVICECARE_TERMS.standard.label}
             price={pricing ? pricing.standard : STARTING.standard}
             vatNote={SERVICECARE_TERMS.vatNote}
@@ -180,6 +181,7 @@ export function ServiceCareCalculator({ className }: { className?: string }) {
           />
           <TierCard
             tierName="Premium"
+            headingLevel="h2"
             featured
             coverageLabel={SERVICECARE_TERMS.premium.label}
             price={pricing ? pricing.premium : STARTING.premium}
