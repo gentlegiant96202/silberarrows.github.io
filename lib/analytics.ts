@@ -38,7 +38,7 @@ export type LeadContext = {
   intent?: string;
 };
 
-export type OfferCtaKind = "modal" | "whatsapp" | "phone" | "link";
+export type OfferCtaKind = "modal" | "form" | "whatsapp" | "phone" | "link";
 
 function gtagEvent(name: string, params: Record<string, unknown>) {
   if (typeof window === "undefined") return;
@@ -92,8 +92,8 @@ export function trackOfferView(ctx: LeadContext): void {
 }
 
 /**
- * A CTA on an offer was used (modal opened, WhatsApp / Call clicked, or an
- * internal link followed). `creative_slot` carries the intent so reports can
+ * A CTA on an offer was used (modal opened, scrolled to the inline form,
+ * WhatsApp / Call clicked, or an internal link followed). `creative_slot` carries the intent so reports can
  * separate hero vs. tier vs. closing CTAs.
  */
 export function trackOfferSelect(ctx: LeadContext, kind: OfferCtaKind): void {

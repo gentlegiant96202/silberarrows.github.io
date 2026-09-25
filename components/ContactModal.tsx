@@ -1,17 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { X, Phone, MessageCircle, Loader2 } from "lucide-react";
-import {
-  getCountryCallingCode,
-  isValidPhoneNumber,
-} from "libphonenumber-js";
-import type { CountryCode } from "libphonenumber-js";
+import { useEffect } from "react";
+import { X, Phone, MessageCircle } from "lucide-react";
 import { site } from "@/lib/site";
 import { modalAr, siteAr } from "@/lib/content-ar";
 import { ContactLink } from "@/components/ContactLink";
-import { DEFAULT_COUNTRY } from "@/lib/countries";
-import { CountrySelect } from "@/components/CountrySelect";
+import { LeadForm } from "@/components/LeadForm";
 import type { LeadContext } from "@/lib/analytics";
 import { offerWhatsAppHref } from "@/lib/offers";
 import { cn } from "@/lib/utils";
@@ -27,39 +21,30 @@ const STRINGS = {
     live: "Live",
     title: "Get in Touch",
     sub: "Enter your details and we'll contact you shortly.",
-    nameLabel: "Name",
-    namePlaceholder: "Your name",
-    phoneLabel: "WhatsApp Number",
-    phonePlaceholder: "50 123 4567",
-    errName: "Please enter your name",
-    errPhone: "Please enter your WhatsApp number",
-    errPhoneInvalid:
-      "Please enter a valid WhatsApp number for the selected country",
-    errGeneric: "Something went wrong. Please try again or call us directly.",
-    submit: "Submit request",
-    sending: "Sending...",
-    note: "We typically respond within minutes on WhatsApp or by phone.",
     or: "Or reach us directly",
     call: "Call Us",
     whatsapp: "WhatsApp",
     close: "Close",
-    thankYouPath: "/thank-you/service",
     whatsappHref: WHATSAPP_DIRECT,
   },
-  ar: { ...modalAr, whatsappHref: siteAr.whatsappDirect },
+  ar: {
+    live: modalAr.live,
+    title: modalAr.title,
+    sub: modalAr.sub,
+    or: modalAr.or,
+    call: modalAr.call,
+    whatsapp: modalAr.whatsapp,
+    close: modalAr.close,
+    whatsappHref: siteAr.whatsappDirect,
+  },
 } as const;
-
-function getCookie(name: string): string | null {
-  if (typeof document === "undefined") return null;
-  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  return match ? match[2] : null;
-}
 
 export function ContactModal({
   open,
   onClose,
   locale = "en",
   context = null,
+  showDirect = true,
 }: {
   open: boolean;
   onClose: () => void;
@@ -71,32 +56,14 @@ export function ContactModal({
    * only rides along on the Meta / GA events and the WhatsApp message.
    */
   context?: LeadContext | null;
+  /**
+   * Show the "Or reach us directly" Call / WhatsApp pair. Off on offer pages,
+   * where only the form (Meta `Lead`) is offered.
+   */
+  showDirect?: boolean;
 }) {
   const t = STRINGS[locale];
   const rtl = locale === "ar";
-  // Letter-spaced uppercase is an English-only device; Arabic must not be tracked.
-  const label = rtl
-    ? "block text-xs text-[color:var(--color-silver-400)] mb-1.5"
-    : "block text-xs uppercase tracking-[0.18em] text-[color:var(--color-silver-400)] mb-1.5";
-
-  const [name, setName] = useState("");
-  const [country, setCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
-  const [phone, setPhone] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [errorPulse, setErrorPulse] = useState(0);
-
-  function showError(message: string) {
-    setError(message);
-    setErrorPulse((n) => n + 1);
-  }
-
-  useEffect(() => {
-    if (!open) {
-      setError(null);
-      setSubmitting(false);
-    }
-  }, [open]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -105,79 +72,6 @@ export function ContactModal({
     if (open) window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-    if (!name.trim()) {
-      showError(t.errName);
-      return;
-    }
-    const digits = phone.replace(/\D/g, "");
-    if (!digits) {
-      showError(t.errPhone);
-      return;
-    }
-    if (!isValidPhoneNumber(digits, country)) {
-      showError(t.errPhoneInvalid);
-      return;
-    }
-
-    const countryCode = `+${getCountryCallingCode(country)}`;
-
-    setSubmitting(true);
-
-    const eventId =
-      typeof crypto !== "undefined" && crypto.randomUUID
-        ? crypto.randomUUID()
-        : `lead-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const fbp = getCookie("_fbp");
-    const fbc = getCookie("_fbc");
-    // Google click IDs: cookie (set in the root layout on landing) first, then
-    // the current URL as a fallback for same-page submissions.
-    const query = new URLSearchParams(window.location.search);
-    const gclid = getCookie("_gclid") || query.get("gclid") || null;
-    const gbraid = getCookie("_gbraid") || query.get("gbraid") || null;
-    const wbraid = getCookie("_wbraid") || query.get("wbraid") || null;
-    const eventSourceUrl = window.location.href;
-
-    try {
-      const response = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          countryCode,
-          phone: digits,
-          source: window.location.pathname,
-          eventId,
-          ...(fbp && { fbp }),
-          ...(fbc && { fbc }),
-          ...(gclid && { gclid }),
-          ...(gbraid && { gbraid }),
-          ...(wbraid && { wbraid }),
-          // Meta CAPI attribution only — not persisted.
-          ...(context && {
-            offer: context.offer,
-            offerName: context.offerName,
-            ...(context.intent && { intent: context.intent }),
-          }),
-          eventSourceUrl,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit");
-      }
-
-      const params = new URLSearchParams({ eid: eventId });
-      if (context) params.set("offer", context.offer);
-      window.location.assign(`${t.thankYouPath}?${params.toString()}`);
-    } catch {
-      showError(t.errGeneric);
-      setSubmitting(false);
-    }
-  }
 
   if (!open) return null;
 
@@ -231,106 +125,58 @@ export function ContactModal({
           {t.sub}
         </p>
 
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div>
-            <label className={label}>{t.nameLabel}</label>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={t.namePlaceholder}
-              disabled={submitting}
-              className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-base text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
-            />
-          </div>
+        <LeadForm
+          locale={locale}
+          context={context}
+          idPrefix="modal"
+          className="mt-6"
+        />
 
-          <div>
-            <label className={label}>{t.phoneLabel}</label>
-            {/* Phone numbers are always LTR, even inside an RTL form. */}
-            <div className="flex gap-2" dir="ltr">
-              <CountrySelect
-                value={country}
-                onChange={setCountry}
-                disabled={submitting}
-              />
-              <input
-                value={phone}
-                onChange={(e) =>
-                  setPhone(e.target.value.replace(/\D/g, ""))
-                }
-                placeholder={t.phonePlaceholder}
-                inputMode="tel"
-                autoComplete="tel-national"
-                disabled={submitting}
-                className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-base text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
-              />
+        {showDirect && (
+          <>
+            <div className="mt-6 flex items-center gap-3">
+              <span className="h-px flex-1 bg-white/10" />
+              <span
+                className={cn(
+                  "text-[0.6875rem] text-[color:var(--color-silver-500)]",
+                  !rtl && "uppercase tracking-[0.18em]"
+                )}
+              >
+                {t.or}
+              </span>
+              <span className="h-px flex-1 bg-white/10" />
             </div>
-          </div>
 
-          {error && (
-            <p
-              key={errorPulse}
-              role="alert"
-              className="anim-shake rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200"
-            >
-              {error}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="btn-gradient inline-flex h-14 w-full items-center justify-center gap-2.5 px-9 text-base disabled:opacity-70"
-          >
-            {submitting && <Loader2 size={18} className="animate-spin" />}
-            {submitting ? t.sending : t.submit}
-          </button>
-
-          <p className="text-center text-xs text-[color:var(--color-silver-500)]">
-            {t.note}
-          </p>
-        </form>
-
-        <div className="mt-6 flex items-center gap-3">
-          <span className="h-px flex-1 bg-white/10" />
-          <span
-            className={cn(
-              "text-[0.6875rem] text-[color:var(--color-silver-500)]",
-              !rtl && "uppercase tracking-[0.18em]"
-            )}
-          >
-            {t.or}
-          </span>
-          <span className="h-px flex-1 bg-white/10" />
-        </div>
-
-        {/* Same pair as the hero / mobile bar: gradient primary + outlined WhatsApp */}
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          <ContactLink
-            kind="phone"
-            href={site.phoneTel}
-            context={context ?? undefined}
-            className="btn-gradient inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"
-          >
-            <Phone size={20} strokeWidth={1.75} className="shrink-0" aria-hidden />
-            {t.call}
-          </ContactLink>
-          <ContactLink
-            kind="whatsapp"
-            href={whatsappHref}
-            context={context ?? undefined}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline-cream inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"
-          >
-            <MessageCircle
-              size={20}
-              strokeWidth={1.75}
-              className="btn-icon shrink-0"
-              aria-hidden
-            />
-            {t.whatsapp}
-          </ContactLink>
-        </div>
+            {/* Same pair as the hero / mobile bar: gradient primary + outlined WhatsApp */}
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <ContactLink
+                kind="phone"
+                href={site.phoneTel}
+                context={context ?? undefined}
+                className="btn-gradient inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"
+              >
+                <Phone size={20} strokeWidth={1.75} className="shrink-0" aria-hidden />
+                {t.call}
+              </ContactLink>
+              <ContactLink
+                kind="whatsapp"
+                href={whatsappHref}
+                context={context ?? undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-cream inline-flex h-12 items-center justify-center gap-2.5 px-4 text-base"
+              >
+                <MessageCircle
+                  size={20}
+                  strokeWidth={1.75}
+                  className="btn-icon shrink-0"
+                  aria-hidden
+                />
+                {t.whatsapp}
+              </ContactLink>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

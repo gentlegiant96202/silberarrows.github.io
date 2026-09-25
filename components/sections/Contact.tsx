@@ -11,9 +11,12 @@ import { cn } from "@/lib/utils";
 
 export function Contact({
   showHeader = true,
+  showDirectContact = true,
   className,
 }: {
   showHeader?: boolean;
+  /** Phone link + "Call or WhatsApp" wording. Off on form-only offer pages. */
+  showDirectContact?: boolean;
   className?: string;
 }) {
   const { openModal } = useContactModal();
@@ -67,15 +70,18 @@ export function Contact({
                 onClick={openModal}
                 className="btn-silver flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em]"
               >
-                <MessageCircle size={16} /> Call or WhatsApp Us
+                <MessageCircle size={16} />{" "}
+                {showDirectContact ? "Call or WhatsApp Us" : "Send an Enquiry"}
               </button>
-              <ContactLink
-                kind="phone"
-                href={site.phoneTel}
-                className="btn-ghost flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em]"
-              >
-                <Phone size={14} /> {site.phone}
-              </ContactLink>
+              {showDirectContact && (
+                <ContactLink
+                  kind="phone"
+                  href={site.phoneTel}
+                  className="btn-ghost flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em]"
+                >
+                  <Phone size={14} /> {site.phone}
+                </ContactLink>
+              )}
             </div>
 
             <div className="mt-8 divide-y divide-white/[0.06] border-t border-white/[0.06] text-sm text-[color:var(--color-silver-400)]">

@@ -11,7 +11,7 @@ export type ClosingOption = {
 
 /**
  * Closing slide: "One Mercedes-Benz. Two ways to protect it." — two options
- * side by side behind a hairline, the sign-off line, and the offer CTA pair.
+ * side by side behind a hairline, the sign-off line, and the offer CTA.
  */
 export function ClosingCTA({
   options,

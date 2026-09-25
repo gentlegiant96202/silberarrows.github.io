@@ -1,8 +1,10 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Phone, MessageCircle } from "lucide-react";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
+import { isOfferDetailPath } from "@/lib/offers";
 import { site } from "@/lib/site";
 
 /**
@@ -11,9 +13,14 @@ import { site } from "@/lib/site";
  * outlined cream style (`btn-outline-cream`) with the green icon flip on
  * press. Buttons are 48px tall — a notch shorter than the hero's 56px so the
  * bar doesn't eat too much of a small screen.
+ *
+ * Offer pages render their own form-only bar (OfferMobileBar) instead.
  */
 export function MobileContactBar() {
   const { open } = useContactModal();
+  const pathname = usePathname();
+
+  if (isOfferDetailPath(pathname)) return null;
 
   return (
     <div

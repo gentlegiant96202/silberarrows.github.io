@@ -183,6 +183,27 @@ export function offerPath(offer: Pick<Offer, "slug">): string {
   return `${OFFERS_PATH}/${offer.slug}`;
 }
 
+/** Anchor id of the inline lead form on every offer page. */
+export const OFFER_FORM_ID = "enquire";
+
+/** The active offer whose detail page `pathname` is, if any. */
+export function getOfferByPath(
+  pathname: string | null | undefined
+): Offer | undefined {
+  const prefix = `${OFFERS_PATH}/`;
+  if (!pathname?.startsWith(prefix)) return undefined;
+  const slug = pathname.slice(prefix.length).split("/")[0];
+  return slug ? getOfferBySlug(slug) : undefined;
+}
+
+/**
+ * Offer detail pages are form-only: no Call / WhatsApp links anywhere in the
+ * page chrome, so paid traffic can only convert through the Meta `Lead` form.
+ */
+export function isOfferDetailPath(pathname: string | null | undefined): boolean {
+  return getOfferByPath(pathname) !== undefined;
+}
+
 /**
  * Lead / analytics context for an offer. `intent` names the CTA location
  * (hero, servicecare-premium, closing…) so reports can compare placements.

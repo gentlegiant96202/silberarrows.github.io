@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { ContactModal, type ContactLocale } from "@/components/ContactModal";
 import type { LeadContext } from "@/lib/analytics";
 import { trackOfferSelect } from "@/lib/analytics";
+import { getOfferByPath, offerLeadContext } from "@/lib/offers";
 
 type Ctx = {
   open: boolean;
@@ -19,7 +20,7 @@ type Ctx = {
   context: LeadContext | null;
   /**
    * Open the generic contact form. Safe to pass straight to `onClick` — the
-   * event argument is ignored.
+   * event argument is ignored. On an offer page the offer is still attached.
    */
   openModal: () => void;
   /**
@@ -53,10 +54,14 @@ export function ContactModalProvider({
   const locale: ContactLocale =
     pathname === "/ar" || pathname?.startsWith("/ar/") ? "ar" : "en";
 
+  // Offer pages are form-only: header / footer "Contact Us" still attach the
+  // offer to the lead, and the modal drops its Call / WhatsApp pair.
+  const pageOffer = useMemo(() => getOfferByPath(pathname), [pathname]);
+
   const openModal = useCallback(() => {
-    setContext(null);
+    setContext(pageOffer ? offerLeadContext(pageOffer, "site-contact") : null);
     setOpen(true);
-  }, []);
+  }, [pageOffer]);
 
   const openModalWith = useCallback((next: LeadContext) => {
     setContext(next);
@@ -95,6 +100,7 @@ export function ContactModalProvider({
         onClose={closeModal}
         locale={locale}
         context={context}
+        showDirect={!pageOffer}
       />
     </ContactModalContext.Provider>
   );

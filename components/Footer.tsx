@@ -8,10 +8,13 @@ import { flattenNav, site } from "@/lib/site";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
 import { CodeHypeBadge } from "@/components/CodeHypeBadge";
+import { isOfferDetailPath } from "@/lib/offers";
 
 export function Footer() {
   const { openModal } = useContactModal();
   const pathname = usePathname();
+  // Offer pages are form-only: no Call / WhatsApp links.
+  const showDirect = !isOfferDetailPath(pathname);
 
   return (
     <footer className="relative mt-24 border-t border-white/10">
@@ -65,24 +68,28 @@ export function Footer() {
                   {site.address.line2}
                 </span>
               </li>
-              <li className="flex gap-3">
-                <Phone size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
-                <ContactLink kind="phone" href={site.phoneTel} className="hover:text-white">
-                  {site.phone}
-                </ContactLink>
-              </li>
-              <li className="flex gap-3">
-                <MessageCircle size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
-                <ContactLink
-                  kind="whatsapp"
-                  href={site.whatsapp}
-                  className="hover:text-white"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  WhatsApp Us
-                </ContactLink>
-              </li>
+              {showDirect && (
+                <>
+                  <li className="flex gap-3">
+                    <Phone size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
+                    <ContactLink kind="phone" href={site.phoneTel} className="hover:text-white">
+                      {site.phone}
+                    </ContactLink>
+                  </li>
+                  <li className="flex gap-3">
+                    <MessageCircle size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
+                    <ContactLink
+                      kind="whatsapp"
+                      href={site.whatsapp}
+                      className="hover:text-white"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      WhatsApp Us
+                    </ContactLink>
+                  </li>
+                </>
+              )}
               <li className="flex gap-3">
                 <Clock size={16} className="mt-0.5 text-[color:var(--color-silver-300)]" />
                 <span>{site.hours}</span>

@@ -2,35 +2,43 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useContactModal } from "@/components/ContactModalProvider";
+import { useOfferForm } from "@/components/offers/OfferFormProvider";
 import type { LeadContext } from "@/lib/analytics";
 import { trackOfferSelect } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 /**
- * Footer for a TierCard on an offer page. Replaces the calculator's raw
- * WhatsApp / Call pair with the offer-aware modal (gradient primary on the
- * featured tier, outlined on the other) plus a text link to the per-model
- * calculator for an exact figure. Both actions carry the tier intent.
+ * Footer for a TierCard on an offer page. The enquire button (gradient on
+ * the featured tier, outlined on the other) scrolls to the inline lead form
+ * and pre-selects this plan; a text link goes to the per-model calculator
+ * for an exact figure. Both actions carry the tier intent.
  */
 export function OfferTierFooter({
   context,
   tierName,
+  selectionLabel,
   featured = false,
   pricingHref,
 }: {
   context: LeadContext;
   tierName: string;
+  /** Plan name shown on the form, e.g. "Premium ServiceCare Plans". */
+  selectionLabel?: string;
   featured?: boolean;
   pricingHref: string;
 }) {
-  const { openModalWith } = useContactModal();
+  const { goToForm } = useOfferForm();
 
   return (
     <div className="anim-rise flex flex-col gap-3">
       <button
         type="button"
-        onClick={() => openModalWith(context)}
+        onClick={() =>
+          goToForm({
+            intent: context.intent ?? "form",
+            label: selectionLabel ?? tierName,
+          })
+        }
         className={cn(
           featured ? "btn-gradient" : "btn-outline-cream",
           "inline-flex h-12 w-full items-center justify-center px-6 text-base"

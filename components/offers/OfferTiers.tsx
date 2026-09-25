@@ -21,8 +21,9 @@ export type OfferTier = {
 /**
  * Two-tier comparison block for an offer page (one per product: ServiceCare
  * Plans, Certified Warranty). Reuses the contracts page `TierCard` with the
- * "From" price label and an offer-aware footer, so the table copy and
- * "starting from" figures can never drift from the calculators.
+ * "From" price label and an offer-aware footer that pre-selects the plan on
+ * the inline lead form, so the table copy and "starting from" figures can
+ * never drift from the calculators.
  */
 export function OfferTiers({
   id,
@@ -86,6 +87,7 @@ export function OfferTiers({
                 <OfferTierFooter
                   context={{ ...context, intent: tier.intent }}
                   tierName={tier.name}
+                  selectionLabel={`${tier.name} ${title}`}
                   featured={tier.featured}
                   pricingHref={pricingHref}
                 />

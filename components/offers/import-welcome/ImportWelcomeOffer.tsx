@@ -5,14 +5,16 @@ import {
   DiagnosticsIcon,
 } from "@/components/icons/TrustIcons";
 import { OfferHero, type OfferPillar } from "@/components/offers/OfferHero";
+import { OfferLeadSection } from "@/components/offers/OfferLeadSection";
+import { OfferMobileBar } from "@/components/offers/OfferMobileBar";
 import { ImportWelcomeStory } from "@/components/offers/import-welcome/ImportWelcomeStory";
 import { OFFERS_PATH, type Offer } from "@/lib/offers";
 
 /**
  * Body of the "is your Mercedes-Benz an import?" welcome programme.
  * Section order follows the two-slide creative: night-workshop hook with
- * the complimentary / 20% pair, then the proof slide — specialist pillars,
- * health-check sign-off and the welcome-inspection CTA.
+ * the complimentary / 20% pair, the inline lead form, then the proof slide —
+ * specialist pillars, health-check sign-off and the welcome-inspection CTA.
  */
 
 const FIGURES = [
@@ -42,7 +44,16 @@ export function ImportWelcomeOffer({ offer }: { offer: Offer }) {
         ]}
       />
 
+      <OfferLeadSection
+        title="Book your welcome inspection"
+        intro="Leave your name and WhatsApp number. We'll book your complimentary health check and apply your 20% first-visit saving."
+        highlights={offer.highlights}
+        submitLabel="Book My Welcome Inspection"
+      />
+
       <ImportWelcomeStory offer={offer} pillars={IMPORT_WELCOME_PILLARS} />
+
+      <OfferMobileBar label="Book a Welcome Inspection" />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Contact } from "@/components/sections/Contact";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { OfferSchema } from "@/components/OfferSchema";
+import { OfferFormProvider } from "@/components/offers/OfferFormProvider";
 import { OfferViewTracker } from "@/components/offers/OfferViewTracker";
 import { ImportWelcomeOffer } from "@/components/offers/import-welcome/ImportWelcomeOffer";
 import { TenPlusOffer } from "@/components/offers/ten-plus/TenPlusOffer";
@@ -23,7 +24,8 @@ import { site } from "@/lib/site";
  * Offer body registry: slug → section composition. Offer *metadata* (title,
  * SEO, image, tracking id) lives in lib/offers.ts; the page layout for each
  * offer is bespoke, so it is a component keyed by slug here — the same way
- * /lp/[slug] branches on intent.
+ * /lp/[slug] branches on intent. Each body renders its hero, then the inline
+ * OfferLeadSection, and its OfferMobileBar.
  */
 const OFFER_BODIES: Record<string, ComponentType<{ offer: Offer }>> = {
   "mercedes-benz-over-10-years-old-service-dubai": TenPlusOffer,
@@ -87,8 +89,11 @@ export default async function OfferPage({
       />
       <OfferSchema offer={offer} />
       <OfferViewTracker context={offerLeadContext(offer)} />
-      <Body offer={offer} />
-      <Contact />
+      {/* Form-only page: every CTA scrolls to the inline form under the hero. */}
+      <OfferFormProvider offer={offer.slug} offerName={offer.shortTitle}>
+        <Body offer={offer} />
+      </OfferFormProvider>
+      <Contact showDirectContact={false} />
     </>
   );
 }

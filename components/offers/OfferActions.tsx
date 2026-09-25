@@ -1,17 +1,14 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
-import { useContactModal } from "@/components/ContactModalProvider";
-import { ContactLink } from "@/components/ContactLink";
+import { useOfferForm } from "@/components/offers/OfferFormProvider";
 import type { LeadContext } from "@/lib/analytics";
-import { offerWhatsAppHref } from "@/lib/offers";
 import { cn } from "@/lib/utils";
 
 /**
- * Offer CTA pair — the hero's square 56px buttons: gradient primary that
- * opens the contact modal *with the offer attached*, and an outlined WhatsApp
- * link whose message names the offer. Every click carries `context` so
- * Supabase, Meta and GA4 attribute it to this offer and CTA placement.
+ * Offer CTA — the hero's square 56px gradient button. Scrolls to the inline
+ * lead form under the hero and tags the lead with `context.intent` (hero,
+ * closing…) so Meta and GA4 can compare placements. Offer pages carry no
+ * Call / WhatsApp links: the form (Meta `Lead`) is the only conversion.
  */
 export function OfferActions({
   context,
@@ -24,40 +21,23 @@ export function OfferActions({
   className?: string;
   align?: "start" | "center";
 }) {
-  const { openModalWith } = useContactModal();
+  const { goToForm } = useOfferForm();
 
   return (
     <div
       className={cn(
-        "flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5",
+        "flex flex-col items-stretch sm:flex-row sm:items-center",
         align === "center" && "sm:justify-center",
         className
       )}
     >
       <button
         type="button"
-        onClick={() => openModalWith(context)}
+        onClick={() => goToForm({ intent: context.intent ?? "form" })}
         className="btn-gradient inline-flex h-14 w-full items-center justify-center px-9 text-base sm:w-auto"
       >
         {label}
       </button>
-
-      <ContactLink
-        kind="whatsapp"
-        context={context}
-        href={offerWhatsAppHref(context)}
-        target="_blank"
-        rel="noreferrer"
-        className="btn-outline-cream inline-flex h-14 w-full items-center justify-center gap-2.5 px-9 text-base sm:w-auto"
-      >
-        <MessageCircle
-          size={24}
-          strokeWidth={1.75}
-          className="btn-icon shrink-0"
-          aria-hidden
-        />
-        WhatsApp
-      </ContactLink>
     </div>
   );
 }

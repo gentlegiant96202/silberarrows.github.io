@@ -5,6 +5,8 @@ import {
   ShieldCheckIcon,
 } from "@/components/icons/TrustIcons";
 import { OfferHero, type OfferPillar } from "@/components/offers/OfferHero";
+import { OfferLeadSection } from "@/components/offers/OfferLeadSection";
+import { OfferMobileBar } from "@/components/offers/OfferMobileBar";
 import { OfferTiers } from "@/components/offers/OfferTiers";
 import { NextMove } from "@/components/offers/warranty-expired/NextMove";
 import { ClosingCTA } from "@/components/offers/warranty-expired/ClosingCTA";
@@ -22,9 +24,9 @@ import {
 
 /**
  * Body of the "warranty and service contract expired?" offer. Section order
- * follows the five-slide creative: hook + trust pillars → "what's your next
- * move" menu → ServiceCare comparison → Certified Warranty comparison →
- * closing summary with the CTA pair.
+ * follows the five-slide creative: hook + trust pillars → inline lead form →
+ * "what's your next move" menu → ServiceCare comparison → Certified Warranty
+ * comparison → closing summary with the CTA.
  *
  * All "from" prices are read live from lib/serviceWarrantyPricing so the page
  * and the calculators can never disagree.
@@ -57,6 +59,13 @@ export function WarrantyExpiredOffer({ offer }: { offer: Offer }) {
           { label: "Offers", href: OFFERS_PATH },
           { label: offer.shortTitle },
         ]}
+      />
+
+      <OfferLeadSection
+        title="Get your ServiceCare or Warranty quote"
+        intro="Leave your name and WhatsApp number. A specialist will price the right plan for your Mercedes-Benz model and walk you through the cover."
+        highlights={offer.highlights}
+        submitLabel="Get My Quote"
       />
 
       <NextMove
@@ -173,6 +182,8 @@ export function WarrantyExpiredOffer({ offer }: { offer: Offer }) {
           },
         ]}
       />
+
+      <OfferMobileBar label="Get My Quote" />
     </>
   );
 }
