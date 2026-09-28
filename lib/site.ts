@@ -1,3 +1,9 @@
+const googleBusiness = {
+  name: "SilberArrows - Mercedes-Benz Service Centre",
+  cid: "11611903972070946457",
+  placeId: "ChIJF3QahH1pXz4RmXY83SPFJaE",
+};
+
 export const site = {
   name: "SilberArrows",
   fullName: "SilberArrows Mercedes-Benz Service",
@@ -21,6 +27,12 @@ export const site = {
     url: "https://www.google.com/search?q=silberarrows+dubai+reviews",
   },
   geo: { lat: 25.1459942, lng: 55.2304157 },
+  googleMaps: {
+    profile: `https://maps.google.com/?cid=${googleBusiness.cid}`,
+    directions: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(googleBusiness.name)}&destination_place_id=${googleBusiness.placeId}`,
+    /** Only the CID form resolves to the business card; `q=place_id:` renders a blank map. */
+    embed: `https://www.google.com/maps?cid=${googleBusiness.cid}&output=embed`,
+  },
   stats: [
     { value: "15+", label: "Years Experience" },
     { value: "10,000+", label: "Vehicles Serviced" },

@@ -22,8 +22,6 @@ export function Contact({
   const { openModal } = useContactModal();
   const [mapOpen, setMapOpen] = useState(false);
   const CardHeading = showHeader ? "h3" : "h2";
-  const mapLink = `https://www.google.com/maps/search/?api=1&query=${site.geo.lat},${site.geo.lng}`;
-
   return (
     <section
       className={cn(
@@ -114,7 +112,7 @@ export function Contact({
                   title="SilberArrows location"
                   aria-label="Map showing SilberArrows location"
                   className="absolute inset-0 h-full w-full brightness-[0.6] contrast-[1.1] grayscale-[0.6] saturate-50"
-                  src={`https://www.google.com/maps?q=${site.geo.lat},${site.geo.lng}&z=15&output=embed`}
+                  src={site.googleMaps.embed}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
@@ -158,7 +156,7 @@ export function Contact({
                   {site.address.line2}, {site.address.country}
                 </p>
                 <a
-                  href={mapLink}
+                  href={site.googleMaps.directions}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-ghost mt-5 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.16em]"

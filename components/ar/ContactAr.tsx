@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { MapPin, MessageCircle, Phone, Clock, Navigation } from "lucide-react";
 import { contactAr, siteAr } from "@/lib/content-ar";
+import { site } from "@/lib/site";
 import { SectionHeaderAr } from "@/components/ar/SectionHeaderAr";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
@@ -11,8 +12,6 @@ import { ContactLink } from "@/components/ContactLink";
 export function ContactAr() {
   const { openModal } = useContactModal();
   const [mapOpen, setMapOpen] = useState(false);
-  const mapLink = `https://www.google.com/maps/search/?api=1&query=${siteAr.geo.lat},${siteAr.geo.lng}`;
-
   return (
     <section className="relative border-t border-white/[0.06] py-20 md:py-28">
       <div className="container-page">
@@ -86,7 +85,7 @@ export function ContactAr() {
                   title={contactAr.mapTitle}
                   aria-label={contactAr.mapAria}
                   className="absolute inset-0 h-full w-full brightness-[0.6] contrast-[1.1] grayscale-[0.6] saturate-50"
-                  src={`https://www.google.com/maps?q=${siteAr.geo.lat},${siteAr.geo.lng}&z=15&hl=ar&output=embed`}
+                  src={`${site.googleMaps.embed}&hl=ar`}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
@@ -130,7 +129,7 @@ export function ContactAr() {
                   {siteAr.address.line2}، {siteAr.address.country}
                 </p>
                 <a
-                  href={mapLink}
+                  href={`${site.googleMaps.directions}&hl=ar`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-ghost mt-5 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-semibold"

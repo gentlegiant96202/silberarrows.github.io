@@ -54,7 +54,7 @@ export function LocalBusinessSchema() {
       latitude: 25.1459942,
       longitude: 55.2304157,
     },
-    hasMap: `https://www.google.com/maps?q=${site.geo.lat},${site.geo.lng}`,
+    hasMap: site.googleMaps.profile,
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
