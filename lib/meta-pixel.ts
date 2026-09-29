@@ -7,6 +7,7 @@
  */
 
 import { offerCustomData, type LeadContext } from "@/lib/analytics";
+import { getOpenAIAttribution } from "@/lib/openai-pixel";
 
 declare global {
   interface Window {
@@ -143,7 +144,10 @@ type NavigatorExtras = Navigator & {
   connection?: { effectiveType?: string };
 };
 
-/** First-party click ids, visit cookie, referrer, and bot-detection env. */
+/**
+ * First-party click ids (Google, Meta, OpenAI `oppref` / `obref`), visit
+ * cookie, referrer, and bot-detection env.
+ */
 function collectContactContext(): Record<string, unknown> {
   const query = (() => {
     try {
@@ -188,6 +192,7 @@ function collectContactContext(): Record<string, unknown> {
     ...(gbraid && { gbraid }),
     ...(wbraid && { wbraid }),
     ...(fbclid && { fbclid }),
+    ...getOpenAIAttribution(),
     ...(query?.get("utm_source") && { utm_source: query.get("utm_source") }),
     ...(query?.get("utm_medium") && { utm_medium: query.get("utm_medium") }),
     ...(query?.get("utm_campaign") && { utm_campaign: query.get("utm_campaign") }),

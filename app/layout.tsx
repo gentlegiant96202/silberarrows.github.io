@@ -10,6 +10,7 @@ import { ChromeGate } from "@/components/ChromeGate";
 import { AdVisitTracker } from "@/components/AdVisitTracker";
 import { site } from "@/lib/site";
 import { defaultOgImage } from "@/lib/seo";
+import { OPENAI_PIXEL_ID } from "@/lib/openai-pixel";
 import "./globals.css";
 
 // Mercedes-Benz Corporate S — body, UI, mid-size headings.
@@ -143,6 +144,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://www.facebook.com" />
+        <link rel="preconnect" href="https://bzrcdn.openai.com" />
+        <link rel="dns-prefetch" href="https://bzr.openai.com" />
         <Script
           id="legacy-sw-cleanup"
           strategy="beforeInteractive"
@@ -169,8 +172,9 @@ export default function RootLayout({
           sticky mobile Call/WhatsApp bar) queue in dataLayer instead of being
           dropped, and are flushed when the library arrives. Config commands
           are queued first so events that follow have a configured send_to.
-          Also captures Google click IDs (gclid / gbraid / wbraid) into
-          first-party cookies for lead attribution.
+          Also captures Google click IDs (gclid / gbraid / wbraid) and the
+          ChatGPT Ads click reference (oppref) into first-party cookies for
+          lead attribution.
         */}
         <Script
           id="gtag-stub"
@@ -186,12 +190,28 @@ export default function RootLayout({
               (function(){
                 try {
                   var q = window.location.search;
-                  ['gclid','gbraid','wbraid'].forEach(function(k){
+                  ['gclid','gbraid','wbraid','oppref'].forEach(function(k){
                     var m = q.match(new RegExp('[?&]' + k + '=([^&]+)'));
                     if (m) document.cookie = '_' + k + '=' + m[1] + ';max-age=7776000;path=/;SameSite=Lax';
                   });
                 } catch (e) {}
               })();
+            `,
+          }}
+        />
+        {/*
+          OpenAI (ChatGPT Ads) Measurement Pixel. OpenAI asks for it near the
+          top of <head> so a conversion right after landing isn't lost; the
+          SDK itself is injected async, so this doesn't block rendering.
+          `lead_created` events are fired from lib/openai-pixel.ts.
+        */}
+        <Script
+          id="openai-pixel"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+              oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}",debug:true});
             `,
           }}
         />

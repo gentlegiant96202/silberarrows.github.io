@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Phone, MessageCircle, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { MetaPixelContactEvent } from "@/components/MetaPixelContactEvent";
 import { GoogleAdsLeadConversion } from "@/components/GoogleAdsLeadConversion";
+import { OpenAILeadConversion } from "@/components/OpenAILeadConversion";
 import { ContactLink } from "@/components/ContactLink";
 import { site } from "@/lib/site";
 
@@ -20,6 +21,7 @@ export default function ThankYouPage() {
       <Suspense fallback={null}>
         <MetaPixelContactEvent />
         <GoogleAdsLeadConversion />
+        <OpenAILeadConversion />
       </Suspense>
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       {/* Vibrant emerald/teal wash for a celebratory success feel */}

@@ -8,6 +8,11 @@ import {
   isMetaCapiConfigured,
   sendMetaEvent,
 } from "@/lib/meta-capi";
+import {
+  buildOpenAIUser,
+  isOpenAICapiConfigured,
+  sendOpenAILead,
+} from "@/lib/openai-capi";
 import { uploadClickConversion } from "@/lib/google-ads-capi";
 
 const WEBHOOK_URL =
@@ -22,7 +27,8 @@ function cleanAttr(value: unknown, max = 256): string | null {
 }
 
 export async function POST(request: NextRequest) {
-  const eventTime = Math.floor(Date.now() / 1000);
+  const eventTimeMs = Date.now();
+  const eventTime = Math.floor(eventTimeMs / 1000);
 
   try {
     const body = await request.json();
@@ -41,6 +47,8 @@ export async function POST(request: NextRequest) {
       offer,
       offerName,
       intent,
+      oppref,
+      obref,
     } = body;
 
     if (!name || !phone) {
@@ -112,6 +120,13 @@ export async function POST(request: NextRequest) {
 
     await Promise.all(promises);
 
+    const leadEventId =
+      cleanAttr(eventId, 128) ||
+      `lead-${eventTime}-${Math.random().toString(36).slice(2)}`;
+    const clientIp = getClientIp(request.headers);
+    const clientUserAgent = request.headers.get("user-agent") || null;
+    const conversionSends: Promise<unknown>[] = [];
+
     // Meta Conversions API `Lead`, deduplicated against the browser Pixel
     // `Lead` fired on the thank-you page via the shared eventId. When the
     // form was opened from an offer page the event carries `content_ids` so
@@ -121,8 +136,8 @@ export async function POST(request: NextRequest) {
         name,
         fullPhone,
         countryCode: countryCode || "+971",
-        clientIp: getClientIp(request.headers),
-        clientUserAgent: request.headers.get("user-agent") || null,
+        clientIp,
+        clientUserAgent,
         fbp: fbp || null,
         fbc: fbc || null,
       });
@@ -136,9 +151,7 @@ export async function POST(request: NextRequest) {
       });
 
       const payload = buildLeadPayload({
-        eventId:
-          eventId ||
-          `lead-${eventTime}-${Math.random().toString(36).slice(2)}`,
+        eventId: leadEventId,
         eventTime,
         eventSourceUrl: eventSourceUrl || null,
         userData,
@@ -151,8 +164,31 @@ export async function POST(request: NextRequest) {
         }),
       });
 
-      await sendMetaEvent(payload);
+      conversionSends.push(sendMetaEvent(payload));
     }
+
+    // OpenAI Conversions API `lead_created`, deduplicated against the browser
+    // Pixel `lead_created` fired on the thank-you page via the same eventId.
+    if (isOpenAICapiConfigured()) {
+      conversionSends.push(
+        sendOpenAILead({
+          eventId: leadEventId,
+          timestampMs: eventTimeMs,
+          sourceUrl: cleanAttr(eventSourceUrl, 2048),
+          oppref: cleanAttr(oppref, 1024),
+          user: buildOpenAIUser({
+            clientIp,
+            clientUserAgent,
+            obref: cleanAttr(obref, 256),
+            name,
+            fullPhone,
+            countryCode: countryCode || "+971",
+          }),
+        })
+      );
+    }
+
+    await Promise.all(conversionSends);
 
     // Legacy Google Ads API offline conversion upload. DEPRECATED: Google blocks
     // these uploads on 2026-06-15 (migrating to the Data Manager API), and the

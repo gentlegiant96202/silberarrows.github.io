@@ -11,6 +11,7 @@ import { modalAr } from "@/lib/content-ar";
 import { DEFAULT_COUNTRY } from "@/lib/countries";
 import { CountrySelect } from "@/components/CountrySelect";
 import type { LeadContext } from "@/lib/analytics";
+import { getOpenAIAttribution } from "@/lib/openai-pixel";
 import { cn } from "@/lib/utils";
 
 export type LeadFormLocale = "en" | "ar";
@@ -78,8 +79,9 @@ function resolvePhone(
 /**
  * Name + WhatsApp number lead form. Shared by the contact modal and the
  * inline offer form so every submission takes the same path: /api/lead
- * (CRM webhook, Supabase, Meta CAPI `Lead`) → thank-you page, which fires
- * the deduplicated Pixel `Lead` and the Google Ads conversion.
+ * (CRM webhook, Supabase, Meta CAPI `Lead`, OpenAI CAPI `lead_created`) →
+ * thank-you page, which fires the deduplicated Meta Pixel `Lead`, OpenAI
+ * Pixel `lead_created` and the Google Ads conversion.
  *
  * `context` attaches the offer (and CTA intent) to the Meta events and the
  * thank-you redirect.
@@ -180,6 +182,7 @@ export function LeadForm({
     const gclid = getCookie("_gclid") || query.get("gclid") || null;
     const gbraid = getCookie("_gbraid") || query.get("gbraid") || null;
     const wbraid = getCookie("_wbraid") || query.get("wbraid") || null;
+    const openai = getOpenAIAttribution();
     const eventSourceUrl = window.location.href;
 
     try {
@@ -197,6 +200,8 @@ export function LeadForm({
           ...(gclid && { gclid }),
           ...(gbraid && { gbraid }),
           ...(wbraid && { wbraid }),
+          // OpenAI CAPI attribution only — not persisted.
+          ...openai,
           // Meta CAPI attribution only — not persisted.
           ...(context && {
             offer: context.offer,
