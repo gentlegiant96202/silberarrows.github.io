@@ -55,7 +55,7 @@ export function Select({
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
           className={cn(
-            "w-full appearance-none rounded-xl border bg-white/[0.06] px-4 py-4 pr-12 text-base font-medium outline-none transition md:text-[17px]",
+            "w-full appearance-none rounded-xl border bg-white/[0.06] px-4 py-4 pr-12 text-base font-normal outline-none transition md:text-[17px]",
             "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
             "hover:border-white/40 hover:bg-white/[0.09]",
             "focus:border-[color:var(--color-platinum)] focus:bg-white/[0.1] focus:ring-2 focus:ring-[color:var(--color-platinum)]/30",

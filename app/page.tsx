@@ -67,7 +67,7 @@ export default function HomePage() {
               </div>
               <h2
                 id="home-faqs"
-                className="text-display text-title mt-5 font-semibold text-silver-shine"
+                className="text-display text-title mt-5 font-normal text-cream"
               >
                 {preserveBrandWrap("Mercedes-Benz Service Dubai FAQs")}
               </h2>
@@ -86,7 +86,7 @@ export default function HomePage() {
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-base font-medium leading-snug text-white transition-colors group-hover:text-[color:var(--color-platinum)] md:text-lg">
+                    <span className="text-base font-normal leading-snug text-white transition-colors group-hover:text-[color:var(--color-platinum)] md:text-lg">
                       {faq.question}
                     </span>
                   </span>

@@ -44,7 +44,7 @@ export function HeroAr() {
               </span>
             </div>
 
-            <h1 className="anim-rise text-display mt-6 font-bold">
+            <h1 className="anim-rise text-display mt-6 font-normal">
               {heroAr.titleParts.map((p, i) => (
                 <span
                   key={i}

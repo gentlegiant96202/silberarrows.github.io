@@ -65,7 +65,7 @@ export default function ArabicThankYouPage() {
             </div>
           </div>
 
-          <h1 className="anim-rise mt-8 text-4xl font-semibold text-silver-shine md:text-5xl">
+          <h1 className="anim-rise text-display mt-8 text-4xl font-normal text-cream md:text-5xl">
             {thankYouAr.title}
           </h1>
           <p className="anim-rise mt-5 text-base text-[color:var(--color-silver-300)] md:text-lg">

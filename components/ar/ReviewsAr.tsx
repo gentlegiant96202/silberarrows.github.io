@@ -43,7 +43,7 @@ export function ReviewsAr() {
             </div>
             <h2
               id="reviews-title"
-              className="text-display text-title mt-5 font-semibold text-silver-shine"
+              className="text-display text-title mt-5 font-normal text-cream"
             >
               {reviewsAr.title}
             </h2>

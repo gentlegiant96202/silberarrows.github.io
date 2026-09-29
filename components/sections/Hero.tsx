@@ -140,7 +140,7 @@ export function Hero({
           Desktop (lg+): fill the viewport below the 7rem header, keep the
           trust strip on the base, and vertically centre the copy in the
           leftover space so the headline isn't parked in the bottom third. */}
-      <div className="container-page relative z-10 flex flex-col justify-end pt-10 pb-8 md:pt-12 md:pb-10 lg:min-h-[min(calc(100svh-7rem),54rem)] lg:pb-[5vw]">
+      <div className="container-page relative z-10 flex min-w-0 flex-col justify-end pt-10 pb-8 md:pt-12 md:pb-10 lg:min-h-[min(calc(100svh-7rem),54rem)] lg:pb-[5vw]">
         {/* ── Copy block ─────────────────────────────────────────────── */}
         {/* `@container` lets the headline size itself against this block
             (cqi units) rather than the viewport. */}
@@ -190,7 +190,6 @@ export function Hero({
             {preserveBrandWrap(subtitle)}
           </p>
 
-          {/* Offer hook — primary conversion driver */}
           <div className="anim-rise mt-4 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 lg:mt-6">
             <p className="hero-offer-chip inline-flex max-w-full items-center gap-2.5 rounded-full px-4 py-2 text-sm text-cream/90">
               <BadgePercent

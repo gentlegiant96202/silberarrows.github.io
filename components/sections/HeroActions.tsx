@@ -15,7 +15,7 @@ export function HeroActions({ label = "Get a Free Quote" }: { label?: string }) 
   const { openModal } = useContactModal();
 
   return (
-    <div className="anim-rise mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5 lg:mt-10">
+    <div className="anim-rise mt-5 flex flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 lg:mt-7">
       <button
         type="button"
         onClick={openModal}
@@ -29,10 +29,10 @@ export function HeroActions({ label = "Get a Free Quote" }: { label?: string }) 
         href={site.whatsapp}
         target="_blank"
         rel="noreferrer"
-        className="btn-outline-cream inline-flex h-14 w-full items-center justify-center gap-2.5 px-9 text-base sm:w-auto"
+        className="btn-outline-cream hero-btn-quiet inline-flex h-10 w-full items-center justify-center gap-2 px-6 text-sm sm:w-auto"
       >
         <MessageCircle
-          size={24}
+          size={18}
           strokeWidth={1.75}
           className="btn-icon shrink-0"
           aria-hidden

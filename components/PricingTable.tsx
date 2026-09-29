@@ -37,7 +37,7 @@ function PricingCard({
         striped && index % 2 === 0 && "bg-white/[0.01]"
       )}
     >
-      <p className="font-medium text-white">{row.model}</p>
+      <p className="font-normal text-white">{row.model}</p>
       <div className="mt-3 grid grid-cols-2 gap-4">
         <div>
           <p className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
@@ -105,7 +105,7 @@ export function PricingTable({
                   striped && index % 2 === 0 && "bg-white/[0.01]"
                 )}
               >
-                <td className="px-5 py-4 font-medium text-white">{row.model}</td>
+                <td className="px-5 py-4 font-normal text-white">{row.model}</td>
                 <td className="whitespace-nowrap px-5 py-4 text-[color:var(--color-silver-300)]">
                   <PriceCell value={row.minor} />
                 </td>

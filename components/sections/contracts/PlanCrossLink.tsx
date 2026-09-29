@@ -37,7 +37,7 @@ export function PlanCrossLink({
             <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
               {eyebrow}
             </p>
-            <h2 className="font-display mt-4 text-3xl leading-tight tracking-tight text-white md:text-4xl">
+            <h2 className="text-display mt-4 text-3xl font-normal leading-[1.08] text-cream md:text-4xl">
               <BrandText text={title} />
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[0.9375rem]">

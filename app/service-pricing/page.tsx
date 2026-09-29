@@ -47,7 +47,7 @@ export default function ServicePricingPage() {
             <p className="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-silver-400)]">
               Book Your Service
             </p>
-            <h2 className="mt-3 text-3xl md:text-4xl font-semibold text-silver-shine">
+            <h2 className="text-display text-title mt-3 font-normal text-cream">
               Transparent, all-inclusive pricing
             </h2>
             <p className="mt-4 text-base text-[color:var(--color-silver-400)]">

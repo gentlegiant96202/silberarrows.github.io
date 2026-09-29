@@ -35,14 +35,14 @@ export function Pagination({ page, totalPages, basePath }: PaginationProps) {
       {prev ? (
         <Link
           href={buildHref(basePath, prev)}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--color-silver-300)] hover:bg-white/[0.06] hover:text-white transition"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-normal uppercase tracking-[0.16em] text-[color:var(--color-silver-300)] hover:bg-white/[0.06] hover:text-white transition"
           rel="prev"
         >
           <ChevronLeft size={13} />
           Prev
         </Link>
       ) : (
-        <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/5 bg-white/[0.01] px-3 py-2 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--color-silver-600)]">
+        <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/5 bg-white/[0.01] px-3 py-2 text-xs font-normal uppercase tracking-[0.16em] text-[color:var(--color-silver-600)]">
           <ChevronLeft size={13} />
           Prev
         </span>
@@ -67,7 +67,7 @@ export function Pagination({ page, totalPages, basePath }: PaginationProps) {
               <Link
                 href={buildHref(basePath, p)}
                 className={cn(
-                  "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-xs font-medium text-[color:var(--color-silver-300)] hover:bg-white/[0.06] hover:text-white transition"
+                  "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-xs font-normal text-[color:var(--color-silver-300)] hover:bg-white/[0.06] hover:text-white transition"
                 )}
               >
                 {p}
@@ -80,14 +80,14 @@ export function Pagination({ page, totalPages, basePath }: PaginationProps) {
       {next ? (
         <Link
           href={buildHref(basePath, next)}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--color-silver-300)] hover:bg-white/[0.06] hover:text-white transition"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-normal uppercase tracking-[0.16em] text-[color:var(--color-silver-300)] hover:bg-white/[0.06] hover:text-white transition"
           rel="next"
         >
           Next
           <ChevronRight size={13} />
         </Link>
       ) : (
-        <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/5 bg-white/[0.01] px-3 py-2 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--color-silver-600)]">
+        <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/5 bg-white/[0.01] px-3 py-2 text-xs font-normal uppercase tracking-[0.16em] text-[color:var(--color-silver-600)]">
           Next
           <ChevronRight size={13} />
         </span>

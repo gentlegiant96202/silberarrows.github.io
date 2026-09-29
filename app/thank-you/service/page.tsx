@@ -58,7 +58,7 @@ export default function ThankYouPage() {
             </div>
           </div>
 
-          <h1 className="anim-rise mt-8 text-4xl md:text-5xl font-semibold text-silver-shine">
+          <h1 className="anim-rise text-display mt-8 text-4xl font-normal leading-[1.08] text-cream md:text-5xl">
             We&apos;ve Got Your Details
           </h1>
           <p className="anim-rise mt-5 text-base md:text-lg text-[color:var(--color-silver-300)]">
@@ -66,7 +66,7 @@ export default function ThankYouPage() {
             <span className="font-semibold text-emerald-300">WhatsApp</span>.
           </p>
 
-          <p className="anim-rise mt-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs font-medium text-emerald-200">
+          <p className="anim-rise mt-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs font-normal text-emerald-200">
             <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] animate-pulse" />
             Average response time: under 5 minutes
           </p>

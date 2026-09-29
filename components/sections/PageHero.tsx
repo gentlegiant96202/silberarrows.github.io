@@ -75,7 +75,7 @@ export function PageHero({
             taller of the two so the rule always spans the full header height and
             lands at the same x on every page. */}
         <div className="grid gap-6 lg:grid-cols-12 lg:items-center lg:gap-10">
-          <h1 className="text-display anim-rise text-[2.5rem] font-semibold text-silver-shine sm:text-5xl md:text-6xl lg:col-span-7 lg:text-[4.25rem]">
+          <h1 className="text-display anim-rise text-[2.5rem] font-normal leading-[1.08] text-cream sm:text-5xl md:text-6xl lg:col-span-7 lg:text-[4.25rem]">
             {preserveBrandWrap(title)}
           </h1>
           {intro && (

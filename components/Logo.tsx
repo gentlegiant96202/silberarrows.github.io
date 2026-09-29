@@ -52,7 +52,7 @@ export function Logo({
       {showWordmark && (
         <span className={`font-semibold tracking-[0.04em] ${cls.text}`}>
           <span className="text-silver-shine">Silber</span>
-          <span className="font-light text-[color:var(--color-silver-300)]">
+          <span className="font-normal text-[color:var(--color-silver-300)]">
             Arrows
           </span>
         </span>

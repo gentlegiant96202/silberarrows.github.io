@@ -251,7 +251,7 @@ export default async function BlogPostPage({
               ) : null}
             </div>
 
-            <h1 className="mt-4 text-4xl md:text-5xl font-semibold leading-[1.05] tracking-[-0.01em] text-silver-shine">
+            <h1 className="text-display mt-4 text-4xl font-normal leading-[1.08] text-cream md:text-5xl">
               {post.title}
             </h1>
 
@@ -278,7 +278,7 @@ export default async function BlogPostPage({
                   <p className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
                     Written by
                   </p>
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm font-normal text-white">
                     {post.author.name}
                     {post.author.role ? (
                       <span className="ml-1.5 text-[color:var(--color-silver-400)] font-normal">
@@ -339,7 +339,7 @@ export default async function BlogPostPage({
                         className="group flex items-center justify-between gap-3 py-3 text-sm text-[color:var(--color-silver-300)] transition hover:text-white"
                       >
                         <span>
-                          <span className="block font-medium text-white">
+                          <span className="block font-normal text-white">
                             {l.label}
                           </span>
                           <span className="block text-xs text-[color:var(--color-silver-500)]">
@@ -372,7 +372,7 @@ export default async function BlogPostPage({
               <p className="text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-silver-400)]">
                 Related Reading
               </p>
-              <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-silver-shine">
+              <h2 className="text-display text-title mt-3 font-normal text-cream">
                 More from the journal
               </h2>
               <div className="mt-8 grid gap-7 md:grid-cols-2 lg:grid-cols-3">

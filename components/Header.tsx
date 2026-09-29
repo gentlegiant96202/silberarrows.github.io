@@ -35,7 +35,7 @@ function isItemActive(item: NavItem, pathname: string): boolean {
 }
 
 const DESKTOP_LINK =
-  "relative inline-flex items-center whitespace-nowrap px-2.5 py-2 text-[0.8125rem] xl:text-sm xl:px-3.5 font-medium uppercase tracking-[0.12em] xl:tracking-[0.14em] transition rounded-md";
+  "relative inline-flex items-center whitespace-nowrap px-2.5 py-2 text-[0.8125rem] xl:text-sm xl:px-3.5 font-normal uppercase tracking-[0.12em] xl:tracking-[0.14em] transition rounded-md";
 
 function ActiveUnderline() {
   return (
@@ -148,7 +148,7 @@ function DesktopDropdown({
                   tabIndex={tabIndex}
                   aria-current={childActive ? "page" : undefined}
                   className={cn(
-                    "flex items-center whitespace-nowrap px-4 py-3 text-[0.75rem] font-medium uppercase tracking-[0.12em] transition-colors xl:text-[0.8125rem] xl:tracking-[0.14em]",
+                    "flex items-center whitespace-nowrap px-4 py-3 text-[0.75rem] font-normal uppercase tracking-[0.12em] transition-colors xl:text-[0.8125rem] xl:tracking-[0.14em]",
                     childActive
                       ? "text-silver-shine"
                       : "text-[color:var(--color-silver-400)] hover:text-white"
@@ -186,157 +186,185 @@ export function Header() {
     setOpenMenu(null);
   }, [pathname]);
 
+  // The bar lifts into a glass pill once the page moves, or while the phone
+  // menu is open so the panel has something to hang from.
+  const floating = scrolled || mobileOpen;
+
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300",
-        scrolled
-          ? "border-white/10 bg-black/70 backdrop-blur-xl"
-          : "border-transparent bg-transparent"
-      )}
-    >
-      <div className="container-page flex h-24 items-center justify-between gap-4 md:h-28">
-        <Logo size="responsive" showWordmark={false} />
-
-        <nav className="hidden lg:flex shrink-0 items-center gap-0.5 xl:gap-1">
-          {nav.map((item) => {
-            if (item.children?.length) {
-              return (
-                <DesktopDropdown
-                  key={item.href}
-                  item={item}
-                  pathname={pathname}
-                  open={openMenu === item.href}
-                  onOpenChange={(next) =>
-                    setOpenMenu((cur) =>
-                      next ? item.href : cur === item.href ? null : cur
-                    )
-                  }
-                />
-              );
-            }
-
-            const active = isItemActive(item, pathname);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  DESKTOP_LINK,
-                  active
-                    ? "text-silver-shine"
-                    : "text-[color:var(--color-silver-400)] hover:text-white"
-                )}
-              >
-                {item.label}
-                {item.highlight && (
-                  <HighlightDot className={cn("ml-1.5", active && "invisible")} />
-                )}
-                {active && <ActiveUnderline />}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden lg:flex shrink-0 items-center gap-4">
-          <button
-            type="button"
-            onClick={openModal}
-            className="btn-gradient inline-flex h-10 items-center justify-center px-6 text-sm"
-          >
-            Contact Us
-          </button>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-          className="relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white lg:hidden"
+    // Fixed-height sticky shell: only the pill inside changes size, so the
+    // page below never reflows or jumps as the header state flips.
+    <header className="sticky top-0 z-50 h-24 md:h-28">
+      <div className="container-page flex h-full items-center">
+        {/* Pill. Negative margins push it into the page gutter so the logo
+            and links stay exactly where they sit when the bar is flat. */}
+        <div
+          className={cn(
+            "relative isolate -mx-3 flex flex-1 items-center justify-between gap-4 px-3 transition-[height] duration-300 ease-out motion-reduce:transition-none md:-mx-5 md:px-5",
+            floating ? "h-16 md:h-[4.5rem]" : "h-full"
+          )}
         >
-          <Menu
-            size={24}
+          <div
             aria-hidden
             className={cn(
-              "absolute transition duration-200 ease-out",
-              mobileOpen
-                ? "scale-75 rotate-90 opacity-0"
-                : "scale-100 rotate-0 opacity-100"
+              "glass-nav pointer-events-none absolute inset-0 -z-10 rounded-lg transition-opacity duration-300 motion-reduce:transition-none",
+              floating ? "opacity-100" : "opacity-0"
             )}
           />
-          <X
-            size={24}
-            aria-hidden
-            className={cn(
-              "absolute transition duration-200 ease-out",
-              mobileOpen
-                ? "scale-100 rotate-0 opacity-100"
-                : "scale-75 -rotate-90 opacity-0"
-            )}
-          />
-        </button>
-      </div>
 
-      {mobileOpen && (
-        <div className="lg:hidden border-t border-white/10 bg-black/90 backdrop-blur-xl">
-          <div className="container-page py-4 flex flex-col gap-1">
+          <span
+            className={cn(
+              "inline-flex origin-left transition-transform duration-300 ease-out motion-reduce:transition-none",
+              floating && "scale-[0.72] md:scale-[0.64]"
+            )}
+          >
+            <Logo size="responsive" showWordmark={false} />
+          </span>
+
+          <nav className="hidden lg:flex shrink-0 items-center gap-0.5 xl:gap-1">
             {nav.map((item) => {
-              const active = isLinkActive(item, pathname);
-              return (
-                <div key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium uppercase tracking-[0.14em] transition",
-                      active
-                        ? "bg-white/10 text-white"
-                        : "text-[color:var(--color-silver-300)] hover:bg-white/5 hover:text-white"
-                    )}
-                  >
-                    {item.label}
-                    {item.highlight && (
-                      <HighlightDot className={cn(active && "invisible")} />
-                    )}
-                  </Link>
+              if (item.children?.length) {
+                return (
+                  <DesktopDropdown
+                    key={item.href}
+                    item={item}
+                    pathname={pathname}
+                    open={openMenu === item.href}
+                    onOpenChange={(next) =>
+                      setOpenMenu((cur) =>
+                        next ? item.href : cur === item.href ? null : cur
+                      )
+                    }
+                  />
+                );
+              }
 
-                  {item.children?.length ? (
-                    <div className="my-1 ml-4 flex flex-col gap-0.5 border-l border-white/10 pl-2">
-                      {item.children.map((child) => {
-                        const childActive = isLinkActive(child, pathname);
-                        return (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={cn(
-                              "flex items-center justify-between rounded-lg px-3 py-2.5 text-xs uppercase tracking-[0.14em] transition",
-                              childActive
-                                ? "bg-white/10 text-white"
-                                : "text-[color:var(--color-silver-400)] hover:bg-white/5 hover:text-white"
-                            )}
-                          >
-                            {child.label}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  ) : null}
-                </div>
+              const active = isItemActive(item, pathname);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    DESKTOP_LINK,
+                    active
+                      ? "text-silver-shine"
+                      : "text-[color:var(--color-silver-400)] hover:text-white"
+                  )}
+                >
+                  {item.label}
+                  {item.highlight && (
+                    <HighlightDot className={cn("ml-1.5", active && "invisible")} />
+                  )}
+                  {active && <ActiveUnderline />}
+                </Link>
               );
             })}
+          </nav>
+
+          <div className="hidden lg:flex shrink-0 items-center gap-4">
             <button
+              type="button"
               onClick={openModal}
-              className="btn-gradient mt-3 inline-flex h-14 w-full items-center justify-center px-9 text-base"
+              className="btn-gradient inline-flex h-10 items-center justify-center px-6 text-sm"
             >
               Contact Us
             </button>
-            <p className="mt-3 flex items-center gap-1.5 text-xs text-[color:var(--color-silver-500)] px-1">
-              <MapPin size={12} />
-              {site.address.short}
-            </p>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            className={cn(
+              "relative inline-flex shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white transition-[width,height] duration-300 ease-out motion-reduce:transition-none lg:hidden",
+              floating ? "h-10 w-10" : "h-12 w-12"
+            )}
+          >
+            <Menu
+              aria-hidden
+              className={cn(
+                "absolute transition duration-200 ease-out",
+                floating ? "h-5 w-5" : "h-6 w-6",
+                mobileOpen
+                  ? "scale-75 rotate-90 opacity-0"
+                  : "scale-100 rotate-0 opacity-100"
+              )}
+            />
+            <X
+              aria-hidden
+              className={cn(
+                "absolute transition duration-200 ease-out",
+                floating ? "h-5 w-5" : "h-6 w-6",
+                mobileOpen
+                  ? "scale-100 rotate-0 opacity-100"
+                  : "scale-75 -rotate-90 opacity-0"
+              )}
+            />
+          </button>
+
+          {/* Phone menu: a second glass card hung below the pill, overlaying
+              the page instead of growing the header. */}
+          {mobileOpen && (
+            <div className="glass-nav absolute inset-x-0 top-full mt-2 max-h-[calc(100svh-7.5rem)] overflow-y-auto rounded-lg lg:hidden">
+              <div className="flex flex-col gap-1 p-3">
+                {nav.map((item) => {
+                  const active = isLinkActive(item, pathname);
+                  return (
+                    <div key={item.href}>
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "flex items-center justify-between rounded-md px-3 py-3 text-sm font-normal uppercase tracking-[0.14em] transition",
+                          active
+                            ? "bg-white/10 text-white"
+                            : "text-[color:var(--color-silver-300)] hover:bg-white/5 hover:text-white"
+                        )}
+                      >
+                        {item.label}
+                        {item.highlight && (
+                          <HighlightDot className={cn(active && "invisible")} />
+                        )}
+                      </Link>
+
+                      {item.children?.length ? (
+                        <div className="my-1 ml-4 flex flex-col gap-0.5 border-l border-white/10 pl-2">
+                          {item.children.map((child) => {
+                            const childActive = isLinkActive(child, pathname);
+                            return (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                className={cn(
+                                  "flex items-center justify-between rounded-md px-3 py-2.5 text-xs uppercase tracking-[0.14em] transition",
+                                  childActive
+                                    ? "bg-white/10 text-white"
+                                    : "text-[color:var(--color-silver-400)] hover:bg-white/5 hover:text-white"
+                                )}
+                              >
+                                {child.label}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                })}
+                <button
+                  onClick={openModal}
+                  className="btn-gradient mt-3 inline-flex h-14 w-full items-center justify-center px-9 text-base"
+                >
+                  Contact Us
+                </button>
+                <p className="mt-3 flex items-center gap-1.5 px-1 text-xs text-[color:var(--color-silver-500)]">
+                  <MapPin size={12} />
+                  {site.address.short}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </header>
   );
 }

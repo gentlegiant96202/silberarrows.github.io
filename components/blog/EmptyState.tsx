@@ -14,7 +14,7 @@ export function EmptyState({
       <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.04] ring-1 ring-white/10">
         <BookOpen size={20} className="text-[color:var(--color-platinum)]" />
       </div>
-      <h2 className="mt-5 text-xl font-semibold text-silver-shine">{title}</h2>
+      <h2 className="text-display mt-5 text-2xl font-normal leading-[1.08] text-cream">{title}</h2>
       <p className="mt-3 text-sm text-[color:var(--color-silver-400)]">
         {description}
       </p>

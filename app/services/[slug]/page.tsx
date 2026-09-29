@@ -137,7 +137,7 @@ export default async function ServiceDetailPage({
               <p className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-silver-400)]">
                 Overview
               </p>
-              <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-white">
+              <h2 className="text-display text-title mt-3 font-normal text-cream">
                 {service.shortTitle} for Mercedes-Benz
               </h2>
               <p className="mt-4 text-[color:var(--color-silver-400)] leading-relaxed">
@@ -159,7 +159,7 @@ export default async function ServiceDetailPage({
                   <p className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-silver-500)]">
                     Reviewed by
                   </p>
-                  <p className="text-sm font-medium text-white truncate">
+                  <p className="text-sm font-normal text-white truncate">
                     {reviewer.name}
                     <span className="ml-1.5 text-[color:var(--color-silver-400)] font-normal">
                       &middot; {reviewer.role}
@@ -308,7 +308,7 @@ export default async function ServiceDetailPage({
               </p>
               <h2
                 id={`${service.slug}-faqs`}
-                className="mt-3 text-3xl md:text-4xl font-semibold text-silver-shine"
+                className="text-display text-title mt-3 font-normal text-cream"
               >
                 {service.shortTitle} FAQs
               </h2>
@@ -318,7 +318,7 @@ export default async function ServiceDetailPage({
                     key={i}
                     className="group px-6 py-5 open:bg-white/[0.02]"
                   >
-                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-medium text-white marker:hidden list-none">
+                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-normal text-white marker:hidden list-none">
                       <span>{faq.question}</span>
                       <span className="silver-tick inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs transition group-open:rotate-45">
                         +

@@ -27,7 +27,7 @@ export function SectionHeaderAr({
             </p>
           </div>
         )}
-        <h2 className="text-display text-title mt-5 font-semibold text-silver-shine">
+        <h2 className="text-display text-title mt-5 font-normal text-cream">
           {title}
         </h2>
       </div>

@@ -51,7 +51,7 @@ export function FeaturePostCard({ post }: FeaturePostCardProps) {
           ) : null}
         </div>
 
-        <h2 className="mt-4 text-2xl font-semibold leading-tight text-white line-clamp-3 md:text-3xl">
+        <h2 className="text-display mt-4 text-2xl font-normal leading-[1.08] text-cream line-clamp-3 md:text-3xl">
           {post.title}
         </h2>
 

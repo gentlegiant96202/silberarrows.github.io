@@ -51,7 +51,7 @@ export function SectionHeader({
         {/* Left: eyebrow pinned above the title, title baseline sits on the row's bottom edge */}
         <div className="lg:col-span-7 lg:flex lg:flex-col lg:justify-end">
           {eyebrow && <Eyebrow text={eyebrow} />}
-          <h2 className="text-display text-title mt-5 font-semibold text-silver-shine">
+          <h2 className="text-display text-title mt-5 font-normal text-cream">
             {preserveBrandWrap(title)}
           </h2>
         </div>
@@ -88,7 +88,7 @@ export function SectionHeader({
       )}
     >
       {eyebrow && <Eyebrow text={eyebrow} />}
-      <h2 className="text-display text-title mt-5 font-semibold text-silver-shine">
+      <h2 className="text-display text-title mt-5 font-normal text-cream">
         {preserveBrandWrap(title)}
       </h2>
       {intro && (
