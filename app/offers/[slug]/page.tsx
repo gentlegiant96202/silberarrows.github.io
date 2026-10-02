@@ -7,6 +7,7 @@ import { OfferSchema } from "@/components/OfferSchema";
 import { OfferFormProvider } from "@/components/offers/OfferFormProvider";
 import { OfferViewTracker } from "@/components/offers/OfferViewTracker";
 import { ImportWelcomeOffer } from "@/components/offers/import-welcome/ImportWelcomeOffer";
+import { RepairCreditOffer } from "@/components/offers/repair-credit/RepairCreditOffer";
 import { TenPlusOffer } from "@/components/offers/ten-plus/TenPlusOffer";
 import { WarrantyExpiredOffer } from "@/components/offers/warranty-expired/WarrantyExpiredOffer";
 import {
@@ -28,6 +29,7 @@ import { site } from "@/lib/site";
  * OfferLeadSection, and its OfferMobileBar.
  */
 const OFFER_BODIES: Record<string, ComponentType<{ offer: Offer }>> = {
+  "mercedes-benz-minor-major-service-repair-credit-dubai": RepairCreditOffer,
   "mercedes-benz-over-10-years-old-service-dubai": TenPlusOffer,
   "mercedes-benz-warranty-expired-service-contract-dubai": WarrantyExpiredOffer,
   "mercedes-benz-imported-welcome-programme-dubai": ImportWelcomeOffer,

@@ -27,6 +27,18 @@ export type OfferImage = {
    * image isn't crushed to black.
    */
   toned?: boolean;
+  /**
+   * Uniform black wash over the hero photo, as an opacity from 0 to 1.
+   * Used when the picture is bright enough that a flat scrim reads better
+   * than the directional gradient.
+   */
+  flatScrim?: number;
+  /**
+   * Looping hero clip, muted. `src` is then its poster. The clip sits in the
+   * lower part of the hero, behind the figures row, and fades to black above
+   * so the headline and CTA stay on a clean ground.
+   */
+  video?: string;
   /** CSS `object-position` for the hero crop. Default "center". */
   position?: string;
 };
@@ -75,6 +87,38 @@ export type Offer = {
 };
 
 export const offers: Offer[] = [
+  {
+    slug: "mercedes-benz-minor-major-service-repair-credit-dubai",
+    shortTitle: "AED 500 Repair Credit",
+    title: "Book your Mercedes-Benz minor or major service.",
+    titleLines: ["Book your Mercedes-Benz", "minor or major service."],
+    tagline: "New to SilberArrows?",
+    intro: "Receive AED 500 repair credit with your service.",
+    summary:
+      "Book a Mercedes-Benz minor or major service, starting from AED 972, and receive AED 500 repair credit with your service. New customers, Mercedes-Benz only.",
+    highlights: [
+      "Starting from AED 972",
+      "AED 500 repair credit",
+      "Minor or major service",
+      "New customers only",
+    ],
+    badge: "New",
+    image: {
+      src: "/assets/images/offers/repair-credit.jpg",
+      alt: "Engine oil poured into a Mercedes-Benz engine cover during a service.",
+      toned: true,
+      flatScrim: 0.3,
+      video: "/assets/images/offers/repair-credit/oil-pour.mp4",
+      position: "center 42%",
+    },
+    metaTitle: "AED 500 Repair Credit on Mercedes Service | SilberArrows",
+    metaDescription:
+      "Book a Mercedes-Benz minor or major service from AED 972 and receive AED 500 repair credit. New customers, Mercedes-Benz only, at SilberArrows in Al Quoz, Dubai.",
+    keywords:
+      "Mercedes repair credit Dubai, Mercedes service offer Dubai, Mercedes minor service Dubai, Mercedes major service Dubai, AED 500 Mercedes repair credit, new customer Mercedes service Al Quoz, SilberArrows repair credit",
+    schema: { priceFrom: 972 },
+    active: true,
+  },
   {
     slug: "mercedes-benz-over-10-years-old-service-dubai",
     shortTitle: "10+ Preferential Pricing",

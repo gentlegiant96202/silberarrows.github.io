@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { BrandText } from "@/components/BrandText";
 import type { TrustIcon } from "@/components/icons/TrustIcons";
 import { OfferActions } from "@/components/offers/OfferActions";
+import { OfferHeroVideo } from "@/components/offers/OfferHeroVideo";
 import {
   OfferFigures,
   type OfferFigure,
@@ -33,6 +34,7 @@ export function OfferHero({
   figuresNote,
   ctaLabel,
   crumbs,
+  titleTone = "gradient",
   className,
 }: {
   offer: Offer;
@@ -41,6 +43,8 @@ export function OfferHero({
   figuresNote?: string;
   ctaLabel?: string;
   crumbs?: Crumb[];
+  /** `white` drops the cream→silver gradient for a flat white headline. */
+  titleTone?: "gradient" | "white";
   className?: string;
 }) {
   const context = offerLeadContext(offer, "hero");
@@ -58,25 +62,42 @@ export function OfferHero({
           filter + full `.hero-scrim-copy`). Creatives flagged `toned` are
           already graded dark, so they skip the filter and only get a light
           scrim to seat the copy and blend into the page. */}
-      <div className="absolute inset-0 -z-10">
-        <div
-          className={cn(
-            "absolute inset-0",
-            !offer.image.toned && "hero-photo"
-          )}
-        >
-          <Image
-            src={offer.image.src}
-            alt={offer.image.alt}
-            fill
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className="object-cover"
-            style={{ objectPosition: offer.image.position ?? "center" }}
+      <div className="absolute inset-0 -z-10 bg-black">
+        {offer.image.video ? (
+          <div className="absolute inset-x-0 bottom-0 top-[56%] lg:top-[57%]">
+            <OfferHeroVideo
+              src={offer.image.video}
+              poster={offer.image.src}
+              position={offer.image.position}
+              className="h-full w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black to-transparent" />
+          </div>
+        ) : (
+          <div
+            className={cn(
+              "absolute inset-0",
+              !offer.image.toned && "hero-photo"
+            )}
+          >
+            <Image
+              src={offer.image.src}
+              alt={offer.image.alt}
+              fill
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              className="object-cover"
+              style={{ objectPosition: offer.image.position ?? "center" }}
+            />
+          </div>
+        )}
+        {offer.image.flatScrim != null ? (
+          <div
+            className="pointer-events-none absolute inset-0 bg-black"
+            style={{ opacity: offer.image.flatScrim }}
           />
-        </div>
-        {offer.image.toned ? (
+        ) : offer.image.toned ? (
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(12,11,11,0.85)_0%,rgba(12,11,11,0.45)_45%,rgba(12,11,11,0.15)_100%)] lg:bg-[linear-gradient(to_right,rgba(12,11,11,0.7)_0%,rgba(12,11,11,0.35)_45%,rgba(12,11,11,0.05)_100%)]" />
         ) : (
           <div className="hero-scrim-copy pointer-events-none absolute inset-0" />
@@ -126,7 +147,14 @@ export function OfferHero({
             )}
           </div>
 
-          <h1 className="anim-rise text-display text-hero-gradient mt-4 font-display font-normal text-[2.25rem] leading-[1.12] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem]">
+          <h1
+            className={cn(
+              "anim-rise text-display mt-4 font-display font-normal text-[2.25rem] leading-[1.12] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem]",
+              titleTone === "white"
+                ? "text-white !leading-[1.02]"
+                : "text-hero-gradient"
+            )}
+          >
             {(offer.titleLines ?? [offer.title]).map((line) => (
               <span key={line} className="block">
                 <BrandText text={line} />

@@ -13,14 +13,14 @@ const canonical = `${site.url}${OFFERS_PATH}`;
 export const metadata: Metadata = {
   title: "Mercedes-Benz Service Offers Dubai | SilberArrows",
   description:
-    "Mercedes-Benz service offers in Dubai: 25% off for cars over 10 years old, a free health check for imports, plus ServiceCare plans and Certified Warranty.",
+    "Mercedes-Benz service offers in Dubai: AED 500 repair credit for new customers, 25% off for cars over 10 years old, a free health check for imports, plus ServiceCare plans and Certified Warranty.",
   keywords:
-    "Mercedes-Benz offers Dubai, imported Mercedes offer Dubai, Mercedes 10+ service offer, Mercedes labour discount Dubai, Mercedes warranty offer Dubai, Mercedes service contract offer, SilberArrows offers, Mercedes deals Al Quoz",
+    "Mercedes-Benz offers Dubai, Mercedes repair credit Dubai, imported Mercedes offer Dubai, Mercedes 10+ service offer, Mercedes labour discount Dubai, Mercedes warranty offer Dubai, Mercedes service contract offer, SilberArrows offers, Mercedes deals Al Quoz",
   alternates: { canonical },
   openGraph: {
     title: "Mercedes-Benz Service Offers Dubai | SilberArrows",
     description:
-      "Mercedes-Benz service offers in Dubai: 25% off for cars over 10 years old, a free health check for imports, plus ServiceCare plans and Certified Warranty.",
+      "Mercedes-Benz service offers in Dubai: AED 500 repair credit for new customers, 25% off for cars over 10 years old, a free health check for imports, plus ServiceCare plans and Certified Warranty.",
     url: canonical,
     images: [defaultOgImage],
   },
@@ -40,7 +40,7 @@ export default function OffersPage() {
       <OfferCatalogSchema offers={offers} />
       <PageHero
         title="Mercedes-Benz Offers in Dubai"
-        intro="Current offers from Dubai's independent Mercedes-Benz specialists. Imported-vehicle welcome, 10+ preferential pricing, prepaid servicing and extended protection, all under one roof in Al Quoz."
+        intro="Current offers from Dubai's independent Mercedes-Benz specialists. New-customer repair credit, imported-vehicle welcome, 10+ preferential pricing, prepaid servicing and extended protection, all under one roof in Al Quoz."
         backgroundImage="/assets/images/hero-bg-silver-optimized.avif"
         crumbs={[{ label: "Home", href: "/" }, { label: "Offers" }]}
       />
