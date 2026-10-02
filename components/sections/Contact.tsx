@@ -48,14 +48,14 @@ export function Contact({
           )}
         >
           {/* ── Speak with us ─────────────────────────────────────────── */}
-          <div className="reveal surface relative flex flex-col overflow-hidden rounded-3xl p-6 sm:p-8 md:p-10 lg:col-span-5">
+          <div className="reveal surface relative flex flex-col overflow-hidden p-6 sm:p-8 md:p-10 lg:col-span-5">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-platinum)] to-transparent" />
             <div className="flex items-center gap-3">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.28em] text-silver-shine">
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.32em] text-silver-shine">
                 Get in Touch
               </p>
             </div>
-            <CardHeading className="mt-4 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            <CardHeading className="text-display mt-4 text-3xl font-normal leading-[1.08] text-cream md:text-4xl">
               Speak with a specialist
             </CardHeading>
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-400)] md:text-[0.9375rem]">
@@ -66,7 +66,7 @@ export function Contact({
             <div className="mt-7 grid gap-3">
               <button
                 onClick={openModal}
-                className="btn-silver flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em]"
+                className="btn-silver flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em]"
               >
                 <MessageCircle size={16} />{" "}
                 {showDirectContact ? "Call or WhatsApp Us" : "Send an Enquiry"}
@@ -75,7 +75,7 @@ export function Contact({
                 <ContactLink
                   kind="phone"
                   href={site.phoneTel}
-                  className="btn-ghost flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em]"
+                  className="btn-ghost flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em]"
                 >
                   <Phone size={14} /> {site.phone}
                 </ContactLink>
@@ -105,7 +105,7 @@ export function Contact({
           </div>
 
           {/* ── Workshop map ──────────────────────────────────────────── */}
-          <div className="reveal ring-chrome relative flex min-h-[23.75rem] flex-col overflow-hidden rounded-3xl lg:col-span-7 lg:min-h-[28.75rem]">
+          <div className="reveal ring-chrome relative flex min-h-[23.75rem] flex-col overflow-hidden lg:col-span-7 lg:min-h-[28.75rem]">
             <div className="absolute inset-0">
               {mapOpen ? (
                 <iframe
@@ -131,7 +131,7 @@ export function Contact({
                     className="object-cover brightness-[0.55] grayscale-[0.4] saturate-50 transition duration-500 group-hover:scale-[1.03] group-hover:brightness-[0.7]"
                   />
                   <span className="absolute inset-0 flex items-center justify-center">
-                    <span className="glass-card ring-silver inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition duration-300 group-hover:scale-105">
+                    <span className="glass-card ring-silver inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition duration-300 group-hover:scale-105">
                       <MapPin
                         size={14}
                         className="text-[color:var(--color-platinum)]"
@@ -149,7 +149,7 @@ export function Contact({
                 <p className="text-[0.6875rem] uppercase tracking-[0.22em] text-[color:var(--color-silver-300)]">
                   Visit Our Workshop
                 </p>
-                <CardHeading className="mt-2 text-xl font-semibold tracking-tight text-white md:text-2xl">
+                <CardHeading className="text-display mt-2 text-2xl font-normal leading-[1.08] text-cream md:text-3xl">
                   {site.address.line1}
                 </CardHeading>
                 <p className="mt-1 text-sm text-[color:var(--color-silver-400)]">
@@ -159,7 +159,7 @@ export function Contact({
                   href={site.googleMaps.directions}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-ghost mt-5 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.16em]"
+                  className="btn-ghost mt-5 inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.16em]"
                 >
                   <Navigation size={13} /> Get Directions
                 </a>

@@ -94,11 +94,11 @@ export function ContactModal({
         className="absolute inset-0 bg-black/70 backdrop-blur-md"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#111113] ring-silver p-7 anim-rise">
+      <div className="relative w-full max-w-md border border-white/10 bg-[#111113] ring-silver p-7 anim-rise">
         <button
           aria-label={t.close}
           onClick={onClose}
-          className="absolute top-4 end-4 rounded-full p-1.5 text-[color:var(--color-silver-300)] hover:text-white hover:bg-white/10 transition"
+          className="absolute top-4 end-4 p-1.5 text-[color:var(--color-silver-300)] hover:text-white hover:bg-white/10 transition"
         >
           <X size={18} />
         </button>
@@ -117,7 +117,7 @@ export function ContactModal({
 
         <h3
           id="contact-title"
-          className="text-2xl font-semibold text-silver-shine"
+          className="text-display text-3xl font-normal leading-[1.08] text-cream"
         >
           {t.title}
         </h3>

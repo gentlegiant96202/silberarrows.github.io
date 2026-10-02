@@ -107,7 +107,7 @@ export function LeadForm({
     ? "block text-xs text-[color:var(--color-silver-400)] mb-1.5"
     : "block text-xs uppercase tracking-[0.18em] text-[color:var(--color-silver-400)] mb-1.5";
   const input =
-    "w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-base text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60";
+    "w-full bg-black/40 border border-white/10 px-4 py-3 text-base text-white placeholder:text-[color:var(--color-silver-600)] outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60";
 
   const [name, setName] = useState("");
   const [country, setCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
@@ -285,7 +285,7 @@ export function LeadForm({
         <p
           key={errorPulse}
           role="alert"
-          className="anim-shake rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200"
+          className="anim-shake border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200"
         >
           {error}
         </p>

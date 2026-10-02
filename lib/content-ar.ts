@@ -294,12 +294,17 @@ export const thankYouAr = {
   metaTitle: `شكراً لك | SilberArrows لصيانة ${BRAND_AR} في دبي`,
   metaDescription:
     "شكراً لتواصلك مع SilberArrows. سنعاود الاتصال بك في أقرب وقت.",
+  eyebrow: "تم استلام الطلب",
   title: "استلمنا بياناتك",
   bodyBefore: `سيتواصل معك أحد متخصصي ${BRAND_AR} قريباً عبر`,
   bodyChannel: "واتساب",
   response: "متوسط وقت الرد: أقل من 5 دقائق",
+  whatsappCta: "راسلنا على واتساب الآن",
+  whatsappHint: "لا داعي للانتظار، ابدأ المحادثة بنفسك.",
   call: "اتصل",
-  whatsappNow: "راسلنا على واتساب الآن",
+  rating: "تقييم 4.8 على Google من أكثر من 520 مراجعة",
+  imageAlt: "مستشارو الخدمة في صالة SilberArrows بالقوز",
+  imageCaption: "مستشارو الخدمة لدينا يعملون على طلبك الآن.",
   back: "العودة إلى الصفحة الرئيسية",
 };
 

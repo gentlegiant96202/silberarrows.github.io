@@ -61,7 +61,7 @@ export function CountrySelect({ value, onChange, disabled }: CountrySelectProps)
         aria-expanded={open}
         aria-label={`Country: ${selected.name} (${selected.dialCode})`}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-full w-[6.5rem] items-center justify-between gap-1.5 rounded-lg bg-black/40 border border-white/10 px-3 py-3 text-base text-white outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
+        className="flex h-full w-[6.5rem] items-center justify-between gap-1.5 bg-black/40 border border-white/10 px-3 py-3 text-base text-white outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition disabled:opacity-60"
       >
         <span className="flex items-center gap-1.5">
           <span aria-hidden>{selected.flag}</span>
@@ -78,7 +78,7 @@ export function CountrySelect({ value, onChange, disabled }: CountrySelectProps)
       {open && (
         <div
           role="listbox"
-          className="absolute left-0 top-[calc(100%+0.5rem)] z-50 w-[18rem] max-w-[calc(100vw-3.5rem)] overflow-hidden rounded-xl border border-white/10 bg-[#111113] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)]"
+          className="absolute left-0 top-[calc(100%+0.5rem)] z-50 w-[18rem] max-w-[calc(100vw-3.5rem)] overflow-hidden border border-white/10 bg-[#111113] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)]"
         >
           <div className="flex items-center gap-2 border-b border-white/10 px-3 py-2.5">
             <Search size={15} className="text-[color:var(--color-silver-500)]" />

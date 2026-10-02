@@ -31,7 +31,7 @@ export function Footer() {
             </p>
             <button
               onClick={openModal}
-              className="btn-silver mt-6 rounded-lg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em]"
+              className="btn-silver mt-6 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em]"
             >
               Contact Us
             </button>

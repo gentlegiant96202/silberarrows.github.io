@@ -22,7 +22,7 @@ export function ArabicFooter() {
             </p>
             <button
               onClick={openModal}
-              className="btn-silver mt-6 rounded-lg px-5 py-3 text-xs font-semibold"
+              className="btn-silver mt-6 px-5 py-3 text-xs font-semibold"
             >
               {chromeAr.contactUs}
             </button>

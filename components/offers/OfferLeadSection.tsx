@@ -71,14 +71,14 @@ export function OfferLeadSection({
         </div>
 
         <div className="lg:col-span-6">
-          <div className="relative rounded-2xl border border-white/10 bg-[#111113] p-6 ring-silver sm:p-8">
+          <div className="relative border border-white/10 bg-[#111113] p-6 ring-silver sm:p-8">
             <div className="mb-1 flex items-center gap-2">
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.7)] animate-pulse" />
               <span className="text-xs uppercase tracking-[0.2em] text-emerald-300">
                 Live
               </span>
             </div>
-            <h3 className="text-2xl font-semibold text-silver-shine">
+            <h3 className="text-display text-3xl font-normal leading-[1.08] text-cream">
               Get in Touch
             </h3>
             <p className="mt-1 text-sm text-[color:var(--color-silver-400)]">
@@ -86,7 +86,7 @@ export function OfferLeadSection({
             </p>
 
             {selectedLabel && (
-              <div className="mt-5 inline-flex max-w-full items-center gap-2 rounded-full border border-cream/20 bg-white/[0.04] py-1.5 pl-3.5 pr-1.5 text-xs text-cream">
+              <div className="mt-5 inline-flex max-w-full items-center gap-2 border border-cream/20 bg-white/[0.04] py-1.5 pl-3.5 pr-1.5 text-xs text-cream">
                 <span className="truncate">
                   <span className="text-[color:var(--color-silver-400)]">
                     Enquiring about:{" "}
@@ -97,7 +97,7 @@ export function OfferLeadSection({
                   type="button"
                   onClick={clearSelection}
                   aria-label="Clear selected plan"
-                  className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[color:var(--color-silver-400)] transition hover:bg-white/10 hover:text-white"
+                  className="inline-flex h-5 w-5 shrink-0 items-center justify-center text-[color:var(--color-silver-400)] transition hover:bg-white/10 hover:text-white"
                 >
                   <X size={12} />
                 </button>
