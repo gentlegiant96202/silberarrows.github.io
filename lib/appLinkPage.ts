@@ -15,6 +15,7 @@ export type AppLinkTarget = {
   iosUrl: string;
   buttonLabel: string;
   embedUrl: string;
+  embedTitle: string;
   androidHelp: string;
   iosHelp: string;
 };
@@ -80,7 +81,7 @@ export function appLinkResponse(req: Request, target: AppLinkTarget): Response {
   <p class="status">Opening ${escapeHtml(target.title)}…</p>
 
   <div class="map">
-    <iframe src="${escapeHtml(target.embedUrl)}" title="SilberArrows on Google Maps" loading="lazy"
+    <iframe src="${escapeHtml(target.embedUrl)}" title="${escapeHtml(target.embedTitle)}" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
   </div>
 

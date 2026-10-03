@@ -15,6 +15,7 @@ export function GET(req: Request) {
     iosUrl: `comgooglemaps://?q=${encodeURIComponent(googleBusiness.name)}&center=${lat},${lng}`,
     buttonLabel: "Open in Google Maps",
     embedUrl: site.googleMaps.embed,
+    embedTitle: "SilberArrows on Google Maps",
     androidHelp:
       "Tap the button above. If this page is still showing, tap the ⋮ menu at the top right and choose “Open in Chrome”, then tap the button again.",
     iosHelp:

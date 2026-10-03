@@ -17,6 +17,7 @@ export function GET(req: Request) {
     iosUrl: `x-safari-https://${path}`,
     buttonLabel: "Leave a Google review",
     embedUrl: site.googleMaps.embed,
+    embedTitle: "SilberArrows on Google Maps",
     androidHelp:
       "Tap the button above. If this page is still showing, tap the ⋮ menu at the top right and choose “Open in Chrome”, then tap the button again. You'll need to be signed in to your Google account.",
     iosHelp:
