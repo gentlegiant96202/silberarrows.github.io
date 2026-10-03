@@ -1,4 +1,4 @@
-const googleBusiness = {
+export const googleBusiness = {
   name: "SilberArrows - Mercedes-Benz Service Centre",
   cid: "11611903972070946457",
   placeId: "ChIJF3QahH1pXz4RmXY83SPFJaE",
