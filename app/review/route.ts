@@ -1,5 +1,5 @@
 import { appLinkResponse } from "@/lib/appLinkPage";
-import { googleBusiness } from "@/lib/site";
+import { googleBusiness, site } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -11,9 +11,15 @@ export function GET(req: Request) {
 
   return appLinkResponse(req, {
     title: "the Google review page",
+    heading: "Thank you for choosing SilberArrows",
     webUrl,
     androidUrl: `intent://${path}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(webUrl)};end`,
     iosUrl: `x-safari-https://${path}`,
     buttonLabel: "Leave a Google review",
+    embedUrl: site.googleMaps.embed,
+    androidHelp:
+      "Tap the button above. If this page is still showing, tap the ⋮ menu at the top right and choose “Open in Chrome”, then tap the button again. You'll need to be signed in to your Google account.",
+    iosHelp:
+      "Tap the button above and choose “Open” when asked. If nothing happens, tap the compass or ⋯ icon at the bottom of the screen and choose “Open in Safari”, then tap the button again. You'll need to be signed in to your Google account.",
   });
 }
