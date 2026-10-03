@@ -251,6 +251,11 @@ export const services: Service[] = [
         answer:
           "Many modern Mercedes-Benz models require battery registration or coding after replacement so the charging and energy-management systems operate correctly.",
       },
+      {
+        question: "Can I bring my own battery?",
+        answer:
+          "No. We only install genuine Mercedes-Benz batteries that we supply ourselves, so we can guarantee both the part and the registration work. We do not fit customer-supplied batteries or parts.",
+      },
     ],
   },
   {
