@@ -7,7 +7,6 @@ import { Logo } from "@/components/Logo";
 import { flattenNav, site } from "@/lib/site";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
-import { CodeHypeBadge } from "@/components/CodeHypeBadge";
 import { isOfferDetailPath } from "@/lib/offers";
 
 export function Footer() {
@@ -106,7 +105,6 @@ export function Footer() {
               &copy; {site.name} {new Date().getFullYear()}. All rights
               reserved.
             </p>
-            {pathname === "/" ? <CodeHypeBadge compact /> : null}
           </div>
           <p className="flex items-center gap-2">
             <span className="text-[color:var(--color-silver-400)]">
