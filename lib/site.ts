@@ -4,6 +4,13 @@ export const googleBusiness = {
   placeId: "ChIJF3QahH1pXz4RmXY83SPFJaE",
 };
 
+export const showroomBusiness = {
+  name: "SilberArrows - Mercedes-Benz Showroom & Leasing",
+  cid: "5134195628213967468",
+  placeId: "ChIJC6KlzbppXz4RbJoOw7hTQEc",
+  geo: { lat: 25.1458245, lng: 55.2299576 },
+};
+
 export const site = {
   name: "SilberArrows",
   fullName: "SilberArrows Mercedes-Benz Service",

@@ -8,6 +8,7 @@
  */
 
 export type AppLinkTarget = {
+  eyebrow: string;
   title: string;
   heading: string;
   webUrl: string;
@@ -76,7 +77,7 @@ export function appLinkResponse(req: Request, target: AppLinkTarget): Response {
 <body>
 <main>
   <img class="logo" src="/assets/icons/silberarrows-logo.png" alt="SilberArrows">
-  <p class="eyebrow">Mercedes-Benz Service Centre</p>
+  <p class="eyebrow">${escapeHtml(target.eyebrow)}</p>
   <h1>${escapeHtml(target.heading)}</h1>
   <p class="status">Opening ${escapeHtml(target.title)}…</p>
 

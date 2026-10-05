@@ -1,8 +1,8 @@
 import { appLinkResponse } from "@/lib/appLinkPage";
-import { serviceCentreLink, wazeTarget } from "@/lib/appLinkTargets";
+import { reviewTarget, showroomLink } from "@/lib/appLinkTargets";
 
 export const dynamic = "force-dynamic";
 
 export function GET(req: Request) {
-  return appLinkResponse(req, wazeTarget(serviceCentreLink));
+  return appLinkResponse(req, reviewTarget(showroomLink));
 }
