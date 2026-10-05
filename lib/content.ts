@@ -200,6 +200,27 @@ export const landingPages: Record<
       "Free Collection & Delivery",
     ],
   },
+  "mercedes-al-quoz": {
+    metaTitle:
+      "Mercedes Service Center Al Quoz | Mercedes-Benz Specialist Dubai",
+    metaDescription:
+      "Independent Mercedes-Benz service center and garage on Al Manara Street, Al Quoz, Dubai. Factory-trained technicians, XENTRY diagnostics, genuine parts.",
+    metaKeywords:
+      "mercedes al quoz, mercedes service center al quoz, mercedes service al quoz, mercedes benz service center al quoz, mercedes service center, mercedes service center dubai, mercedes benz service center, mercedes garage, mercedes garage dubai, mercedes specialist dubai, mercedes workshop al quoz",
+    tagline: "Independent Mercedes-Benz Specialist & Garage in Al Quoz",
+    titleParts: [
+      [{ text: "Mercedes-Benz", highlight: true }],
+      [{ text: "Service Center" }],
+      [{ text: "in Al Quoz" }],
+    ],
+    subtitle:
+      "On Al Manara Street, Al Quoz, Dubai. Factory-trained technicians, XENTRY diagnostics and genuine parts. Drive in, or we collect your car anywhere in Dubai.",
+    badges: [
+      "12 Month Warranty on Parts & Labour",
+      "Free Collection & Delivery",
+      "Mon–Sat 8 AM – 6 PM",
+    ],
+  },
   "mercedes-service-near-me": {
     metaTitle:
       "Mercedes Service Near Me Dubai | Mercedes-Benz Service Al Quoz",

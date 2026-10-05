@@ -50,7 +50,9 @@ export default async function LandingPage({
   if (!lp) return notFound();
 
   const isLocation =
-    slug === "mercedes-service-center" || slug === "mercedes-service-near-me";
+    slug === "mercedes-service-center" ||
+    slug === "mercedes-service-near-me" ||
+    slug === "mercedes-al-quoz";
   const isRepair = slug === "mercedes-repair";
 
   const hero = (

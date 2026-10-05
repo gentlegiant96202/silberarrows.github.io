@@ -1,0 +1,1783 @@
+{
+  "snapshot_date": "2026-10-05",
+  "range_label": "Sep 14 – Oct 5 · post budget 1,600 (22 days)",
+  "pulled_at": "2026-10-05T16:43:58+04:00",
+  "data": {
+    "account": {
+      "customerId": "6125392209",
+      "currency": "AED"
+    },
+    "range": {
+      "label": "Sep 14 – Oct 5 · post budget 1,600 (22 days)",
+      "start": "2026-09-14",
+      "end": "2026-10-05"
+    },
+    "campaigns": [
+      {
+        "id": "23894399001",
+        "name": "SilberArrows | Service Department MCP",
+        "type": "SEARCH",
+        "status": "ENABLED",
+        "cost": 28022.66,
+        "impressions": 5564,
+        "clicks": 372,
+        "ctr": 0.0669,
+        "avgCpc": 75.33,
+        "conversions": 72.0,
+        "costPerConv": 389.2,
+        "convRate": 0.1935,
+        "searchImpressionShare": 0.6559,
+        "lostIsBudget": 0.0751,
+        "lostIsRank": 0.269,
+        "bidding": "MAXIMIZE_CONVERSIONS",
+        "dailyBudget": 1600.0,
+        "targetCpa": 450.0,
+        "biddingSystemStatus": "LIMITED_BY_BUDGET",
+        "topImpressionShare": 0.575,
+        "absTopImpressionShare": 0.3867
+      },
+      {
+        "id": "23905169932",
+        "name": "Branded | SilberArrows | MCP",
+        "type": "SEARCH",
+        "status": "ENABLED",
+        "cost": 1691.14,
+        "impressions": 1059,
+        "clicks": 277,
+        "ctr": 0.2616,
+        "avgCpc": 6.11,
+        "conversions": 23.0,
+        "costPerConv": 73.53,
+        "convRate": 0.083,
+        "searchImpressionShare": 0.5862,
+        "lostIsBudget": 0.3621,
+        "lostIsRank": 0.0517,
+        "bidding": "TARGET_IMPRESSION_SHARE",
+        "dailyBudget": 75.0,
+        "targetCpa": null,
+        "biddingSystemStatus": "ENABLED",
+        "topImpressionShare": 0.5073,
+        "absTopImpressionShare": 0.4601
+      }
+    ],
+    "conversionsByAction": [
+      {
+        "name": "WhatsApp click · Brand",
+        "category": "CONTACT",
+        "conversions": 11.0,
+        "countedAsPrimary": 11.0
+      },
+      {
+        "name": "Call click · Brand",
+        "category": "CONTACT",
+        "conversions": 8.0,
+        "countedAsPrimary": 8.0
+      },
+      {
+        "name": "Web Form Lead · Brand",
+        "category": "SUBMIT_LEAD_FORM",
+        "conversions": 4.0,
+        "countedAsPrimary": 4.0
+      },
+      {
+        "name": "WhatsApp click · Service",
+        "category": "CONTACT",
+        "conversions": 35.0,
+        "countedAsPrimary": 35.0
+      },
+      {
+        "name": "Call click · Service",
+        "category": "CONTACT",
+        "conversions": 32.0,
+        "countedAsPrimary": 32.0
+      },
+      {
+        "name": "Web Form Lead · Service",
+        "category": "SUBMIT_LEAD_FORM",
+        "conversions": 5.0,
+        "countedAsPrimary": 5.0
+      }
+    ],
+    "adGroups": [
+      {
+        "campaign": "Service",
+        "name": "Mercedes Specialist Al Quoz",
+        "cost": 11021.42,
+        "clicks": 150,
+        "conversions": 27.0,
+        "costPerConv": 408.2
+      },
+      {
+        "campaign": "Service",
+        "name": "Service & Maintenance",
+        "cost": 8799.09,
+        "clicks": 127,
+        "conversions": 22.0,
+        "costPerConv": 399.96
+      },
+      {
+        "campaign": "Service",
+        "name": "Repair & Diagnostics",
+        "cost": 5912.43,
+        "clicks": 57,
+        "conversions": 13.0,
+        "costPerConv": 454.8
+      },
+      {
+        "campaign": "Service",
+        "name": "Arabic – Service & Repair",
+        "cost": 2289.71,
+        "clicks": 38,
+        "conversions": 10.0,
+        "costPerConv": 228.97
+      },
+      {
+        "campaign": "Brand",
+        "name": "Core",
+        "cost": 1522.12,
+        "clicks": 250,
+        "conversions": 22.0,
+        "costPerConv": 69.19
+      },
+      {
+        "campaign": "Brand",
+        "name": "Variants and Misspellings",
+        "cost": 169.02,
+        "clicks": 27,
+        "conversions": 1.0,
+        "costPerConv": 169.02
+      }
+    ],
+    "keywords": [
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service center",
+        "matchType": "EXACT",
+        "cost": 3277.42,
+        "clicks": 39,
+        "conversions": 7.0,
+        "qualityScore": 5,
+        "avgCpc": 84.04
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "mercedes benz repair",
+        "matchType": "PHRASE",
+        "cost": 2450.7,
+        "clicks": 26,
+        "conversions": 3.0,
+        "qualityScore": 3,
+        "avgCpc": 94.26
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes service",
+        "matchType": "EXACT",
+        "cost": 2384.6,
+        "clicks": 24,
+        "conversions": 3.0,
+        "qualityScore": 5,
+        "avgCpc": 99.36
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes al quoz",
+        "matchType": "EXACT",
+        "cost": 1415.11,
+        "clicks": 19,
+        "conversions": 3.0,
+        "qualityScore": 3,
+        "avgCpc": 74.48
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service center dubai",
+        "matchType": "EXACT",
+        "cost": 1108.8,
+        "clicks": 14,
+        "conversions": 5.0,
+        "qualityScore": 3,
+        "avgCpc": 79.2
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes service dubai",
+        "matchType": "EXACT",
+        "cost": 1106.27,
+        "clicks": 9,
+        "conversions": 3.0,
+        "qualityScore": 5,
+        "avgCpc": 122.92
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "mercedes garage near me",
+        "matchType": "EXACT",
+        "cost": 1036.92,
+        "clicks": 9,
+        "conversions": 4.0,
+        "qualityScore": 5,
+        "avgCpc": 115.21
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes car service",
+        "matchType": "PHRASE",
+        "cost": 1015.0,
+        "clicks": 24,
+        "conversions": 5.0,
+        "qualityScore": 4,
+        "avgCpc": 42.29
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes garage",
+        "matchType": "PHRASE",
+        "cost": 973.14,
+        "clicks": 20,
+        "conversions": 2.0,
+        "qualityScore": 4,
+        "avgCpc": 48.66
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "اصلاح مرسيدس",
+        "matchType": "PHRASE",
+        "cost": 931.95,
+        "clicks": 8,
+        "conversions": 2.0,
+        "qualityScore": null,
+        "avgCpc": 116.49
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Core",
+        "text": "silber arrows",
+        "matchType": "PHRASE",
+        "cost": 889.85,
+        "clicks": 154,
+        "conversions": 13.0,
+        "qualityScore": 8,
+        "avgCpc": 5.78
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes benz service",
+        "matchType": "PHRASE",
+        "cost": 871.13,
+        "clicks": 19,
+        "conversions": 3.0,
+        "qualityScore": 3,
+        "avgCpc": 45.85
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes car service",
+        "matchType": "EXACT",
+        "cost": 865.88,
+        "clicks": 6,
+        "conversions": 0.0,
+        "qualityScore": 4,
+        "avgCpc": 144.31
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "mercedes repair dubai",
+        "matchType": "EXACT",
+        "cost": 739.27,
+        "clicks": 6,
+        "conversions": 2.0,
+        "qualityScore": 3,
+        "avgCpc": 123.21
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "mercedes repair",
+        "matchType": "PHRASE",
+        "cost": 688.72,
+        "clicks": 8,
+        "conversions": 2.0,
+        "qualityScore": 3,
+        "avgCpc": 86.09
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service centre dubai",
+        "matchType": "PHRASE",
+        "cost": 688.66,
+        "clicks": 6,
+        "conversions": 1.0,
+        "qualityScore": 2,
+        "avgCpc": 114.78
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes service",
+        "matchType": "PHRASE",
+        "cost": 646.8,
+        "clicks": 15,
+        "conversions": 3.0,
+        "qualityScore": 5,
+        "avgCpc": 43.12
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service center",
+        "matchType": "PHRASE",
+        "cost": 607.84,
+        "clicks": 11,
+        "conversions": 1.0,
+        "qualityScore": 5,
+        "avgCpc": 55.26
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes benz service center dubai",
+        "matchType": "EXACT",
+        "cost": 599.2,
+        "clicks": 9,
+        "conversions": 1.5,
+        "qualityScore": 2,
+        "avgCpc": 66.58
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Core",
+        "text": "silberarrows",
+        "matchType": "PHRASE",
+        "cost": 533.3,
+        "clicks": 81,
+        "conversions": 6.0,
+        "qualityScore": 7,
+        "avgCpc": 6.58
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes garage dubai",
+        "matchType": "EXACT",
+        "cost": 497.5,
+        "clicks": 4,
+        "conversions": 1.0,
+        "qualityScore": 4,
+        "avgCpc": 124.38
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service al quoz",
+        "matchType": "PHRASE",
+        "cost": 491.47,
+        "clicks": 7,
+        "conversions": 2.0,
+        "qualityScore": 3,
+        "avgCpc": 70.21
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "مركز صيانة مرسيدس دبي",
+        "matchType": "PHRASE",
+        "cost": 479.75,
+        "clicks": 4,
+        "conversions": 5.0,
+        "qualityScore": null,
+        "avgCpc": 119.94
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "mercedes repair near me",
+        "matchType": "PHRASE",
+        "cost": 478.04,
+        "clicks": 3,
+        "conversions": 2.0,
+        "qualityScore": 6,
+        "avgCpc": 159.35
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes specialist dubai",
+        "matchType": "PHRASE",
+        "cost": 456.9,
+        "clicks": 4,
+        "conversions": 0.0,
+        "qualityScore": 5,
+        "avgCpc": 114.22
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes garage",
+        "matchType": "EXACT",
+        "cost": 418.28,
+        "clicks": 3,
+        "conversions": 2.0,
+        "qualityScore": 4,
+        "avgCpc": 139.43
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes expert dubai",
+        "matchType": "PHRASE",
+        "cost": 354.52,
+        "clicks": 7,
+        "conversions": 0.0,
+        "qualityScore": 7,
+        "avgCpc": 50.65
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "صيانة مرسيدس",
+        "matchType": "PHRASE",
+        "cost": 295.64,
+        "clicks": 7,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 42.23
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "mercedes benz repair",
+        "matchType": "EXACT",
+        "cost": 280.53,
+        "clicks": 2,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 140.26
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes benz service center",
+        "matchType": "EXACT",
+        "cost": 278.53,
+        "clicks": 4,
+        "conversions": 2.0,
+        "qualityScore": 2,
+        "avgCpc": 69.63
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes service dubai",
+        "matchType": "PHRASE",
+        "cost": 263.66,
+        "clicks": 4,
+        "conversions": 0.0,
+        "qualityScore": 5,
+        "avgCpc": 65.92
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes dubai service center",
+        "matchType": "PHRASE",
+        "cost": 261.15,
+        "clicks": 3,
+        "conversions": 0.0,
+        "qualityScore": 1,
+        "avgCpc": 87.05
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "تصليح مرسيدس",
+        "matchType": "PHRASE",
+        "cost": 257.49,
+        "clicks": 10,
+        "conversions": 3.0,
+        "qualityScore": 3,
+        "avgCpc": 25.75
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service center al quoz",
+        "matchType": "EXACT",
+        "cost": 245.39,
+        "clicks": 6,
+        "conversions": 1.0,
+        "qualityScore": 3,
+        "avgCpc": 40.9
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "benz repair",
+        "matchType": "PHRASE",
+        "cost": 227.97,
+        "clicks": 2,
+        "conversions": 0.0,
+        "qualityScore": null,
+        "avgCpc": 113.98
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes benz service dubai",
+        "matchType": "PHRASE",
+        "cost": 194.38,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 5,
+        "avgCpc": 194.38
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes service booking",
+        "matchType": "PHRASE",
+        "cost": 168.0,
+        "clicks": 2,
+        "conversions": 0.5,
+        "qualityScore": 5,
+        "avgCpc": 84.0
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "benz service center",
+        "matchType": "PHRASE",
+        "cost": 163.75,
+        "clicks": 4,
+        "conversions": 2.0,
+        "qualityScore": 2,
+        "avgCpc": 40.94
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes a service",
+        "matchType": "PHRASE",
+        "cost": 145.95,
+        "clicks": 3,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 48.65
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Variants and Misspellings",
+        "text": "silber arrow dubai",
+        "matchType": "PHRASE",
+        "cost": 120.69,
+        "clicks": 17,
+        "conversions": 1.0,
+        "qualityScore": 6,
+        "avgCpc": 7.1
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "صيانة مرسيدس دبي",
+        "matchType": "EXACT",
+        "cost": 113.03,
+        "clicks": 2,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 56.51
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes garage al quoz",
+        "matchType": "PHRASE",
+        "cost": 101.63,
+        "clicks": 3,
+        "conversions": 0.0,
+        "qualityScore": 2,
+        "avgCpc": 33.88
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service center dubai",
+        "matchType": "PHRASE",
+        "cost": 79.6,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 79.6
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "ورشة مرسيدس دبي",
+        "matchType": "PHRASE",
+        "cost": 78.55,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 78.55
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes full service",
+        "matchType": "PHRASE",
+        "cost": 58.12,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": null,
+        "avgCpc": 58.12
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "خدمة مرسيدس",
+        "matchType": "PHRASE",
+        "cost": 56.09,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 56.09
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "صيانة مرسيدس دبي",
+        "matchType": "PHRASE",
+        "cost": 36.38,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 36.38
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Core",
+        "text": "silberarrows reviews",
+        "matchType": "PHRASE",
+        "cost": 35.6,
+        "clicks": 5,
+        "conversions": 1.0,
+        "qualityScore": 6,
+        "avgCpc": 7.12
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Core",
+        "text": "silberarrows dubai",
+        "matchType": "PHRASE",
+        "cost": 33.76,
+        "clicks": 6,
+        "conversions": 0.0,
+        "qualityScore": 9,
+        "avgCpc": 5.63
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes b service",
+        "matchType": "PHRASE",
+        "cost": 33.61,
+        "clicks": 2,
+        "conversions": 0.0,
+        "qualityScore": 1,
+        "avgCpc": 16.8
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Core",
+        "text": "silberarrows service",
+        "matchType": "PHRASE",
+        "cost": 29.61,
+        "clicks": 4,
+        "conversions": 2.0,
+        "qualityScore": null,
+        "avgCpc": 7.4
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "ورشة مرسيدس",
+        "matchType": "PHRASE",
+        "cost": 21.98,
+        "clicks": 3,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 7.33
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Service & Maintenance",
+        "text": "mercedes service appointment",
+        "matchType": "PHRASE",
+        "cost": 21.6,
+        "clicks": 1,
+        "conversions": 1.0,
+        "qualityScore": 3,
+        "avgCpc": 21.6
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Variants and Misspellings",
+        "text": "silver arrows dubai",
+        "matchType": "PHRASE",
+        "cost": 19.79,
+        "clicks": 4,
+        "conversions": 0.0,
+        "qualityScore": 8,
+        "avgCpc": 4.95
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Arabic – Service & Repair",
+        "text": "صيانة مرسيدس",
+        "matchType": "EXACT",
+        "cost": 18.86,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 18.86
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Variants and Misspellings",
+        "text": "silberarrows car service",
+        "matchType": "PHRASE",
+        "cost": 15.86,
+        "clicks": 2,
+        "conversions": 0.0,
+        "qualityScore": 7,
+        "avgCpc": 7.93
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes benz service center",
+        "matchType": "PHRASE",
+        "cost": 14.43,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 2,
+        "avgCpc": 14.43
+      },
+      {
+        "campaign": "Brand",
+        "adGroup": "Variants and Misspellings",
+        "text": "silver arrows mercedes",
+        "matchType": "EXACT",
+        "cost": 12.68,
+        "clicks": 4,
+        "conversions": 0.0,
+        "qualityScore": 6,
+        "avgCpc": 3.17
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Mercedes Specialist Al Quoz",
+        "text": "mercedes service center al quoz",
+        "matchType": "PHRASE",
+        "cost": 12.21,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": 3,
+        "avgCpc": 12.21
+      },
+      {
+        "campaign": "Service",
+        "adGroup": "Repair & Diagnostics",
+        "text": "mercedes diagnostic dubai",
+        "matchType": "PHRASE",
+        "cost": 10.29,
+        "clicks": 1,
+        "conversions": 0.0,
+        "qualityScore": null,
+        "avgCpc": 10.29
+      }
+    ],
+    "searchTerms": [
+      {
+        "term": "mercedes service center",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 2577.86,
+        "clicks": 29,
+        "conversions": 7.0
+      },
+      {
+        "term": "mercedes service",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 1037.53,
+        "clicks": 11,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes service center dubai",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 1009.29,
+        "clicks": 12,
+        "conversions": 5.0
+      },
+      {
+        "term": "silber arrows",
+        "adGroup": "Core (Brand)",
+        "cost": 783.65,
+        "clicks": 137,
+        "conversions": 11.0
+      },
+      {
+        "term": "mercedes service dubai",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 752.06,
+        "clicks": 6,
+        "conversions": 2.0
+      },
+      {
+        "term": "mercedes benz service center dubai",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 599.2,
+        "clicks": 9,
+        "conversions": 1.5
+      },
+      {
+        "term": "mercedes service al quoz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 462.04,
+        "clicks": 5,
+        "conversions": 2.0
+      },
+      {
+        "term": "mercedes garage near me",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 454.46,
+        "clicks": 4,
+        "conversions": 1.0
+      },
+      {
+        "term": "mercedes repair near me",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 322.64,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes al quoz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 312.48,
+        "clicks": 8,
+        "conversions": 1.0
+      },
+      {
+        "term": "mercedes repair dubai",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 295.29,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz service center",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 278.53,
+        "clicks": 4,
+        "conversions": 2.0
+      },
+      {
+        "term": "mercedes benz specialist dubai",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 269.75,
+        "clicks": 1,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "silver arrows",
+        "adGroup": "Core (Brand)",
+        "cost": 243.28,
+        "clicks": 37,
+        "conversions": 2.0
+      },
+      {
+        "term": "mercedes workshop near me",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 239.44,
+        "clicks": 2,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "mercedes dubai contact",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 231.74,
+        "clicks": 2,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "mercedes service centre dubai",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 222.87,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes service center al quoz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 219.34,
+        "clicks": 5,
+        "conversions": 1.0
+      },
+      {
+        "term": "mercedes mechanic dubai",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 217.79,
+        "clicks": 1,
+        "conversions": 1.0,
+        "suggestion": "harvest"
+      },
+      {
+        "term": "mercedes al quoz service centre",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 212.81,
+        "clicks": 3,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "mercedes car service",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 209.63,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes appointment",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 202.44,
+        "clicks": 1,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "msl performance dubai",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 196.2,
+        "clicks": 5,
+        "conversions": 0.0,
+        "suggestion": "negative"
+      },
+      {
+        "term": "mercedes benz book a service",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 195.42,
+        "clicks": 2,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "mercedes benz service dubai",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 194.38,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silberarrows",
+        "adGroup": "Core (Brand)",
+        "cost": 193.57,
+        "clicks": 30,
+        "conversions": 1.0
+      },
+      {
+        "term": "garage mercedes",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 188.19,
+        "clicks": 1,
+        "conversions": 1.0,
+        "suggestion": "harvest"
+      },
+      {
+        "term": "mercedes brake pads replacement",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 171.55,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes service booking",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 168.0,
+        "clicks": 2,
+        "conversions": 0.5
+      },
+      {
+        "term": "mercedes benz dubai service center",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 167.04,
+        "clicks": 1,
+        "conversions": 1.0,
+        "suggestion": "harvest"
+      },
+      {
+        "term": "benz service center",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 163.75,
+        "clicks": 4,
+        "conversions": 2.0
+      },
+      {
+        "term": "mercedes specialist dubai",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 163.2,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes garage",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 161.6,
+        "clicks": 1,
+        "conversions": 1.0
+      },
+      {
+        "term": "mercedes electrical repair near me",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 155.4,
+        "clicks": 1,
+        "conversions": 2.0,
+        "suggestion": "harvest"
+      },
+      {
+        "term": "mercedes transmission fluid change cost",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 146.18,
+        "clicks": 1,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "car service mercedes benz",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 142.65,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes uae service center",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 135.12,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes battery replacement",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 132.53,
+        "clicks": 1,
+        "conversions": 1.0
+      },
+      {
+        "term": "benz services",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 129.71,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes alignment",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 125.84,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz workshop al quoz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 124.25,
+        "clicks": 1,
+        "conversions": 1.0,
+        "suggestion": "harvest"
+      },
+      {
+        "term": "mercedes garage dubai",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 121.75,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "صيانة مرسيدس دبي",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 113.03,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "benz workshop near me",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 108.18,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "افضل كراج مرسيدس في دبي",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 105.13,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes transmission fluid change cost",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 101.22,
+        "clicks": 1,
+        "conversions": 0.0,
+        "suggestion": "watch"
+      },
+      {
+        "term": "benz service center near me",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 85.79,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes garage al quoz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 78.76,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes service centre",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 69.97,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "silber arrows dubai",
+        "adGroup": "Core (Brand)",
+        "cost": 69.5,
+        "clicks": 11,
+        "conversions": 2.0
+      },
+      {
+        "term": "mercedes service centre",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 65.67,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes uae service center",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 65.42,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz showrooms",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 58.7,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "g63 service cost",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 58.12,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz help",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 57.28,
+        "clicks": 1,
+        "conversions": 1.0
+      },
+      {
+        "term": "auto benz mechanical repairs",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 56.42,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes emergency",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 56.23,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "سيرفس مرسيدس",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 56.09,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes brooklands service",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 56.04,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "haus of benz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 54.1,
+        "clicks": 1,
+        "conversions": 1.0
+      },
+      {
+        "term": "مركز برلين مرسيدس",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 49.15,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silber arrows dubai",
+        "adGroup": "Variants and Misspellings (Brand)",
+        "cost": 47.16,
+        "clicks": 7,
+        "conversions": 1.0
+      },
+      {
+        "term": "كراج تصليح مرسيدس",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 41.96,
+        "clicks": 1,
+        "conversions": 1.0
+      },
+      {
+        "term": "mercedes benz shop",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 40.75,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz al quoz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 38.07,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "مركز صيانة مرسيدس مصفح",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 35.55,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "جدول أسعار صيانة مرسيدس",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 34.45,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz service centre",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 32.7,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "service a in mercedes",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 32.16,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz service center near me",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 24.56,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silber arrow",
+        "adGroup": "Core (Brand)",
+        "cost": 23.91,
+        "clicks": 3,
+        "conversions": 0.0
+      },
+      {
+        "term": "silberarrows reviews",
+        "adGroup": "Core (Brand)",
+        "cost": 23.41,
+        "clicks": 3,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz service center near me",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 23.17,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes online service history",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 22.15,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes service appointment",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 21.6,
+        "clicks": 1,
+        "conversions": 1.0
+      },
+      {
+        "term": "mercedes service centre",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 20.66,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes dealers in dubai",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 20.08,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "assyst plus service b",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 19.57,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes labour cost per hour",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 19.05,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "صيانة مرسيدس",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 18.86,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes service near me",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 17.76,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "silberarrows dubai",
+        "adGroup": "Core (Brand)",
+        "cost": 17.06,
+        "clicks": 3,
+        "conversions": 0.0
+      },
+      {
+        "term": "silberarrows dubai reviews",
+        "adGroup": "Variants and Misspellings (Brand)",
+        "cost": 15.38,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "صيانة مرسيدس مصفح",
+        "adGroup": "Arabic – Service & Repair (Service)",
+        "cost": 14.89,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes service center near me",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 14.32,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz service center al quoz",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 14.22,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "what is a mercedes b service",
+        "adGroup": "Service & Maintenance (Service)",
+        "cost": 14.04,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silver arrow dubai",
+        "adGroup": "Variants and Misspellings (Brand)",
+        "cost": 13.85,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "silber arrows reviews",
+        "adGroup": "Variants and Misspellings (Brand)",
+        "cost": 13.79,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes specialist near me",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 13.58,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "silberarrows dubai reviews",
+        "adGroup": "Core (Brand)",
+        "cost": 12.19,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "how much does it cost to fix air suspension on mercedes",
+        "adGroup": "Repair & Diagnostics (Service)",
+        "cost": 11.24,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silver arrows mercedes",
+        "adGroup": "Variants and Misspellings (Brand)",
+        "cost": 8.96,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "silber arrows uae",
+        "adGroup": "Core (Brand)",
+        "cost": 7.95,
+        "clicks": 1,
+        "conversions": 1.0
+      },
+      {
+        "term": "silver arrow",
+        "adGroup": "Core (Brand)",
+        "cost": 7.92,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silber arrow dubai",
+        "adGroup": "Variants and Misspellings (Brand)",
+        "cost": 6.85,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silver arrow garage",
+        "adGroup": "Core (Brand)",
+        "cost": 6.07,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "silver arrows dubai",
+        "adGroup": "Variants and Misspellings (Brand)",
+        "cost": 5.96,
+        "clicks": 2,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes benz near me",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 5.17,
+        "clicks": 1,
+        "conversions": 0.0
+      },
+      {
+        "term": "mercedes d3 near me",
+        "adGroup": "Mercedes Specialist Al Quoz (Service)",
+        "cost": 1.41,
+        "clicks": 1,
+        "conversions": 0.0
+      }
+    ],
+    "assets": [],
+    "dailyTrend": [
+      {
+        "date": "2026-09-03",
+        "cost": 1130.12,
+        "conversions": 6.0,
+        "clicks": 20
+      },
+      {
+        "date": "2026-09-04",
+        "cost": 1053.13,
+        "conversions": 2.0,
+        "clicks": 28
+      },
+      {
+        "date": "2026-09-05",
+        "cost": 1225.89,
+        "conversions": 3.0,
+        "clicks": 34
+      },
+      {
+        "date": "2026-09-06",
+        "cost": 32.73,
+        "conversions": 1.0,
+        "clicks": 7
+      },
+      {
+        "date": "2026-09-07",
+        "cost": 1158.23,
+        "conversions": 2.0,
+        "clicks": 23
+      },
+      {
+        "date": "2026-09-08",
+        "cost": 1196.11,
+        "conversions": 5.0,
+        "clicks": 34
+      },
+      {
+        "date": "2026-09-09",
+        "cost": 1175.38,
+        "conversions": 2.0,
+        "clicks": 22
+      },
+      {
+        "date": "2026-09-10",
+        "cost": 1166.39,
+        "conversions": 6.0,
+        "clicks": 26
+      },
+      {
+        "date": "2026-09-11",
+        "cost": 1156.74,
+        "conversions": 2.0,
+        "clicks": 19
+      },
+      {
+        "date": "2026-09-12",
+        "cost": 1034.29,
+        "conversions": 3.0,
+        "clicks": 22
+      },
+      {
+        "date": "2026-09-13",
+        "cost": 37.91,
+        "conversions": 0.0,
+        "clicks": 8
+      },
+      {
+        "date": "2026-09-14",
+        "cost": 870.71,
+        "conversions": 3.0,
+        "clicks": 29
+      },
+      {
+        "date": "2026-09-15",
+        "cost": 944.11,
+        "conversions": 6.0,
+        "clicks": 36
+      },
+      {
+        "date": "2026-09-16",
+        "cost": 1183.05,
+        "conversions": 4.0,
+        "clicks": 26
+      },
+      {
+        "date": "2026-09-17",
+        "cost": 857.82,
+        "conversions": 3.0,
+        "clicks": 23
+      },
+      {
+        "date": "2026-09-18",
+        "cost": 1063.59,
+        "conversions": 3.0,
+        "clicks": 28
+      },
+      {
+        "date": "2026-09-19",
+        "cost": 954.48,
+        "conversions": 3.0,
+        "clicks": 27
+      },
+      {
+        "date": "2026-09-20",
+        "cost": 70.19,
+        "conversions": 0.0,
+        "clicks": 10
+      },
+      {
+        "date": "2026-09-21",
+        "cost": 943.8,
+        "conversions": 4.0,
+        "clicks": 24
+      },
+      {
+        "date": "2026-09-22",
+        "cost": 2990.4,
+        "conversions": 7.0,
+        "clicks": 44
+      },
+      {
+        "date": "2026-09-23",
+        "cost": 1273.34,
+        "conversions": 3.0,
+        "clicks": 32
+      },
+      {
+        "date": "2026-09-24",
+        "cost": 1206.13,
+        "conversions": 7.0,
+        "clicks": 25
+      },
+      {
+        "date": "2026-09-25",
+        "cost": 1594.76,
+        "conversions": 8.0,
+        "clicks": 35
+      },
+      {
+        "date": "2026-09-26",
+        "cost": 2400.0,
+        "conversions": 5.0,
+        "clicks": 43
+      },
+      {
+        "date": "2026-09-27",
+        "cost": 53.66,
+        "conversions": 0.0,
+        "clicks": 8
+      },
+      {
+        "date": "2026-09-28",
+        "cost": 2157.85,
+        "conversions": 3.0,
+        "clicks": 39
+      },
+      {
+        "date": "2026-09-29",
+        "cost": 945.49,
+        "conversions": 6.0,
+        "clicks": 25
+      },
+      {
+        "date": "2026-09-30",
+        "cost": 1394.67,
+        "conversions": 5.0,
+        "clicks": 33
+      },
+      {
+        "date": "2026-10-01",
+        "cost": 1912.92,
+        "conversions": 3.0,
+        "clicks": 34
+      },
+      {
+        "date": "2026-10-02",
+        "cost": 2571.95,
+        "conversions": 8.0,
+        "clicks": 44
+      },
+      {
+        "date": "2026-10-03",
+        "cost": 2186.86,
+        "conversions": 9.0,
+        "clicks": 35
+      },
+      {
+        "date": "2026-10-04",
+        "cost": 97.74,
+        "conversions": 3.0,
+        "clicks": 14
+      },
+      {
+        "date": "2026-10-05",
+        "cost": 2040.29,
+        "conversions": 2.0,
+        "clicks": 35
+      }
+    ],
+    "actions": [
+      "BUDGET RAISE WORKED (Service AED 900 -> 1,600/day on Sep 21, web UI). Before (Sep 14-21): AED 6,172, 18 conv, CPA 343, lost-to-budget 22%. After (Sep 22-Oct 5): AED 21,851, 54 conv, CPA 405, lost-to-budget 0.1%. Last 7 days: AED 10,684, 28 conv, CPA 382. Weekly conversions went 14 -> 28 -> 28. Budget is no longer the limiter; rank (28% lost IS) and tCPA are. Run-rate ~AED 1,800 per active day => ~AED 47k/month on Service.",
+      "tCPA: still AED 450. Trailing-7-day CPA 382 (<= 450), so the planned step 450 -> 400 is due. With budget no longer binding, tCPA is now the main volume/efficiency lever: expect fewer but cheaper conversions. Re-check 2 weeks after.",
+      "BRAND is starved: lost-to-budget 45% (Sep 22-Oct 5), 51% last 7 days, at AED 75/day with CPC ~6.2 (ceiling 8). CPA AED 58-65, cheapest conversions in the account (23 conv on AED 1,691). Raise budget AED 75 -> 140.",
+      "Negative: 'msl' (MSL Performance, a tuning competitor) AED 196 / 5 clicks / 0 conv. Watch: 'mercedes dubai contact' (AED 232, dealer seekers), 'mercedes appointment' / 'mercedes benz book a service' (dealer booking intent), 'transmission fluid change cost'.",
+      "Zero-conversion keywords (Sep 14-Oct 5): [mercedes car service] EXACT AED 866 / 6 clicks / 0 conv, 80% bounce in visit log (its phrase twin converts at AED 203, keep that); 'mercedes expert dubai' AED 355 / 7 / 0, 80% bounce; 'mercedes specialist dubai' AED 457 / 4 / 0. Pause the first two; watch the third. 'mercedes dubai service center' (harvested Sep 13) QS 1, AED 261 / 0 — watch.",
+      "Hours (Sep 14-Oct 5): 08h AED 2,762 -> 4 conv (CPA 690), 11h AED 2,412 -> 4 (CPA 603); 09-10h and 14-16h are the best (15h CPA 203). Correction to last pull: ad-schedule bid adjustments are IGNORED by Smart Bidding (Max Conversions/tCPA), so a -20% on 07-09h would do nothing. Only lever is moving the start to 09:00; not worth it yet (08h still converts).",
+      "Paid-visit log (first full period, Sep 14-Oct 5): 531 visits, 41 bots excluded. Service: 256 visits (matches Google's 254 URL+sitelink clicks), bounce 53%, median active 9s, 52 visits with a contact. Brand: 219 visits, bounce 36%, median 27s. Arabic LP is the best page (bounce 35%, 8 contacts / 23 visits); /lp/mercedes-repair bounce 60%, median 6s.",
+      "Click fraud: no action needed. Google invalid-click rate 7.5% Service / 8.3% Brand (filtered and not charged; was ~20% historically). No IP has more than 6 visits; repeat IPs are Brand searchers (existing customers), no IP exclusions warranted.",
+      "Message asset (WhatsApp button on the ad): Service 11 clicks / AED 1,408 (AED 128 each), Brand 10 / AED 61. Not counted as conversions, but each is a real WhatsApp chat — cheaper than the AED 389 CPA. Keep.",
+      "Auto-apply: all recommendation subscriptions are now PAUSED, including 'Remove redundant keywords' (paused Sep 18). The 13 re-added exact keywords are intact and carry most Service spend ([mercedes service center] AED 3,277 -> 7 conv).",
+      "Al Quoz ad group (largest spender, AED 11k, CPA 408) still lands on the homepage; landing-page experience BELOW_AVERAGE on Al Quoz terms. An Al Quoz-specific LP is the next QS/CPC lever.",
+      "Next pull ~Oct 19 (2 weeks). Use Oct 6-19 as the window."
+    ],
+    "notes": "Window 2026-09-14 to 2026-10-05 (22 days; Sundays off for Service). Compared with Sep 3-13 (post tCPA 450, 11 days). SERVICE: AED 28,023, 372 clicks, avg CPC AED 75, 72 conversions (35 WhatsApp + 32 Call + 5 form), CPA AED 389 (prev 423), conv rate 19.4%, search IS 66% (prev 45%), lost to budget 8% (prev 32%), lost to rank 27%. Settings: Max Conversions, tCPA AED 450, budget AED 1,600/day (raised from 900 on Sep 21 20:42 via web UI). Weekly Service CPA: W36 437, W37 435, W38 379, W39 355, W40 385. BRAND: AED 1,691, 277 clicks at AED 6.11, 23 conversions (11 WhatsApp + 8 Call + 4 form), CPA AED 74; tIS 90% top-of-page, ceiling AED 8, budget AED 75 — losing 45% IS to budget since Sep 22. Changes since last pull: Sep 13 API batch (13 exact keywords re-added, 3 harvested phrases, negatives checklist/tuning, call reporting disabled on call asset, Brand ceiling 5->8, Brand budget 50->75, TARGET_CPA_OPT_IN paused); Sep 18 'remove redundant keywords' auto-apply paused; Sep 21 Service budget 900->1,600.",
+    "comparison": {
+      "label": "Sep 3 – Sep 13 (post tCPA 450, 11 days)",
+      "Service": {
+        "name": "SilberArrows | Service Department MCP",
+        "cost": 9725.7,
+        "impressions": 1391,
+        "clicks": 103,
+        "ctr": 0.074,
+        "avgCpc": 94.42,
+        "conversions": 23.0,
+        "allConversions": 23.0,
+        "costPerConv": 422.86,
+        "convRate": 0.2233,
+        "searchIS": 0.4522,
+        "lostIsBudget": 0.3248,
+        "lostIsRank": 0.223,
+        "topIS": 0.4058,
+        "absTopIS": 0.2236
+      },
+      "Brand": {
+        "name": "Branded | SilberArrows | MCP",
+        "cost": 641.22,
+        "impressions": 558,
+        "clicks": 140,
+        "ctr": 0.2509,
+        "avgCpc": 4.58,
+        "conversions": 9.0,
+        "allConversions": 9.0,
+        "costPerConv": 71.25,
+        "convRate": 0.0643,
+        "searchIS": 0.7195,
+        "lostIsBudget": 0.1263,
+        "lostIsRank": 0.1542,
+        "topIS": 0.6274,
+        "absTopIS": 0.5203
+      }
+    }
+  }
+}
