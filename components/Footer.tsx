@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { flattenNav, site } from "@/lib/site";
+import { flattenNav, showroomBusiness, site } from "@/lib/site";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
 import { isOfferDetailPath } from "@/lib/offers";
@@ -105,6 +105,10 @@ export function Footer() {
               &copy; {site.name} {new Date().getFullYear()}. All rights
               reserved.
             </p>
+            <span className="text-[color:var(--color-silver-700)]">/</span>
+            <a href={showroomBusiness.url} className="hover:text-white transition">
+              SilberArrows Showroom &amp; Leasing
+            </a>
           </div>
           <p className="flex items-center gap-2">
             <span className="text-[color:var(--color-silver-400)]">

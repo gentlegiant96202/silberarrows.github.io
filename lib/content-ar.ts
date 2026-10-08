@@ -53,6 +53,7 @@ export const chromeAr = {
   footerBlurb: `مركز خدمة ${BRAND_AR} المستقل في دبي. نخدم علامة واحدة فقط، بفنيين مدرَّبين على معايير المصنع وقطع غيار أصلية منذ عام ${site.established}.`,
   visitContact: "زورونا / تواصلوا معنا",
   rights: "جميع الحقوق محفوظة.",
+  showroomLink: "صالة عرض وتأجير SilberArrows",
   independent: `متخصصون مستقلون في ${BRAND_AR}`,
   establishedLabel: `تأسس عام ${site.established}`,
 };

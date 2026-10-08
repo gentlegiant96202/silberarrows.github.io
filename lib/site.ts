@@ -9,6 +9,7 @@ export const showroomBusiness = {
   cid: "5134195628213967468",
   placeId: "ChIJC6KlzbppXz4RbJoOw7hTQEc",
   geo: { lat: 25.1458245, lng: 55.2299576 },
+  url: "https://www.silberarrows.com",
 };
 
 export const site = {

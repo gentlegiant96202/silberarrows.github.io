@@ -5,6 +5,7 @@ import { Logo } from "@/components/Logo";
 import { useContactModal } from "@/components/ContactModalProvider";
 import { ContactLink } from "@/components/ContactLink";
 import { chromeAr, siteAr } from "@/lib/content-ar";
+import { showroomBusiness } from "@/lib/site";
 
 export function ArabicFooter() {
   const { openModal } = useContactModal();
@@ -87,9 +88,15 @@ export function ArabicFooter() {
         <div className="divider-chrome mt-12" />
 
         <div className="mt-6 flex flex-col gap-3 text-xs text-[color:var(--color-silver-500)] md:flex-row md:items-center md:justify-between">
-          <p>
-            &copy; {siteAr.name} {new Date().getFullYear()}. {chromeAr.rights}
-          </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <p>
+              &copy; {siteAr.name} {new Date().getFullYear()}. {chromeAr.rights}
+            </p>
+            <span className="text-[color:var(--color-silver-700)]">/</span>
+            <a href={showroomBusiness.url} className="hover:text-white transition">
+              {chromeAr.showroomLink}
+            </a>
+          </div>
           <p className="flex items-center gap-2">
             <span className="text-[color:var(--color-silver-400)]">
               {chromeAr.independent}
