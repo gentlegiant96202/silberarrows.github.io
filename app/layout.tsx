@@ -129,6 +129,14 @@ export default function RootLayout({
   return (
     <html lang="en-AE" className={`${corpoS.variable} ${corpoA.variable} ${ibmPlexArabic.variable}`}>
       <head>
+        <meta
+          name="trustpilot-one-time-domain-verification-id"
+          content="eb565bd1-b2b7-45ad-9ae8-fdbe2c80cce3"
+        />
+        <meta
+          name="p:domain_verify"
+          content="d2c848e5647af79dc7163749d8a780aa"
+        />
         {/*
           Header logo: next/image skips the automatic preload for
           `unoptimized` sources, so request the 8 KB PNG explicitly alongside
