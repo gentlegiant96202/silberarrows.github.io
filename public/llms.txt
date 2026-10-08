@@ -17,7 +17,7 @@
 - Vehicles serviced: 10,000+
 - Specialisation: Mercedes-Benz only (no other marques)
 - Reviews: 4.8 out of 5 from 520+ Google reviews
-- Labour rate: AED 375 per hour (excludes Classic, Maybach and McLaren SLR)
+- Labour rate: AED 395 per hour (excludes Classic, Maybach and McLaren SLR)
 - Warranty: 12 months on all parts and labour
 - Payment accepted: Cash, credit card, debit card, bank transfer
 - Currencies: AED only
@@ -78,7 +78,7 @@
 - Maybach: 3,120 / 3,600
 - EQ A/B/C: 1,188 / 1,620
 - EQ E/S/V/G: 1,440 / 1,800
-- Prices exclude 5% VAT. Hourly labour rate AED 375 (excludes Classic, Maybach, SLR).
+- Prices exclude 5% VAT. Hourly labour rate AED 395 (excludes Classic, Maybach, SLR).
 
 ## Frequently asked questions
 

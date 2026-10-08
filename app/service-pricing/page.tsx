@@ -12,7 +12,7 @@ const canonical = `${site.url}/service-pricing`;
 export const metadata: Metadata = {
   title: "Mercedes-Benz Service Pricing Dubai | SilberArrows",
   description:
-    "Transparent Mercedes-Benz service pricing in Dubai. Minor and Major service packages for all models. AED 375/hour labour rate.",
+    "Transparent Mercedes-Benz service pricing in Dubai. Minor and Major service packages for all models. AED 395/hour labour rate.",
   keywords:
     "Mercedes service pricing Dubai, Mercedes service cost, Mercedes minor service price, Mercedes major service cost, Mercedes maintenance pricing Dubai",
   alternates: { canonical },

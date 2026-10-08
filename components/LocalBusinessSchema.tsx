@@ -38,7 +38,7 @@ export function LocalBusinessSchema() {
     ],
     telephone: "+971-4-380-5515",
     email: "info@silberarrows.com",
-    priceRange: "AED 375 - AED 7,080",
+    priceRange: "AED 395 - AED 7,080",
     currenciesAccepted: "AED",
     paymentAccepted: "Cash, Credit Card, Debit Card, Bank Transfer",
     foundingDate: "2011",

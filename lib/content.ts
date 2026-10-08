@@ -111,7 +111,7 @@ export const warranty = {
 
 export const pricing = {
   intro:
-    "Part of our customer charter is to ensure that we are transparent \u2013 we charge you an hourly labour rate of AED 375 (excluding Classic, Maybach and the McLaren SLR), which is significantly lower than some of the alternatives.",
+    "Part of our customer charter is to ensure that we are transparent \u2013 we charge you an hourly labour rate of AED 395 (excluding Classic, Maybach and the McLaren SLR), which is significantly lower than some of the alternatives.",
   rows: [
     { model: "A / C / CLA / CLE", minor: "AED 1,188", major: "AED 1,620" },
     { model: "CLK", minor: "AED 1,080", major: "AED 1,620" },
@@ -173,7 +173,7 @@ export const landingPages: Record<
       [{ text: "in Dubai" }],
     ],
     subtitle:
-      "Service A & B packages with genuine parts. Save 30 to 40% vs the dealer. AED 375/hr labour rate.",
+      "Service A & B packages with genuine parts. Save 30 to 40% vs the dealer. AED 395/hr labour rate.",
     badges: [
       "12 Month Warranty on Parts & Labour",
       "Free Collection & Delivery",

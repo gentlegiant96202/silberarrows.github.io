@@ -631,7 +631,7 @@ Precise wheel alignment is essential for steering accuracy, even tyre wear, and 
 
 ### Page Meta
 - Title: Mercedes-Benz Service Pricing Dubai | SilberArrows
-- Description: Transparent Mercedes-Benz service pricing in Dubai. Minor and Major service packages for all models. AED 375/hour labour rate.
+- Description: Transparent Mercedes-Benz service pricing in Dubai. Minor and Major service packages for all models. AED 395/hour labour rate.
 
 ## Section: Pricing Hero
 
@@ -639,7 +639,7 @@ Precise wheel alignment is essential for steering accuracy, even tyre wear, and 
 SERVICE PRICING
 
 ### Intro
-Part of our customer charter is to ensure that we are transparent – we charge you an hourly labour rate of **AED 375** (excluding Classic, Maybach and the McLaren SLR), which is significantly lower than some of the alternatives.
+Part of our customer charter is to ensure that we are transparent – we charge you an hourly labour rate of **AED 395** (excluding Classic, Maybach and the McLaren SLR), which is significantly lower than some of the alternatives.
 
 ## Section: Pricing Tables
 
@@ -765,7 +765,7 @@ Common Hero elements: Logo, Tagline, Title (with one highlighted line), Subtitle
 Mercedes Service Dubai | Expert Mercedes-Benz Service & Maintenance
 
 ### Meta Description
-Expert Mercedes-Benz service in Al Quoz, Dubai. Service A & B packages with genuine parts, XENTRY diagnostics & 12-month warranty. AED 375/hr. Free collection & delivery.
+Expert Mercedes-Benz service in Al Quoz, Dubai. Service A & B packages with genuine parts, XENTRY diagnostics & 12-month warranty. AED 395/hr. Free collection & delivery.
 
 ### Tagline
 Expert Mercedes-Benz Service Specialist in Dubai
@@ -777,7 +777,7 @@ in Dubai
 
 ### Subtitle
 Service A & B packages with genuine parts.
-Save 30 to 40% vs the dealer. AED 375/hr labour rate.
+Save 30 to 40% vs the dealer. AED 395/hr labour rate.
 Book your appointment today.
 
 ### Badges
