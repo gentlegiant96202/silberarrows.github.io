@@ -903,7 +903,7 @@ and expert Mercedes technicians.
 - Address: Al Manara Street, Al Quoz, Dubai, AE
 - Phone: +971-4-380-5515
 - WhatsApp: https://wa.me/97143805515
-- Hours: Monday–Saturday, 08:00–18:00
+- Hours: Monday–Saturday, 08:00–18:00; Sunday closed
 - Geo: 25.1459942, 55.2304157
 
 ---

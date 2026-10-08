@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { googleBusiness, site } from "@/lib/site";
 import {
   getServiceCareStartingPrices,
   getWarrantyStartingPrices,
@@ -19,9 +19,10 @@ export function LocalBusinessSchema() {
       "https://schema.org/AutomotiveServiceCenter",
       "https://schema.org/CarRepair",
     ],
-    name: "SilberArrows",
+    name: googleBusiness.name,
     legalName: "SilberArrows Mercedes-Benz Service",
     alternateName: [
+      "SilberArrows",
       "SilberArrows Mercedes-Benz Service",
       "SilberArrows Dubai",
       "Silber Arrows",

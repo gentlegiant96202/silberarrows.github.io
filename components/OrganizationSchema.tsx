@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { googleBusiness, site } from "@/lib/site";
 
 const baseUrl = site.url;
 
@@ -9,7 +9,11 @@ export function OrganizationSchema() {
     "@id": `${baseUrl}/#organization`,
     name: "SilberArrows",
     legalName: "SilberArrows Mercedes-Benz Service",
-    alternateName: ["SilberArrows Mercedes-Benz Service", "Silber Arrows"],
+    alternateName: [
+      googleBusiness.name,
+      "SilberArrows Mercedes-Benz Service",
+      "Silber Arrows",
+    ],
     description:
       "Independent Mercedes-Benz service center in Dubai specializing in expert maintenance, repair and diagnostics since 2011.",
     url: baseUrl,

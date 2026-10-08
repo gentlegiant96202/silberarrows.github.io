@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { googleBusiness, site } from "@/lib/site";
 
 type ServiceSchemaProps = {
   serviceName: string;
@@ -31,7 +31,7 @@ export function ServiceSchema({
     provider: {
       "@type": "AutomotiveBusiness",
       "@id": `${baseUrl}/#business`,
-      name: "SilberArrows",
+      name: googleBusiness.name,
       telephone: "+971-4-380-5515",
       url: baseUrl,
       address: {
@@ -76,7 +76,7 @@ export function ServiceSchema({
       seller: {
         "@type": "AutomotiveBusiness",
         "@id": `${baseUrl}/#business`,
-        name: "SilberArrows",
+        name: googleBusiness.name,
       },
     },
   };

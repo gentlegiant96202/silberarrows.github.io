@@ -22,7 +22,7 @@ export const siteAr = {
     country: "الإمارات العربية المتحدة",
     short: "شارع المنارة، القوز، دبي",
   },
-  hours: "الاثنين – السبت: 8:00 صباحاً – 6:00 مساءً",
+  hours: "الاثنين – السبت: 8:00 صباحاً – 6:00 مساءً · الأحد: مغلق",
   phone: site.phone,
   phoneTel: site.phoneTel,
   whatsapp:
@@ -303,7 +303,7 @@ export const thankYouAr = {
   whatsappCta: "راسلنا على واتساب الآن",
   whatsappHint: "لا داعي للانتظار، ابدأ المحادثة بنفسك.",
   call: "اتصل",
-  rating: "تقييم 4.8 على Google من أكثر من 520 مراجعة",
+  rating: "تقييم 4.8 على Google من أكثر من 534 مراجعة",
   imageAlt: "مستشارو الخدمة في صالة SilberArrows بالقوز",
   imageCaption: "مستشارو الخدمة لدينا يعملون على طلبك الآن.",
   back: "العودة إلى الصفحة الرئيسية",
