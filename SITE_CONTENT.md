@@ -783,7 +783,7 @@ Book your appointment today.
 ### Badges
 - 12 Month Warranty on Parts & Labour
 - Free Collection & Delivery (mobile hidden)
-- Service A from AED 1,499
+- Minor Service from AED 972
 
 ---
 

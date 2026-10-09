@@ -177,7 +177,7 @@ export const landingPages: Record<
     badges: [
       "12 Month Warranty on Parts & Labour",
       "Free Collection & Delivery",
-      "Service A from AED 1,499",
+      "Minor Service from AED 972",
     ],
   },
   "mercedes-service-center": {
