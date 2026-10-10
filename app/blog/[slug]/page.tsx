@@ -12,6 +12,7 @@ import {
   getPostBySlug,
   getRelatedPosts,
 } from "@/lib/blog/queries";
+import { postEnhancements } from "@/lib/blog/post-enhancements";
 import { buildPostOgImage, blogOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -57,8 +58,13 @@ export async function generateMetadata({
     };
   }
   const canonical = `${site.url}/blog/${slug}`;
-  const title = post.seo_title ?? `${post.title} | SilberArrows Blog`;
+  const enhancement = postEnhancements[slug];
+  const title =
+    enhancement?.seoTitle ??
+    post.seo_title ??
+    `${post.title} | SilberArrows Blog`;
   const description =
+    enhancement?.seoDescription ??
     post.seo_description ??
     post.excerpt ??
     "Mercedes-Benz service guide from SilberArrows Dubai.";
@@ -107,6 +113,7 @@ export default async function BlogPostPage({
   );
   const canonical = `${site.url}/blog/${slug}`;
   const ogImage = post.og_image ?? post.hero_image ?? blogOgImage.url;
+  const callout = postEnhancements[slug]?.callout;
 
   // Surface a visible "Updated" date only when the post was revised at least
   // a day after publishing, so the label always reflects a real change.
@@ -122,7 +129,11 @@ export default async function BlogPostPage({
     "@type": "BlogPosting",
     "@id": `${canonical}#article`,
     headline: post.title,
-    description: post.seo_description ?? post.excerpt ?? undefined,
+    description:
+      postEnhancements[slug]?.seoDescription ??
+      post.seo_description ??
+      post.excerpt ??
+      undefined,
     url: canonical,
     image: ogImage,
     datePublished: post.published_at ?? post.created_at,
@@ -299,6 +310,49 @@ export default async function BlogPostPage({
           <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_280px]">
             <div className="rounded-2xl glass-card ring-silver p-7 md:p-10">
               <Markdown source={post.body} />
+
+              {callout ? (
+                <aside
+                  aria-labelledby="post-service-callout"
+                  className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-6 md:p-7"
+                >
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-silver-400)]">
+                    SilberArrows Al Quoz
+                  </p>
+                  <h2
+                    id="post-service-callout"
+                    className="mt-2 text-xl font-semibold text-white md:text-2xl"
+                  >
+                    {callout.heading}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-silver-300)]">
+                    {callout.body}
+                  </p>
+                  <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                    {callout.links.map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          href={l.href}
+                          className="group flex h-full items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3 transition hover:bg-white/[0.06]"
+                        >
+                          <span>
+                            <span className="block text-sm font-normal text-white">
+                              {l.label}
+                            </span>
+                            <span className="block text-xs text-[color:var(--color-silver-500)]">
+                              {l.sub}
+                            </span>
+                          </span>
+                          <ArrowRight
+                            size={14}
+                            className="shrink-0 text-[color:var(--color-silver-500)] transition-transform group-hover:translate-x-1 group-hover:text-white"
+                          />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              ) : null}
             </div>
 
             <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">

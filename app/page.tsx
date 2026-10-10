@@ -21,16 +21,16 @@ import { site } from "@/lib/site";
 import { preserveBrandWrap } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "SilberArrows | Mercedes-Benz Service Center Dubai",
+  title: "Mercedes Service Center Dubai | From AED 972 | SilberArrows",
   description:
-    "Dubai's trusted Mercedes-Benz specialists since 2011. Expert maintenance, repair & diagnostics at Al Quoz with genuine parts.",
+    "Independent Mercedes-Benz service center in Al Quoz. Published AED 395/hr labour, 12-month warranty on parts & labour, free collection & delivery across Dubai.",
   keywords:
     "SilberArrows, Mercedes-Benz service Dubai, independent Mercedes specialist, Mercedes repair Al Quoz, Mercedes maintenance Dubai, Mercedes diagnostics, genuine parts Dubai",
   alternates: { canonical: site.url },
   openGraph: {
-    title: "SilberArrows | Premier Mercedes-Benz Service Center Dubai",
+    title: "Mercedes Service Center Dubai | From AED 972 | SilberArrows",
     description:
-      "Dubai's trusted independent Mercedes-Benz specialists since 2011. Expert service in Al Quoz with genuine parts.",
+      "Independent Mercedes-Benz service center in Al Quoz. Published AED 395/hr labour, 12-month warranty on parts & labour, free collection & delivery across Dubai.",
     url: site.url,
     images: [defaultOgImage],
   },

@@ -56,7 +56,7 @@ const siteUrl = site.url;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SilberArrows | Mercedes-Benz Service Center Dubai",
+    default: "Mercedes Service Center Dubai | From AED 972 | SilberArrows",
     template: "%s",
   },
   description:
@@ -93,16 +93,16 @@ export const metadata: Metadata = {
     locale: "en_AE",
     url: siteUrl,
     siteName: "SilberArrows",
-    title: "SilberArrows | Premier Mercedes-Benz Service Center Dubai",
+    title: "Mercedes Service Center Dubai | From AED 972 | SilberArrows",
     description:
-      "Dubai's trusted independent Mercedes-Benz specialists in Al Quoz. Expert service, maintenance & repair with genuine parts.",
+      "Independent Mercedes-Benz service center in Al Quoz. Published AED 395/hr labour, 12-month warranty on parts & labour, free collection & delivery across Dubai.",
     images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SilberArrows | Premier Mercedes-Benz Service Center Dubai",
+    title: "Mercedes Service Center Dubai | From AED 972 | SilberArrows",
     description:
-      "Dubai's trusted independent Mercedes-Benz specialists in Al Quoz.",
+      "Independent Mercedes-Benz service center in Al Quoz. AED 395/hr labour, 12-month warranty, free collection & delivery.",
     images: [defaultOgImage.url],
   },
   verification: {

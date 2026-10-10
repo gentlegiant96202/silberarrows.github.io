@@ -51,12 +51,12 @@ export async function generateMetadata({
   }
   const canonical = `${site.url}/services/${slug}`;
   return {
-    title: `${service.title} | SilberArrows Dubai`,
+    title: service.seoTitle,
     description: service.metaDescription,
     keywords: keywordsForServiceSlug(slug),
     alternates: { canonical },
     openGraph: {
-      title: `${service.title} | SilberArrows Dubai`,
+      title: service.seoTitle,
       description: service.metaDescription,
       url: canonical,
       images: [
@@ -64,7 +64,7 @@ export async function generateMetadata({
           url: absoluteUrl(service.hero),
           width: 640,
           height: 427,
-          alt: `${service.title} - SilberArrows Dubai`,
+          alt: service.heading,
         },
       ],
     },
@@ -102,7 +102,7 @@ export default async function ServiceDetailPage({
         image={service.hero}
       />
       <ArticleSchema
-        headline={`${service.title} for Mercedes-Benz in Dubai`}
+        headline={service.heading}
         description={service.overview}
         url={`/services/${service.slug}`}
         image={service.hero}
@@ -120,7 +120,7 @@ export default async function ServiceDetailPage({
       />
       {service.faqs?.length ? <FAQSchema items={service.faqs} /> : null}
       <PageHero
-        title={service.title}
+        title={service.heading}
         intro={service.overview}
         backgroundImage={service.hero}
         crumbs={[

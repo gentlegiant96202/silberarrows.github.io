@@ -3,6 +3,10 @@ export type FAQ = { question: string; answer: string };
 export type Service = {
   slug: string;
   title: string;
+  /** `<title>` for /services/[slug]: the search it targets first, ~60 characters max. */
+  seoTitle: string;
+  /** H1 for /services/[slug]; mirrors `seoTitle` with the full brand name. */
+  heading: string;
   shortTitle: string;
   mobileLabel: string;
   blurb: string;
@@ -25,6 +29,8 @@ export const services: Service[] = [
   {
     slug: "brake-service",
     title: "Brake Service & Repair",
+    seoTitle: "Mercedes Brake Service & Repair Dubai | SilberArrows",
+    heading: "Mercedes-Benz Brake Service & Repair in Dubai",
     shortTitle: "Brake Service",
     mobileLabel: "Brakes",
     blurb:
@@ -66,6 +72,8 @@ export const services: Service[] = [
   {
     slug: "scheduled-maintenance",
     title: "Scheduled Maintenance \u2013 Service A & B",
+    seoTitle: "Mercedes Service A & B Dubai | SilberArrows",
+    heading: "Mercedes-Benz Service A & B in Dubai",
     shortTitle: "Scheduled Maintenance",
     mobileLabel: "Maintenance",
     blurb:
@@ -145,6 +153,8 @@ export const services: Service[] = [
   {
     slug: "tyre-replacement",
     title: "Tyre Replacement & Balancing",
+    seoTitle: "Mercedes Tyre Replacement Dubai | SilberArrows",
+    heading: "Mercedes-Benz Tyre Replacement in Dubai",
     shortTitle: "Tyre Replacement",
     mobileLabel: "Tyres",
     blurb:
@@ -180,6 +190,8 @@ export const services: Service[] = [
   {
     slug: "wheel-alignment",
     title: "Wheel Alignment",
+    seoTitle: "Mercedes Wheel Alignment Dubai | SilberArrows",
+    heading: "Mercedes-Benz Wheel Alignment in Dubai",
     shortTitle: "Wheel Alignment",
     mobileLabel: "Alignment",
     blurb:
@@ -215,6 +227,8 @@ export const services: Service[] = [
   {
     slug: "battery-service",
     title: "Battery Testing & Replacement",
+    seoTitle: "Mercedes Battery Replacement Dubai | SilberArrows",
+    heading: "Mercedes-Benz Battery Replacement in Dubai",
     shortTitle: "Battery Service",
     mobileLabel: "Battery",
     blurb:
@@ -261,6 +275,8 @@ export const services: Service[] = [
   {
     slug: "air-conditioning",
     title: "Air Conditioning Service & Repair",
+    seoTitle: "Mercedes AC Repair & Service Dubai | SilberArrows",
+    heading: "Mercedes-Benz AC Repair & Service in Dubai",
     shortTitle: "Air Conditioning",
     mobileLabel: "A/C",
     blurb:
@@ -302,6 +318,8 @@ export const services: Service[] = [
   {
     slug: "engine-repair",
     title: "Engine Repair & Overhaul",
+    seoTitle: "Mercedes Engine Repair Dubai | SilberArrows",
+    heading: "Mercedes-Benz Engine Repair in Dubai",
     shortTitle: "Engine Repair",
     mobileLabel: "Engine",
     blurb:
@@ -343,6 +361,8 @@ export const services: Service[] = [
   {
     slug: "suspension-repair",
     title: "Suspension & Steering Repair",
+    seoTitle: "Mercedes Suspension Repair Dubai | AIRMATIC | SilberArrows",
+    heading: "Mercedes-Benz Suspension & AIRMATIC Repair in Dubai",
     shortTitle: "Suspension Repair",
     mobileLabel: "Suspension",
     blurb:
@@ -384,6 +404,8 @@ export const services: Service[] = [
   {
     slug: "diagnostics",
     title: "Electrical & Computer Diagnostics",
+    seoTitle: "Mercedes Diagnostics Dubai | XENTRY | SilberArrows",
+    heading: "Mercedes-Benz Diagnostics in Dubai",
     shortTitle: "Diagnostics",
     mobileLabel: "Diagnostics",
     blurb:
@@ -424,6 +446,8 @@ export const services: Service[] = [
   {
     slug: "detailing",
     title: "Interior & Exterior Detailing",
+    seoTitle: "Mercedes Detailing Dubai | SilberArrows",
+    heading: "Mercedes-Benz Detailing in Dubai",
     shortTitle: "Detailing",
     mobileLabel: "Detailing",
     blurb:

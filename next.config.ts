@@ -48,6 +48,15 @@ const nextConfig: NextConfig = {
       })),
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog/mercedes-benz-service-costs-in-dubai-a-detailed-breakdown",
+        destination: "/blog/mercedes-benz-service-a-costs-in-dubai-a-detailed-breakdown",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
