@@ -12,10 +12,6 @@ import { cn } from "@/lib/utils";
 
 export type ContactLocale = "en" | "ar";
 
-const WHATSAPP_DIRECT =
-  "https://wa.me/97143805515?text=" +
-  encodeURIComponent("Hi Team SilberArrows!");
-
 const STRINGS = {
   en: {
     live: "Live",
@@ -25,7 +21,7 @@ const STRINGS = {
     call: "Call Us",
     whatsapp: "WhatsApp",
     close: "Close",
-    whatsappHref: WHATSAPP_DIRECT,
+    whatsappHref: site.whatsappDirect,
   },
   ar: {
     live: modalAr.live,
