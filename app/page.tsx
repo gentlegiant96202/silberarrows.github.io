@@ -16,6 +16,7 @@ import { FAQSchema } from "@/components/FAQSchema";
 import { PersonSchema } from "@/components/PersonSchema";
 import { services, homeFaqs } from "@/lib/services";
 import { team } from "@/lib/content";
+import { landingAr } from "@/lib/content-ar";
 import { defaultOgImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { preserveBrandWrap } from "@/lib/utils";
@@ -26,7 +27,14 @@ export const metadata: Metadata = {
     "Independent Mercedes-Benz service center in Al Quoz. Published AED 395/hr labour, 12-month warranty on parts & labour, free collection & delivery across Dubai.",
   keywords:
     "SilberArrows, Mercedes-Benz service Dubai, independent Mercedes specialist, Mercedes repair Al Quoz, Mercedes maintenance Dubai, Mercedes diagnostics, genuine parts Dubai",
-  alternates: { canonical: site.url },
+  alternates: {
+    canonical: site.url,
+    languages: {
+      en: site.url,
+      ar: `${site.url}${landingAr.path}`,
+      "x-default": site.url,
+    },
+  },
   openGraph: {
     title: "Mercedes Service Center Dubai | From AED 972 | SilberArrows",
     description:

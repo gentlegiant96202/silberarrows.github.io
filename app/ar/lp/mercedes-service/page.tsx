@@ -12,8 +12,9 @@ import { site } from "@/lib/site";
 /**
  * Arabic landing page for the Google Ads "Arabic – Service & Repair" ad group
  * (صيانة مرسيدس / تصليح مرسيدس / ورشة مرسيدس دبي ...). Same section order as
- * the English /lp/mercedes-service page, fully RTL. Like the other LPs it is
- * noindex — it exists for paid traffic, not organic search.
+ * the English /lp/mercedes-service page, fully RTL. Unlike the English LPs it
+ * is indexed: it is also the site's only Arabic page for organic search, so
+ * its hreflang pair is the indexable English homepage, not the noindex LP.
  */
 
 const canonical = `${site.url}${landingAr.path}`;
@@ -26,7 +27,8 @@ export const metadata: Metadata = {
     canonical,
     languages: {
       ar: canonical,
-      en: `${site.url}/lp/mercedes-service`,
+      en: site.url,
+      "x-default": site.url,
     },
   },
   openGraph: {
@@ -36,7 +38,6 @@ export const metadata: Metadata = {
     locale: "ar_AE",
     images: [defaultOgImage],
   },
-  robots: { index: false, follow: true },
 };
 
 export default function ArabicServiceLandingPage() {

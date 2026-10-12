@@ -7,6 +7,7 @@ import {
   POSTS_PER_PAGE,
 } from "@/lib/blog/queries";
 import { getActiveOffers, OFFERS_PATH, offerPath } from "@/lib/offers";
+import { landingAr } from "@/lib/content-ar";
 import { evergreenDates } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -67,6 +68,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified,
       changeFrequency: "daily",
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}${landingAr.path}`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ];
 
