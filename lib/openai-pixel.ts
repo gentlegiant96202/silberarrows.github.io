@@ -17,7 +17,7 @@ declare global {
   }
 }
 
-export const OPENAI_PIXEL_ID = "6EGbbJdd4kCgGTSDuFAZcA";
+export const OPENAI_PIXEL_ID = "UZ1ZcMLcJg489n2eX6rTTA";
 
 export const OPENAI_LEAD_EVENT = "lead_created";
 
