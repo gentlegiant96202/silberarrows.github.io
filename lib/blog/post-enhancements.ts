@@ -39,6 +39,47 @@ export const postEnhancements: Record<string, PostEnhancement> = {
           label: "Service A & B prices by model",
           sub: "Minor and Major service prices for every model",
         },
+        {
+          href: "/offers/mercedes-benz-minor-major-service-repair-credit-dubai",
+          label: "AED 500 repair credit",
+          sub: "New customers, with a minor or major service",
+        },
+      ],
+    },
+  },
+  "caring-for-a-mercedes-benz-over-10-years-old": {
+    callout: {
+      heading: "Preferential pricing for a Mercedes-Benz over 10 years old",
+      body: "Vehicles aged 10 years and over get 25% off labour and 25% off Mercedes-Benz GenuineParts. Same factory-trained technicians and XENTRY diagnostics.",
+      links: [
+        {
+          href: "/offers/mercedes-benz-over-10-years-old-service-dubai",
+          label: "10+ preferential pricing",
+          sub: "25% off labour and GenuineParts",
+        },
+        {
+          href: "/services/scheduled-maintenance",
+          label: "Mercedes-Benz Service A & B",
+          sub: "Factory-schedule servicing with genuine parts",
+        },
+      ],
+    },
+  },
+  "what-happens-after-your-mercedes-benz-manufacturer-warranty-ends": {
+    callout: {
+      heading: "Cover after the manufacturer warranty ends",
+      body: "ServiceCare plans and a Certified Warranty pick up where factory cover stops, with XENTRY diagnostics and genuine parts at our Al Quoz workshop.",
+      links: [
+        {
+          href: "/offers/mercedes-benz-warranty-expired-service-contract-dubai",
+          label: "Warranty and service contract expired",
+          sub: "ServiceCare from AED 2,700, Certified Warranty from AED 3,959",
+        },
+        {
+          href: "/extended-warranty",
+          label: "Extended warranty",
+          sub: "Standard drivetrain or Premium comprehensive cover",
+        },
       ],
     },
   },

@@ -23,6 +23,11 @@ export type Service = {
     headers: string[];
     rows: { label: string; values: string[] }[];
   };
+  /**
+   * In-body links rendered under the overview. Use for pages a visitor of
+   * this service would actually need, including ones Google has not crawled.
+   */
+  reading?: { href: string; label: string; note: string }[];
 };
 
 export const services: Service[] = [
@@ -149,6 +154,28 @@ export const services: Service[] = [
           "Yes. We follow manufacturer maintenance schedules and service procedures specific to your model.",
       },
     ],
+    reading: [
+      {
+        href: "/service-pricing",
+        label: "Service A and B prices",
+        note: "Minor and Major service prices by model, from AED 972.",
+      },
+      {
+        href: "/offers/mercedes-benz-minor-major-service-repair-credit-dubai",
+        label: "AED 500 repair credit",
+        note: "New customers receive AED 500 repair credit with a minor or major service.",
+      },
+      {
+        href: "/services/air-conditioning",
+        label: "Air conditioning",
+        note: "Service B includes the cabin filter and an A/C treatment.",
+      },
+      {
+        href: "/services/brake-service",
+        label: "Brake service",
+        note: "Brakes are inspected at every scheduled service.",
+      },
+    ],
   },
   {
     slug: "tyre-replacement",
@@ -186,6 +213,18 @@ export const services: Service[] = [
           "Yes. We supply and fit standard, run-flat and AMG performance tyres depending on your vehicle requirements.",
       },
     ],
+    reading: [
+      {
+        href: "/services/wheel-alignment",
+        label: "Wheel alignment",
+        note: "Book alignment with a new set of tyres so they wear evenly.",
+      },
+      {
+        href: "/services/brake-service",
+        label: "Brake service",
+        note: "Pads, discs and fluid, including AMG brake packages.",
+      },
+    ],
   },
   {
     slug: "wheel-alignment",
@@ -221,6 +260,18 @@ export const services: Service[] = [
         question: "How often should wheel alignment be checked?",
         answer:
           "We recommend checking alignment after tyre replacement, suspension work, pothole impacts or whenever uneven tyre wear or steering pull is noticed.",
+      },
+    ],
+    reading: [
+      {
+        href: "/services/tyre-replacement",
+        label: "Tyre replacement",
+        note: "Alignment belongs with a new set of tyres.",
+      },
+      {
+        href: "/services/suspension-repair",
+        label: "Suspension repair",
+        note: "Geometry is reset after AIRMATIC, strut and control-arm work.",
       },
     ],
   },
@@ -400,6 +451,13 @@ export const services: Service[] = [
           "This is commonly caused by an air suspension leak or a fault within the suspension control system. We carry out pressure testing and diagnostics to identify the fault correctly.",
       },
     ],
+    reading: [
+      {
+        href: "/services/wheel-alignment",
+        label: "Wheel alignment",
+        note: "Set the geometry after suspension or steering repairs.",
+      },
+    ],
   },
   {
     slug: "diagnostics",
@@ -544,3 +602,71 @@ export const homeFaqs: FAQ[] = [
 export function getServiceBySlug(slug: string) {
   return services.find((s) => s.slug === slug);
 }
+
+/**
+ * Sidebar neighbours. Curated so each indexed service points at the
+ * unindexed ones a visitor would actually need, instead of the first four
+ * entries in the catalogue (which never included air conditioning).
+ */
+export const relatedServiceSlugs: Record<string, string[]> = {
+  "brake-service": [
+    "tyre-replacement",
+    "wheel-alignment",
+    "scheduled-maintenance",
+    "suspension-repair",
+  ],
+  "scheduled-maintenance": [
+    "brake-service",
+    "air-conditioning",
+    "tyre-replacement",
+    "battery-service",
+  ],
+  "tyre-replacement": [
+    "wheel-alignment",
+    "brake-service",
+    "suspension-repair",
+    "scheduled-maintenance",
+  ],
+  "wheel-alignment": [
+    "tyre-replacement",
+    "suspension-repair",
+    "brake-service",
+    "scheduled-maintenance",
+  ],
+  "battery-service": [
+    "air-conditioning",
+    "diagnostics",
+    "scheduled-maintenance",
+    "engine-repair",
+  ],
+  "air-conditioning": [
+    "scheduled-maintenance",
+    "diagnostics",
+    "battery-service",
+    "engine-repair",
+  ],
+  "engine-repair": [
+    "diagnostics",
+    "scheduled-maintenance",
+    "suspension-repair",
+    "battery-service",
+  ],
+  "suspension-repair": [
+    "wheel-alignment",
+    "tyre-replacement",
+    "brake-service",
+    "diagnostics",
+  ],
+  diagnostics: [
+    "engine-repair",
+    "air-conditioning",
+    "suspension-repair",
+    "battery-service",
+  ],
+  detailing: [
+    "scheduled-maintenance",
+    "air-conditioning",
+    "brake-service",
+    "tyre-replacement",
+  ],
+};

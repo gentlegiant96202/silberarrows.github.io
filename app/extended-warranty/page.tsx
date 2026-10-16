@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { WarrantyCalculator } from "@/components/sections/WarrantyCalculator";
 import { PlanCrossLink } from "@/components/sections/contracts/PlanCrossLink";
@@ -67,6 +68,15 @@ export default function ExtendedWarrantyPage() {
         href="/service-contracts"
         cta="Service Contracts"
       />
+      <p className="container-page pb-4 text-center text-sm text-[color:var(--color-silver-400)]">
+        Manufacturer cover already finished?{" "}
+        <Link
+          href="/offers/mercedes-benz-warranty-expired-service-contract-dubai"
+          className="text-white underline underline-offset-4 hover:text-[color:var(--color-platinum)]"
+        >
+          Warranty and service contract offer
+        </Link>
+      </p>
       <Contact />
     </>
   );

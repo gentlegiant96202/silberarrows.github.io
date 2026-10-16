@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
-import { services, getServiceBySlug } from "@/lib/services";
+import { services, getServiceBySlug, relatedServiceSlugs } from "@/lib/services";
 import { team } from "@/lib/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTAButton } from "@/components/CTAButton";
@@ -80,7 +80,13 @@ export default async function ServiceDetailPage({
   const service = getServiceBySlug(slug);
   if (!service) return notFound();
 
-  const others = services.filter((s) => s.slug !== slug).slice(0, 4);
+  const related = (relatedServiceSlugs[slug] ?? [])
+    .map((relatedSlug) => getServiceBySlug(relatedSlug))
+    .filter((s) => s != null);
+  const others =
+    related.length > 0
+      ? related
+      : services.filter((s) => s.slug !== slug).slice(0, 4);
   const reviewer = getReviewer(slug);
   const articleAuthor = {
     name: "SilberArrows Editorial Team",
@@ -143,6 +149,21 @@ export default async function ServiceDetailPage({
               <p className="mt-4 text-[color:var(--color-silver-400)] leading-relaxed">
                 {service.overview}
               </p>
+              {service.reading?.length ? (
+                <ul className="mt-6 space-y-3 text-sm leading-relaxed text-[color:var(--color-silver-300)]">
+                  {service.reading.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="text-white underline underline-offset-4 hover:text-[color:var(--color-platinum)]"
+                      >
+                        {item.label}
+                      </Link>
+                      <span className="text-[color:var(--color-silver-400)]">{`. ${item.note}`}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
 
               <div className="mt-6 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
                 <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/15">

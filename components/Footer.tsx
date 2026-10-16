@@ -109,6 +109,15 @@ export function Footer() {
             <a href={showroomBusiness.url} className="hover:text-white transition">
               SilberArrows Showroom &amp; Leasing
             </a>
+            <span className="text-[color:var(--color-silver-700)]">/</span>
+            <Link
+              href="/ar/lp/mercedes-service"
+              hrefLang="ar"
+              lang="ar"
+              className="hover:text-white transition"
+            >
+              العربية
+            </Link>
           </div>
           <p className="flex items-center gap-2">
             <span className="text-[color:var(--color-silver-400)]">

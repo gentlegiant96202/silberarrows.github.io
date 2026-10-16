@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BrandText } from "@/components/BrandText";
 import { OfferActions } from "@/components/offers/OfferActions";
 import type { OfferPillar } from "@/components/offers/OfferHero";
@@ -73,6 +74,14 @@ export function ImportWelcomeStory({
           {preserveBrandWrap(
             "Complimentary health check plus 20% off Servicing, ServiceCare Plans and Certified Warranty on your first visit."
           )}
+        </p>
+        <p className="reveal mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[color:var(--color-silver-400)]">
+          <Link
+            href="/blog/bought-an-imported-mercedes-benz-in-dubai-what-to-do-next"
+            className="text-white underline underline-offset-4 hover:text-[color:var(--color-platinum)]"
+          >
+            Bought an imported Mercedes-Benz? What to do next
+          </Link>
         </p>
 
         <OfferActions
