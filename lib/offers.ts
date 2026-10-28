@@ -12,6 +12,7 @@
  */
 
 import type { LeadContext } from "@/lib/analytics";
+import { ppiClosing, ppiIntro, ppiPricing } from "@/lib/pre-purchase-inspection";
 import { getServiceCareStartingPrices } from "@/lib/serviceWarrantyPricing";
 
 export const OFFERS_PATH = "/offers";
@@ -211,6 +212,39 @@ export const offers: Offer[] = [
       discountDescription:
         "Complimentary health check and 20% off Servicing, ServiceCare Plans and Certified Warranty on the first visit",
     },
+    active: true,
+  },
+  {
+    slug: "mercedes-benz-pre-purchase-inspection-repair-credit-dubai",
+    shortTitle: "Pre-Purchase Inspection",
+    title: ppiClosing.title,
+    titleLines: ["Book your Mercedes-Benz", "Pre-Purchase Inspection"],
+    tagline: ppiIntro.tagline,
+    intro: ppiClosing.text,
+    summary: ppiPricing.paragraphs[0],
+    highlights: [
+      ppiIntro.price.value,
+      "AED 500 repair credit",
+      "Mercedes-Benz XENTRY diagnostics",
+      "Technical Inspection Report",
+    ],
+    badge: "New",
+    image: {
+      src: "/assets/images/pre-purchase-inspection.webp",
+      alt: "SilberArrows technician inspecting the underside of a Mercedes-Benz on a lift with a torch.",
+      position: "center 40%",
+    },
+    cardImage: {
+      src: "/assets/images/offers/ppi-hero-960.webp",
+      alt: "Blue Mercedes-AMG G 63 in a bright studio, front three-quarter view.",
+      position: "80% center",
+    },
+    metaTitle: "Mercedes PPI with AED 500 Repair Credit Dubai | SilberArrows",
+    metaDescription:
+      "Mercedes-Benz Pre-Purchase Inspection in Dubai for AED 1,500 plus VAT, including AED 500 repair credit and a Technical Inspection Report. Al Quoz workshop.",
+    keywords:
+      "Mercedes pre-purchase inspection offer Dubai, Mercedes PPI Dubai, used Mercedes inspection Dubai, Mercedes inspection repair credit, Mercedes-Benz buying inspection Al Quoz, SilberArrows pre-purchase inspection",
+    schema: { priceFrom: 1500 },
     active: true,
   },
 ];
