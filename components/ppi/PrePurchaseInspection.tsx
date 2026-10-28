@@ -4,6 +4,7 @@ import { Check, ChevronRight, MapPin, Plus } from "lucide-react";
 import { HeroActions } from "@/components/sections/HeroActions";
 import { Reviews } from "@/components/sections/Reviews";
 import { Contact } from "@/components/sections/Contact";
+import { BrandText } from "@/components/BrandText";
 import { CTAButton } from "@/components/CTAButton";
 import { PpiReel } from "@/components/ppi/PpiReel";
 import {
@@ -128,10 +129,10 @@ export function PrePurchaseInspection({
             </nav>
 
             <h1 className="text-display anim-rise text-[2.5rem] font-normal leading-[1.06] text-cream sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
-              {preserveBrandWrap(heading)}
+              <BrandText text={heading} />
             </h1>
             <p className="anim-rise mt-5 font-display text-xl text-silver-shine md:text-2xl">
-              {preserveBrandWrap(ppiIntro.tagline)}
+              <BrandText text={ppiIntro.tagline} />
             </p>
 
             <div className="anim-rise mt-6 max-w-2xl space-y-4">
@@ -181,7 +182,7 @@ export function PrePurchaseInspection({
           <div className="reveal lg:col-span-5">
             <div className="lg:sticky lg:top-32">
               <h2 id="ppi-why" className="text-display text-title font-normal text-cream">
-                {preserveBrandWrap(ppiWhy.title)}
+                <BrandText text={ppiWhy.title} />
               </h2>
             </div>
           </div>
@@ -209,7 +210,7 @@ export function PrePurchaseInspection({
               id="ppi-covers"
               className="text-display text-title font-normal text-cream lg:col-span-5"
             >
-              {preserveBrandWrap(ppiCoverage.title)}
+              <BrandText text={ppiCoverage.title} />
             </h2>
             <div className="space-y-4 lg:col-span-7 lg:border-l lg:border-white/10 lg:pl-10">
               {ppiCoverage.paragraphs.map((p) => (
@@ -277,7 +278,7 @@ export function PrePurchaseInspection({
                     id={`${area.id}-title`}
                     className="text-display mt-3 text-2xl font-normal text-cream md:text-[2rem]"
                   >
-                    {preserveBrandWrap(area.title)}
+                    <BrandText text={area.title} />
                   </h3>
 
                   {area.lead?.map((p) => (
@@ -322,7 +323,7 @@ export function PrePurchaseInspection({
         <div className="container-page">
           <div className="reveal mx-auto max-w-3xl text-center">
             <h2 id="ppi-findings" className="text-display text-title font-normal text-cream">
-              {preserveBrandWrap(ppiFindings.title)}
+              <BrandText text={ppiFindings.title} />
             </h2>
             <p className={cn(BODY, "mt-5")}>{preserveBrandWrap(ppiFindings.intro)}</p>
           </div>
@@ -372,7 +373,7 @@ export function PrePurchaseInspection({
         <div className="container-page">
           <div className="reveal mx-auto max-w-3xl text-center">
             <h2 id="ppi-rta" className="text-display text-title font-normal text-cream">
-              {preserveBrandWrap(ppiRta.title)}
+              <BrandText text={ppiRta.title} />
             </h2>
             <p className={cn(BODY, "mt-5")}>{preserveBrandWrap(ppiRta.intro)}</p>
           </div>
@@ -460,7 +461,7 @@ export function PrePurchaseInspection({
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-10">
           <div className="reveal lg:col-span-5">
             <h2 id="ppi-imports" className="text-display text-title font-normal text-cream">
-              {preserveBrandWrap(ppiImports.title)}
+              <BrandText text={ppiImports.title} />
             </h2>
           </div>
           <div className="reveal space-y-5 lg:col-span-7 lg:border-l lg:border-white/10 lg:pl-10">
@@ -479,7 +480,7 @@ export function PrePurchaseInspection({
         <div className="container-page">
           <div className="reveal mx-auto max-w-3xl text-center">
             <h2 id="ppi-steps" className="text-display text-title font-normal text-cream">
-              {preserveBrandWrap(ppiSteps.title)}
+              <BrandText text={ppiSteps.title} />
             </h2>
           </div>
 
@@ -515,7 +516,7 @@ export function PrePurchaseInspection({
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
           <div className="reveal lg:col-span-6">
             <h2 id="ppi-price" className="text-display text-title font-normal text-cream">
-              {preserveBrandWrap(ppiPricing.title)}
+              <BrandText text={ppiPricing.title} />
             </h2>
             <div className="mt-6 space-y-4">
               {ppiPricing.paragraphs.map((p) => (
@@ -564,7 +565,7 @@ export function PrePurchaseInspection({
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-10">
           <div className="reveal lg:col-span-5">
             <h2 id="ppi-why-us" className="text-display text-title font-normal text-cream">
-              {preserveBrandWrap(ppiWhyUs.title)}
+              <BrandText text={ppiWhyUs.title} />
             </h2>
             <p className={cn(BODY, "mt-5")}>{preserveBrandWrap(ppiWhyUs.intro)}</p>
 
@@ -668,7 +669,7 @@ export function PrePurchaseInspection({
         <div className="container-page">
           <div className="reveal mx-auto flex max-w-3xl flex-col items-center text-center">
             <h2 id="ppi-book" className="text-display text-title font-normal text-cream">
-              {preserveBrandWrap(ppiClosing.title)}
+              <BrandText text={ppiClosing.title} />
             </h2>
             <p className={cn(BODY, "mt-5")}>{preserveBrandWrap(ppiClosing.text)}</p>
             <div className="mt-8 grid w-full gap-5 border-y border-white/10 py-5 text-left sm:grid-cols-2 sm:gap-8">
