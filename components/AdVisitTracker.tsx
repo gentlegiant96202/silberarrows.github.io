@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { afterNextPaint } from "@/lib/defer";
 
 /**
  * Engagement half of the paid-click visit log.
@@ -168,10 +169,12 @@ export function AdVisitTracker() {
       const anchor = target?.closest?.("a[href]") as HTMLAnchorElement | null;
       if (!anchor) return;
       const href = anchor.getAttribute("href") ?? "";
-      if (/^tel:/i.test(href)) s.phone = true;
-      else if (/wa\.me|whatsapp/i.test(href)) s.whatsapp = true;
+      const phone = /^tel:/i.test(href);
+      const whatsapp = !phone && /wa\.me|whatsapp/i.test(href);
+      if (phone) s.phone = true;
+      if (whatsapp) s.whatsapp = true;
       // Contact taps navigate away immediately on mobile — flush now.
-      if (s.phone || s.whatsapp) send();
+      if (phone || whatsapp) afterNextPaint(send);
     };
 
     const onVisibility = () => {

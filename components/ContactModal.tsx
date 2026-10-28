@@ -87,7 +87,7 @@ export function ContactModal({
       )}
     >
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-md"
+        className="absolute inset-0 bg-black/80 lg:bg-black/70 lg:backdrop-blur-md"
         onClick={onClose}
       />
       <div className="relative w-full max-w-md border border-white/10 bg-[#111113] ring-silver p-7 anim-rise">

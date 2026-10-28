@@ -35,7 +35,7 @@ export function OfferMobileBar({ label }: { label: string }) {
       aria-label="Enquire"
       aria-hidden={hidden ? true : undefined}
       className={cn(
-        "lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-[#0c0b0b]/90 backdrop-blur-xl transition-transform duration-300 ease-out",
+        "lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-[#0c0b0b]/95 transition-transform duration-300 ease-out",
         hidden ? "pointer-events-none translate-y-full" : "translate-y-0"
       )}
     >

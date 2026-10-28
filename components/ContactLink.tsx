@@ -5,6 +5,7 @@ import { trackMetaContact, type ContactKind } from "@/lib/meta-pixel";
 import { trackOpenAILead } from "@/lib/openai-pixel";
 import { trackOfferSelect, type LeadContext } from "@/lib/analytics";
 import { useChatGPTWhatsAppHref } from "@/lib/chatgpt-landing";
+import { afterNextPaint } from "@/lib/defer";
 
 type ContactLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   kind: ContactKind;
@@ -24,6 +25,8 @@ type ContactLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
  *  - OpenAI / ChatGPT Ads (browser Pixel `lead_created` + Conversions API
  *    `lead_created`, reusing the Meta event id for deduplication)
  *  - GA4 / GTM `select_promotion` when an offer context is supplied
+ *
+ * All of it runs after the tap has painted (see lib/defer.ts).
  *
  * Generic WhatsApp links switch to the "found you on ChatGPT" message for
  * visits that started on /chatgpt (see lib/chatgpt-landing.ts).
@@ -46,12 +49,14 @@ export function ContactLink({
       {...props}
       href={resolvedHref}
       onClick={(e) => {
-        fireGoogleAdsConversion(
-          kind === "whatsapp" ? GADS_LABELS.whatsapp : GADS_LABELS.phone
-        );
-        const eventId = trackMetaContact(kind, context);
-        if (eventId) trackOpenAILead(eventId);
-        if (context) trackOfferSelect(context, kind);
+        afterNextPaint(() => {
+          fireGoogleAdsConversion(
+            kind === "whatsapp" ? GADS_LABELS.whatsapp : GADS_LABELS.phone
+          );
+          const eventId = trackMetaContact(kind, context);
+          if (eventId) trackOpenAILead(eventId);
+          if (context) trackOfferSelect(context, kind);
+        });
         onClick?.(e);
       }}
     >

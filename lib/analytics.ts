@@ -17,6 +17,8 @@
  * `LeadContext` so every downstream event shares one offer identifier.
  */
 
+import { afterNextPaint } from "@/lib/defer";
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -98,17 +100,19 @@ export function trackOfferView(ctx: LeadContext): void {
  */
 export function trackOfferSelect(ctx: LeadContext, kind: OfferCtaKind): void {
   const slot = ctx.intent ? `${ctx.intent}:${kind}` : kind;
-  gtagEvent("select_promotion", {
-    promotion_id: ctx.offer,
-    promotion_name: ctx.offerName,
-    creative_slot: slot,
-  });
-  dataLayerPush({
-    event: "offer_cta_click",
-    offer_id: ctx.offer,
-    offer_name: ctx.offerName,
-    cta_kind: kind,
-    cta_intent: ctx.intent ?? null,
+  afterNextPaint(() => {
+    gtagEvent("select_promotion", {
+      promotion_id: ctx.offer,
+      promotion_name: ctx.offerName,
+      creative_slot: slot,
+    });
+    dataLayerPush({
+      event: "offer_cta_click",
+      offer_id: ctx.offer,
+      offer_name: ctx.offerName,
+      cta_kind: kind,
+      cta_intent: ctx.intent ?? null,
+    });
   });
 }
 

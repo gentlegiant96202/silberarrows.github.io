@@ -27,7 +27,7 @@ export function MobileContactBar() {
       role="region"
       aria-label="Contact"
       aria-hidden={open ? true : undefined}
-      className="lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-[#0c0b0b]/90 backdrop-blur-xl"
+      className="lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-[#0c0b0b]/95"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cream/30 to-transparent" />
       <div className="container-page grid grid-cols-2 gap-2.5 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">

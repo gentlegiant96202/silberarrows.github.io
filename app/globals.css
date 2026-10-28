@@ -546,6 +546,15 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.08),
       0 16px 40px -18px rgba(0, 0, 0, 0.75);
   }
+  /* Phones: a lighter blur over a denser tint. The 20px saturated blur is
+     re-rendered on every frame behind the fixed bar and slows tap response. */
+  @media (max-width: 63.98rem) {
+    .glass-nav {
+      background: rgba(16, 15, 15, 0.86);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+  }
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .glass-nav {
       background: rgba(12, 11, 11, 0.94);
