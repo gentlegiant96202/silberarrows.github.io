@@ -621,7 +621,7 @@
   /* Hero photo: pulled into a dark tonal range so cream copy reads on top,
      with a slow perpetual zoom instead of the carousel's one-shot push-in. */
   .hero-photo {
-    filter: brightness(0.6) saturate(0.85);
+    filter: brightness(0.85) saturate(0.95);
   }
   .hero-photo .anim-kenburns {
     /* 18% push-in with a slight drift over 16s, then back — slow enough to
@@ -644,10 +644,10 @@
   .hero-scrim-copy {
     background: linear-gradient(
       to top,
-      rgba(12, 11, 11, 0.94) 0%,
-      rgba(12, 11, 11, 0.88) 50%,
-      rgba(12, 11, 11, 0.55) 80%,
-      rgba(12, 11, 11, 0.32) 100%
+      rgba(12, 11, 11, 0.85) 0%,
+      rgba(12, 11, 11, 0.7) 50%,
+      rgba(12, 11, 11, 0.38) 80%,
+      rgba(12, 11, 11, 0.15) 100%
     );
   }
   @media (min-width: 64rem) {
@@ -655,16 +655,16 @@
       background:
         linear-gradient(
           to right,
-          rgba(12, 11, 11, 0.94) 0%,
-          rgba(12, 11, 11, 0.88) 38%,
-          rgba(12, 11, 11, 0.45) 68%,
-          rgba(12, 11, 11, 0.28) 100%
+          rgba(12, 11, 11, 0.8) 0%,
+          rgba(12, 11, 11, 0.68) 38%,
+          rgba(12, 11, 11, 0.25) 68%,
+          rgba(12, 11, 11, 0.08) 100%
         ),
         linear-gradient(
           to top,
-          rgba(12, 11, 11, 0.9) 0%,
-          rgba(12, 11, 11, 0.35) 32%,
-          rgba(12, 11, 11, 0.12) 100%
+          rgba(12, 11, 11, 0.75) 0%,
+          rgba(12, 11, 11, 0.2) 32%,
+          rgba(12, 11, 11, 0.04) 100%
         );
     }
   }

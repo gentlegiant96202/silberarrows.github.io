@@ -132,7 +132,7 @@ export function Hero({
         {/* Blend out of the (black) sticky header */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[color:var(--color-ink-950)] to-transparent" />
         {/* Ground the trust strip */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0c0b0b]/85 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0c0b0b]/60 to-transparent" />
       </div>
 
       {/* Phones/tablets: compact stack from the top so headline, offer,
