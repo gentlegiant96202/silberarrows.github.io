@@ -95,6 +95,24 @@ export function LocalBusinessSchema() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
+            name: "Mercedes-Benz Pre-Purchase Inspection",
+            description:
+              "Workshop inspection of a used Mercedes-Benz before purchase, with XENTRY diagnostics, road test, paint-depth measurements and a Technical Inspection Report. Includes AED 500 repair credit.",
+            url: `${baseUrl}/services/pre-purchase-inspection`,
+          },
+          price: "1500",
+          priceCurrency: "AED",
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            price: "1500",
+            priceCurrency: "AED",
+            valueAddedTaxIncluded: false,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
             name: "Mercedes-Benz Scheduled Maintenance (Service A & B)",
             description:
               "Service A and Service B maintenance following official Mercedes-Benz schedules with genuine parts.",

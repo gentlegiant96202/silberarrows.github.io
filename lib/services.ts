@@ -1,3 +1,11 @@
+import {
+  PPI_SLUG,
+  ppiCoverage,
+  ppiFaqs,
+  ppiIntro,
+  ppiSteps,
+} from "@/lib/pre-purchase-inspection";
+
 export type FAQ = { question: string; answer: string };
 
 export type Service = {
@@ -28,6 +36,10 @@ export type Service = {
    * this service would actually need, including ones Google has not crawled.
    */
   reading?: { href: string; label: string; note: string }[];
+  /** Spans two columns in the services grid (keeps the 11-card grid even). */
+  featured?: boolean;
+  /** Fixed price in AED excluding VAT, emitted in the Service schema offer. */
+  price?: number;
 };
 
 export const services: Service[] = [
@@ -459,6 +471,30 @@ export const services: Service[] = [
       },
     ],
   },
+  // Featured (two columns wide): must sit after an even number of cards and
+  // not start in the last desktop column, or the grid leaves a gap.
+  {
+    slug: PPI_SLUG,
+    title: "Pre-Purchase Inspections",
+    seoTitle: "Mercedes Pre-Purchase Inspection Dubai | SilberArrows",
+    heading: "Mercedes-Benz Pre-Purchase Inspections in Dubai",
+    shortTitle: "Pre-Purchase Inspections",
+    mobileLabel: "PPI",
+    blurb: ppiIntro.tagline + ".",
+    metaDescription:
+      "Mercedes-Benz Pre-Purchase Inspection in Dubai: AED 1,500 plus VAT with AED 500 repair credit. XENTRY diagnostics, road test and paint-depth checks in Al Quoz.",
+    hero: "/assets/images/pre-purchase-inspection-640.webp",
+    card: "/assets/images/pre-purchase-inspection.webp",
+    featured: true,
+    price: 1500,
+    overview: ppiIntro.paragraphs[0],
+    bullets: {
+      heading: ppiCoverage.title,
+      items: ppiCoverage.areas.map((a) => a.title),
+    },
+    process: ppiSteps.steps.map((s) => s.lead),
+    faqs: ppiFaqs,
+  },
   {
     slug: "diagnostics",
     title: "Electrical & Computer Diagnostics",
@@ -609,6 +645,12 @@ export function getServiceBySlug(slug: string) {
  * entries in the catalogue (which never included air conditioning).
  */
 export const relatedServiceSlugs: Record<string, string[]> = {
+  [PPI_SLUG]: [
+    "diagnostics",
+    "scheduled-maintenance",
+    "engine-repair",
+    "suspension-repair",
+  ],
   "brake-service": [
     "tyre-replacement",
     "wheel-alignment",
@@ -650,6 +692,7 @@ export const relatedServiceSlugs: Record<string, string[]> = {
     "scheduled-maintenance",
     "suspension-repair",
     "battery-service",
+    PPI_SLUG,
   ],
   "suspension-repair": [
     "wheel-alignment",
@@ -662,6 +705,7 @@ export const relatedServiceSlugs: Record<string, string[]> = {
     "air-conditioning",
     "suspension-repair",
     "battery-service",
+    PPI_SLUG,
   ],
   detailing: [
     "scheduled-maintenance",

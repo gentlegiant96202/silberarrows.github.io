@@ -79,6 +79,10 @@ export const nav: NavItem[] = [
       { href: "/service-pricing", label: "Service Pricing" },
       { href: "/service-contracts", label: "Service Contracts" },
       { href: "/extended-warranty", label: "Extended Warranty" },
+      {
+        href: "/services/pre-purchase-inspection",
+        label: "Pre-Purchase Inspections",
+      },
     ],
   },
   { href: "/offers", label: "Offers", highlight: true },

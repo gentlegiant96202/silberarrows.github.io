@@ -13,7 +13,7 @@ export function absoluteUrl(path: string): string {
  */
 export const evergreenDates = {
   published: "2024-01-15T00:00:00.000Z",
-  modified: "2026-10-10T00:00:00.000Z",
+  modified: "2026-10-28T00:00:00.000Z",
 } as const;
 
 export const defaultOgImage = {
@@ -48,6 +48,8 @@ export function buildPostOgImage(input: {
 }
 
 export const serviceKeywords: Record<string, string> = {
+  "pre-purchase-inspection":
+    "Mercedes pre-purchase inspection Dubai, Mercedes PPI Dubai, used Mercedes inspection Dubai, Mercedes inspection before buying, imported Mercedes inspection Dubai, Mercedes PPI Al Quoz",
   "scheduled-maintenance":
     "Mercedes scheduled maintenance Dubai, Service A Service B Dubai, Mercedes maintenance Al Quoz, official Mercedes service schedule",
   diagnostics:

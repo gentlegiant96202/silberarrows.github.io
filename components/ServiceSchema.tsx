@@ -6,6 +6,8 @@ type ServiceSchemaProps = {
   serviceSlug: string;
   category?: string;
   image?: string;
+  /** AED excluding VAT. */
+  price?: number;
 };
 
 const baseUrl = site.url;
@@ -16,6 +18,7 @@ export function ServiceSchema({
   serviceSlug,
   category = "AutomotiveService",
   image,
+  price,
 }: ServiceSchemaProps) {
   const url = `${baseUrl}/services/${serviceSlug}`;
   const serviceSchema = {
@@ -68,6 +71,15 @@ export function ServiceSchema({
       name: serviceName,
       description: serviceDescription,
       priceCurrency: "AED",
+      ...(price != null && {
+        price: String(price),
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          price: String(price),
+          priceCurrency: "AED",
+          valueAddedTaxIncluded: false,
+        },
+      }),
       availability: "https://schema.org/InStock",
       areaServed: {
         "@type": "Country",

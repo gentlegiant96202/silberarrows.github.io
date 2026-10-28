@@ -11,6 +11,8 @@ import { ServiceSchema } from "@/components/ServiceSchema";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FAQSchema } from "@/components/FAQSchema";
 import { ArticleSchema } from "@/components/ArticleSchema";
+import { PrePurchaseInspection } from "@/components/ppi/PrePurchaseInspection";
+import { PPI_SLUG } from "@/lib/pre-purchase-inspection";
 import { absoluteUrl, keywordsForServiceSlug } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -25,6 +27,7 @@ const reviewerBySlug: Record<string, string> = {
   "tyre-replacement": "Michael Riley",
   "wheel-alignment": "Michael Riley",
   detailing: "Maroua Dafir",
+  [PPI_SLUG]: "Glen Cable",
 };
 
 function getReviewer(slug: string) {
@@ -68,6 +71,12 @@ export async function generateMetadata({
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: service.seoTitle,
+      description: service.metaDescription,
+      images: [absoluteUrl(service.hero)],
+    },
   };
 }
 
@@ -99,13 +108,14 @@ export default async function ServiceDetailPage({
     image: reviewer.image,
   };
 
-  return (
+  const schemas = (
     <>
       <ServiceSchema
         serviceName={service.title}
         serviceDescription={service.overview}
         serviceSlug={service.slug}
         image={service.hero}
+        price={service.price}
       />
       <ArticleSchema
         headline={service.heading}
@@ -125,6 +135,21 @@ export default async function ServiceDetailPage({
         ]}
       />
       {service.faqs?.length ? <FAQSchema items={service.faqs} /> : null}
+    </>
+  );
+
+  if (slug === PPI_SLUG) {
+    return (
+      <>
+        {schemas}
+        <PrePurchaseInspection heading={service.heading} reviewer={reviewer} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      {schemas}
       <PageHero
         title={service.heading}
         intro={service.overview}

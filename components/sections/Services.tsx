@@ -20,24 +20,49 @@ export function Services({ className }: { className?: string }) {
           />
         </div>
 
-        {/* 10 services → 2 columns on phones/tablets, 5 on desktop: no orphans */}
-        <div className="reveal mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-16 lg:grid-cols-5">
+        {/* 11 services, the featured one two columns wide → 12 slots: 2 columns
+            on phones/tablets, 6 on desktop, no orphans. Featured aspect ratios
+            are the regular ones doubled so row heights match. */}
+        <div className="reveal mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-16 lg:grid-cols-6">
           {services.map((service) => (
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="surface group relative block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1"
+              className={cn(
+                "surface group relative block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1",
+                service.featured && "col-span-2"
+              )}
             >
-              <div className="relative aspect-[4/5] w-full md:aspect-[5/4] lg:aspect-[4/5]">
+              <div
+                className={cn(
+                  "relative w-full",
+                  service.featured
+                    ? "aspect-[8/5] md:aspect-[5/2] lg:aspect-[8/5]"
+                    : "aspect-[4/5] md:aspect-[5/4] lg:aspect-[4/5]"
+                )}
+              >
                 <Image
                   src={service.card ?? service.hero}
                   alt={service.shortTitle}
                   fill
                   quality={90}
-                  sizes="(min-width: 1024px) 20vw, 50vw"
-                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+                  sizes={
+                    service.featured
+                      ? "(min-width: 1024px) 33vw, 100vw"
+                      : "(min-width: 1024px) 17vw, 50vw"
+                  }
+                  className={cn(
+                    "object-cover transition duration-700 ease-out group-hover:scale-[1.04]",
+                    service.featured && "object-[50%_30%]"
+                  )}
                 />
                 <div className="service-card-scrim pointer-events-none absolute inset-0" />
+
+                {service.featured && (
+                  <span className="silver-chip absolute left-3 top-3 z-10 rounded-full px-2.5 py-1 text-[0.5625rem] font-semibold uppercase tracking-[0.18em] sm:left-4 sm:top-4">
+                    New
+                  </span>
+                )}
 
                 <span className="silver-tick absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full sm:right-4 sm:top-4">
                   <ArrowUpRight
