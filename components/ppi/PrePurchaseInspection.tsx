@@ -500,7 +500,7 @@ export function PrePurchaseInspection({
             ))}
           </ol>
 
-          <div className="reveal mx-auto mt-6 flex max-w-6xl items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <div className="reveal mx-auto mt-6 flex max-w-6xl flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:flex-row md:items-start md:gap-4">
             <span className="silver-tick inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full">
               <MapPin size={16} />
             </span>
@@ -514,7 +514,7 @@ export function PrePurchaseInspection({
       {/* ── Price and repair credit ────────────────────────────────────── */}
       <section className="section-band py-20 md:py-28" aria-labelledby="ppi-price">
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
-          <div className="reveal lg:col-span-6">
+          <div className="reveal min-w-0 lg:col-span-6">
             <h2 id="ppi-price" className="text-display text-title font-normal text-cream">
               <BrandText text={ppiPricing.title} />
             </h2>
@@ -527,8 +527,8 @@ export function PrePurchaseInspection({
             </div>
           </div>
 
-          <div className="reveal lg:col-span-6">
-            <div className="ring-chrome relative overflow-hidden rounded-2xl bg-[#0a0a0a] p-7 md:p-10">
+          <div className="reveal min-w-0 lg:col-span-6">
+            <div className="ring-chrome relative overflow-hidden rounded-2xl bg-[#0a0a0a] p-6 sm:p-7 md:p-10">
               <div
                 aria-hidden
                 className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full opacity-50"
@@ -538,14 +538,14 @@ export function PrePurchaseInspection({
                 }}
               />
               <p className={EYEBROW}>{preserveBrandWrap(ppiClosing.price.label)}</p>
-              <p className="mt-4 flex items-baseline gap-3 font-display text-cream">
-                <span className="text-6xl leading-none tracking-[-0.03em] md:text-7xl">
+              <p className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-2 font-display text-cream">
+                <span className="whitespace-nowrap text-5xl leading-none tracking-[-0.03em] sm:text-6xl md:text-7xl">
                   AED 1,500
                 </span>
                 <span className="text-base text-[color:var(--color-silver-400)]">plus VAT</span>
               </p>
               <div className="mt-8 flex items-start gap-4 border-t border-white/10 pt-6">
-                <span className="font-display text-3xl leading-none text-whatsapp md:text-4xl">
+                <span className="shrink-0 whitespace-nowrap font-display text-3xl leading-none text-whatsapp md:text-4xl">
                   AED 500
                 </span>
                 <p className="text-sm leading-snug text-[color:var(--color-silver-300)]">
@@ -553,7 +553,10 @@ export function PrePurchaseInspection({
                 </p>
               </div>
               <div className="mt-8">
-                <CTAButton label={cta} className="w-full sm:w-auto" />
+                <CTAButton
+                  label={cta}
+                  className="w-full sm:w-auto [&_span]:whitespace-normal [&_span]:text-center"
+                />
               </div>
             </div>
           </div>

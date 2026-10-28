@@ -235,9 +235,9 @@ export const offers: Offer[] = [
       position: "center 40%",
     },
     cardImage: {
-      src: "/assets/images/offers/ppi-hero-960.webp",
-      alt: "Blue Mercedes-AMG G 63 in a bright studio, front three-quarter view.",
-      position: "80% center",
+      src: "/assets/images/offers/ppi-profile.webp",
+      alt: "Side profile of a blue Mercedes-AMG G 63 in a bright studio.",
+      position: "center",
     },
     metaTitle: "Mercedes PPI with AED 500 Repair Credit Dubai | SilberArrows",
     metaDescription:
